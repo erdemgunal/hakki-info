@@ -2,7 +2,8 @@
 
 import React, { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
-import { FaSun, FaMoon } from "react-icons/fa";
+import { IoMoonSharp } from "react-icons/io5";
+import { LuSun } from "react-icons/lu";
 
 export default function ThemeSwitch(){
   const { theme, setTheme } = useTheme();
@@ -25,7 +26,7 @@ export default function ThemeSwitch(){
         className="rounded-2xl p-1 dark:text-white dark:hover:bg-opacity-10 dark:hover:bg-gray-500 hover:bg-gray-100 text-2xl flex-shrink-0"
         onClick={toggleTheme}
     >
-        {theme === "dark" ? <FaSun /> : <FaMoon />}
+        {theme === "dark" ? <LuSun /> : <IoMoonSharp />}
     </button>
 
   );

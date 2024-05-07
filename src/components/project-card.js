@@ -12,7 +12,7 @@ export function ProjectCard({ title, description, tags, link }) {
   return (
     React.createElement(
       Card,
-      { className: "flex flex-col overflow-hidden border border-dark-700 p-3 dark:hover:bg-gray-800 hover:bg-accent"},
+      { className: "flex flex-col overflow-hidden border border-dark-700 p-3 dark:hover:bg-gray-950 hover:bg-accent"},
       React.createElement(
         CardHeader,
         { className: "" },
