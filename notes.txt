@@ -1,0 +1,1 @@
+RESUME_DATA.locationLink e discord ui design yapaan adamin dedigi hoverlardan biri gelecek global.css degil yeni bir .css dosyasi olusturulup oradan aktarilacak
