@@ -1,4 +1,4 @@
-import { GitHubIcon, LinkedInIcon, TwitterIcon } from "@/components/icons";
+import { GitHubIcon, LinkedinIcon, TwitterIcon } from "@/components/icons";
 
 export const RESUME_DATA = {
     name: "<Hakki />",
@@ -21,9 +21,9 @@ export const RESUME_DATA = {
                 icon: GitHubIcon,
             },
             {
-                name: "LinkedIn",
+                name: "Linkedin",
                 url: "https://www.linkedin.com/in/hakkierdem/",
-                icon: LinkedInIcon,
+                icon: LinkedinIcon,
             },
             {
                 name: "Twitter",
