@@ -42,17 +42,17 @@ export const RESUME_DATA = {
             end: "Present",
         },
         {
-            school: "TED Rönesans College",
-            degree: "",
-            start: "2018",
-            end: "2019",
-        },
-        {
             school: "Istanbul Kadıkoy High School",
             degree: "",
             start: "2019",
             end: "2023",
         },
+        {
+            school: "TED Rönesans College",
+            degree: "",
+            start: "2018",
+            end: "2019",
+        }
     ],
     work: [
         {
