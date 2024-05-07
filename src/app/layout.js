@@ -5,7 +5,7 @@ import "../styles/globals.css";
 const inter = Inter({ subsets: ["latin"], display: "swap"});
 
 export const metadata = {
-  title: "hakki.info",
+  title: "Hakkı's Portfolio",
   description: "Personal portfolio of Hakki Erdem Gunal, showcasing skills in various programming languages, a collection of software development projects, and contact information. Explore to learn more about Hakki's experience and work.",
 };
 
