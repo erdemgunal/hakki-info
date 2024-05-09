@@ -1,5 +1,6 @@
 import { Inter } from "next/font/google";
 import Provider from '../lib/ThemeProvider';
+import { Meta } from "../components/Meta";
 import "../styles/globals.css";
 
 const inter = Inter({ subsets: ["latin"], display: "swap"});
@@ -12,9 +13,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={inter.className}>
-      <head>
-        <link rel="icon" href="/favicon.ico" />
-      </head>
+      <Meta />
       <body className="bg-white dark:bg-[#1E1E1E]">
           <Provider>
             {children}
