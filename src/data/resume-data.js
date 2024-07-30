@@ -110,7 +110,7 @@ export const RESUME_DATA = {
                 "This project is a web application that allows users to filter and list flight tickets based on various criteria. Users can find the flights they want with options such as duration, price range, departure and arrival cities. Developed using Next.js and React.",
             link: {
                 label: "Hakkinizla Ucun",
-                href: "https://github.com/erdemmgunal/hakkinizlaucun",
+                href: "https://hakkinizlaucun.com",
             },
         },
         {
