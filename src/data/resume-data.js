@@ -209,6 +209,16 @@ export const RESUME_DATA = {
                 href: "https://github.com/erdemmgunal/Konusanlar-Monitor",
             },
         },
+        {
+            title: "Tekno Pazar",
+            techStack: ['NextJS', 'TailwindCSS'],
+            description:
+                "Wholeseller platform for the tech products.",
+            link: {
+                label: 'Tekno Pazar',
+                href:"https://tekno-pazar.vercel.app/"
+            }
+        }
     ],
     languages: [
         {
