@@ -8,7 +8,7 @@ export const RESUME_DATA = {
     location: "Istanbul, Turkey",
     locationLink: "https://www.google.com/maps/place/Istanbul/",
     about:
-        "Hello my name is Hakkı Erdem Günal. I'm 19 years old guy (who like to automate life and make things easier)",
+        "Hello my name is Hakkı Erdem Günal. I'm " + (new Date().getFullYear() - 2004) + " years old guy (who like to automate life and make things easier)",
     summary:
         "I am Erdem Günal, a physics student at Marmara University. Building Lego and solving problems has become not only a hobby but also a passion for me. I have 3 years of software experience and I am proficient in technologies such as Python, Javascript, Typescript, React, Next.js. I am passionate about automation and productivity improvement. At the same time, I aim to develop effective web applications by combining my interest in design tools and my visual design skills with my technical knowledge. Playing basketball helps me learn teamwork while building physical and mental endurance. I love building good relationships with people and understanding different perspectives. I stand out with my skills in being successful in projects that require cooperation and teamwork.",
     avatarUrl: "https://avatars.githubusercontent.com/u/65365648?v=4",
