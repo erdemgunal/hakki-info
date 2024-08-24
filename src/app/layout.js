@@ -1,4 +1,5 @@
 import { Inter } from "next/font/google";
+import Script from "next/script";
 import Provider from '../lib/ThemeProvider';
 import MetaTags from "@/components/MetaTags";
 import "../styles/globals.css";
