@@ -96,7 +96,7 @@ export const RESUME_DATA = {
     projects: [
         {
             title: "Monitorist",
-            techStack: ["Python", "Javascript", "Next.js", "GraphQL"],
+            techStack: ["Python", "Javascript", "Next.js", "MongoDB", "Vercel"],
             description: "A platform to build and grow your business",
             link: {
                 label: "Monitorist",
@@ -105,7 +105,7 @@ export const RESUME_DATA = {
         },
         {
             title: "Hakkınızla Uçun",
-            techStack: ["Next.js", "Html", "React", "Mongodb"],
+            techStack: ["Next.js", 'TailwindCSS', "Next.js API Routes", "Vercel"],
             description:
                 "This project is a web application that allows users to filter and list flight tickets based on various criteria. Users can find the flights they want with options such as duration, price range, departure and arrival cities. Developed using Next.js and React.",
             link: {
@@ -114,8 +114,18 @@ export const RESUME_DATA = {
             },
         },
         {
+            title: "Tekno Pazar",
+            techStack: ['Next.JS' 'Prisma', 'PostgreSQL', 'NextAuth', 'Vercel'],
+            description:
+                "Wholeseller platform for the tech products.",
+            link: {
+                label: 'Tekno Pazar',
+                href:"https://tekno-pazar.vercel.app/"
+            }
+        },
+        {
             title: "Hakki info",
-            techStack: ["Typescript", "Javascript", "CSS"],
+            techStack: ["Next.js", "TailwindCSS"],
             description:
                 "Hakki.info is a personal resume website built using a technology stack that includes React, Next.js, Typescript, and CSS.",
             link: {
@@ -125,13 +135,7 @@ export const RESUME_DATA = {
         },
         {
             title: "React Staj iWeather App",
-            techStack: [
-                "Javascript",
-                "TailwindCSS",
-                "React",
-                "Axios",
-                "OpenWeather API",
-            ],
+            techStack: ["Javascript", "TailwindCSS", "Axios", "OpenWeather API", "Vercel"],
             description:
                 "WeatherApp: Your go-to for easy, accurate weather updates. Check local forecasts or explore new locations effortlessly with our user-friendly interface. Stay informed effortlessly!",
             link: {
@@ -151,7 +155,7 @@ export const RESUME_DATA = {
         },
         {
             title: "Troy Monitor",
-            techStack: ["Python", "SQL"],
+            techStack: ["Python", "Sqlite"],
             description:
                 "The program notice you when an iPhone 15 availabile on the site.",
             link: {
@@ -181,7 +185,7 @@ export const RESUME_DATA = {
         },
         {
             title: "BMW - MERCEDES Monitor",
-            techStack: ["Python", "SQL"],
+            techStack: ["Python", "Sqlite3", 'Discord Webhook'],
             description:
                 "The program through which you can buy a BMW or MERCEDES at store price without going to the black market, through their website.",
             link: {
@@ -201,23 +205,13 @@ export const RESUME_DATA = {
         },
         {
             title: "Konusanlar Monitor",
-            techStack: ["Python", "Sqlite3"],
+            techStack: ["Python", "Sqlite3", 'Discord Webhook'],
             description:
                 'A program that provides notifications via Discord when a "Konusanlar" ticket is released on the mobilet.com.',
             link: {
                 label: "konusanlar monitor",
                 href: "https://github.com/erdemmgunal/Konusanlar-Monitor",
             },
-        },
-        {
-            title: "Tekno Pazar",
-            techStack: ['NextJS', 'TailwindCSS'],
-            description:
-                "Wholeseller platform for the tech products.",
-            link: {
-                label: 'Tekno Pazar',
-                href:"https://tekno-pazar.vercel.app/"
-            }
         }
     ],
     languages: [
