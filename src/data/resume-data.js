@@ -115,7 +115,7 @@ export const RESUME_DATA = {
         },
         {
             title: "Tekno Pazar",
-            techStack: ['Next.JS' 'Prisma', 'PostgreSQL', 'NextAuth', 'Vercel'],
+            techStack: ['Next.JS', 'Prisma', 'PostgreSQL', 'NextAuth', 'Vercel'],
             description:
                 "Wholeseller platform for the tech products.",
             link: {
