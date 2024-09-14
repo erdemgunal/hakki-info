@@ -104,6 +104,15 @@ export const RESUME_DATA = {
             },
         },
         {
+            title:'MarunGPT',
+            techStack: ['NextJS', 'TailwindCSS', 'Framer Motion', 'Shadcn', 'MongoDB', 'Vercel', 'OpenAI', 'JWT', 'NextAuth', 'Git'],
+            description: 'MarunGPT is an AI chatbot designed to simplify campus life at Marmara University by providing quick and easy access to essential information from the university’s official website and subdomains. Trained on data from marmara.edu.tr, the chatbot offers instant answers to inquiries about academic programs, campus services, events, and more, all in a conversational format. By centralizing information into a single platform, MarunGPT aims to enhance the student and visitor experience, making it easier to navigate university resources and stay informed about everything happening on campus.',
+            link: {
+                label: 'MarunGPT',
+                href: 'https://marungpt.vercel.app/'
+            }
+        },
+        {
             title: "Hakkınızla Uçun",
             techStack: ["Next.js", 'TailwindCSS', "Next.js API Routes", "Vercel"],
             description:
