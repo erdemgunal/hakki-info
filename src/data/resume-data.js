@@ -95,15 +95,6 @@ export const RESUME_DATA = {
     ],
     projects: [
         {
-            title: "Monitorist",
-            techStack: ["Python", "Javascript", "Next.js", "MongoDB", "Vercel"],
-            description: "A platform to build and grow your business",
-            link: {
-                label: "Monitorist",
-                href: "https://monitorist.vercel.app/",
-            },
-        },
-        {
             title:'MarunGPT',
             techStack: ['NextJS', 'TailwindCSS', 'Framer Motion', 'Shadcn', 'MongoDB', 'Vercel', 'OpenAI', 'JWT', 'NextAuth', 'Git'],
             description: "MarunGPT is an AI chatbot trained on Marmara University's website, designed to simplify campus life by providing quick access to essential information. It answers questions about academics, services, and events in a conversational format, making it easy for students and visitors to navigate university resources.",
@@ -111,6 +102,15 @@ export const RESUME_DATA = {
                 label: 'MarunGPT',
                 href: 'https://marungpt.vercel.app/'
             }
+        },
+        {
+            title: "Monitorist",
+            techStack: ["Python", "Javascript", "Next.js", "MongoDB", "Vercel"],
+            description: "A platform to build and grow your business",
+            link: {
+                label: "Monitorist",
+                href: "https://monitorist.vercel.app/",
+            },
         },
         {
             "title": "Hakkı Aranıyor",
