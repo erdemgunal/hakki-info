@@ -113,6 +113,15 @@ export const RESUME_DATA = {
             }
         },
         {
+            "title": "Hakkı Aranıyor",
+            "techStack": ["Next.js", "TailwindCSS", "Radix UI", "Framer Motion", "Vercel"],
+            "description": "A captivating Yes/No puzzle game where players unravel mysteries through interactive storytelling, featuring categories like 'Detective' and 'Dark Stories,' advanced search, filters, difficulty ratings, and a sleek responsive UI.",
+            "link": {
+                "label": "Hakki Araniyor",
+                "href": "https://hakki-araniyor.vercel.app/"
+            }
+        },
+        {
             title: "Hakkınızla Uçun",
             techStack: ["Next.js", 'TailwindCSS', "Next.js API Routes", "Vercel"],
             description:
