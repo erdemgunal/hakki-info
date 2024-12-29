@@ -88,33 +88,17 @@ export default function Home() {
                 {RESUME_DATA.summary}
               </p>
             </Section>
-
             <Section>
-              <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">
-                Work Experience
-              </h2>
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Work Experience</h2>
               <div className="grid gap-4">
                 {RESUME_DATA.work.map((work) => (
                   <Card key={work.company} className="group overflow-hidden">
                     <CardHeader>
                       <div className="flex items-center justify-between gap-4">
                         <h3 className="inline-flex items-center gap-2">
-                          {work.link ? (
-                            <Link
-                              className="text-sm sm:text-base font-semibold text-gray-900 hover:text-blue-500 dark:text-white flex items-center gap-1"
-                              href={work.link}
-                              target="_blank"
-                            >
-                              {work.company}
-                              <span className="group-hover:opacity-100 opacity-50 transition-opacity">
-                                <ExternalLink className="h-4 w-4 text-gray-500 dark:text-gray-400" />
-                              </span>
-                            </Link>
-                          ) : (
-                            <span className="text-sm sm:text-base font-semibold text-gray-900 dark:text-white">
-                              {work.company}
-                            </span>
-                          )}
+                          <a className="text-lg font-semibold text-gray-900 hover:text-blue-500 dark:text-white" href={work.link}>
+                            {work.company}
+                          </a>
                           <div className="flex gap-1">
                             {work.badges.map((badge) => (
                               <Badge
@@ -127,19 +111,18 @@ export default function Home() {
                             ))}
                           </div>
                         </h3>
-                        <div className="text-xs sm:text-sm text-gray-600 dark:text-[#B8B8B8]">
+                        <div className="text-sm text-gray-600 dark:text-[#B8B8B8]">
                           {work.start} - {work.end}
                         </div>
                       </div>
                     </CardHeader>
-                    <CardContent className="text-xs sm:text-sm text-gray-600 dark:text-[#B8B8B8]">
+                    <CardContent className="text-sm text-gray-600 dark:text-[#B8B8B8]">
                       {work.description}
                     </CardContent>
                   </Card>
                 ))}
               </div>
             </Section>
-
 
             <div className="grid gap-6 sm:gap-8 md:grid-cols-2">
               <Section>
@@ -207,10 +190,8 @@ export default function Home() {
             </Section>
 
             <Section className="scroll-mb-16">
-              <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">
-                Projects
-              </h2>
-              <div className="grid gap-4 sm:gap-6">
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Projects</h2>
+              <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
                 {RESUME_DATA.projects.map((project) => (
                   <ProjectCard
                     key={project.title}
