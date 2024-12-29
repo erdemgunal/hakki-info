@@ -3,16 +3,16 @@ import { LinkedInIcon } from "../components/icons/LinkedInIcon";
 import { TwitterIcon } from "../components/icons/TwitterIcon";
 
 export const RESUME_DATA = {
-    name: "<Hakki />",
+    name: "<Hakkı />",
     initials: "HAKKI",
     location: "Istanbul, Turkey",
     locationLink: "https://www.google.com/maps/place/Istanbul/",
     about:
-        "Hello my name is Hakkı. I'm " + (new Date().getFullYear() - 2004) + " years old guy (who like to automate life and make things easier)",
+        `Full-stack developer and physics student passionate about automation and problem-solving. ${new Date().getFullYear() - 2004} years old, turning complex challenges into elegant solutions.`,
     summary:
-        "I am Hakkı Erdem Günal, a physics student at Marmara University. Building Lego and solving problems has become not only a hobby but also a passion for me. I have 3 years of software experience and I am proficient in technologies such as Python, Javascript, Typescript, React, Next.js. I am passionate about automation and productivity improvement. At the same time, I aim to develop effective web applications by combining my interest in design tools and my visual design skills with my technical knowledge. Playing basketball helps me learn teamwork while building physical and mental endurance. I love building good relationships with people and understanding different perspectives. I stand out with my skills in being successful in projects that require cooperation and teamwork.",
+        "As a physics student at Marmara University, I combine analytical thinking with technical expertise in software development. With 3 years of experience in technologies like Python, JavaScript, TypeScript, React, and Next.js, I specialize in creating automated solutions and user-centric web applications. My background in physics enhances my problem-solving capabilities, while my design skills enable me to craft visually appealing interfaces. Beyond coding, I'm an avid basketball player, which has taught me valuable lessons in teamwork and perseverance. I excel in collaborative environments, bringing both technical proficiency and strong interpersonal skills to every project.",
     avatarUrl: "https://avatars.githubusercontent.com/u/65365648?v=4",
-    personalWebsiteUrl: "",
+    personalWebsiteUrl: "https://hakki-info.vercel.app",
     contact: {
         email: "erdemmgunal@gmail.com",
         tel: "+905320664332",
@@ -23,7 +23,7 @@ export const RESUME_DATA = {
                 icon: GitHubIcon,
             },
             {
-                name: "Linkedin",
+                name: "LinkedIn",
                 url: "https://www.linkedin.com/in/hakkierdem/",
                 icon: LinkedInIcon,
             },
@@ -42,45 +42,44 @@ export const RESUME_DATA = {
             end: "Present",
         },
         {
-            school: "Istanbul Kadıkoy High School",
-            degree: "",
+            school: "Istanbul Kadıköy High School",
+            degree: "High School Diploma",
             start: "2019",
             end: "2023",
         },
         {
             school: "TED Rönesans College",
-            degree: "",
+            degree: "Secondary Education",
             start: "2018",
             end: "2019",
         }
     ],
     work: [
         {
-            company: "Monitorist",
-            link: "https://monitorist.vercel.app/",
-            badges: ["Owner"],
-            start: "2021",
-            end: "Present",
-            description:
-                "As the founder and primary operator of a cutting-edge platform within a Cookgroup, I have played a pivotal role in the development and execution of various responsibilities. The platform operates a sophisticated monitoring system, overseeing stock changes across more than 20 websites on a 24/7 basis.",
-        },
-        {
             company: "Hakkınızla Uçun",
-            link: "http://hakkinizlaucun.vercel.app/",
-            badges: ["Owner"],
+            link: "https://hakkinizlaucun.vercel.app",
+            badges: ["Founder & Developer"],
             start: "2024",
             end: "Present",
             description:
-                "This project filters the short-term round-trip and cheapest flights between Turkey and Europe for 2,3,4..7 days.",
+                "Developed an innovative flight search platform that helps users find optimal short-term round-trip flights between Turkey and Europe. The system specializes in filtering trips lasting 2-7 days, focusing on cost-effectiveness and convenience.",
+        },
+        {
+            company: "Monitorist",
+            link: "https://monitorist.vercel.app",
+            badges: ["Founder & Lead Developer"],
+            start: "2021",
+            end: "2023",
+            description:
+                "Founded and led the development of a sophisticated e-commerce monitoring platform. Built and maintained a real-time system that tracks inventory changes across 20+ websites, providing critical data for business decisions. Implemented automated notification systems and scalable infrastructure.",
         },
     ],
     certs: [
         {
-            title: "0'dan ileri seviye'ye dijital pazarlama egitimi",
+            title: "Advanced Digital Marketing",
             link: "",
             start: "2024",
-            end: "",
-            description: "Rıdvan Aydın - Marmara University Sinerji Club",
+            description: "Comprehensive digital marketing certification program by Rıdvan Aydın at Marmara University Sinerji Club",
         },
     ],
     skills: [
@@ -88,158 +87,140 @@ export const RESUME_DATA = {
         "JavaScript",
         "TypeScript",
         "React/Next.js",
-        "Photoshop",
+        "System Architecture",
+        "UI/UX Design",
+        "Adobe Photoshop",
         "Problem Solving",
-        "System Automation",
-        "Basketball",
+        "Automation",
+        "Team Leadership",
     ],
     projects: [
         {
-            title:'MarunGPT',
-            techStack: ['NextJS', 'TailwindCSS', 'Framer Motion', 'Shadcn', 'MongoDB', 'Vercel', 'OpenAI', 'JWT', 'NextAuth', 'Git'],
-            description: "MarunGPT is an AI chatbot trained on Marmara University's website, designed to simplify campus life by providing quick access to essential information. It answers questions about academics, services, and events in a conversational format, making it easy for students and visitors to navigate university resources.",
+            title: "MarunGPT",
+            techStack: ["Next.js", "TailwindCSS", "Framer Motion", "Shadcn", "MongoDB", "OpenAI API", "JWT", "NextAuth"],
+            description: "Created an AI-powered chatbot specifically trained on Marmara University's data to enhance student experience. Provides instant, accurate information about academic programs, campus services, and university events through natural language interactions.",
             link: {
-                label: 'MarunGPT',
-                href: 'https://marungpt.vercel.app/'
+                label: "MarunGPT",
+                href: "https://marungpt.vercel.app"
             }
         },
         {
             title: "Monitorist",
-            techStack: ["Python", "Javascript", "Next.js", "MongoDB", "Vercel"],
-            description: "A platform to build and grow your business",
+            techStack: ["Python", "Next.js", "MongoDB", "WebSocket", "REST API"],
+            description: "Enterprise-grade monitoring platform providing real-time inventory tracking and automated notifications for e-commerce businesses. Features advanced analytics and scalable architecture.",
             link: {
                 label: "Monitorist",
-                href: "https://monitorist.vercel.app/",
-            },
+                href: "https://monitorist.vercel.app"
+            }
         },
         {
-            "title": "Hakkı Aranıyor",
-            "techStack": ["Next.js", "TailwindCSS", "Radix UI", "Framer Motion", "Vercel"],
-            "description": "A captivating Yes/No puzzle game where players unravel mysteries through interactive storytelling, featuring categories like 'Detective' and 'Dark Stories,' advanced search, filters, difficulty ratings, and a sleek responsive UI.",
-            "link": {
-                "label": "Hakki Araniyor",
-                "href": "https://hakki-araniyor.vercel.app/"
+            title: "Hakkı Aranıyor",
+            techStack: ["Next.js", "TailwindCSS", "Radix UI", "Framer Motion"],
+            description: "Interactive mystery-solving game featuring multiple categories including Detective and Dark Stories. Implements advanced search functionality, difficulty ratings, and responsive design.",
+            link: {
+                label: "Hakkı Aranıyor",
+                href: "https://hakki-araniyor.vercel.app"
             }
         },
         {
             title: "Hakkınızla Uçun",
-            techStack: ["Next.js", 'TailwindCSS', "Next.js API Routes", "Vercel"],
-            description:
-                "This project is a web application that allows users to filter and list flight tickets based on various criteria. Users can find the flights they want with options such as duration, price range, departure and arrival cities. Developed using Next.js and React.",
+            techStack: ["Next.js", "TailwindCSS", "RESTful APIs", "Data Analytics"],
+            description: "Advanced flight search platform optimizing travel plans between Turkey and Europe. Features intelligent filtering for duration, price ranges, and destinations.",
             link: {
-                label: "Hakkinizla Ucun",
-                href: "https://hakkinizlaucun.com",
-            },
-        },
-        {
-            title: "Tekno Pazar",
-            techStack: ['Next.JS', 'Prisma', 'PostgreSQL', 'NextAuth', 'Vercel'],
-            description:
-                "Wholeseller platform for the tech products.",
-            link: {
-                label: 'Tekno Pazar',
-                href:"https://tekno-pazar.vercel.app/"
+                label: "Hakkınızla Uçun",
+                href: "https://hakkinizlaucun.com"
             }
         },
         {
-            title: "Hakki info",
-            techStack: ["Next.js", "TailwindCSS"],
-            description:
-                "Hakki.info is a personal resume website built using a technology stack that includes React, Next.js, Typescript, and CSS.",
+            title: "Tekno Pazar",
+            techStack: ["Next.js", "Prisma", "PostgreSQL", "NextAuth", "Vercel"],
+            description: "B2B marketplace platform for technology products, featuring secure authentication, inventory management, and automated pricing systems.",
             link: {
-                label: "hakki info resume",
-                href: "https://github.com/erdemmgunal/hakki-info",
-            },
+                label: "Tekno Pazar",
+                href: "https://tekno-pazar.vercel.app"
+            }
         },
         {
-            title: "React Staj iWeather App",
-            techStack: ["Javascript", "TailwindCSS", "Axios", "OpenWeather API", "Vercel"],
-            description:
-                "WeatherApp: Your go-to for easy, accurate weather updates. Check local forecasts or explore new locations effortlessly with our user-friendly interface. Stay informed effortlessly!",
+            title: "React Weather App",
+            techStack: ["React", "JavaScript", "TailwindCSS", "OpenWeather API"],
+            description: "Modern weather application providing real-time forecasts and location-based weather updates. Features an intuitive interface and responsive design for seamless user experience.",
             link: {
-                label: "iWeather App",
-                href: "http://reactstaj-iweather.vercel.app/",
-            },
+                label: "Weather App",
+                href: "https://github.com/erdemmgunal/reactstaj-weather-app"
+            }
         },
         {
             title: "Idata Scraper",
-            techStack: ["Python"],
-            description:
-                "Notifies you when an appointment is opened or someone else cancels it. (Education purposes only)",
+            techStack: ["Python", "Automation", "Web Scraping"],
+            description: "Automated notification system for appointment availability monitoring. Built for educational purposes to demonstrate web scraping and automation capabilities.",
             link: {
-                label: "idata scraper",
-                href: "https://github.com/erdemmgunal/idata-scraper/",
-            },
+                label: "Idata Scraper",
+                href: "https://github.com/erdemmgunal/idata-scraper"
+            }
         },
         {
             title: "Troy Monitor",
-            techStack: ["Python", "Sqlite"],
-            description:
-                "The program notice you when an iPhone 15 availabile on the site.",
+            techStack: ["Python", "SQLite", "Web Scraping"],
+            description: "Inventory tracking system specifically designed to monitor iPhone 15 availability. Features real-time notifications and database storage for historical data.",
             link: {
-                label: "troy monitor",
-                href: "https://github.com/erdemmgunal/troy-monitor",
-            },
+                label: "Troy Monitor",
+                href: "https://github.com/erdemmgunal/troy-monitor"
+            }
         },
         {
             title: "Macmillan Scraper",
-            techStack: ["Python"],
-            description:
-                "Program that extracts the PDF of the book whose PDF download access is not allowed. (Education purposes only)",
+            techStack: ["Python", "PDF Processing", "Web Automation"],
+            description: "Educational tool demonstrating advanced PDF processing and web automation techniques. Created for academic research and learning purposes.",
             link: {
-                label: "macmillan scraper",
-                href: "https://github.com/erdemmgunal/macmillan-education",
-            },
+                label: "Macmillan Scraper",
+                href: "https://github.com/erdemmgunal/macmillan-education"
+            }
         },
         {
             title: "Marti Client",
-            techStack: ["Python"],
-            description:
-                "You can monitor and ring all MARTI company scooters, motorcycles and mopeds around you from a single screen. (Education purposes only)",
+            techStack: ["Python", "API Integration", "Geolocation"],
+            description: "Comprehensive monitoring system for tracking MARTI company vehicles including scooters, motorcycles, and mopeds. Developed for educational purposes to demonstrate API integration.",
             link: {
-                label: "marti client",
-                href: "https://github.com/erdemmgunal/marti-scooter",
-            },
+                label: "Marti Client",
+                href: "https://github.com/erdemmgunal/marti-scooter"
+            }
         },
         {
-            title: "BMW - MERCEDES Monitor",
-            techStack: ["Python", "Sqlite3", 'Discord Webhook'],
-            description:
-                "The program through which you can buy a BMW or MERCEDES at store price without going to the black market, through their website.",
+            title: "BMW-MERCEDES Monitor",
+            techStack: ["Python", "SQLite3", "Discord Webhook"],
+            description: "Automated vehicle inventory monitoring system tracking official dealership websites. Features real-time notifications through Discord and persistent data storage.",
             link: {
-                label: "bmw mercedes",
-                href: "https://github.com/erdemmgunal/bmw-mercedes-monitor",
-            },
+                label: "BMW-MERCEDES Monitor",
+                href: "https://github.com/erdemmgunal/bmw-mercedes-monitor"
+            }
         },
         {
             title: "Biryere Scraper",
-            techStack: ["Python", "MongoDB"],
-            description:
-                'Scraper from which information was obtained for the "According to Your Rights" project.',
+            techStack: ["Python", "MongoDB", "Data Processing"],
+            description: "Data collection and processing system developed for the Hakkınızla Uçun project. Implements advanced web scraping techniques and structured data storage.",
             link: {
-                label: "scraper",
-                href: "https://github.com/erdemmgunal/hakkinizlaucun",
-            },
+                label: "Biryere Scraper",
+                href: "https://github.com/erdemmgunal/hakkinizlaucun"
+            }
         },
         {
             title: "Konusanlar Monitor",
-            techStack: ["Python", "Sqlite3", 'Discord Webhook'],
-            description:
-                'A program that provides notifications via Discord when a "Konusanlar" ticket is released on the mobilet.com.',
+            techStack: ["Python", "SQLite3", "Discord Webhook"],
+            description: "Event ticket availability monitoring system for mobilet.com. Features automated Discord notifications and database tracking for 'Konusanlar' show tickets.",
             link: {
-                label: "konusanlar monitor",
-                href: "https://github.com/erdemmgunal/Konusanlar-Monitor",
-            },
+                label: "Konusanlar Monitor",
+                href: "https://github.com/erdemmgunal/Konusanlar-Monitor"
+            }
         }
     ],
     languages: [
         {
             name: "English",
-            level: "Full professional competence",
+            level: "Professional Working Proficiency",
         },
         {
             name: "Turkish",
-            level: "Native language",
+            level: "Native Speaker",
         },
     ],
 };
