@@ -6,7 +6,8 @@ import { Card, CardHeader, CardContent } from "@/components/ui/Card";
 import ThemeSwitch from "@/components/ThemeSwitch";
 import { Section } from "@/components/ui/Section";
 import { ProjectCard } from "@/components/project-card";
-import { GlobeIcon, MailIcon, PhoneIcon } from "lucide-react";
+import { GlobeIcon, MailIcon, PhoneIcon, ExternalLink } from "lucide-react";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -27,13 +28,13 @@ export default function Home() {
               </p>
               <div className="flex items-center gap-2 font-mono text-xs sm:text-sm text-gray-600 dark:text-[#B8B8B8]">
                 <GlobeIcon className="h-4 w-4" />
-                <a
+                <Link
                   className="hover:text-blue-500 hover:underline"
                   href={RESUME_DATA.locationLink}
                   target="_blank"
                 >
                   {RESUME_DATA.location}
-                </a>
+                </Link>
               </div>
               <div className="flex gap-2 print:hidden">
                 <Button
@@ -42,9 +43,9 @@ export default function Home() {
                   size="icon"
                   asChild
                 >
-                  <a href={`mailto:${RESUME_DATA.contact.email}`}>
+                  <Link href={`mailto:${RESUME_DATA.contact.email}`}>
                     <MailIcon className="h-4 w-4 text-gray-600 transition-colors group-hover:text-blue-500 dark:text-gray-400" />
-                  </a>
+                  </Link>
                 </Button>
                 <Button
                   className="group h-9 w-9 bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700"
@@ -52,9 +53,9 @@ export default function Home() {
                   size="icon"
                   asChild
                 >
-                  <a href={`tel:${RESUME_DATA.contact.tel}`}>
+                  <Link href={`tel:${RESUME_DATA.contact.tel}`}>
                     <PhoneIcon className="h-4 w-4 text-gray-600 transition-colors group-hover:text-blue-500 dark:text-gray-400" />
-                  </a>
+                  </Link>
                 </Button>
                 {RESUME_DATA.contact.social.map((social) => (
                   <Button
@@ -64,9 +65,9 @@ export default function Home() {
                     size="icon"
                     asChild
                   >
-                    <a href={social.url} target="_blank">
+                    <Link href={social.url} target="_blank">
                       <social.icon className="h-4 w-4 text-gray-600 transition-colors group-hover:text-blue-500 dark:text-gray-400" />
-                    </a>
+                    </Link>
                   </Button>
                 ))}
               </div>
@@ -98,12 +99,22 @@ export default function Home() {
                     <CardHeader>
                       <div className="flex items-center justify-between gap-4">
                         <h3 className="inline-flex items-center gap-2">
-                          <a
-                            className="text-sm sm:text-base font-semibold text-gray-900 hover:text-blue-500 dark:text-white"
-                            href={work.link}
-                          >
-                            {work.company}
-                          </a>
+                          {work.link ? (
+                            <Link
+                              className="text-sm sm:text-base font-semibold text-gray-900 hover:text-blue-500 dark:text-white flex items-center gap-1"
+                              href={work.link}
+                              target="_blank"
+                            >
+                              {work.company}
+                              <span className="group-hover:opacity-100 opacity-50 transition-opacity">
+                                <ExternalLink className="h-4 w-4 text-gray-500 dark:text-gray-400" />
+                              </span>
+                            </Link>
+                          ) : (
+                            <span className="text-sm sm:text-base font-semibold text-gray-900 dark:text-white">
+                              {work.company}
+                            </span>
+                          )}
                           <div className="flex gap-1">
                             {work.badges.map((badge) => (
                               <Badge
@@ -128,6 +139,7 @@ export default function Home() {
                 ))}
               </div>
             </Section>
+
 
             <div className="grid gap-6 sm:gap-8 md:grid-cols-2">
               <Section>
@@ -201,12 +213,12 @@ export default function Home() {
               <div className="grid gap-4 sm:gap-6">
                 {RESUME_DATA.projects.map((project) => (
                   <ProjectCard
-                  key={project.title}
-                  title={project.title}
-                  description={project.description}
-                  tags={project.techStack}
-                  link={"link" in project ? project.link.href : undefined}
-                />
+                    key={project.title}
+                    title={project.title}
+                    description={project.description}
+                    tags={project.techStack}
+                    link={"link" in project ? project.link.href : undefined}
+                  />
                 ))}
               </div>
             </Section>

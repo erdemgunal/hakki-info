@@ -8,7 +8,7 @@ export const RESUME_DATA = {
     location: "Istanbul, Turkey",
     locationLink: "https://www.google.com/maps/place/Istanbul/",
     about:
-        `Full-stack developer and physics student passionate about automation and problem-solving. ${new Date().getFullYear() - 2004} years old, turning complex challenges into elegant solutions.`,
+        `Full-stack developer and physics student excited about automation and problem-solving. ${new Date().getFullYear() - 2004} years old, turning complex challenges into elegant solutions.`,
     summary:
         "As a physics student at Marmara University, I combine analytical thinking with technical expertise in software development. With 3 years of experience in technologies like Python, JavaScript, TypeScript, React, and Next.js, I specialize in creating automated solutions and user-centric web applications. My background in physics enhances my problem-solving capabilities, while my design skills enable me to craft visually appealing interfaces. Beyond coding, I'm an avid basketball player, which has taught me valuable lessons in teamwork and perseverance. I excel in collaborative environments, bringing both technical proficiency and strong interpersonal skills to every project.",
     avatarUrl: "https://avatars.githubusercontent.com/u/65365648?v=4",
