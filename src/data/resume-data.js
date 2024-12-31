@@ -10,7 +10,7 @@ export const RESUME_DATA = {
     about:
         `Full-stack developer and physics student excited about automation and problem-solving. ${new Date().getFullYear() - 2004} years old, turning complex challenges into elegant solutions.`,
     summary:
-        "As a physics student at Marmara University, I combine analytical thinking with technical expertise in software development. With 3 years of experience in technologies like Python, JavaScript, TypeScript, React, and Next.js, I specialize in creating automated solutions and user-centric web applications. My background in physics enhances my problem-solving capabilities, while my design skills enable me to craft visually appealing interfaces. Beyond coding, I'm an avid basketball player, which has taught me valuable lessons in teamwork and perseverance. I excel in collaborative environments, bringing both technical proficiency and strong interpersonal skills to every project.",
+        "As a physics student at Marmara University, I use my analytical thinking and technical skills in software development. I have 3 years of experience with technologies like Python, JavaScript, React, and Next.js. I focus on creating automated solutions and user-friendly web applications. My physics background helps me solve problems effectively, and my design skills allow me to build visually attractive interfaces. Besides coding, I love playing basketball, which has taught me teamwork and perseverance. I work well in teams, bringing both technical knowledge and good communication skills to every project.",
     avatarUrl: "https://avatars.githubusercontent.com/u/65365648?v=4",
     personalWebsiteUrl: "https://hakki-info.vercel.app",
     contact: {
