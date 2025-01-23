@@ -29,7 +29,7 @@ export const RESUME_DATA = {
             },
             {
                 name: "Twitter",
-                url: "https://twitter.com/erdemmgunal/",
+                url: "https://twitter.com/erdemgunal/",
                 icon: TwitterIcon,
             },
         ],
