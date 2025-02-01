@@ -22,7 +22,7 @@ const MainContent = ({ resumeData }) => (
       <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
         Work Experience
       </h2>
-      <ul className="list-disc list-outside pl-5 space-y-4 marker:text-gray-900 dark:marker:text-white">
+      <ul className="list-disc list-outside pl-5 space-y-4 text-gray-900 dark:text-white">
         {resumeData.work.map((work) => (
           <li key={work.company}>
             <Card className="group overflow-hidden">
