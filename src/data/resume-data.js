@@ -83,7 +83,7 @@ export const RESUME_DATA = {
     ],
     skills: [
         "Python Development",
-        "JavaScript (ES6+)",
+        "JavaScript",
         "React.js & Next.js",
         "Full-Stack Development",
         "UI/UX Design",
