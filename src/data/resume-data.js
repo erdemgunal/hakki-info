@@ -7,10 +7,9 @@ export const RESUME_DATA = {
     initials: "HAKKI",
     location: "Istanbul, Turkey",
     locationLink: "https://www.google.com/maps/place/Istanbul/",
-    about:
-        `Full-stack developer and physics student excited about automation and problem-solving. ${new Date().getFullYear() - 2004} years old, turning complex challenges into elegant solutions.`,
+    about: "Full-stack developer and physics student passionate about automation, problem-solving, and building elegant solutions.",
     summary:
-        "As a physics student at Marmara University, I use my analytical thinking and technical skills in software development. I have 3 years of experience with technologies like Python, JavaScript, React, and Next.js. I focus on creating automated solutions and user-friendly web applications. My physics background helps me solve problems effectively, and my design skills allow me to build visually attractive interfaces. Besides coding, I love playing basketball, which has taught me teamwork and perseverance. I work well in teams, bringing both technical knowledge and good communication skills to every project.",
+        "As a physics student at Marmara University, I leverage my analytical thinking and technical skills in software development. With 3+ years of experience in Python, JavaScript, React, and Next.js, I specialize in creating automated solutions and user-friendly web applications. My physics background enhances my problem-solving abilities, while my design skills enable me to craft visually appealing interfaces. Beyond coding, I enjoy basketball, which has taught me teamwork and perseverance. I thrive in collaborative environments, bringing both technical expertise and strong communication skills to every project.",
     avatarUrl: "https://avatars.githubusercontent.com/u/65365648?v=4",
     personalWebsiteUrl: "https://hakki-info.vercel.app",
     contact: {
@@ -62,7 +61,7 @@ export const RESUME_DATA = {
             start: "2024",
             end: "Present",
             description:
-                "Developed an innovative flight search platform that helps users find optimal short-term round-trip flights between Turkey and Europe. The system specializes in filtering trips lasting 2-7 days, focusing on cost-effectiveness and convenience.",
+                "Developed a flight search platform optimizing short-term round-trip flights between Turkey and Europe. Implemented intelligent filtering for trips lasting 2-7 days, focusing on cost-effectiveness and convenience.",
         },
         {
             company: "Monitorist",
@@ -71,156 +70,85 @@ export const RESUME_DATA = {
             start: "2021",
             end: "2023",
             description:
-                "Founded and led the development of a sophisticated e-commerce monitoring platform. Built and maintained a real-time system that tracks inventory changes across 20+ websites, providing critical data for business decisions. Implemented automated notification systems and scalable infrastructure.",
+                "Built a real-time e-commerce monitoring platform tracking inventory across 20+ websites. Designed automated notification systems and scalable infrastructure to support business decision-making.",
         },
     ],
     certs: [
         {
             title: "Advanced Digital Marketing",
-            link: "",
+            link: "#",
             start: "2024",
-            description: "Comprehensive digital marketing certification program by Rıdvan Aydın at Marmara University Sinerji Club",
+            description: "Completed a comprehensive digital marketing certification program by Rıdvan Aydın at Marmara University Sinerji Club.",
         },
     ],
     skills: [
         "Python Development",
-        "JavaScript",
+        "JavaScript (ES6+)",
         "React.js & Next.js",
         "Full-Stack Development",
-        "Scripting",
-        "Task Automation",
         "UI/UX Design",
+        "Task Automation",
+        "Web Scraping",
+        "API Integration",
         "Analytical Thinking",
         "Problem Solving",
-        "Project Management"
+        "Project Management",
     ],
     projects: [
         {
             title: "MarunGPT",
-            techStack: ["Next.js", "TailwindCSS", "Framer Motion", "Shadcn", "MongoDB", "OpenAI API", "JWT", "NextAuth"],
-            description: "Created an AI-powered chatbot specifically trained on Marmara University's data to enhance student experience. Provides instant, accurate information about academic programs, campus services, and university events through natural language interactions.",
+            techStack: ["Next.js", "TailwindCSS", "OpenAI API", "MongoDB"],
+            description: "AI-powered chatbot trained on Marmara University's data to provide students with instant, accurate information about academic programs and campus services.",
             link: {
                 label: "MarunGPT",
-                href: "https://marungpt.vercel.app"
-            }
+                href: "https://marungpt.vercel.app",
+            },
         },
         {
             title: "Monitorist",
-            techStack: ["Python", "Next.js", "MongoDB", "WebSocket", "REST API"],
-            description: "Enterprise-grade monitoring platform providing real-time inventory tracking and automated notifications for e-commerce businesses. Features advanced analytics and scalable architecture.",
+            techStack: ["Python", "Next.js", "MongoDB", "WebSocket"],
+            description: "Real-time e-commerce monitoring platform tracking inventory across 20+ websites, enabling businesses to make data-driven decisions.",
             link: {
                 label: "Monitorist",
-                href: "https://monitorist.vercel.app"
-            }
+                href: "https://monitorist.vercel.app",
+            },
         },
         {
             title: "Hakkı Aranıyor",
-            techStack: ["Next.js", "TailwindCSS", "Radix UI", "Framer Motion"],
-            description: "Interactive mystery-solving game featuring multiple categories including Detective and Dark Stories. Implements advanced search functionality, difficulty ratings, and responsive design.",
+            techStack: ["Next.js", "TailwindCSS", "Framer Motion"],
+            description: "Interactive mystery-solving game featuring multiple categories, advanced search functionality, and responsive design.",
             link: {
                 label: "Hakkı Aranıyor",
-                href: "https://hakki-araniyor.vercel.app"
-            }
+                href: "https://hakki-araniyor.vercel.app",
+            },
         },
         {
             title: "Hakkınızla Uçun",
-            techStack: ["Next.js", "TailwindCSS", "RESTful APIs", "Data Analytics"],
-            description: "Advanced flight search platform optimizing travel plans between Turkey and Europe. Features intelligent filtering for duration, price ranges, and destinations.",
+            techStack: ["Next.js", "TailwindCSS", "RESTful APIs"],
+            description: "Flight search platform optimizing travel plans between Turkey and Europe with intelligent filtering for duration and price.",
             link: {
                 label: "Hakkınızla Uçun",
-                href: "https://hakkinizlaucun.com"
-            }
-        },
-        {
-            title: "Tekno Pazar",
-            techStack: ["Next.js", "Prisma", "PostgreSQL", "NextAuth", "Vercel"],
-            description: "B2B marketplace platform for technology products, featuring secure authentication, inventory management, and automated pricing systems.",
-            link: {
-                label: "Tekno Pazar",
-                href: "https://tekno-pazar.vercel.app"
-            }
+                href: "https://hakkinizlaucun.com",
+            },
         },
         {
             title: "React Weather App",
-            techStack: ["React", "JavaScript", "TailwindCSS", "OpenWeather API"],
-            description: "Modern weather application providing real-time forecasts and location-based weather updates. Features an intuitive interface and responsive design for seamless user experience.",
+            techStack: ["React", "TailwindCSS", "OpenWeather API"],
+            description: "Modern weather application providing real-time forecasts and location-based updates with an intuitive interface.",
             link: {
                 label: "Weather App",
-                href: "https://github.com/erdemmgunal/reactstaj-weather-app"
-            }
+                href: "https://github.com/erdemmgunal/reactstaj-weather-app",
+            },
         },
-        {
-            title: "Idata Scraper",
-            techStack: ["Python", "Automation", "Web Scraping"],
-            description: "Automated notification system for appointment availability monitoring. Built for educational purposes to demonstrate web scraping and automation capabilities.",
-            link: {
-                label: "Idata Scraper",
-                href: "https://github.com/erdemmgunal/idata-scraper"
-            }
-        },
-        {
-            title: "Troy Monitor",
-            techStack: ["Python", "SQLite", "Web Scraping"],
-            description: "Inventory tracking system specifically designed to monitor iPhone 15 availability. Features real-time notifications and database storage for historical data.",
-            link: {
-                label: "Troy Monitor",
-                href: "https://github.com/erdemmgunal/troy-monitor"
-            }
-        },
-        {
-            title: "Macmillan Scraper",
-            techStack: ["Python", "PDF Processing", "Web Automation"],
-            description: "Educational tool demonstrating advanced PDF processing and web automation techniques. Created for academic research and learning purposes.",
-            link: {
-                label: "Macmillan Scraper",
-                href: "https://github.com/erdemmgunal/macmillan-education"
-            }
-        },
-        {
-            title: "Marti Client",
-            techStack: ["Python", "API Integration", "Geolocation"],
-            description: "Comprehensive monitoring system for tracking MARTI company vehicles including scooters, motorcycles, and mopeds. Developed for educational purposes to demonstrate API integration.",
-            link: {
-                label: "Marti Client",
-                href: "https://github.com/erdemmgunal/marti-scooter"
-            }
-        },
-        {
-            title: "BMW-MERCEDES Monitor",
-            techStack: ["Python", "SQLite3", "Discord Webhook"],
-            description: "Automated vehicle inventory monitoring system tracking official dealership websites. Features real-time notifications through Discord and persistent data storage.",
-            link: {
-                label: "BMW-MERCEDES Monitor",
-                href: "https://github.com/erdemmgunal/bmw-mercedes-monitor"
-            }
-        },
-        {
-            title: "Biryere Scraper",
-            techStack: ["Python", "MongoDB", "Data Processing"],
-            description: "Data collection and processing system developed for the Hakkınızla Uçun project. Implements advanced web scraping techniques and structured data storage.",
-            link: {
-                label: "Biryere Scraper",
-                href: "https://github.com/erdemmgunal/hakkinizlaucun"
-            }
-        },
-        {
-            title: "Konusanlar Monitor",
-            techStack: ["Python", "SQLite3", "Discord Webhook"],
-            description: "Event ticket availability monitoring system for mobilet.com. Features automated Discord notifications and database tracking for 'Konusanlar' show tickets.",
-            link: {
-                label: "Konusanlar Monitor",
-                href: "https://github.com/erdemmgunal/Konusanlar-Monitor"
-            }
-        }
     ],
     languages: [
         {
             name: "English",
-            level: "Professional Working Proficiency",
+            level: "Fluent",
         },
         {
-            name: "Türkçe",
-            level: "Native Speaker",
+            name: "Turkish",
+            level: "Native",
         },
     ],
 };
