@@ -219,7 +219,7 @@ export const RESUME_DATA = {
             level: "Professional Working Proficiency",
         },
         {
-            name: "Turkish",
+            name: "Türkçe",
             level: "Native Speaker",
         },
     ],
