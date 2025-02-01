@@ -1,10 +1,10 @@
-import { Inter } from "next/font/google";
+import { Lora } from "next/font/google";
 import Script from "next/script";
 import Provider from '../lib/ThemeProvider';
 import MetaTags from "@/components/MetaTags";
 import "../styles/globals.css";
 
-const inter = Inter({ subsets: ["latin"], display: "swap"});
+const lora = Lora({ subsets: ["latin"], weight: "400", display: "swap" });
 
 export const metadata = {
   title: "Hakkı's Portfolio",
@@ -13,7 +13,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={inter.className}>
+    <html lang="en" className={lora.className}>
       <MetaTags />
       <body className="bg-white dark:bg-[#1E1E1E]">
           <Provider>

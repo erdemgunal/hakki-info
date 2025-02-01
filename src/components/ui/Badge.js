@@ -8,21 +8,22 @@ const badgeVariants = cva(
     variants: {
       variant: {
         default:
-          "border-transparent bg-blue-100 text-blue-700 hover:bg-blue-200 dark:bg-blue-950 dark:text-blue-200 dark:hover:bg-blue-900",
-        secondary:
-          "border-transparent bg-emerald-100 text-emerald-700 hover:bg-emerald-200 dark:bg-emerald-950 dark:text-emerald-200 dark:hover:bg-emerald-900",
-        success:
-          "border-transparent bg-green-100 text-green-700 hover:bg-green-200 dark:bg-green-950 dark:text-green-200 dark:hover:bg-green-900",
-        warning:
-          "border-transparent bg-yellow-100 text-yellow-700 hover:bg-yellow-200 dark:bg-yellow-950 dark:text-yellow-200 dark:hover:bg-yellow-900",
+          "border-primary bg-primary text-white hover:bg-primary-foreground dark:border-primary-foreground dark:bg-primary-foreground dark:hover:bg-primary",
         destructive:
-          "border-transparent bg-red-100 text-red-700 hover:bg-red-200 dark:bg-red-950 dark:text-red-200 dark:hover:bg-red-900",
-        outline: 
-          "border-gray-200 bg-transparent text-gray-700 hover:bg-gray-100 dark:border-gray-800 dark:text-gray-200 dark:hover:bg-gray-800",
+          "border-destructive bg-destructive text-white hover:bg-destructive-foreground dark:border-destructive dark:bg-destructive-foreground dark:hover:bg-destructive",
+        outline:
+          "border-gray-200 bg-white text-secondary-foreground hover:bg-gray-100 hover:border-gray-300 dark:border-gray-600 dark:bg-card dark:text-secondary-foreground dark:hover:bg-gray-700 dark:hover:border-gray-500",
+        secondary:
+          "border-gray-200 bg-gray-100 text-gray-900 hover:bg-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 dark:hover:bg-gray-800",
+        ghost:
+          "border-transparent text-muted hover:bg-muted hover:text-muted-foreground dark:text-muted-foreground dark:hover:bg-muted dark:hover:text-muted-foreground",
+        link:
+          "border-transparent text-accent underline-offset-4 hover:underline dark:text-accent-foreground",
       },
     },
     defaultVariants: {
       variant: "default",
+      size: "default",
     },
   }
 );

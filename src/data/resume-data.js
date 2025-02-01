@@ -49,7 +49,7 @@ export const RESUME_DATA = {
         },
         {
             school: "TED Rönesans College",
-            degree: "Secondary Education",
+            degree: "High School",
             start: "2018",
             end: "2019",
         }
@@ -83,16 +83,16 @@ export const RESUME_DATA = {
         },
     ],
     skills: [
-        "Python",
+        "Python Development",
         "JavaScript",
-        "TypeScript",
-        "React/Next.js",
-        "System Architecture",
+        "React.js & Next.js",
+        "Full-Stack Development",
+        "Scripting",
+        "Task Automation",
         "UI/UX Design",
-        "Adobe Photoshop",
+        "Analytical Thinking",
         "Problem Solving",
-        "Automation",
-        "Team Leadership",
+        "Project Management"
     ],
     projects: [
         {

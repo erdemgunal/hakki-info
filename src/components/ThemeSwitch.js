@@ -4,8 +4,9 @@ import React, { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 import { IoMoonSharp } from "react-icons/io5";
 import { LuSun } from "react-icons/lu";
+import { Button } from "@/components/ui/Button";
 
-export default function ThemeSwitch(){
+export default function ThemeSwitch() {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
@@ -22,12 +23,13 @@ export default function ThemeSwitch(){
   };
 
   return (
-    <button
-        className="rounded-2xl p-1 dark:text-white dark:hover:bg-opacity-10 dark:hover:bg-gray-500 hover:bg-gray-100 text-2xl flex-shrink-0"
+    <Button
+      variant="outline"
+      size="icon"
+      className="group h-10 w-10 bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700"
         onClick={toggleTheme}
     >
-        {theme === "dark" ? <LuSun /> : <IoMoonSharp />}
-    </button>
-
+      {theme === "dark" ? <LuSun /> : <IoMoonSharp />}
+    </Button>
   );
-};
+}
