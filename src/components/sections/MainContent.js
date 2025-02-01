@@ -5,7 +5,7 @@ import { ProjectCard } from "@/components/project-card";
 import Link from "next/link";
 import { ExternalLink } from "lucide-react";
 
-export default function ({ resumeData }) {
+export default function MainContent({ resumeData }) {
   const githubUrl = resumeData.contact.social.find(
     (social) => social.name === "GitHub"
   )?.url;
