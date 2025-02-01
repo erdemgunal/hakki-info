@@ -8,15 +8,15 @@ const HeaderSection = ({ resumeData }) => (
   <div className="flex flex-col-reverse items-start justify-between gap-6 sm:gap-8 md:flex-row md:items-center">
     <div className="flex-1 space-y-4">
       <div className="flex items-center justify-between gap-4">
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900 dark:text-white font-lora">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-gray-900 dark:text-white font-lora">
           {resumeData.name}
         </h1>
         <ThemeSwitch />
       </div>
-      <p className="text-base sm:text-lg md:text-xl text-pretty font-mono text-gray-600 dark:text-[#B8B8B8]">
+      <p className="text-sm sm:text-base md:text-lg text-pretty font-mono text-gray-600 dark:text-[#B8B8B8]">
         {resumeData.about}
       </p>
-      <div className="flex items-center gap-2 font-mono text-base text-gray-600 dark:text-[#B8B8B8]">
+      <div className="flex items-center gap-2 font-mono text-sm sm:text-base text-gray-600 dark:text-[#B8B8B8]">
         <GlobeIcon className="h-4 w-4" />
         <Link
           className="hover:text-blue-500 hover:underline"
