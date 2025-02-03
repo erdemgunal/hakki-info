@@ -39,18 +39,6 @@ export const RESUME_DATA = {
             degree: "Bachelor's Degree in Physics",
             start: "2023",
             end: "Present",
-        },
-        {
-            school: "Istanbul Kadıköy High School",
-            degree: "High School Diploma",
-            start: "2019",
-            end: "2023",
-        },
-        {
-            school: "TED Rönesans College",
-            degree: "High School",
-            start: "2018",
-            end: "2019",
         }
     ],
     work: [
