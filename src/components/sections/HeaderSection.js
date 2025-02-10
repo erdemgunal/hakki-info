@@ -4,17 +4,22 @@ import ThemeSwitch from "@/components/ThemeSwitch";
 import { GlobeIcon, MailIcon, PhoneIcon } from "lucide-react";
 import Link from "next/link";
 
+import { Oxygen } from "next/font/google";
+import { cn } from "@/lib/utils";
+
+const oxygen = Oxygen({ subsets: ["latin"], weight: "400", display: "swap" });
+
 export default function HeaderSection({ resumeData }){
   return (
     <div className="flex flex-col-reverse items-start justify-between gap-6 sm:gap-8 md:flex-row md:items-center">
       <div className="flex-1 space-y-4">
         <div className="flex items-center justify-between gap-4">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-gray-900 dark:text-white font-lora">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-gray-900 dark:text-white">
             {resumeData.name}
           </h1>
           <ThemeSwitch />
         </div>
-        <p className="text-sm sm:text-base md:text-lg text-pretty font-mono text-gray-600 dark:text-[#B8B8B8]">
+        <p className={cn('text-sm sm:text-base md:text-lg text-pretty text-gray-600 dark:text-[#B8B8B8]', oxygen.className)}>
           {resumeData.about}
         </p>
         <div className="flex items-center gap-2 font-mono text-sm sm:text-base text-gray-600 dark:text-[#B8B8B8]">
@@ -24,7 +29,9 @@ export default function HeaderSection({ resumeData }){
             href={resumeData.locationLink}
             target="_blank"
           >
-            {resumeData.location}
+            <p className={cn('transition-colors', oxygen.className)}>
+              {resumeData.location}
+            </p>
           </Link>
         </div>
         <div className="flex gap-2 print:hidden">

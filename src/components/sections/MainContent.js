@@ -5,6 +5,11 @@ import { ProjectCard } from "@/components/project-card";
 import Link from "next/link";
 import { ExternalLink } from "lucide-react";
 
+import { Oxygen } from "next/font/google";
+import { cn } from "@/lib/utils";
+
+const oxygen = Oxygen({ subsets: ["latin"], weight: "400", display: "swap" });
+
 export default function MainContent({ resumeData }) {
   const githubUrl = resumeData.contact.social.find(
     (social) => social.name === "GitHub"
@@ -17,7 +22,7 @@ export default function MainContent({ resumeData }) {
         <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
           About
         </h2>
-        <p className="text-sm sm:text-base md:text-lg text-pretty font-mono text-gray-600 dark:text-[#B8B8B8]">
+        <p className={cn("text-sm sm:text-base md:text-lg text-pretty font-mono text-gray-600 dark:text-[#B8B8B8]", oxygen.className)}>
           {resumeData.summary}
         </p>
       </Section>
@@ -37,7 +42,7 @@ export default function MainContent({ resumeData }) {
                       <Link
                         href={work.link}
                         target="_blank"
-                        className="text-base sm:text-lg font-semibold text-gray-900 hover:text-blue-500 dark:text-white dark:hover:text-blue-400 flex items-center gap-1 group"
+                        className={cn("text-base sm:text-lg font-semibold text-gray-900 hover:text-blue-500 dark:text-white dark:hover:text-blue-400 flex items-center gap-1 group", oxygen.className)}
                       >
                         {work.company}
                         <ExternalLink className="h-4 w-4 text-gray-500 dark:text-gray-400 group-hover:text-blue-500 dark:group-hover:text-blue-400" />
@@ -54,12 +59,12 @@ export default function MainContent({ resumeData }) {
                         ))}
                       </div>
                     </h2>
-                    <div className="text-base sm:text-lg text-gray-900 dark:text-white">
+                    <div className={cn('text-base sm:text-lg text-gray-900 dark:text-white', oxygen.className)}>
                       {work.start} - {work.end}
                     </div>
                   </div>
                 </CardHeader>
-                <CardContent className="text-sm sm:text-base text-pretty font-mono text-gray-600 dark:text-[#B8B8B8] mt-2">
+                <CardContent className={cn('text-sm sm:text-base text-pretty font-mono text-gray-600 dark:text-[#B8B8B8] mt-2', oxygen.className)}>
                   {work.description}
                 </CardContent>
               </Card>
@@ -78,15 +83,15 @@ export default function MainContent({ resumeData }) {
             <Card key={education.school}>
               <CardHeader>
                 <div className="flex flex-col gap-1">
-                  <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
+                  <h2 className={cn("text-lg font-semibold text-gray-900 dark:text-white", oxygen.className)}>
                     {education.school}
                   </h2>
-                  <div className="text-base sm:text-lg text-gray-900 dark:text-white">
+                  <div className={cn('text-base sm:text-lg text-gray-900 dark:text-white', oxygen.className)}>
                     {education.start} - {education.end}
                   </div>
                 </div>
               </CardHeader>
-              <CardContent className="text-sm sm:text-base text-pretty font-mono text-gray-600 dark:text-[#B8B8B8]">
+              <CardContent className={cn('text-sm sm:text-base text-pretty font-mono text-gray-600 dark:text-[#B8B8B8]', oxygen.className)}>
                 {education.degree}
               </CardContent>
             </Card>
@@ -104,7 +109,7 @@ export default function MainContent({ resumeData }) {
             <Card key={lang.name}>
               <CardHeader>
                 <div className="flex items-center justify-between">
-                  <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
+                  <h2 className={cn('text-lg font-semibold text-gray-900 dark:text-white', oxygen.className)}>
                     {lang.name}
                   </h2>
                   <Badge className="bg-blue-100 text-xs text-blue-700 dark:bg-blue-900 dark:text-blue-100">

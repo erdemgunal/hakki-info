@@ -1,10 +1,10 @@
-import { Lora } from "next/font/google";
+import { Crimson_Text } from "next/font/google";
 import Script from "next/script";
 import Provider from '../lib/ThemeProvider';
 import MetaTags from "@/components/MetaTags";
 import "../styles/globals.css";
 
-const lora = Lora({ subsets: ["latin"], weight: "400", display: "swap" });
+const crimson_text = Crimson_Text({ subsets: ["latin"], weight: "400", display: "swap" });
 
 export const metadata = {
   title: "Hakkı's Portfolio",
@@ -13,7 +13,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={lora.className}>
+    <html lang="en" className={crimson_text.className}>
       <MetaTags />
       <body className="bg-white dark:bg-[#1E1E1E]">
           <Provider>

@@ -2,6 +2,10 @@ import React from "react";
 import { cva } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
+import { Oxygen } from "next/font/google";
+
+const oxygen = Oxygen({ subsets: ["latin"], weight: "400", display: "swap" });
+
 const badgeVariants = cva(
   "inline-flex items-center rounded-md border px-2 py-0.5 text-xs font-semibold font-mono transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 text-nowrap",
   {
@@ -33,7 +37,7 @@ function Badge({ className, variant, ...props }) {
     React.createElement(
       "div",
       {
-        className: cn(badgeVariants({ variant }), className),
+        className: cn(badgeVariants({ variant }), className, oxygen.className),
         ...props
       }
     )

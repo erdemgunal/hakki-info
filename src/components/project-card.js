@@ -9,6 +9,12 @@ import {
 } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 
+import { Oxygen } from "next/font/google";
+import { cn } from "@/lib/utils";
+
+const oxygen = Oxygen({ subsets: ["latin"], weight: "400", display: "swap" });
+
+
 export function ProjectCard({ title, description, tags, link }) {
   return (
     <Card className="flex flex-col overflow-hidden border border-dark-700 p-3 dark:hover:bg-[#403E3E] hover:bg-accent">
@@ -21,7 +27,9 @@ export function ProjectCard({ title, description, tags, link }) {
                 target="_blank"
                 className="text-xl inline-flex items-center gap-1 hover:underline dark:text-white"
               >
-                {title}
+                <p className={oxygen.className}>
+                  {title}
+                </p>
                 <span className="h-1 w-1 rounded-full bg-green-500" />
               </Link>
             ) : (
@@ -35,7 +43,7 @@ export function ProjectCard({ title, description, tags, link }) {
             </div>
           )}
 
-          <CardDescription className="font-mono text-sm dark:text-[#B8B8B8]">
+          <CardDescription className={cn("text-sm dark:text-[#B8B8B8]", oxygen.className)}>
             {description}
           </CardDescription>
         </div>
