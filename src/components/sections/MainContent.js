@@ -32,47 +32,50 @@ export default function MainContent({ resumeData }) {
         <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
           Work Experience
         </h2>
-        <ul className="list-disc list-outside pl-5 space-y-4 text-gray-900 dark:text-white">
-          {resumeData.work.map((work) => (
-            <li key={work.company}>
-              <Card className="group overflow-hidden">
-                <CardHeader className="flex flex-col gap-2">
-                  <div className="flex flex-col gap-2">
-                    <h2 className="inline-flex items-center gap-2 font-bold text-gray-900 dark:text-white">
-                      <Link
-                        href={work.link}
-                        target="_blank"
-                        className={cn("group text-base sm:text-lg font-semibold flex items-center gap-1", oxygen.className)}
-                      >
-                        <span className="text-gray-900 dark:text-white group-hover:text-blue-500 dark:group-hover:text-blue-400">
-                          {work.company}
-                        </span>
-                        <ExternalLink className="h-4 w-4 text-gray-500 dark:text-gray-400 group-hover:text-blue-500 dark:group-hover:text-blue-400" />
-                      </Link>
-                      <div className="flex gap-1">
-                        {work.badges.map((badge) => (
-                          <Badge
-                            variant="secondary"
-                            className="bg-[#E5E5EA] text-[0.65rem] sm:text-xs text-[#007AFF] dark:bg-[#2C2C2E] dark:text-[#0A84FF] px-1.5 sm:px-2"
-                            key={badge}
-                          >
-                            {badge}
-                          </Badge>
-                        ))}
+        <div className="mt-4">
+          <div className="space-y-4">
+            {resumeData.work.map((work) => (
+              <div key={work.company} className="relative pl-5">
+                <div className="absolute left-0 top-[0.6rem] h-1.5 w-1.5 rounded-full bg-gray-500 dark:bg-gray-400" />
+                <Card className="group overflow-hidden">
+                  <CardHeader className="flex flex-col gap-2">
+                    <div className="flex flex-col gap-2">
+                      <h2 className="inline-flex items-center gap-2 font-bold text-gray-900 dark:text-white">
+                        <Link
+                          href={work.link}
+                          target="_blank"
+                          className={cn("group text-base sm:text-lg font-semibold flex items-center gap-1", oxygen.className)}
+                        >
+                          <span className="text-gray-900 dark:text-white group-hover:text-blue-500 dark:group-hover:text-blue-400">
+                            {work.company}
+                          </span>
+                          <ExternalLink className="h-4 w-4 text-gray-500 dark:text-gray-400 group-hover:text-blue-500 dark:group-hover:text-blue-400" />
+                        </Link>
+                        <div className="flex gap-1">
+                          {work.badges.map((badge) => (
+                            <Badge
+                              variant="secondary"
+                              className="bg-[#E5E5EA] text-[0.65rem] sm:text-xs text-[#007AFF] dark:bg-[#2C2C2E] dark:text-[#0A84FF] px-1.5 sm:px-2"
+                              key={badge}
+                            >
+                              {badge}
+                            </Badge>
+                          ))}
+                        </div>
+                      </h2>
+                      <div className={cn('text-sm sm:text-base text-gray-500 dark:text-gray-400', oxygen.className)}>
+                        {work.start} - {work.end}
                       </div>
-                    </h2>
-                    <div className={cn('text-sm sm:text-base text-gray-500 dark:text-gray-400', oxygen.className)}>
-                      {work.start} - {work.end}
                     </div>
-                  </div>
-                </CardHeader>
-                <CardContent className={cn('text-sm sm:text-base text-pretty font-mono text-gray-600 dark:text-[#B8B8B8] mt-2', oxygen.className)}>
-                  {work.description}
-                </CardContent>
-              </Card>
-            </li>
-          ))}
-        </ul>
+                  </CardHeader>
+                  <CardContent className={cn('text-sm sm:text-base text-pretty font-mono text-gray-600 dark:text-[#B8B8B8] mt-2', oxygen.className)}>
+                    {work.description}
+                  </CardContent>
+                </Card>
+              </div>
+            ))}
+          </div>
+        </div>
       </Section>
 
       {/* Education Section */}
