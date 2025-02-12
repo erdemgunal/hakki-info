@@ -45,8 +45,8 @@ export default function HeaderSection({ resumeData }){
               <span>Resume</span>
             </Link>
           </Button>
-          <div className="h-4 w-px bg-gray-300 dark:bg-gray-700 hidden sm:block" />
-          <div className="flex flex-wrap gap-2">
+          <div className="flex items-center gap-2">
+            <div className="h-4 w-px bg-gray-300 dark:bg-gray-700" />
             <Button
               className="group h-8 w-8 sm:h-9 sm:w-9 bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700"
               variant="outline"
@@ -67,7 +67,7 @@ export default function HeaderSection({ resumeData }){
                 <MessageCircle className="h-3 w-3 sm:h-4 sm:w-4 text-gray-600 transition-colors group-hover:text-blue-500 dark:text-gray-400" />
               </Link>
             </Button>
-            <div className="h-4 w-px bg-gray-300 dark:bg-gray-700 hidden sm:block" />
+              <div className="h-4 w-px bg-gray-300 dark:bg-gray-700" />
             {resumeData.contact.social.map((social) => (
               <Button
                 key={social.name}
