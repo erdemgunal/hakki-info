@@ -1,7 +1,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/Avatar";
 import { Button } from "@/components/ui/Button";
 import ThemeSwitch from "@/components/ThemeSwitch";
-import { GlobeIcon, MailIcon, MessageCircle } from "lucide-react";
+import { FileText, GlobeIcon, MailIcon, MessageCircle } from "lucide-react";  // Add FileText import
 import Link from "next/link";
 
 import { Oxygen } from "next/font/google";
@@ -34,7 +34,18 @@ export default function HeaderSection({ resumeData }){
             </p>
           </Link>
         </div>
-        <div className="flex gap-2 print:hidden">
+        <div className="flex items-center gap-2 print:hidden">
+          <Button
+            className="group inline-flex items-center gap-2 bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-400"
+            variant="outline"
+            asChild
+          >
+            <Link href="/resume.pdf" target="_blank">
+              <FileText className="h-4 w-4" />
+              <span>Resume</span>
+            </Link>
+          </Button>
+          <div className="h-4 w-px bg-gray-300 dark:bg-gray-700" />
           <Button
             className="group h-9 w-9 bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700"
             variant="outline"
@@ -55,6 +66,7 @@ export default function HeaderSection({ resumeData }){
               <MessageCircle className="h-4 w-4 text-gray-600 transition-colors group-hover:text-blue-500 dark:text-gray-400" />
             </Link>
           </Button>
+          <div className="h-4 w-px bg-gray-300 dark:bg-gray-700" />
           {resumeData.contact.social.map((social) => (
             <Button
               key={social.name}
