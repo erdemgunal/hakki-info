@@ -12,17 +12,17 @@ const badgeVariants = cva(
     variants: {
       variant: {
         default:
-          "border-primary bg-primary text-white hover:bg-primary-foreground dark:border-primary-foreground dark:bg-primary-foreground dark:hover:bg-primary",
+          "border-[#007AFF] bg-[#007AFF] text-white hover:bg-[#0051FF] dark:border-[#0A84FF] dark:bg-[#0A84FF] dark:hover:bg-[#409CFF]",
         destructive:
-          "border-destructive bg-destructive text-white hover:bg-destructive-foreground dark:border-destructive dark:bg-destructive-foreground dark:hover:bg-destructive",
+          "border-[#FF3B30] bg-[#FF3B30] text-white hover:bg-[#FF6961] dark:border-[#FF453A] dark:bg-[#FF453A] dark:hover:bg-[#FF6961]",
         outline:
-          "border-gray-200 bg-white text-secondary-foreground hover:bg-gray-100 hover:border-gray-300 dark:border-gray-600 dark:bg-card dark:text-secondary-foreground dark:hover:bg-gray-700 dark:hover:border-gray-500",
+          "border-[#8E8E93] bg-white text-[#3A3A3C] hover:bg-[#F2F2F7] dark:border-[#48484A] dark:bg-[#1C1C1E] dark:text-[#EBEBF0] dark:hover:bg-[#2C2C2E]",
         secondary:
-          "border-gray-200 bg-gray-100 text-gray-900 hover:bg-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100 dark:hover:bg-gray-800",
+          "border-[#E5E5EA] bg-[#E5E5EA] text-[#3A3A3C] hover:bg-[#D1D1D6] dark:border-[#2C2C2E] dark:bg-[#2C2C2E] dark:text-[#EBEBF0] dark:hover:bg-[#3A3A3C]",
         ghost:
-          "border-transparent text-muted hover:bg-muted hover:text-muted-foreground dark:text-muted-foreground dark:hover:bg-muted dark:hover:text-muted-foreground",
+          "border-transparent text-[#8E8E93] hover:bg-[#F2F2F7] dark:text-[#98989D] dark:hover:bg-[#2C2C2E]",
         link:
-          "border-transparent text-accent underline-offset-4 hover:underline dark:text-accent-foreground",
+          "border-transparent text-[#007AFF] underline-offset-4 hover:underline dark:text-[#0A84FF]",
       },
     },
     defaultVariants: {

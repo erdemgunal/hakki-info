@@ -1,7 +1,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/Avatar";
 import { Button } from "@/components/ui/Button";
 import ThemeSwitch from "@/components/ThemeSwitch";
-import { GlobeIcon, MailIcon, PhoneIcon } from "lucide-react";
+import { GlobeIcon, MailIcon, MessageCircle } from "lucide-react";
 import Link from "next/link";
 
 import { Oxygen } from "next/font/google";
@@ -51,8 +51,8 @@ export default function HeaderSection({ resumeData }){
             size="icon"
             asChild
           >
-            <Link href={`tel:${resumeData.contact.tel}`}>
-              <PhoneIcon className="h-4 w-4 text-gray-600 transition-colors group-hover:text-blue-500 dark:text-gray-400" />
+            <Link href={`https://wa.me/${resumeData.contact.tel}`}>
+              <MessageCircle className="h-4 w-4 text-gray-600 transition-colors group-hover:text-blue-500 dark:text-gray-400" />
             </Link>
           </Button>
           {resumeData.contact.social.map((social) => (

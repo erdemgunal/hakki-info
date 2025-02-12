@@ -7,14 +7,14 @@ export const RESUME_DATA = {
     initials: "HAKKI",
     location: "Istanbul, Turkey",
     locationLink: "https://www.google.com/maps/place/Istanbul/",
-    about: "Full-stack developer and physics student passionate about automation, problem-solving, and building elegant solutions.",
+    about: "Full-stack developer and physics student focused on automation, problem-solving, and creating efficient, well-structured solutions.",
     summary:
         "As a physics student at Marmara University, I leverage my analytical thinking and technical skills in software development. With 3+ years of experience in Python, JavaScript, React, and Next.js, I specialize in creating automated solutions and user-friendly web applications. My physics background enhances my problem-solving abilities, while my design skills enable me to craft visually appealing interfaces. Beyond coding, I enjoy basketball, which has taught me teamwork and perseverance. I thrive in collaborative environments, bringing both technical expertise and strong communication skills to every project.",
     avatarUrl: "https://avatars.githubusercontent.com/u/65365648?v=4",
     personalWebsiteUrl: "https://hakki-info.vercel.app",
     contact: {
         email: "erdemmgunal@gmail.com",
-        tel: "+905320664332",
+        tel: "905320664332",
         social: [
             {
                 name: "GitHub",
@@ -22,13 +22,13 @@ export const RESUME_DATA = {
                 icon: GitHubIcon,
             },
             {
-                name: "LinkedIn",
+                name: "Linkedin",
                 url: "https://www.linkedin.com/in/hakkierdem/",
                 icon: LinkedInIcon,
             },
             {
-                name: "Twitter",
-                url: "https://twitter.com/erdemgunal/",
+                name: "X",
+                url: "https://x.com/erdemgunal/",
                 icon: TwitterIcon,
             },
         ],
