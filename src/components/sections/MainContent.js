@@ -37,7 +37,7 @@ export default function MainContent({ resumeData }) {
             <li key={work.company}>
               <Card className="group overflow-hidden">
                 <CardHeader className="flex flex-col gap-2">
-                  <div className="flex items-center justify-between gap-4">
+                  <div className="flex flex-col gap-2">
                     <h2 className="inline-flex items-center gap-2 font-bold text-gray-900 dark:text-white">
                       <Link
                         href={work.link}
@@ -53,7 +53,7 @@ export default function MainContent({ resumeData }) {
                         {work.badges.map((badge) => (
                           <Badge
                             variant="secondary"
-                            className="bg-[#E5E5EA] text-xs text-[#007AFF] dark:bg-[#2C2C2E] dark:text-[#0A84FF]"
+                            className="bg-[#E5E5EA] text-[0.65rem] sm:text-xs text-[#007AFF] dark:bg-[#2C2C2E] dark:text-[#0A84FF] px-1.5 sm:px-2"
                             key={badge}
                           >
                             {badge}
@@ -61,7 +61,7 @@ export default function MainContent({ resumeData }) {
                         ))}
                       </div>
                     </h2>
-                    <div className={cn('text-base sm:text-lg text-gray-900 dark:text-white', oxygen.className)}>
+                    <div className={cn('text-sm sm:text-base text-gray-500 dark:text-gray-400', oxygen.className)}>
                       {work.start} - {work.end}
                     </div>
                   </div>
@@ -114,7 +114,7 @@ export default function MainContent({ resumeData }) {
                   <h2 className={cn('text-lg font-semibold text-gray-900 dark:text-white', oxygen.className)}>
                     {lang.name}
                   </h2>
-                  <Badge className="bg-[#E5E5EA] text-xs text-[#007AFF] dark:bg-[#2C2C2E] dark:text-[#0A84FF] hover:bg-[#D1D1D6] dark:hover:bg-[#3A3A3C]">
+                  <Badge className="bg-[#E5E5EA] text-[0.65rem] sm:text-xs text-[#007AFF] dark:bg-[#2C2C2E] dark:text-[#0A84FF] hover:bg-[#D1D1D6] dark:hover:bg-[#3A3A3C] px-1.5 sm:px-2">
                     {lang.level}
                   </Badge>
                 </div>
@@ -133,7 +133,7 @@ export default function MainContent({ resumeData }) {
           {resumeData.skills.map((skill) => (
             <Badge
               key={skill}
-              className="bg-[#F2F2F7] text-sm text-[#3A3A3C] hover:bg-[#E5E5EA] hover:text-[#007AFF] dark:bg-[#2C2C2E] dark:text-[#EBEBF0] dark:hover:bg-[#3A3A3C] dark:hover:text-[#0A84FF] border-0 transition-colors duration-200"
+              className="bg-[#F2F2F7] text-[0.7rem] sm:text-sm text-[#3A3A3C] hover:bg-[#E5E5EA] hover:text-[#007AFF] dark:bg-[#2C2C2E] dark:text-[#EBEBF0] dark:hover:bg-[#3A3A3C] dark:hover:text-[#0A84FF] border-0 transition-colors duration-200 px-1.5 sm:px-2"
             >
               {skill}
             </Badge>
