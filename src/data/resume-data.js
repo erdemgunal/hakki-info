@@ -84,12 +84,12 @@ export const RESUME_DATA = {
     ],
     projects: [
         {
-            title: "MarunGPT",
-            techStack: ["Next.js", "TailwindCSS", "OpenAI API", "MongoDB"],
-            description: "AI-powered chatbot trained on Marmara University's data to provide students with instant, accurate information about academic programs and campus services.",
+            title: "Hakkınızla Uçun",
+            techStack: ["Next.js", "TailwindCSS", "RESTful APIs"],
+            description: "Flight search platform optimizing travel plans between Turkey and Europe with intelligent filtering for duration and price.",
             link: {
-                label: "MarunGPT",
-                href: "https://marungpt.vercel.app",
+                label: "Hakkınızla Uçun",
+                href: "https://hakkinizlaucun.com",
             },
         },
         {
@@ -102,21 +102,39 @@ export const RESUME_DATA = {
             },
         },
         {
+            title: "MarunGPT",
+            techStack: ["Next.js", "TailwindCSS", "OpenAI API", "MongoDB"],
+            description: "AI-powered chatbot trained on Marmara University's data to provide students with instant, accurate information about academic programs and campus services.",
+            link: {
+                label: "MarunGPT",
+                href: "https://marungpt.vercel.app",
+            },
+        },
+        {
+            title: "Tekno Pazar",
+            techStack: ["Next.js", "PostgreSQL", "Vercel", "Zod", "JavaScript", "Server Actions"],
+            description: "A full-stack e-commerce platform for technology products featuring product management, real-time inventory tracking, and an admin dashboard. Implemented secure form validation, dynamic routing, and database operations with PostgreSQL.",
+            link: {
+                label: "Tekno Pazar",
+                href: "http://tekno-pazar.vercel.app/",
+            },
+        },
+        {
+            title: "Spotify Friend Activity Analyzer (Educational Project)",
+            techStack: ["Python", "SQLite", "Plotly", "Jinja2", "HTTP Server", "Spotify Web API", "Threading", "Environment Variables"],
+            description: "Built a real-time data analytics tool for educational purposes that tracks and visualizes Spotify friends' listening patterns. Features include activity heatmaps, user-specific dashboards, multi-threaded data collection, and a web interface. Implemented logging, error handling, and clean architecture patterns. (Educational project: not intended for commercial use or distribution)",
+            link: {
+                label: "GitHub",
+                href: "https://github.com/erdemgunal/SpotifyFriendTracker",
+            },
+        },
+        {
             title: "Hakkı Aranıyor",
             techStack: ["Next.js", "TailwindCSS", "Framer Motion"],
             description: "Interactive mystery-solving game featuring multiple categories, advanced search functionality, and responsive design.",
             link: {
                 label: "Hakkı Aranıyor",
                 href: "https://hakki-araniyor.vercel.app",
-            },
-        },
-        {
-            title: "Hakkınızla Uçun",
-            techStack: ["Next.js", "TailwindCSS", "RESTful APIs"],
-            description: "Flight search platform optimizing travel plans between Turkey and Europe with intelligent filtering for duration and price.",
-            link: {
-                label: "Hakkınızla Uçun",
-                href: "https://hakkinizlaucun.com",
             },
         },
         {
