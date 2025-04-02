@@ -37,7 +37,7 @@ export const RESUME_DATA = {
         {
             school: "Marmara University",
             degree: "Bachelor's Degree in Physics",
-            start: "2023",
+            start: "2024",
             end: "Present",
         }
     ],
