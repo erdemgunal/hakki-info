@@ -72,7 +72,7 @@ export const RESUME_DATA = {
     skills: [
         "Python Development",
         "JavaScript",
-        "React.js & Next.js",
+        "React.js",
         "Full-Stack Development",
         "UI/UX Design",
         "Task Automation",
@@ -85,7 +85,7 @@ export const RESUME_DATA = {
     projects: [
         {
             title: "Hakkınızla Uçun",
-            techStack: ["Next.js", "TailwindCSS", "RESTful APIs"],
+            techStack: ["React", "TailwindCSS", "RESTful APIs"],
             description: "Flight search platform optimizing travel plans between Turkey and Europe with intelligent filtering for duration and price.",
             link: {
                 label: "Hakkınızla Uçun",
@@ -94,7 +94,7 @@ export const RESUME_DATA = {
         },
         {
             title: "Monitorist",
-            techStack: ["Python", "Next.js", "MongoDB", "WebSocket"],
+            techStack: ["Python", "React", "MongoDB", "WebSocket"],
             description: "Real-time e-commerce monitoring platform tracking inventory across 20+ websites, enabling businesses to make data-driven decisions.",
             link: {
                 label: "Monitorist",
@@ -103,7 +103,7 @@ export const RESUME_DATA = {
         },
         {
             title: "MarunGPT",
-            techStack: ["Next.js", "TailwindCSS", "OpenAI API", "MongoDB"],
+            techStack: ["React", "TailwindCSS", "OpenAI API", "MongoDB"],
             description: "AI-powered chatbot trained on Marmara University's data to provide students with instant, accurate information about academic programs and campus services.",
             link: {
                 label: "MarunGPT",
@@ -112,7 +112,7 @@ export const RESUME_DATA = {
         },
         {
             title: "Tekno Pazar",
-            techStack: ["Next.js", "PostgreSQL", "Vercel", "Zod", "JavaScript", "Server Actions"],
+            techStack: ["React", "PostgreSQL", "JavaScript", "Server Actions"],
             description: "A full-stack e-commerce platform for technology products featuring product management, real-time inventory tracking, and an admin dashboard. Implemented secure form validation, dynamic routing, and database operations with PostgreSQL.",
             link: {
                 label: "Tekno Pazar",
@@ -130,7 +130,7 @@ export const RESUME_DATA = {
         },
         {
             title: "Hakkı Aranıyor",
-            techStack: ["Next.js", "TailwindCSS", "Framer Motion"],
+            techStack: ["React", "TailwindCSS", "Framer Motion"],
             description: "Interactive mystery-solving game featuring multiple categories, advanced search functionality, and responsive design.",
             link: {
                 label: "Hakkı Aranıyor",
