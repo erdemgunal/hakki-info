@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { resumeData } from '@/app/data/resume-data';
 import { GraduationCap } from 'lucide-react';
+import { whileInViewAnimation, staggerContainer, cardHover } from '@/lib/animations';
 
 export default function Education() {
     const { education } = resumeData;
@@ -12,33 +13,25 @@ export default function Education() {
             <div className="max-w-4xl mx-auto">
                 <motion.div
                     className="text-center mb-12"
-                    initial={{ y: 30, opacity: 0 }}
-                    whileInView={{ y: 0, opacity: 1 }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 0.6 }}
+                    {...whileInViewAnimation()}
                 >
                     <h2 className="text-4xl font-bold mb-4">Eğitim</h2>
                 </motion.div>
 
                 <motion.div
                     className="max-w-4xl mx-auto"
-                    initial={{ y: 50, opacity: 0 }}
-                    whileInView={{ y: 0, opacity: 1 }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+                    {...whileInViewAnimation(0.2)}
                 >
-                    <div className="space-y-6">
+                    <motion.div 
+                        className="space-y-6"
+                        {...staggerContainer}
+                    >
                         {education.map((edu, index) => (
                             <motion.div
                                 key={index}
                                 className="bg-surface p-6"
-                                initial={{ y: 50, opacity: 0 }}
-                                whileInView={{ y: 0, opacity: 1 }}
-                                viewport={{ once: true, margin: "-100px" }}
-                                transition={{
-                                    duration: 0.6,
-                                    delay: index * 0.1
-                                }}
+                                {...whileInViewAnimation(index * 0.1)}
+                                {...cardHover}
                             >
                                 <div className="flex items-start gap-4">
                                     <div className="w-12 h-12 rounded-lg bg-secondary/10 border border-secondary/20 flex items-center justify-center">
@@ -58,7 +51,7 @@ export default function Education() {
                                 </div>
                             </motion.div>
                         ))}
-                    </div>
+                    </motion.div>
                 </motion.div>
             </div>
         </section>

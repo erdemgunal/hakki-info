@@ -5,6 +5,7 @@ import { resumeData } from '@/app/data/resume-data';
 import Link from 'next/link';
 import { ExternalLink } from 'lucide-react';
 import { renderBadges } from '@/lib/badge-utils';
+import { whileInViewAnimation, staggerContainer, cardHover } from '@/lib/animations';
 
 export default function WorkExperience() {
   const { workExperience } = resumeData;
@@ -14,33 +15,25 @@ export default function WorkExperience() {
       <div className="max-w-4xl mx-auto">
         <motion.div 
           className="text-center mb-12"
-          initial={{ y: 30, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
+          {...whileInViewAnimation()}
         >
           <h2 className="text-4xl font-bold mb-4">İş Deneyimi</h2>
         </motion.div>
         
         <motion.div 
           className="max-w-4xl mx-auto"
-          initial={{ y: 50, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+          {...whileInViewAnimation(0.2)}
         >
-          <div className="space-y-8">
+          <motion.div 
+            className="space-y-8"
+            {...staggerContainer}
+          >
             {workExperience.map((experience, index) => (
               <motion.div 
                 key={index} 
                 className="bg-surface p-6 relative"
-                initial={{ y: 30, opacity: 0 }}
-                whileInView={{ y: 0, opacity: 1 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ 
-                  duration: 0.6, 
-                  delay: index * 0.1
-                }}
+                {...whileInViewAnimation(index * 0.1)}
+                {...cardHover}
               >
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
                   <div>
@@ -85,7 +78,7 @@ export default function WorkExperience() {
                 </div>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>

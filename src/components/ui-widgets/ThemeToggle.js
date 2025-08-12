@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { Sun, Moon, Monitor } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { THEMES } from '@/lib/constants';
+import { buttonHover } from '@/lib/animations';
 
 const themes = THEMES.map(theme => ({
     ...theme,
@@ -62,8 +63,7 @@ export default function ThemeToggle() {
                     ? 'bg-foreground text-background' 
                     : 'text-foreground hover:text-foreground'
                 }`}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
+                {...buttonHover}
                 title={themeOption.name}
               >
                 <Icon className="w-4 h-4" />

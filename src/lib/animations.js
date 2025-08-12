@@ -53,4 +53,37 @@ export const cardHover = {
         y: -5,
         transition: { duration: 0.2 }
     }
-}; 
+};
+
+export const slideInFromTop = {
+    initial: { y: -30, opacity: 0 },
+    animate: { y: 0, opacity: 1 },
+    transition: { duration: 0.5 }
+};
+
+export const rotateIn = {
+    initial: { rotate: -180, opacity: 0 },
+    animate: { rotate: 0, opacity: 1 },
+    transition: { duration: 0.8, ease: "easeOut" }
+};
+
+export const bounceIn = {
+    initial: { scale: 0.3, opacity: 0 },
+    animate: { scale: 1, opacity: 1 },
+    transition: { 
+        duration: 0.6,
+        ease: [0.68, -0.55, 0.265, 1.55]
+    }
+};
+
+export const fadeInLeft = {
+    initial: { x: -50, opacity: 0 },
+    animate: { x: 0, opacity: 1 },
+    transition: { duration: 0.5 }
+};
+
+export const fadeInRight = {
+    initial: { x: 50, opacity: 0 },
+    animate: { x: 0, opacity: 1 },
+    transition: { duration: 0.5 }
+};

@@ -8,6 +8,7 @@ import { renderTechStackBadges, renderBadges } from "@/lib/badge-utils"
 import Image from "next/image"
 import Link from "next/link"
 import { ExternalLink, Github } from "lucide-react"
+import { whileInViewAnimation, staggerContainer, cardHover } from '@/lib/animations';
 
 export default function Projects() {
   const { projects } = resumeData
@@ -17,31 +18,19 @@ export default function Projects() {
       <div className="container mx-auto px-6">
         <motion.div 
           className="text-center mb-12"
-          initial={{ y: 30, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
+          {...whileInViewAnimation()}
         >
           <h2 className="text-4xl font-bold text-foreground mb-4">Projeler</h2>
         </motion.div>
         <motion.div 
           className="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
-          initial={{ y: 50, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+          {...staggerContainer}
         >
           {projects.map((project, index) => (
             <motion.div
               key={index}
-              initial={{ y: 50, opacity: 0 }}
-              whileInView={{ y: 0, opacity: 1 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ 
-                duration: 0.6, 
-                delay: 0.3 + (index * 0.1), 
-                ease: "easeOut" 
-              }}
+              {...whileInViewAnimation(0.3 + (index * 0.1))}
+              {...cardHover}
             >
               <Dialog>
                 <DialogTrigger asChild>
