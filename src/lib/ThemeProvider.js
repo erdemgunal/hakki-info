@@ -1,10 +1,16 @@
-import React from 'react';
-import { ThemeProvider } from 'next-themes';
+'use client';
 
-export default function Provider({ children }) {
+import { ThemeProvider as NextThemesProvider } from 'next-themes';
+
+export function ThemeProvider({ children }) {
   return (
-    <ThemeProvider attribute='class'>
+    <NextThemesProvider
+      attribute="class"
+      defaultTheme="system"
+      enableSystem
+      disableTransitionOnChange={false}
+    >
       {children}
-    </ThemeProvider>
+    </NextThemesProvider>
   );
-}
+} 

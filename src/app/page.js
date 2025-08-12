@@ -1,16 +1,37 @@
-import HeaderSection from "@/components/sections/HeaderSection";
-import MainContent from "@/components/sections/MainContent";
-import { RESUME_DATA } from "@/data/resume-data";
+import {
+    Hero,
+    About,
+    WorkExperience,
+    Education,
+    Languages,
+    Skills,
+    Projects
+} from '@/components/sections';
+import {
+    ActiveSectionIndicator,
+    Footer,
+    MobileNavigation
+} from '@/components/layout';
 
 export default function Home() {
-  return (
-    <main className="min-h-screen bg-gradient-to-b from-white to-gray-100 dark:from-[#1E1E1E] dark:to-[#111111]">
-      <div className="container relative mx-auto scroll-my-12 overflow-auto p-4 md:p-8 lg:p-12">
-        <section className="mx-auto w-full max-w-4xl rounded-2xl border border-gray-200 bg-white p-6 sm:p-8 shadow-lg dark:border-gray-800 dark:bg-[#1E1E1E] print:space-y-6">
-          <HeaderSection resumeData={RESUME_DATA} />
-          <MainContent resumeData={RESUME_DATA} />
-        </section>
-      </div>
-    </main>
-  );
+    return (
+        <main className="min-h-screen bg-background">
+            <ActiveSectionIndicator />
+            <MobileNavigation />
+            <div className="mx-auto max-w-5xl px-4 sm:px-8 lg:px-16 py-8">
+                <div className="bg-surface border border-border rounded-2xl shadow-xl shadow-black/10 overflow-hidden">
+                    <div className="p-6 sm:p-10 lg:p-16 space-y-20">
+                        <section id="hero"><Hero /></section>
+                        <section id="about"><About /></section>
+                        <section id="work-experience"><WorkExperience /></section>
+                        <section id="education"><Education /></section>
+                        <section id="languages"><Languages /></section>
+                        <section id="skills"><Skills /></section>
+                        <section id="projects"><Projects /></section>
+                    </div>
+                </div>
+            </div>
+            <Footer />
+        </main>
+    );
 }

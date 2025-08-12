@@ -1,6 +1,14 @@
-# Allow all crawlers
-User-agent: *
+User-agent: Googlebot
 Allow: /
 
-# Sitemap location
-Sitemap: https://hakki.info/sitemap.xml
+User-agent: Bingbot
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: *
+Allow: /

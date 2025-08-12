@@ -1,33 +1,46 @@
-import { Crimson_Text } from "next/font/google";
-import Script from "next/script";
-import Provider from '../lib/ThemeProvider';
-import MetaTags from "@/components/MetaTags";
-import "../styles/globals.css";
+import { Crimson_Text, Oxygen } from "next/font/google";
+import "./globals.css";
+import { ThemeProvider } from "@/lib/ThemeProvider";
 
-const crimson_text = Crimson_Text({ subsets: ["latin"], weight: "400", display: "swap" });
+const headingFont = Crimson_Text({
+  variable: "--font-heading",
+  subsets: ["latin"],
+  weight: ["400", "700"],
+});
+
+const bodyFont = Oxygen({
+  variable: "--font-body",
+  subsets: ["latin"],
+  weight: ["400", "700"],
+});
 
 export const metadata = {
-  title: "Hakkı's Portfolio",
-  description: "Personal portfolio of Hakki Erdem Gunal, showcasing skills in various programming languages, a collection of software development projects, and contact information. Explore to learn more about Hakki's experience and work.",
+  title: "Hakkı Günal - Full Stack Developer Portfolio",
+  description:
+    "Hakkı Günal'ın kişisel portfolyo sitesi. Full Stack Developer olarak React, Node.js, Python ve modern web teknolojileri konusunda uzmanlaşmış yazılım geliştiricisi.",
+  keywords: [
+    "Full Stack Developer",
+    "React",
+    "Node.js",
+    "Python",
+    "Web Development",
+    "Portfolio",
+  ],
+  author: "Hakkı Günal",
+};
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={crimson_text.className}>
-      <MetaTags />
-      <body className="bg-white dark:bg-[#1E1E1E]">
-          <Provider>
-            {children}
-          </Provider>
-          <Script id="clarity-script" strategy="afterInteractive">
-          {`
-            (function(c,l,a,r,i,t,y){
-                c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-                t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-                y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-            })(window, document, "clarity", "script", "ns98caktal");
-          `}
-        </Script>
+    <html lang="tr" suppressHydrationWarning>
+      <body className={`${headingFont.variable} ${bodyFont.variable} antialiased`}>
+        <ThemeProvider>
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
