@@ -1,4 +1,5 @@
-import React from 'react'
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
 
 export default function PrivacyPage() {
   const privacySections = [
@@ -110,12 +111,11 @@ export default function PrivacyPage() {
 
           {/* Back to Home */}
           <div className="text-center pt-8">
-            <a 
-              href="/" 
-              className="inline-flex items-center px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors duration-200"
-            >
-              Ana Sayfaya Dön
-            </a>
+            <Button variant="secondary" asChild>
+              <Link href="/">
+                Ana Sayfaya Dön
+              </Link>
+            </Button>
           </div>
         </div>
       </div>

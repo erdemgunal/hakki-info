@@ -96,7 +96,7 @@ export default function Footer() {
         <div className="mt-8 pt-6 border-t border-border">
           <div className="text-center">
             <div className="text-secondary text-sm italic">
-              "Gelecek, gençlerin eseridir." — Mustafa Kemal Atatürk
+              &ldquo;Gelecek, gençlerin eseridir.&rdquo; — Mustafa Kemal Atatürk
             </div>
           </div>
         </div>
