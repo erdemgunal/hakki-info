@@ -31,8 +31,7 @@ I'm a **Full Stack Developer** with over 5 years of experience, specializing in 
 
 ### 🌍 Languages
 - **Turkish** (Native)
-- **English** (B2-C1) - IELTS 7.5/9.0
-- **German** (B2) - Goethe Zertifikat
+- **English** (B2-C1)
 
 ---
 
@@ -209,8 +208,6 @@ Open [http://localhost:3000](http://localhost:3000) to view the portfolio!
 ## 🎓 Education
 
 - **Physics** - Marmara University (2024 - Ongoing)
-- **IELTS** - 7.5/9.0 (2021)
-- **Goethe Zertifikat** - B2 German (2020)
 
 ---
 
