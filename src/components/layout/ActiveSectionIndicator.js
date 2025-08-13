@@ -3,12 +3,18 @@
 import { motion } from 'framer-motion';
 import { useScrollSection } from '@/hooks/use-scroll-section';
 import { useScreenSize } from '@/hooks/use-screen-size';
+import { useEffect, useState } from 'react';
 
 export default function ActiveSectionIndicator() {
     const { activeSection, sections, scrollToSection } = useScrollSection();
     const { isLargeScreen } = useScreenSize();
+    const [mounted, setMounted] = useState(false);
 
-    if (!isLargeScreen) return null;
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    if (!mounted || !isLargeScreen) return null;
 
     return (
         <div className="fixed left-8 top-1/2 transform -translate-y-1/2 z-40">

@@ -46,7 +46,7 @@ export const resumeData = {
 
     // About Section Data
     about: {
-        description: "Yazılım dünyasına olan merakım, etrafımdaki sistemlerin nasıl çalıştığına dair duyduğum tutkulu bir sorgulamayla başladı. 5 yılı aşkın deneyimimde, Python ve JavaScript ekosistemlerinde güçlü bir temel oluşturdum. Fizik eğitimim, bana her soruna analitik ve mantıksal bir yaklaşımla bakma becerisi kazandırdı; laboratuvarlarda edindiğim prosedür ve raporlama becerileri, yazılım geliştirme süreçlerimde planlama ve dokümantasyona olan yaklaşımımı kökten değiştirdi. Amacım, her zaman, 'vakit nakittir' felsefesiyle karmaşık süreçleri otomatize ederek hem kullanıcı deneyimini hem de iş verimliliğini artırmaktır. Ekip çalışmasına değer veren, liderlik içgüdüsüne sahip ve hatalardan ders çıkararak sürekli gelişim odaklı bir geliştirici olarak, her projede değer yaratmayı hedefliyorum."
+        description: "Yazılım dünyasına olan merakım, etrafımdaki sistemlerin nasıl çalıştığına dair duyduğum tutkulu bir sorgulamayla başladı. 5 yılı aşkın deneyimimde, Python ve JavaScript ekosistemlerinde güçlü bir temel oluşturdum. Fizik eğitimim, bana her soruna analitik ve mantıksal bir yaklaşımla bakma becerisi kazandırdı; laboratuvarlarda edindiğim prosedür ve raporlama becerileri, yazılım geliştirme süreçlerimde planlama ve dokümantasyona olan yaklaşımımı kökten değiştirdi. Amacım, 'vakit nakittir' felsefesiyle karmaşık süreçleri otomatize ederek hem kullanıcı deneyimini hem de iş verimliliğini artırmaktır. Ekip çalışmasına değer veren, liderlik içgüdüsüne sahip ve hatalardan ders çıkararak sürekli gelişim odaklı bir geliştirici olarak, her projede değer yaratmayı hedefliyorum."
     },
 
     // Work Experience and Education are combined into Projects for a focused narrative.
@@ -246,9 +246,9 @@ export const resumeData = {
             title: "Hakkı Aranıyor",
             description: "Tek bir yerde 'evet/hayır' formatında bulmacalar sunan, SEO ve performans odaklı bir web uygulaması.",
             problem: "Kullanıcılar, çeşitli ‘durum bulmacalarını’ keşfetmek ve oynamak için tek bir merkezi platforma ihtiyaç duyuyordu. Mevcut siteler arama, filtreleme ve mobil performans konusunda yetersizdi.",
-            solution: "Next.js 15 ve React 19 ile mobil öncelikli, SEO uyumlu bir bulmaca platformu geliştirdim. Client-side filtreleme, URL senkronizasyonlu sayfalama ve `localStorage` ile son görüntülenen oyunları hatırlama gibi özellikler ekledim. `shadcn/ui` ile tutarlı bir tasarım sistemi oluşturdum.",
+            solution: "Next.js 15 ve React 19 ile mobil öncelikli, SEO uyumlu bir bulmaca platformu geliştirdim. Client-side filtreleme, URL senkronizasyonlu sayfalama ve localStorage ile son görüntülenen oyunları hatırlama gibi özellikler ekledim. shadcn/ui ile tutarlı bir tasarım sistemi oluşturdum.",
             result: "Hafif, ölçeklenebilir ve hızlı bir uygulama ortaya çıktı. Kullanıcı deneyimini artıran arama ve filtreleme özellikleri ile keşif derinliği sağlandı. Bu proje, modern full-stack teknolojileriyle bir ürünü sıfırdan hayata geçirme becerimi gösteriyor.",
-            techStack: ["Next.js", "React", "Tailwind CSS", "shadcn/ui", "localStorage", "Framer Motion"],
+            techStack: ["Next.js", "React", "Tailwind CSS", "shadcn/ui", "Framer Motion"],
             label: "Web Geliştirme",
             year: "2024",
             images: [

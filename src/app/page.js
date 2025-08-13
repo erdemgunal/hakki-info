@@ -1,7 +1,6 @@
 import {
     Hero,
     About,
-    // WorkExperience,
     Education,
     Languages,
     Skills,
@@ -23,7 +22,6 @@ export default function Home() {
                     <div className="p-6 sm:p-10 lg:p-16 space-y-20">
                         <section id="hero"><Hero /></section>
                         <section id="about"><About /></section>
-                        {/* <section id="work-experience"><WorkExperience /></section> */}
                         <section id="education"><Education /></section>
                         <section id="languages"><Languages /></section>
                         <section id="skills"><Skills /></section>

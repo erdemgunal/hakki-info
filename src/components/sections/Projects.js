@@ -2,21 +2,45 @@
 
 import { motion } from 'framer-motion';
 import { resumeData } from "@/app/data/resume-data"
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
+import { 
+    Dialog,
+    DialogContent,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger } 
+from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
-import { renderTechStackBadges, renderBadges } from "@/lib/badge-utils"
+import { 
+    renderTechStackBadges, 
+    renderBadges } 
+from "@/lib/badge-utils"
 import Image from "next/image"
 import Link from "next/link"
-import { ExternalLink, Github } from "lucide-react"
-import { whileInViewAnimation, staggerContainer } from '@/lib/animations';
+import { 
+    ExternalLink, 
+    Github 
+} from "lucide-react"
+import { 
+    whileInViewAnimation, 
+    staggerContainer } 
+from '@/lib/animations';
 import { useTheme } from 'next-themes';
+import { useEffect, useState } from 'react';
 
 export default function Projects() {
   const { projects } = resumeData
   const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
   
   // Tema bazlı placeholder seçimi
   const getPlaceholderImage = () => {
+    if (!mounted) {
+      return "/placeholder-light.svg"; // Default placeholder for SSR
+    }
     if (resolvedTheme === 'dark') {
       return "/placeholder-dark.svg";
     }
@@ -49,7 +73,7 @@ export default function Projects() {
                         src={project.images[0] || getPlaceholderImage()}
                         alt={project.title}
                         fill
-                        className="object-cover transition-all duration-300 filter blur-[2px] group-hover:blur-0"
+                        className="object-cover transition-all duration-300"
                       />
                       <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-200" />
                       

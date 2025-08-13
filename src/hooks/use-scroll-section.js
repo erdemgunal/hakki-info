@@ -3,9 +3,16 @@ import { SECTIONS, SCROLL_OFFSET } from '@/lib/constants';
 
 export function useScrollSection() {
     const [activeSection, setActiveSection] = useState('hero');
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
 
     // Find active section
     const findActiveSection = useCallback(() => {
+        if (!mounted) return 'hero';
+        
         const scrollPosition = window.scrollY + window.innerHeight / 3;
 
         let activeId = SECTIONS[0].id;
@@ -27,10 +34,12 @@ export function useScrollSection() {
         });
 
         return activeId;
-    }, []);
+    }, [mounted]);
 
     // Handle scroll to update active section
     useEffect(() => {
+        if (!mounted) return;
+        
         const handleScroll = () => {
             const newActiveSection = findActiveSection();
             if (newActiveSection !== activeSection) {
@@ -40,9 +49,11 @@ export function useScrollSection() {
 
         window.addEventListener('scroll', handleScroll, { passive: true });
         return () => window.removeEventListener('scroll', handleScroll);
-    }, [findActiveSection, activeSection]);
+    }, [findActiveSection, activeSection, mounted]);
 
     const scrollToSection = useCallback((sectionId) => {
+        if (!mounted) return;
+        
         const element = document.getElementById(sectionId);
         if (element) {
             const y = element.getBoundingClientRect().top + window.pageYOffset + SCROLL_OFFSET;
@@ -54,10 +65,10 @@ export function useScrollSection() {
 
             setActiveSection(sectionId);
         }
-    }, []);
+    }, [mounted]);
 
     return {
-        activeSection,
+        activeSection: mounted ? activeSection : 'hero',
         sections: SECTIONS,
         scrollToSection,
         findActiveSection

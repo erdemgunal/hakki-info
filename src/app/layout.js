@@ -15,6 +15,7 @@ const bodyFont = Oxygen({
 });
 
 export const metadata = {
+  metadataBase: new URL('https://hakki.info'),
   title: "Hakkı Günal - Full Stack Developer Portfolio",
   description:
     "Hakkı Günal'ın kişisel portfolyo sitesi. Full Stack Developer olarak React, Node.js, Python ve modern web teknolojileri konusunda uzmanlaşmış yazılım geliştiricisi.",

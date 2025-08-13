@@ -4,8 +4,10 @@ import { MOBILE_BREAKPOINT } from '@/lib/constants';
 export function useScreenSize() {
     const [isMobile, setIsMobile] = useState(false);
     const [isLargeScreen, setIsLargeScreen] = useState(false);
+    const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
+        setMounted(true);
         const checkScreenSize = () => {
             const width = window.innerWidth;
             setIsMobile(width < MOBILE_BREAKPOINT);
@@ -18,7 +20,7 @@ export function useScreenSize() {
     }, []);
 
     return {
-        isMobile,
-        isLargeScreen
+        isMobile: mounted ? isMobile : false,
+        isLargeScreen: mounted ? isLargeScreen : false
     };
 } 

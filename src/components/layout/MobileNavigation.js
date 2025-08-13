@@ -12,9 +12,16 @@ export default function MobileNavigation() {
     const [isOpen, setIsOpen] = useState(false);
     const { activeSection, scrollToSection } = useScrollSection();
     const { isMobile } = useScreenSize();
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
 
     // Prevent scrolling when menu is open
     useEffect(() => {
+        if (!mounted) return;
+        
         if (isOpen) {
             document.body.style.overflow = 'hidden';
         } else {
@@ -24,11 +31,11 @@ export default function MobileNavigation() {
         return () => {
             document.body.style.overflow = 'unset';
         };
-    }, [isOpen]);
+    }, [isOpen, mounted]);
 
     const sections = SECTIONS;
 
-    if (!isMobile) return null;
+    if (!mounted || !isMobile) return null;
 
     // Only show mobile navigation after hero section (when in about or later sections)
     if (activeSection === 'hero') return null;
