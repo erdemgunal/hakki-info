@@ -12,7 +12,7 @@ export default function Education() {
         <section className="py-16 min-h-[50vh]" id="education">
             <div className="max-w-4xl mx-auto">
                 <motion.div
-                    className="text-center mb-12"
+                    className="text-left mb-12"
                     {...whileInViewAnimation()}
                 >
                     <h2 className="text-4xl font-bold mb-4">Eğitim</h2>

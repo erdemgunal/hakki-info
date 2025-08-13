@@ -13,7 +13,7 @@ export default function Skills() {
     <section className="py-16 min-h-[70vh]" id="skills">
       <div className="max-w-4xl mx-auto">
         <motion.div 
-          className="text-center mb-12"
+          className="text-left mb-12"
           {...whileInViewAnimation()}
         >
           <h2 className="text-4xl font-bold mb-4">Teknik Beceriler</h2>

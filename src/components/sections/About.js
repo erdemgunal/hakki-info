@@ -11,7 +11,7 @@ export default function About() {
         <section className="py-16 min-h-[50vh] scroll-mt-20" id="about">
             <div className="max-w-4xl mx-auto">
                 <motion.div
-                    className="text-center mb-12"
+                    className="text-left mb-12"
                     {...whileInViewAnimation()}
                 >
                     <h2 className="text-4xl font-bold mb-4">Hakkımda</h2>

@@ -36,8 +36,8 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div className="space-y-4">
-            <div>
-              <span className="text-foreground font-semibold text-lg">{footer.quickLinks.title}</span>
+            <div className='flex items-center space-x-2'>
+              <span className="text-xl font-bold text-foreground">{footer.quickLinks.title}</span>
             </div>
             <div className="space-y-2">
               {footer.quickLinks.links.map((link, index) => (
@@ -50,8 +50,8 @@ export default function Footer() {
 
           {/* Contact & Social */}
           <div className="space-y-4">
-            <div>
-              <span className="text-foreground font-semibold text-lg">{footer.contact.title}</span>
+            <div className='flex items-center space-x-2'>
+              <span className="text-xl font-bold text-foreground">{footer.contact.title}</span>
             </div>
             <div className="space-y-2">
               <div className="flex items-center space-x-2 text-secondary text-sm">
