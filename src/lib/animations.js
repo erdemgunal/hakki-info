@@ -48,13 +48,6 @@ export const buttonHover = {
     whileTap: { scale: 0.95 }
 };
 
-export const cardHover = {
-    whileHover: { 
-        y: -5,
-        transition: { duration: 0.2 }
-    }
-};
-
 export const slideInFromTop = {
     initial: { y: -30, opacity: 0 },
     animate: { y: 0, opacity: 1 },

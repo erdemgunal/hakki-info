@@ -25,8 +25,62 @@ export const metadata = {
     "Python",
     "Web Development",
     "Portfolio",
+    "JavaScript",
+    "TypeScript",
+    "Next.js",
+    "Frontend",
+    "Backend",
+    "Software Engineer",
+    "Web Developer",
+    "Türkiye",
   ],
-  author: "Hakkı Günal",
+  authors: [{ name: "Hakkı Günal" }],
+  creator: "Hakkı Günal",
+  publisher: "Hakkı Günal",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  alternates: {
+    canonical: "https://hakki.info",
+  },
+  openGraph: {
+    type: "website",
+    locale: "tr_TR",
+    url: "https://hakki.info",
+    siteName: "Hakkı Günal Portfolio",
+    title: "Hakkı Günal - Full Stack Developer Portfolio",
+    description: "Hakkı Günal'ın kişisel portfolyo sitesi. Full Stack Developer olarak React, Node.js, Python ve modern web teknolojileri konusunda uzmanlaşmış yazılım geliştiricisi.",
+    images: [
+      {
+        url: "/images/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Hakkı Günal - Full Stack Developer",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@hakki_gunal",
+    creator: "@hakki_gunal",
+    title: "Hakkı Günal - Full Stack Developer Portfolio",
+    description: "Hakkı Günal'ın kişisel portfolyo sitesi. Full Stack Developer olarak React, Node.js, Python ve modern web teknolojileri konusunda uzmanlaşmış yazılım geliştiricisi.",
+    images: ["/images/twitter-image.jpg"],
+  },
+  verification: {
+    google: "your-google-verification-code",
+    yandex: "your-yandex-verification-code",
+  },
+  category: "technology",
+  classification: "portfolio",
 };
 
 export const viewport = {

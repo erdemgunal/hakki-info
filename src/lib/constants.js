@@ -3,7 +3,6 @@ import { Home, User, Briefcase, GraduationCap, Languages, Code, FolderOpen } fro
 export const SECTIONS = [
     { id: 'hero', name: 'Ana Sayfa', icon: Home },
     { id: 'about', name: 'Hakkımda', icon: User },
-    { id: 'work-experience', name: 'İş Deneyimi', icon: Briefcase },
     { id: 'education', name: 'Eğitim', icon: GraduationCap },
     { id: 'languages', name: 'Diller', icon: Languages },
     { id: 'skills', name: 'Beceriler', icon: Code },

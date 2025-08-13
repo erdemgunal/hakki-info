@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import { resumeData } from '@/app/data/resume-data';
 import { GraduationCap } from 'lucide-react';
-import { whileInViewAnimation, staggerContainer, cardHover } from '@/lib/animations';
+import { whileInViewAnimation, staggerContainer } from '@/lib/animations';
 
 export default function Education() {
     const { education } = resumeData;
@@ -31,7 +31,6 @@ export default function Education() {
                                 key={index}
                                 className="bg-surface p-6"
                                 {...whileInViewAnimation(index * 0.1)}
-                                {...cardHover}
                             >
                                 <div className="flex items-start gap-4">
                                     <div className="w-12 h-12 rounded-lg bg-secondary/10 border border-secondary/20 flex items-center justify-center">

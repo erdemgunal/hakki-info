@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import { resumeData } from '@/app/data/resume-data';
 import { renderBadges } from '@/lib/badge-utils';
-import { whileInViewAnimation, staggerContainer, cardHover } from '@/lib/animations';
+import { whileInViewAnimation, staggerContainer } from '@/lib/animations';
 
 export default function Languages() {
   const { languages } = resumeData;
@@ -31,7 +31,6 @@ export default function Languages() {
                 key={index} 
                 className="bg-surface p-6"
                 {...whileInViewAnimation(index * 0.1)}
-                {...cardHover}
               >
                 <div className="flex items-center justify-between">
                   <h3 className="text-xl font-semibold text-foreground">

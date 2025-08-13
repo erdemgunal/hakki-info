@@ -8,10 +8,20 @@ import { renderTechStackBadges, renderBadges } from "@/lib/badge-utils"
 import Image from "next/image"
 import Link from "next/link"
 import { ExternalLink, Github } from "lucide-react"
-import { whileInViewAnimation, staggerContainer, cardHover } from '@/lib/animations';
+import { whileInViewAnimation, staggerContainer } from '@/lib/animations';
+import { useTheme } from 'next-themes';
 
 export default function Projects() {
   const { projects } = resumeData
+  const { resolvedTheme } = useTheme();
+  
+  // Tema bazlı placeholder seçimi
+  const getPlaceholderImage = () => {
+    if (resolvedTheme === 'dark') {
+      return "/placeholder-dark.svg";
+    }
+    return "/placeholder-light.svg";
+  };
 
   return (
     <section className="mt-12 bg-transparent" id="projects">
@@ -30,14 +40,13 @@ export default function Projects() {
             <motion.div
               key={index}
               {...whileInViewAnimation(0.3 + (index * 0.1))}
-              {...cardHover}
             >
               <Dialog>
                 <DialogTrigger asChild>
                   <div className="bg-surface rounded-lg border border-border overflow-hidden hover:border-foreground/30 cursor-pointer hover:shadow-lg group flex flex-col h-full">
                     <div className="h-48 bg-background relative overflow-hidden">
                       <Image
-                        src={project.images[0] || "/placeholder.svg"}
+                        src={project.images[0] || getPlaceholderImage()}
                         alt={project.title}
                         fill
                         className="object-cover transition-all duration-300 filter blur-[2px] group-hover:blur-0"
@@ -64,7 +73,12 @@ export default function Projects() {
                         <p className="text-muted-foreground text-sm mb-4 leading-relaxed">{project.description}</p>
 
                         <div className="flex flex-wrap gap-2 mb-4">
-                          {renderTechStackBadges(project.techStack, 3, "outline", "text-xs")}
+                          {renderTechStackBadges(project.techStack.slice(0, 3), 3, "outline", "text-xs")}
+                          {project.techStack.length > 3 && (
+                            <span className="text-xs text-muted-foreground bg-muted px-2 py-1 rounded">
+                              +{project.techStack.length - 3} daha
+                            </span>
+                          )}
                         </div>
                       </div>
 
@@ -92,7 +106,7 @@ export default function Projects() {
                           {project.images.map((image, index) => (
                             <div key={index} className="relative h-48 rounded-lg overflow-hidden">
                               <Image
-                                src={image || "/placeholder.svg"}
+                                src={image || getPlaceholderImage()}
                                 alt={`${project.title} - ${index + 1}`}
                                 fill
                                 className="object-cover"
@@ -103,52 +117,78 @@ export default function Projects() {
                       </div>
                     )}
 
-                    {/* Full Description */}
+                    {/* Problem Section */}
                     <div>
-                      <h4 className="font-semibold text-foreground mb-3">Proje Açıklaması</h4>
-                      <p className="text-muted-foreground leading-relaxed">{project.fullDescription}</p>
+                      <h4 className="font-semibold text-foreground mb-3 flex items-center gap-2">
+                        Problem
+                      </h4>
+                      <p className="text-muted-foreground leading-relaxed p-4 rounded-lg bg-card border-l-4 border-red-500 shadow-sm">
+                        {project.problem}
+                      </p>
+                    </div>
+
+                    {/* Solution Section */}
+                    <div>
+                      <h4 className="font-semibold text-foreground mb-3 flex items-center gap-2">
+                        Çözüm
+                      </h4>
+                      <p className="text-muted-foreground leading-relaxed p-4 rounded-lg bg-card border-l-4 border-blue-500 shadow-sm">
+                        {project.solution}
+                      </p>
+                    </div>
+
+                    {/* Result Section */}
+                    <div>
+                      <h4 className="font-semibold text-foreground mb-3 flex items-center gap-2">
+                        Sonuç
+                      </h4>
+                      <p className="text-muted-foreground leading-relaxed p-4 rounded-lg bg-card border-l-4 border-green-500 shadow-sm">
+                        {project.result}
+                      </p>
                     </div>
 
                     {/* Tech Stack */}
                     <div>
                       <h4 className="font-semibold text-foreground mb-3">Kullanılan Teknolojiler</h4>
-                                          <div className="flex flex-wrap gap-2">
-                      {renderTechStackBadges(project.techStack, project.techStack.length, "outline")}
-                    </div>
+                      <div className="flex flex-wrap gap-2">
+                        {renderTechStackBadges(project.techStack, project.techStack.length, "outline")}
+                      </div>
                     </div>
 
                     {/* Links */}
-                    <div>
-                      <h4 className="font-semibold text-foreground mb-3">Proje Linkleri</h4>
-                      <div className="flex flex-wrap gap-3">
-                    {project.links.live && (
-                          <Button variant="default" asChild>
-                            <Link
-                              href={project.links.live}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="flex items-center gap-2"
-                            >
-                              <ExternalLink className="w-4 h-4" />
-                              Canlı Demo
-                            </Link>
-                          </Button>
-                        )}
-                        {project.links.github && (
-                          <Button variant="outline" asChild>
-                            <Link
-                              href={project.links.github}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="flex items-center gap-2"
-                            >
-                              <Github className="w-4 h-4" />
-                              GitHub
-                            </Link>
-                          </Button>
-                        )}
+                    {(project.links.live || project.links.github) && (
+                      <div>
+                        <h4 className="font-semibold text-foreground mb-3">Proje Linkleri</h4>
+                        <div className="flex flex-wrap gap-3">
+                          {project.links.live && (
+                            <Button variant="default" asChild>
+                              <Link
+                                href={project.links.live}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center gap-2"
+                              >
+                                <ExternalLink className="w-4 h-4" />
+                                Canlı Demo
+                              </Link>
+                            </Button>
+                          )}
+                          {project.links.github && (
+                            <Button variant="outline" asChild>
+                              <Link
+                                href={project.links.github}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center gap-2"
+                              >
+                                <Github className="w-4 h-4" />
+                                GitHub
+                              </Link>
+                            </Button>
+                          )}
+                        </div>
                       </div>
-                    </div>
+                    )}
                   </div>
                 </DialogContent>
               </Dialog>

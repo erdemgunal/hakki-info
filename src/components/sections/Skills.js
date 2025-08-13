@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import { resumeData } from '@/app/data/resume-data';
 import { renderBadges } from '@/lib/badge-utils';
-import { whileInViewAnimation, staggerContainer, cardHover } from '@/lib/animations';
+import { whileInViewAnimation, staggerContainer } from '@/lib/animations';
 
 export default function Skills() {
   const { skills } = resumeData;
@@ -33,7 +33,6 @@ export default function Skills() {
                 key={index} 
                 className="bg-surface p-6"
                 {...whileInViewAnimation(index * 0.1)}
-                {...cardHover}
               >
                 <div className="flex items-center gap-3 mb-6">
                   <h3 className="text-xl font-semibold text-foreground">{category.name}</h3>
@@ -50,7 +49,6 @@ export default function Skills() {
           <motion.div 
             className="bg-surface p-6"
             {...whileInViewAnimation(0.5)}
-            {...cardHover}
           >
             <div className="flex items-center gap-3 mb-6">
               <h3 className="text-xl font-semibold text-foreground">Soft Skills</h3>

@@ -19,7 +19,7 @@ export default function About() {
 
                 <motion.div
                     className="space-y-6 text-lg leading-relaxed text-foreground/80"
-                    {...whileInViewAnimation(0.2)}
+                    {...whileInViewAnimation(0.3)}
                 >
                     <p className="text-lg leading-relaxed text-secondary">
                         {about.description}

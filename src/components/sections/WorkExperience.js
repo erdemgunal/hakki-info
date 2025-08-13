@@ -5,7 +5,7 @@ import { resumeData } from '@/app/data/resume-data';
 import Link from 'next/link';
 import { ExternalLink } from 'lucide-react';
 import { renderBadges } from '@/lib/badge-utils';
-import { whileInViewAnimation, staggerContainer, cardHover } from '@/lib/animations';
+import { whileInViewAnimation, staggerContainer } from '@/lib/animations';
 
 export default function WorkExperience() {
   const { workExperience } = resumeData;
@@ -33,7 +33,6 @@ export default function WorkExperience() {
                 key={index} 
                 className="bg-surface p-6 relative"
                 {...whileInViewAnimation(index * 0.1)}
-                {...cardHover}
               >
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
                   <div>

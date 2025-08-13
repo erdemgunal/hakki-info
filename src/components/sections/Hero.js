@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { resumeData } from '@/app/data/resume-data';
-import { GlobeIcon, Mail, ExternalLink } from "lucide-react";
+import { GlobeIcon, ExternalLink } from "lucide-react";
 import { Button } from '@/components/ui/button';
 import { AnimatedSocialLinks } from '@/components/ui-widgets';
 import { scaleIn, fadeInUpWithDelay, buttonHover } from '@/lib/animations';
@@ -46,7 +46,7 @@ export default function Hero() {
                     className="flex flex-wrap items-center justify-center gap-4 mb-8"
                     {...fadeInUpWithDelay(0.7)}
                 >
-                    <Link href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+                    <Link href="/hakki_erdem_cv.pdf" target="_blank" rel="noopener noreferrer">
                         <motion.div {...buttonHover}>
                             <Button
                                 size="lg"
@@ -65,16 +65,6 @@ export default function Hero() {
                     className="flex flex-wrap justify-center gap-5 text-sm"
                     {...scaleIn}
                 >
-                    <motion.div {...fadeInUpWithDelay(0.8)}>
-                        <Link
-                            href={`mailto:${hero.contact?.email || hero.email}`}
-                            className="inline-flex items-center justify-center text-secondary hover:text-foreground transition-all duration-200 p-2 rounded-full hover:bg-primary/10"
-                            aria-label="Email"
-                        >
-                            <Mail className="w-5 h-5" />
-                        </Link>
-                    </motion.div>
-
                     {/* Social Icons */}
                     <AnimatedSocialLinks socialLinks={hero.contact?.social || []} />
                 </motion.div>

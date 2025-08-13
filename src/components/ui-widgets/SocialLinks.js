@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { scaleIn, buttonHover } from '@/lib/animations';
+import { scaleIn } from '@/lib/animations';
 
 export function AnimatedSocialLinks({ socialLinks, className = "", iconClassName = "w-5 h-5" }) {
     if (!socialLinks || socialLinks.length === 0) return null;
@@ -22,17 +22,15 @@ export function AnimatedSocialLinks({ socialLinks, className = "", iconClassName
                     damping: 15
                 }}
             >
-                <motion.div {...buttonHover}>
-                    <Link
-                        href={social.url}
-                        className={`inline-flex items-center justify-center text-secondary hover:text-foreground transition-all duration-200 p-2 rounded-full hover:bg-primary/10 ${className}`}
-                        aria-label={social.name}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        <Icon className={iconClassName} title={social.name} />
-                    </Link>
-                </motion.div>
+                <Link
+                    href={social.url}
+                    className={`inline-flex items-center justify-center text-secondary hover:text-foreground transition-all duration-200 p-2 rounded-full hover:bg-primary/10 ${className}`}
+                    aria-label={social.name}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    <Icon className={iconClassName} title={social.name} />
+                </Link>
             </motion.div>
         );
     });
