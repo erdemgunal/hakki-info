@@ -4,8 +4,6 @@ import { ThemeProvider } from "@/lib/ThemeProvider";
 import Script from "next/script";
 import { consoleArtScript } from "@/lib/console-art";
 
-import { NextIntlClientProvider } from 'next-intl';
-import { getLocale } from 'next-intl/server';
 
 const headingFont = Crimson_Text({
     variable: "--font-heading",
@@ -95,10 +93,9 @@ export const viewport = {
 };
 
 export default async function RootLayout({ children }) {
-    const locale = await getLocale();
     return (
         <html 
-            lang={locale} 
+            lang="tr" 
             suppressHydrationWarning
         >
             <head>
@@ -124,11 +121,9 @@ export default async function RootLayout({ children }) {
                 />
             </head>
             <body className={`${headingFont.variable} ${bodyFont.variable} antialiased`}>
-                <NextIntlClientProvider>
-                    <ThemeProvider>
-                        {children}
-                    </ThemeProvider>
-                </NextIntlClientProvider>
+                <ThemeProvider>
+                    {children}
+                </ThemeProvider>
             </body>
         </html>
     );

@@ -48,7 +48,6 @@ I'm a **Full Stack Developer** with over 5 years of experience, specializing in 
 ### Backend
 ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
-![Express.js](https://img.shields.io/badge/Express.js-404D59?style=for-the-badge&logo=express&logoColor=white)
 ![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)
 
 ### Database & Infrastructure
@@ -59,7 +58,7 @@ I'm a **Full Stack Developer** with over 5 years of experience, specializing in 
 
 ### Tools & Methodologies
 ![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
-![Jest](https://img.shields.io/badge/Jest-C21325?style=for-the-badge&logo=jest&logoColor=white)
+![pytest](https://img.shields.io/badge/pytest-0A9EDC?style=for-the-badge&logo=pytest&logoColor=white)
 ![Framer Motion](https://img.shields.io/badge/Framer_Motion-0055FF?style=for-the-badge&logo=framer&logoColor=white)
 ![REST API](https://img.shields.io/badge/REST_API-FF6B6B?style=for-the-badge&logo=rest&logoColor=white)
 
@@ -193,7 +192,7 @@ Open [http://localhost:3000](http://localhost:3000) to view the portfolio!
 - **Backend Development**: Python, Node.js, Express.js, FastAPI
 - **Database Management**: PostgreSQL, MongoDB, SQLite
 - **DevOps & Cloud**: Docker, AWS, Vercel deployment
-- **Testing & Quality**: Jest, Test-Driven Development
+- **Testing & Quality**: pytest, Test-Driven Development
 - **Architecture**: Clean Architecture, Microservices, REST APIs
 
 ### Soft Skills

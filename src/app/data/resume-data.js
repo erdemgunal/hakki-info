@@ -97,7 +97,7 @@ export const resumeData = {
                 name: "Araçlar & Metodolojiler",
                 skills: [
                     { name: "Git" },
-                    { name: "Jest" },
+                    { name: "pytest" },
                     { name: "Framer Motion" },
                     { name: "REST API" },
                     { name: "Agile/Scrum" },
@@ -275,7 +275,7 @@ export const resumeData = {
             images: [],
             links: {
                 live: "https://hakki.info",
-                github: "https://github.com/erdemgunal/hakki.info"
+                github: "https://github.com/erdemgunal/hakki-info"
             }
         },
         {
