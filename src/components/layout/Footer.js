@@ -3,7 +3,7 @@
 import React from 'react';
 import { resumeData } from '@/app/data/resume-data';
 import Link from 'next/link';
-import { ThemeToggle } from '@/components/ui-widgets';
+import { ThemeToggle, LanguageSelector } from '@/components/ui-widgets';
 import { renderSocialLinks } from '@/lib/social-links';
 import { getCurrentYear } from '@/lib/date-utils';
 
@@ -81,21 +81,28 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-2 pt-4">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <div className="text-secondary text-sm">
+        <div className="mt-4 pt-6">
+          <div className="flex flex-col space-y-4 md:flex-row md:justify-between md:items-center md:space-y-0">
+            {/* Copyright - Mobile first, centered */}
+            <div className="text-secondary text-sm text-center md:text-left order-2 md:order-1 mt-4">
               © {currentYear}, All rights reserved
             </div>
-            <div className="flex items-center space-x-6">
+            
+            {/* Controls - Mobile first, centered */}
+            <div className="flex flex-col space-y-4 items-center md:flex-row md:space-y-0 md:space-x-6 order-1 md:order-2">
+              {/* Links */}
               <div className="flex items-center space-x-4 text-secondary text-sm">
-                <Link href="/terms" className="hover:text-foreground">
+                <Link href="/terms" className="hover:text-foreground touch-manipulation py-2">
                     Terms
                 </Link>
-                <Link href="/privacy" className="hover:text-foreground">
+                <Link href="/privacy" className="hover:text-foreground touch-manipulation py-2">
                     Privacy
                 </Link>
               </div>
-              <div className="flex items-center space-x-2 scale-125 md:scale-100">
+              
+              {/* Language & Theme Controls */}
+              <div className="flex items-center space-x-2 sm:space-x-3">
+                <LanguageSelector />
                 <ThemeToggle />
               </div>
             </div>
