@@ -5,14 +5,13 @@ import WhatsAppIcon from "@/components/icon/WhatsAppIcon";
 import { Mail } from "lucide-react";
 
 export const resumeData = {
-    // Hero Section Data
     hero: {
         name: "<Hakkı />",
         title: "Otomasyona Odaklı Full Stack Developer",
         email: "me@hakki.info",
         location: "İstanbul, Türkiye",
         profileImage: "https://avatars.githubusercontent.com/u/65365648?v=4",
-        summary: "Fizik eğitimimden gelen analitik düşünme yeteneğiyle, karmaşık süreçleri otomatize ederek işleri kolaylaştıran, verimli ve ölçeklenebilir yazılım çözümleri geliştiriyorum.",
+        summary: "Full-stack developer olarak, analitik düşünme yeteneğimle karmaşık süreçleri otomatize ederek, ölçeklenebilir ve kullanıcı dostu yazılım çözümleri geliştiriyorum.",
         contact: {
             phone: "905551234567",
             social: [
@@ -25,7 +24,6 @@ export const resumeData = {
         }
     },
 
-    // Footer Content
     footer: {
         brand: {
             name: "Hakkı Günal",
@@ -44,13 +42,10 @@ export const resumeData = {
         }
     },
 
-    // About Section Data
     about: {
-        description: "Yazılım dünyasına olan merakım, etrafımdaki sistemlerin nasıl çalıştığına dair duyduğum tutkulu bir sorgulamayla başladı. 5 yılı aşkın deneyimimde, Python ve JavaScript ekosistemlerinde güçlü bir temel oluşturdum. Fizik eğitimim, bana her soruna analitik ve mantıksal bir yaklaşımla bakma becerisi kazandırdı; laboratuvarlarda edindiğim prosedür ve raporlama becerileri, yazılım geliştirme süreçlerimde planlama ve dokümantasyona olan yaklaşımımı kökten değiştirdi. Amacım, 'vakit nakittir' felsefesiyle karmaşık süreçleri otomatize ederek hem kullanıcı deneyimini hem de iş verimliliğini artırmaktır. Ekip çalışmasına değer veren, liderlik içgüdüsüne sahip ve hatalardan ders çıkararak sürekli gelişim odaklı bir geliştirici olarak, her projede değer yaratmayı hedefliyorum."
+        description: "Yazılım dünyasına olan tutkum, full-stack developer olmaya olan yolculuğumun başlangıcı oldu. Son 5 yıldır Python ile, son 2 yıldır JavaScript ve son 1 yıldır da React ile projeler geliştiriyorum. Fizik eğitimimden gelen analitik düşünme yeteneğim, her soruna mantıksal bir yaklaşımla bakmamı sağlarken, vakit nakittir felsefemle manuel süreçleri otomatize etmeye odaklanıyorum. Bu sayede, yalnızca kod yazmakla kalmayıp, kullanıcı ve iş odaklı çözümler üretiyorum. Güçlü ekip çalışması, liderlik içgüdüsü ve sürekli öğrenme becerisiyle her projede değer yaratmayı hedefliyorum."
     },
 
-    // Work Experience and Education are combined into Projects for a focused narrative.
-    // Education Data
     education: [
         {
             degree: "Fizik",
@@ -60,19 +55,11 @@ export const resumeData = {
         }
     ],
 
-    // Languages Data
     languages: [
         { name: "Türkçe", level: "Ana Dil" },
         { name: "İngilizce", level: "B2-C1" }
     ],
 
-    // Certificates Data
-    certificates: [
-        { name: "IELTS", score: "7.5/9.0", year: "2021" },
-        { name: "Goethe Zertifikat", score: "B2", year: "2020" },
-    ],
-
-    // Skills Data
     skills: {
         technical: [
             {
@@ -132,7 +119,6 @@ export const resumeData = {
         ]
     },
 
-    // Projects Data
     projects: [
         {
             title: "Hakkınızla Uçun",
@@ -303,7 +289,7 @@ export const resumeData = {
             year: "2022",
             images: [],
             links: {
-                live: "",
+                live: null,
                 github: "https://github.com/erdemgunal/reactstaj-weather-app"
             }
         },
