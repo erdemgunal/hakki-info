@@ -4,7 +4,6 @@ import { ThemeProvider } from "@/lib/ThemeProvider";
 import Script from "next/script";
 import { consoleArtScript } from "@/lib/console-art";
 
-
 const headingFont = Crimson_Text({
     variable: "--font-heading",
     subsets: ["latin"],
@@ -73,8 +72,8 @@ export const metadata = {
     },
     twitter: {
         card: "summary_large_image",
-        site: "@hakki_gunal",
-        creator: "@hakki_gunal",
+        site: "@erdmegunal",
+        creator: "@erdmegun",
         title: "Hakkı Günal - Full Stack Developer Portfolio",
         description: "Hakkı Günal'ın kişisel portfolyo sitesi. Full Stack Developer olarak React, Node.js, Python ve modern web teknolojileri konusunda uzmanlaşmış yazılım geliştiricisi.",
         images: ["/images/twitter-image.jpg"],
@@ -85,12 +84,14 @@ export const metadata = {
     },
     category: "technology",
     classification: "portfolio",
+    manifest: '/manifest.json',
 };
 
 export const viewport = {
     width: "device-width",
     initialScale: 1,
 };
+
 
 export default async function RootLayout({ children }) {
     return (
