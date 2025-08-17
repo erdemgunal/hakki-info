@@ -212,56 +212,6 @@ export const resumeData = {
                 live: "https://ecommerce-demo.com",
                 github: "https://github.com/erdemgunal/tekno-pazar"
             }
-        },  
-        {
-            title: "ESN Pulse",
-            description: "ESN Marmara için veri odaklı etkinlik planlaması ve rekabet analizi sağlayan bir platform.",
-            problem: "ESN Marmara, etkinlik planlaması yaparken diğer şubelerin verilerinden habersizdi ve yaratıcılıktan uzak kalıyordu. Veri odaklı karar verme süreçleri eksikti.",
-            solution: "Python ile web scraping araçları geliştirerek 40'tan fazla ESN şubesinin etkinlik ve istatistik verilerini topladım. Bu verileri analiz ederek, başarılı etkinlik modellerini ve mevsimsel trendleri belirleyen bir sistem oluşturdum.",
-            result: "Bu proje, ESN Marmara'nın uluslararası öğrenci tercihlerine uygun, veri odaklı etkinlikler düzenlemesini sağlayarak rekabet avantajı elde etmesine yardımcı oldu. Web scraping, veri analizi ve sistem mimarisi becerilerimi sergiledi.",
-            techStack: ["Python", "BeautifulSoup", "PostgreSQL", "Pandas", "Scraping"],
-            label: "Veri Analizi",
-            year: "2023",
-            images: [],
-            links: {
-                live: null,
-                github: "https://github.com/erdemgunal/esn-pulse"
-            }
-        },
-        {
-            title: "Hakkı Aranıyor",
-            description: "Tek bir yerde 'evet/hayır' formatında bulmacalar sunan, SEO ve performans odaklı bir web uygulaması.",
-            problem: "Kullanıcılar, çeşitli ‘durum bulmacalarını’ keşfetmek ve oynamak için tek bir merkezi platforma ihtiyaç duyuyordu. Mevcut siteler arama, filtreleme ve mobil performans konusunda yetersizdi.",
-            solution: "Next.js 15 ve React 19 ile mobil öncelikli, SEO uyumlu bir bulmaca platformu geliştirdim. Client-side filtreleme, URL senkronizasyonlu sayfalama ve localStorage ile son görüntülenen oyunları hatırlama gibi özellikler ekledim. shadcn/ui ile tutarlı bir tasarım sistemi oluşturdum.",
-            result: "Hafif, ölçeklenebilir ve hızlı bir uygulama ortaya çıktı. Kullanıcı deneyimini artıran arama ve filtreleme özellikleri ile keşif derinliği sağlandı. Bu proje, modern full-stack teknolojileriyle bir ürünü sıfırdan hayata geçirme becerimi gösteriyor.",
-            techStack: ["Next.js", "React", "Tailwind CSS", "shadcn/ui", "Framer Motion"],
-            label: "Web Geliştirme",
-            year: "2024",
-            images: [
-                "/images/hakki-araniyor/1.png",
-                "/images/hakki-araniyor/2.png"
-            ],
-            links: {
-                live: "https://hakki-araniyor.vercel.app/",
-                github: "https://github.com/erdemgunal/hakki-araniyor"
-            }
-        },
-        {
-            title: "Spotify Friend Activity Analyzer",
-            description: "Spotify arkadaşlarının dinleme aktivitelerini analiz eden ve görselleştiren bir veri analizi aracı.",
-            problem: "Spotify'ın standart arayüzü, arkadaşların dinleme alışkanlıklarını derinlemesine inceleme ve görselleştirme olanağı sunmuyordu, bu da sosyal etkileşimi sınırlıyordu.",
-            solution: "Python, Spotify Web API ve SQLite kullanarak arkadaşların dinleme verilerini toplayan ve analiz eden bir araç geliştirdim. Elde edilen verileri, Jinja2 ile oluşturulmuş bir web arayüzünde ısı haritaları ve kullanıcıya özel panolarla görselleştirdim.",
-            result: "Bu eğitim projesi, veri toplama, ETL süreçleri ve veri görselleştirme becerilerimi sergilemek için etkili bir vaka çalışması oldu. Proje, sadece bir uygulama geliştirmekten öte, sistem tasarımı ve mimari konularındaki yetkinliğimi gösterdi.",
-            techStack: ["Python", "SQLite", "Jinja2", "Spotify Web API", "Plotly", "Threading"],
-            label: "Veri Analizi",
-            year: "2022",
-            images: [
-                "/images/spotify-friend-activity-analyzer/1.png"
-            ],
-            links: {
-                live: null,
-                github: "https://github.com/erdemgunal/SpotifyFriendTracker"
-            }
         },
         {
             title: "Hakkı Info (Portfolyo)",
@@ -277,21 +227,6 @@ export const resumeData = {
                 live: "https://hakki.info",
                 github: "https://github.com/erdemgunal/hakki-info"
             }
-        },
-        {
-            title: "React Weather App",
-            description: "Gerçek zamanlı tahminler ve konum tabanlı güncellemeler sunan modern hava durumu uygulaması.",
-            problem: "Bir staj programı için, sezgisel bir arayüzle gerçek zamanlı hava durumu verilerini sunan modern bir uygulama geliştirme ihtiyacı vardı.",
-            solution: "React tabanlı bir uygulama geliştirdim ve veri kaynağı olarak OpenWeatherMap API'yi kullandım. Verileri etkili bir şekilde görselleştirmek için `react-chartjs-2` kütüphanesini entegre ettim.",
-            result: "Bu proje, React ve API entegrasyonu becerilerimi sergiledi. Modern bir arayüz ve kullanıcı dostu grafiklerle, hava durumu verilerine kolay erişim sağlayan bir uygulama ortaya çıktı.",
-            techStack: ["React", "Tailwind CSS", "OpenWeather API", "react-chartjs-2"],
-            label: "Frontend",
-            year: "2022",
-            images: [],
-            links: {
-                live: null,
-                github: "https://github.com/erdemgunal/reactstaj-weather-app"
-            }
-        },
+        }
     ]
 };
