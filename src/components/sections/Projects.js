@@ -14,10 +14,7 @@ import Link from "next/link"
 import { 
     ExternalLink
 } from "lucide-react"
-import { 
-    whileInViewAnimation, 
-    staggerContainer } 
-from '@/lib/animations';
+import { whileInViewAnimation } from '@/lib/animations';
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 

@@ -2,61 +2,67 @@
 
 @layer base {
   :root {
-    --background: #000000;
-    --foreground: #FFFFFF;
-    --secondary: #cccccc;
-    --accent: #E6E6E6;
-    --surface: #0a0a0a;
-    --border: #1a1a1a;
+    --background: #121212;
+    --foreground: #e0e0e0;
+    --secondary: #a0a0a0;
+    --accent: #bb86fc;
+    --surface: #1e1e1e;
+    --border: #333333;
     --radius: 0.625rem;
-    
+
     /* Shadcn compatibility */
     --card: var(--surface);
     --card-foreground: var(--foreground);
     --popover: var(--surface);
     --popover-foreground: var(--foreground);
-    --primary: var(--foreground);
-    --primary-foreground: var(--background);
+    --primary: var(--accent);
+    --primary-foreground: #ffffff;
     --secondary-foreground: var(--foreground);
     --muted: var(--surface);
-    --muted-foreground: var(--secondary);
+    --muted-foreground: #a0a0a0;
     --accent-foreground: var(--foreground);
     --destructive: #ef4444;
-    --input: var(--border);
+    --input: #272727;
     --ring: var(--accent);
   }
 
   .light {
-    --background: #FFFFFF;
-    --foreground: #000000;
-    --secondary: #333333;
-    --accent: #1A1A1A;
-    --surface: #FFFFFF;
-    --border: #E6E6E6;
-    
+    --background: #f0f2f5;
+    --foreground: #1e1e1e;
+    --secondary: #555555;
+    --accent: #6200ee;
+    --surface: #ffffff;
+    --border: #d1d1d1;
+
     /* Shadcn compatibility */
     --card: var(--surface);
     --card-foreground: var(--foreground);
     --popover: var(--surface);
     --popover-foreground: var(--foreground);
-    --primary: var(--foreground);
-    --primary-foreground: var(--background);
+    --primary: var(--accent);
+    --primary-foreground: #ffffff;
     --secondary-foreground: var(--foreground);
     --muted: var(--surface);
-    --muted-foreground: var(--secondary);
+    --muted-foreground: #555555;
     --accent-foreground: var(--foreground);
     --destructive: #dc2626;
-    --input: var(--border);
+    --input: #ebebeb;
     --ring: var(--accent);
   }
 
-  html, body {
+  html,
+  body {
     font-family: var(--font-body);
     background-color: var(--background);
     color: var(--foreground);
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: var(--font-heading);
     color: var(--foreground);
   }
@@ -69,7 +75,7 @@
   --color-accent: var(--accent);
   --color-surface: var(--surface);
   --color-border: var(--border);
-  
+
   /* Shadcn compatibility */
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);

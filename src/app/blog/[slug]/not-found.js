@@ -1,6 +1,6 @@
 import Link from 'next/link';
-import { ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { ArrowLeft } from 'lucide-react';
 
 export default function NotFound() {
   return (
@@ -10,19 +10,19 @@ export default function NotFound() {
           <h1 className="text-4xl font-bold text-foreground">404</h1>
           <div className="space-y-2">
             <h2 className="text-xl font-semibold text-muted-foreground">
-              Proje bulunamadı
+              Blog yazısı bulunamadı
             </h2>
             <p className="text-muted-foreground max-w-md mx-auto">
-              Aradığınız proje mevcut değil veya kaldırılmış olabilir.
+              Aradığınız blog yazısı mevcut değil veya taşınmış olabilir.
             </p>
           </div>
         </div>
         
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <Button variant="default" asChild>
-            <Link href="/#projects" className="gap-2">
+            <Link href="/blog" className="gap-2">
               <ArrowLeft className="w-4 h-4" />
-              Tüm projeleri görüntüle
+              Blog&apos;a dön
             </Link>
           </Button>
           <Button variant="outline" asChild>
@@ -35,8 +35,3 @@ export default function NotFound() {
     </div>
   );
 }
-
-export const metadata = {
-  title: 'Proje Bulunamadı | Hakkı Günal',
-  description: 'Aradığınız proje bulunamadı. Diğer projelerimi görmek için portfolyoma göz atın.',
-};

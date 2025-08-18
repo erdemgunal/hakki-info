@@ -12,8 +12,9 @@ export async function generateStaticParams() {
 
 // Generate metadata for each project page
 export async function generateMetadata({ params }) {
+  const { slug } = await params;
   const project = resumeData.projects.find(p => 
-    generateSlug(p.title) === params.slug
+    generateSlug(p.title) === slug
   );
   
   if (!project) {
@@ -56,9 +57,10 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export default function ProjectPage({ params }) {
+export default async function ProjectPage({ params }) {
+  const { slug } = await params;
   const project = resumeData.projects.find(p => 
-    generateSlug(p.title) === params.slug
+    generateSlug(p.title) === slug
   );
 
   if (!project) {

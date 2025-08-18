@@ -34,7 +34,8 @@ export const resumeData = {
             links: [
                 { href: "#hero", text: "Ana Sayfa" },
                 { href: "#about", text: "Hakkımda" },
-                { href: "#projects", text: "Projeler" }
+                { href: "#projects", text: "Projeler" },
+                { href: "/blog", text: "Blog" }
             ]
         },
         contact: {

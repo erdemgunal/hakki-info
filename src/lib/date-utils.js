@@ -27,4 +27,19 @@ export function formatDuration(start, end) {
     }
     
     return `${diffMonths} ay`;
+}
+
+export function formatDate(dateString) {
+    if (!dateString) return '';
+    
+    const date = new Date(dateString);
+    
+    // Check if date is valid
+    if (isNaN(date.getTime())) return '';
+    
+    return date.toLocaleDateString('tr-TR', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    });
 } 

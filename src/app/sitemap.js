@@ -1,5 +1,6 @@
 import { resumeData } from './data/resume-data';
 import { generateSlug } from '@/lib/slug-utils';
+import { getAllPosts } from '@/lib/blog';
 
 export default function sitemap() {
   // Generate individual project pages
@@ -14,12 +15,27 @@ export default function sitemap() {
     };
   });
 
+  // Generate blog pages
+  const blogPosts = getAllPosts();
+  const blogPages = blogPosts.map((post) => ({
+    url: `https://hakki.info/blog/${post.slug}`,
+    lastModified: new Date(post.date),
+    changeFrequency: 'weekly',
+    priority: 0.7,
+  }));
+
   return [
     {
       url: 'https://hakki.info',
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 1,
+    },
+    {
+      url: 'https://hakki.info/blog',
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.9,
     },
     {
       url: 'https://hakki.info#about',
@@ -41,5 +57,7 @@ export default function sitemap() {
     },
     // Add individual project pages
     ...projectPages,
+    // Add blog post pages
+    ...blogPages,
   ];
 }

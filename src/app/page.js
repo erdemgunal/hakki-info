@@ -4,7 +4,8 @@ import {
     Education,
     Languages,
     Skills,
-    Projects
+    Projects,
+    BlogPreview
 } from '@/components/sections';
 import {
     ActiveSectionIndicator,
@@ -26,6 +27,7 @@ export default function Home() {
                         <section id="languages"><Languages /></section>
                         <section id="skills"><Skills /></section>
                         <section id="projects"><Projects /></section>
+                        <section id="blog"><BlogPreview /></section>
                     </div>
                 </div>
             </div>
