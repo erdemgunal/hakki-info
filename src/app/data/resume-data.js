@@ -144,7 +144,7 @@ export const resumeData = {
             problem: "E-ticaret sitelerindeki sınırlı sayıdaki (hype) ürünlerin stok durumunu manuel takip etmek, büyük verim kaybına yol açıyordu. Stoklar haber verilmeden eklendiği için fırsatları kaçırmak işin doğasıydı.",
             solution: "Python ile 7/24 çalışan bir web scraping otomasyonu kurdum. Bu sistem, hype ürünlerini sürekli izleyerek stok durumundaki değişiklikleri SQLite veritabanına kaydetti ve anlık bildirimleri Discord webhook'ları aracılığıyla abonelere ulaştırdı.",
             result: "Bu otomasyon, bana ve reseller'lara anında bilgi akışı sağlayarak, stoklar eklendiği anda harekete geçme fırsatı sundu. Bu proje, bir fikri ticarileştirerek bir topluluk oluşturma ve aylık üyelik satışlarıyla somut bir gelir elde etme yeteneğimi gösterdi.",
-            techStack: ["Python", "React", "MongoDB", "WebSocket"],
+            techStack: ["Python", "SQLite", "Discord Webhook", "Web Scraping"],
             label: "Otomasyon",
             year: "2021-2023",
             images: [
