@@ -53,7 +53,7 @@ export default function Hero() {
                                 variant="outline"
                                 className="hover:bg-primary/10 transition-all duration-200"
                             >
-                                Resume
+                                Özgeçmiş
                                 <ExternalLink className="w-4 h-4 ml-2" />
                             </Button>
                         </motion.div>

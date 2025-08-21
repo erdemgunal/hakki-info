@@ -60,7 +60,12 @@ export default function Footer() {
                   <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
                 </svg>
                 <div>
-                  <span>{hero.contact?.email || hero.email}</span>
+                  <Link 
+                    href={`mailto:${hero.contact?.email || hero.email}`}
+                    className="hover:text-foreground transition-colors duration-200"
+                  >
+                    {hero.contact?.email || hero.email}
+                  </Link>
                 </div>
               </div>
               <div className="flex items-center space-x-2 text-secondary text-sm">
@@ -114,3 +119,5 @@ export default function Footer() {
     </footer>
   );
 };
+
+

@@ -6,17 +6,17 @@ import { Mail } from "lucide-react";
 
 export const resumeData = {
     hero: {
-        name: "<Hakkı />",
+        name: "<Hakki />",
         title: "Otomasyona Odaklı Full Stack Developer",
         email: "me@hakki.info",
         location: "İstanbul, Türkiye",
         profileImage: "https://avatars.githubusercontent.com/u/65365648?v=4",
         summary: "Full-stack developer olarak, analitik düşünme yeteneğimle karmaşık süreçleri otomatize ederek, ölçeklenebilir ve kullanıcı dostu yazılım çözümleri geliştiriyorum.",
         contact: {
-            phone: "905551234567",
+            phone: "905320664332",
             social: [
                 { name: "Email", url: "mailto:me@hakki.info", icon: Mail },
-                { name: "WhatsApp", url: "https://wa.me/905551234567", icon: WhatsAppIcon },
+                { name: "WhatsApp", url: "https://wa.me/905320664332", icon: WhatsAppIcon },
                 { name: "GitHub", url: "https://github.com/erdemgunal", icon: GitHubIcon },
                 { name: "LinkedIn", url: "https://linkedin.com/in/erdemgunal", icon: LinkedInIcon },
                 { name: "Twitter", url: "https://x.com/erdemgunal", icon: TwitterIcon }
