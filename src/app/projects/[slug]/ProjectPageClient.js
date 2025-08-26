@@ -66,7 +66,7 @@ export default function ProjectPageClient({ project }) {
                 <Link href={project.links.live} target="_blank" rel="noopener noreferrer">
                   <Button className="gap-2">
                     <ExternalLink className="w-4 h-4" />
-                    Canlı Demo
+                    Canlı
                   </Button>
                 </Link>
               )}
