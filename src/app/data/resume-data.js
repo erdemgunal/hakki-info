@@ -188,7 +188,7 @@ export const resumeData = {
                 "/images/marungpt/2.png"
             ],
             links: {
-                live: "https://marungpt.vercel.app",
+                live: "https://marungpt.com",
                 github: "https://github.com/erdemgunal/marungpt"
             }
         },
