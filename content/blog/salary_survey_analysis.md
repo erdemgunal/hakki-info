@@ -51,13 +51,13 @@ Proje; veri temizleme, özellik standardizasyonu, istatistiksel hipotez testleri
 
 ### Görsellerden Birkaç Örnek
 
-![Korelasyon heatmap](images/blog/salary_survey_analysis/heatmap_correlation.png)
+![Korelasyon heatmap](/images/blog/salary_survey_analysis/heatmap_correlation.png)
 
-![Seviye boxplot](images/blog/salary_survey_analysis//boxplot_seniority.png)
+![Seviye boxplot](/images/blog/salary_survey_analysis//boxplot_seniority.png)
 
-![Deneyim-maaş saçılımı](images/blog/salary_survey_analysis//scatter_experience_salary.png)
+![Deneyim-maaş saçılımı](/images/blog/salary_survey_analysis//scatter_experience_salary.png)
 
-![Calışma Şekli x Şirket Lokasyonu](images/blog/salary_survey_analysis//heatmap_worktype_location_salary.png)
+![Calışma Şekli x Şirket Lokasyonu](/images/blog/salary_survey_analysis//heatmap_worktype_location_salary.png)
 
 Not: Bu heatmap, çalışma şekli ve şirket lokasyonu kombinasyonlarında Ortalama Maaş dağılımını gösterir; Office kombinasyonlarının Remote ve Hybrid’e göre belirgin şekilde daha düşük seyrettiği görülür.
 
