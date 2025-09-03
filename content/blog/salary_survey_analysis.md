@@ -51,19 +51,24 @@ Proje; veri temizleme, özellik standardizasyonu, istatistiksel hipotez testleri
 
 ### Görsellerden Birkaç Örnek
 
-![Korelasyon heatmap](/images/blog/salary_survey_analysis/heatmap_correlation.png)
+![Korelasyon heatmap](images/blog/salary_survey_analysis/heatmap_correlation.png)
 
-![Seviye boxplot](/images/blog/salary_survey_analysis/boxplot_seniority.png)
+![Seviye boxplot](images/blog/salary_survey_analysis//boxplot_seniority.png)
 
-![Deneyim-maaş saçılımı](/images/blog/salary_survey_analysis/scatter_experience_salary.png)
+![Deneyim-maaş saçılımı](images/blog/salary_survey_analysis//scatter_experience_salary.png)
 
-![Calışma Şekli x Şirket Lokasyonu](figures/heatmap_worktype_location_salary.png)
+![Calışma Şekli x Şirket Lokasyonu](images/blog/salary_survey_analysis//heatmap_worktype_location_salary.png)
 
 Not: Bu heatmap, çalışma şekli ve şirket lokasyonu kombinasyonlarında Ortalama Maaş dağılımını gösterir; Office kombinasyonlarının Remote ve Hybrid’e göre belirgin şekilde daha düşük seyrettiği görülür.
 
 ### Etkileşimli Bileşenler
 
 - Box plots (lokasyon/seviye/çalışma biçimi) ve kariyer akışı (Sankey) gibi etkileşimli örnekler üretildi. Blog içinde temsilî görselleri paylaşıyorum; etkileşimli sürümler sitede gömülü olarak sunulabilir.
+
+### Bağlantılar
+
+- GitHub repo: [salary_analysis_project](http://github.com/erdemgunal/salary_analysis_project)
+- Canlı interaktif dashboard: [maas-anketi.streamlit.app](http://maas-anketi.streamlit.app/)
 
 ### Kullandığım Araçlar
 
@@ -299,7 +304,3 @@ Bu yaklaşım hem okunabilirliği korur hem de kod tarafında güvenli ve tutarl
 ### İletişim
 
 Bu yazı tek sayfalık bir brifing olarak hazırlandı; daha fazla detay görmek isteyenler GitHub reposuna göz atabilir. Sorular/öneriler için bana ulaşabilirsiniz.
-
-— Hakkı Günal
-
-
