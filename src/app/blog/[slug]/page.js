@@ -3,6 +3,7 @@ import { formatDate } from '@/lib/date-utils';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { Clock, Tag, ArrowLeft, ArrowRight, Calendar } from 'lucide-react';
+import ReadingProgress from '@/components/ReadingProgress';
 
 // Generate static params for all blog posts
 export async function generateStaticParams() {
@@ -135,6 +136,7 @@ export default async function BlogPostPage({ params }) {
       />
       
       <main className="min-h-screen bg-background">
+        <ReadingProgress targetId="article-content" />
         <div className="mx-auto max-w-4xl px-4 sm:px-8 lg:px-16 py-8">
           {/* Back navigation */}
           <div className="mb-8">
@@ -222,6 +224,7 @@ export default async function BlogPostPage({ params }) {
                   [&>td]:p-3 [&>td]:text-muted-foreground [&>td]:border-b [&>td]:border-border/50
                   [&>img]:rounded-lg [&>img]:my-6 [&>img]:shadow-md
                 "
+                id="article-content"
                 dangerouslySetInnerHTML={{ __html: post.content }}
               />
             </div>
