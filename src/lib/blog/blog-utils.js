@@ -40,7 +40,7 @@ export async function getPostBySlug(slug) {
     return {
       slug,
       content: htmlContent,
-      readingTime: readingStats.text,
+      readingTime: `${Math.ceil(readingStats.minutes)} dk`,
       ...data,
       // Ensure date is serializable
       date: data.date ? new Date(data.date).toISOString() : new Date().toISOString(),
@@ -70,7 +70,7 @@ export function getAllPosts() {
 
         return {
           slug,
-          readingTime: readingStats.text,
+          readingTime: `${Math.ceil(readingStats.minutes)} dk`,
           ...data,
           // Ensure date is serializable
           date: data.date ? new Date(data.date).toISOString() : new Date().toISOString(),
