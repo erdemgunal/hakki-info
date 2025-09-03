@@ -3,6 +3,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/lib/ThemeProvider";
 import Script from "next/script";
 import { consoleArtScript } from "@/lib/console-art";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 
 const headingFont = Crimson_Text({
     variable: "--font-heading",
@@ -100,6 +101,7 @@ export default async function RootLayout({ children }) {
             suppressHydrationWarning
         >
             <head>
+                <GoogleAnalytics />
                 <Script
                     id="microsoft-clarity"
                     strategy="afterInteractive"
