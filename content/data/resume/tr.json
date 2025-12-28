@@ -64,17 +64,22 @@
         }
     },
     "about": {
+        "title": "Hakkımda",
         "description": "Yazılım dünyasına olan tutkum, full-stack developer olmaya olan yolculuğumun başlangıcı oldu. Son 5 yıldır Python ile, son 2 yıldır JavaScript ve son 1 yıldır da React ile projeler geliştiriyorum. Fizik eğitimimden gelen analitik düşünme yeteneğim, her soruna mantıksal bir yaklaşımla bakmamı sağlarken, vakit nakittir felsefemle manuel süreçleri otomatize etmeye odaklanıyorum. Bu sayede, yalnızca kod yazmakla kalmayıp, kullanıcı ve iş odaklı çözümler üretiyorum. Güçlü ekip çalışması, liderlik içgüdüsü ve sürekli öğrenme becerisiyle her projede değer yaratmayı hedefliyorum."
     },
-    "education": [
+    "education": {
+        "title": "Eğitim",
+        "items": [
         {
             "degree": "Fizik",
             "school": "Marmara Üniversitesi",
             "start": "2024",
             "end": "Devam Ediyor"
         }
-    ],
-    "languages": [
+    ]},
+    "languages": { 
+        "title": "Dil Becerileri",
+        "items": [
         {
             "name": "Türkçe",
             "level": "Ana Dil"
@@ -83,8 +88,9 @@
             "name": "İngilizce",
             "level": "B2-C1"
         }
-    ],
+    ]},
     "skills": {
+        "title": "Dil Becerileri",
         "technical": [
             {
                 "name": "Frontend",
@@ -197,7 +203,11 @@
             }
         ]
     },
-    "projects": [
+    "projects": {
+        "title": "Projeler",
+        "viewMoreButtonText": "Daha Fazla Proje Görüntüle",
+        "viewProjectText": "Detayları görmek için tıklayın",
+        "items": [
         {
             "title": "Hakkınızla Uçun",
             "description": "Türkiye ve Avrupa arası kısa süreli gidiş-dönüş uçuşlarını otomatize eden bir uçuş arama platformu.",
@@ -344,5 +354,5 @@
                 "github": "https://github.com/erdemgunal/hakki-info"
             }
         }
-    ]
+    ]}
 }
