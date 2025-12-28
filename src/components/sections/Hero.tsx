@@ -1,18 +1,29 @@
 'use client';
 
 import Link from 'next/link';
-import { resumeData } from '@/app/data/resume-data';
 import GlobeIcon from "@/components/icon/GlobeIcon";
 import ExternalLinkIcon from "@/components/icon/ExternalLinkIcon";
 import ChevronDownIcon from "@/components/icon/ChevronDownIcon";
 import { Button } from '@/components/ui/button';
-import { SocialLinks } from '@/components/ui-widgets';
+import { SocialLinks, LanguageToggle } from '@/components/ui-widgets';
+import { transformSocialLinks } from '@/lib/icon-mapper';
+import type { ResumeData } from '@/lib/fetch-resume-data';
 
-export default function Hero() {
+interface HeroProps {
+    resumeData: ResumeData;
+}
+
+export default function Hero({ resumeData }: HeroProps) {
     const { hero } = resumeData;
+    const socialLinks = transformSocialLinks(hero.contact?.social || []);
 
     return (
         <section id="hero" className="relative min-h-[80vh] sm:min-h-[85vh] flex flex-col items-center justify-center text-center py-12 sm:py-16 md:py-20">
+            {/* Language Toggle - Top Right */}
+            <div className="absolute top-4 right-4 sm:top-6 sm:right-6 lg:right-8 z-10">
+                <LanguageToggle />
+            </div>
+            
             <div className="w-full max-w-3xl mx-auto flex flex-col items-center justify-center">
                 <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 sm:mb-8 text-foreground">
                     {hero.name}
@@ -43,7 +54,7 @@ export default function Hero() {
                 </div>
 
                 <div className="flex flex-wrap justify-center gap-5 mb-8">
-                    <SocialLinks socialLinks={hero.contact?.social || []} />
+                    <SocialLinks socialLinks={socialLinks} />
                 </div>
             </div>
             

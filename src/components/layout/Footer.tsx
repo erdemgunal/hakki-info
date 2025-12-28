@@ -3,15 +3,21 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useTheme } from 'next-themes';
-import { resumeData } from '@/app/data/resume-data';
-import Link from 'next/link';
-import { ThemeToggle } from '@/components/ui-widgets';
+import { Link as I18nLink, Link } from '@/i18n/routing';
+import { ThemeToggle, LanguageToggle } from '@/components/ui-widgets';
 import { renderSocialLinks } from '@/lib/social-links';
 import { getCurrentYear } from '@/lib/date-utils';
 import MessageBubbleIcon from '@/components/icon/MessageBubbleIcon';
+import { transformSocialLinks } from '@/lib/icon-mapper';
+import type { ResumeData } from '@/lib/fetch-resume-data';
 
-export default function Footer() {
+interface FooterProps {
+    resumeData: ResumeData;
+}
+
+export default function Footer({ resumeData }: FooterProps) {
     const { hero, footer } = resumeData;
+    const socialLinks = transformSocialLinks(hero.contact?.social || []);
     const currentYear = getCurrentYear();
     const { resolvedTheme } = useTheme();
     const [mounted, setMounted] = useState(false);
@@ -103,8 +109,16 @@ export default function Footer() {
 
                         {/* Social Links */}
                         <div className="flex space-x-3 pt-2">
-                            {renderSocialLinks(hero.contact?.social || [], "w-8 h-8 bg-background border border-border rounded-lg flex items-center justify-center text-secondary hover:text-foreground hover:border-foreground/30", "w-4 h-4")}
+                            {renderSocialLinks(socialLinks, "w-8 h-8 bg-background border border-border rounded-lg flex items-center justify-center text-secondary hover:text-foreground hover:border-foreground/30", "w-4 h-4")}
                         </div>
+                    </div>
+                </div>
+
+                {/* Language Toggle - Above Bottom Bar */}
+                <div className="mt-6 flex justify-end">
+                    <div className="flex items-center space-x-3 scale-125 md:scale-100 relative z-30">
+                        <LanguageToggle />
+                        <ThemeToggle />
                     </div>
                 </div>
 
@@ -114,24 +128,19 @@ export default function Footer() {
                         <div className="text-secondary text-sm">
                             © {currentYear}, All rights reserved
                         </div>
-                        <div className="flex items-center space-x-6">
-                            <div className="flex items-center space-x-4 text-secondary text-sm">
-                                <Link href="/terms" className="hover:text-foreground">
-                                    Terms
-                                </Link>
-                                <Link href="/privacy" className="hover:text-foreground">
-                                    Privacy
-                                </Link>
-                            </div>
-                            <div className="flex items-center space-x-2 scale-125 md:scale-100">
-                                <ThemeToggle />
-                            </div>
+                        <div className="flex items-center space-x-4 text-secondary text-sm">
+                            <I18nLink href="/terms" className="hover:text-foreground">
+                                Terms
+                            </I18nLink>
+                            <I18nLink href="/privacy" className="hover:text-foreground">
+                                Privacy
+                            </I18nLink>
                         </div>
                     </div>
                 </div>
 
                 {/* Footer Image */}
-                <div className="mt-8 sm:mt-12 md:mt-16 w-full flex justify-center">
+                <div className="mt-8 sm:mt-12 md:mt-16 w-full flex justify-center relative z-0">
                     <Image
                         src={getFooterImage()}
                         alt="Footer Neon Sign"

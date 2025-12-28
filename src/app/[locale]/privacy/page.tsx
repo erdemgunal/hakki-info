@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
+import { Link as I18nLink } from '@/i18n/routing';
 
 export default function PrivacyPage() {
   const privacySections = [
@@ -143,9 +144,9 @@ export default function PrivacyPage() {
           {/* Back to Home */}
           <div className="text-center pt-8">
             <Button variant="primary" asChild>
-              <Link href="/">
+              <I18nLink href="/">
                 Ana Sayfaya Dön
-              </Link>
+              </I18nLink>
             </Button>
           </div>
         </div>
@@ -153,3 +154,4 @@ export default function PrivacyPage() {
     </div>
   )
 }
+

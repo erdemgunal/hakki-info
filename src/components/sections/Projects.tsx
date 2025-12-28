@@ -1,7 +1,5 @@
 'use client';
 
-import { resumeData } from "@/app/data/resume-data"
-
 import { Button } from "@/components/ui/button"
 import {
     renderTechStackBadges,
@@ -10,14 +8,19 @@ import {
     from "@/lib/badge-utils"
 import { generateSlug } from '@/lib/slug-utils';
 import Image from "next/image"
-import Link from "next/link"
+import { Link } from '@/i18n/routing'
 import ExternalLinkIcon from "@/components/icon/ExternalLinkIcon"
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 import Section from './Section';
+import type { ResumeData } from '@/lib/fetch-resume-data';
 
-export default function Projects() {
-    const { projects } = resumeData
+interface ProjectsProps {
+    resumeData: ResumeData;
+}
+
+export default function Projects({ resumeData }: ProjectsProps) {
+    const { projects, hero } = resumeData
     const { resolvedTheme } = useTheme();
     const [mounted, setMounted] = useState(false);
 
@@ -39,7 +42,7 @@ export default function Projects() {
     return (
         <Section id="projects">
             <div className="text-left mb-6 sm:mb-8 md:mb-12">
-                <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-3 sm:mb-4">Projeler</h2>
+                <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-3 sm:mb-4">{projects.title}</h2>
             </div>
             <div className="grid gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {projects.map((project, index) => {
@@ -91,7 +94,7 @@ export default function Projects() {
                                         </div>
 
                                         <div className="text-sm text-accent font-medium text-center mt-auto pt-4 border-t border-border/50 group-hover:text-foreground transition-colors duration-200">
-                                            Detayları görmek için tıklayın
+                                            {projects.viewMoreButtonText}
                                         </div>
                                     </div>
                                 </div>
@@ -105,12 +108,12 @@ export default function Projects() {
             <div className="text-center mt-8 sm:mt-12">
                 <Button variant="outline" size="lg" asChild>
                     <Link
-                        href={resumeData.hero.contact.social.find(social => social.name === "GitHub")?.url || "#"}
+                        href={hero.contact.social.find(social => social.name === "GitHub")?.url || "#"}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-center gap-2 mx-auto text-accent"
                     >
-                        Daha Fazla Proje Görüntüle
+                        {projects.viewMoreButtonText}
                         <ExternalLinkIcon className="w-4 h-4" />
                     </Link>
                 </Button>

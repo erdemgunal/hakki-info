@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
+import { Link as I18nLink } from '@/i18n/routing';
 
 export default function TermsPage() {
   const termsSections = [
@@ -62,9 +63,9 @@ export default function TermsPage() {
                 <div className="text-secondary leading-relaxed">
                   {section.content}
                   {section.hasLink && (
-                    <a href={section.linkHref} className="text-primary hover:underline">
+                    <I18nLink href={section.linkHref} className="text-primary hover:underline">
                       {section.linkText}
-                    </a>
+                    </I18nLink>
                   )}
                   {section.hasLink && " sayfamızı inceleyebilirsiniz."}
                 </div>
@@ -75,9 +76,9 @@ export default function TermsPage() {
           {/* Back to Home */}
           <div className="text-center pt-8">
             <Button variant="primary" asChild>
-              <Link href="/">
+              <I18nLink href="/">
                 Ana Sayfaya Dön
-              </Link>
+              </I18nLink>
             </Button>
           </div>
         </div>
@@ -85,3 +86,4 @@ export default function TermsPage() {
     </div>
   )
 }
+

@@ -1,17 +1,21 @@
 'use client';
 
-import { resumeData } from '@/app/data/resume-data';
 import { renderBadges } from '@/lib/badge-utils';
 import Section from './Section';
+import type { ResumeData } from '@/lib/fetch-resume-data';
 
-export default function Skills() {
+interface SkillsProps {
+    resumeData: ResumeData;
+}
+
+export default function Skills({ resumeData }: SkillsProps) {
     const { skills } = resumeData;
     const { technical, soft } = skills;
 
     return (
         <Section id="skills">
             <div className="text-left mb-6 sm:mb-8 md:mb-12">
-                <h2 className="text-3xl sm:text-4xl font-bold mb-3 sm:mb-4">Teknik Beceriler</h2>
+                <h2 className="text-3xl sm:text-4xl font-bold mb-3 sm:mb-4">{skills.title}</h2>
             </div>
 
             <div className="space-y-6 sm:space-y-8">

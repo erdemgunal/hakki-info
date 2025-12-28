@@ -1,16 +1,20 @@
 'use client';
 
-import { resumeData } from '@/app/data/resume-data';
 import GraduationCapIcon from '@/components/icon/GraduationCapIcon';
 import Section from './Section';
+import type { ResumeData } from '@/lib/fetch-resume-data';
 
-export default function Education() {
+interface EducationProps {
+    resumeData: ResumeData;
+}
+
+export default function Education({ resumeData }: EducationProps) {
     const { education } = resumeData;
 
     return (
         <Section id="education">
             <div className="text-left mb-6 sm:mb-8 md:mb-12">
-                <h2 className="text-3xl sm:text-4xl font-bold mb-3 sm:mb-4">Eğitim</h2>
+                <h2 className="text-3xl sm:text-4xl font-bold mb-3 sm:mb-4">{education.title}</h2>
             </div>
 
             <div className="space-y-4 sm:space-y-6">
