@@ -61,6 +61,10 @@
         font-family: var(--font-heading);
         color: var(--foreground);
     }
+
+    .font-mono {
+        font-family: var(--font-mono), ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+    }
 }
 
 @theme {

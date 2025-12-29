@@ -1,7 +1,7 @@
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
-import { Crimson_Text, Oxygen } from "next/font/google";
+import { Crimson_Text, Oxygen, JetBrains_Mono } from "next/font/google";
 import "../globals.css";
 import { ThemeProvider } from "@/lib/ThemeProvider";
 import Script from "next/script";
@@ -21,6 +21,12 @@ const bodyFont = Oxygen({
     variable: "--font-body",
     subsets: ["latin"],
     weight: ["400", "700"],
+});
+
+const monoFont = JetBrains_Mono({
+    variable: "--font-mono",
+    subsets: ["latin"],
+    weight: ["400", "500", "600", "700"],
 });
 
 export function generateStaticParams() {
@@ -68,7 +74,7 @@ export default async function LocaleLayout({
                     }}
                 />
             </head>
-            <body className={`${headingFont.variable} ${bodyFont.variable} antialiased`}>
+            <body className={`${headingFont.variable} ${bodyFont.variable} ${monoFont.variable} antialiased`}>
                 <ThemeProvider>
                     <NextIntlClientProvider messages={messages}>
                         <ResumeDataProvider resumeData={resumeData}>

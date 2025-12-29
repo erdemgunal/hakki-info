@@ -63,7 +63,7 @@ export default function LanguageToggle() {
                         onClick={() => setIsOpen(false)}
                     />
 
-                    <div className="absolute right-0 mt-2 w-48 bg-surface border border-border rounded-lg shadow-lg z-20 overflow-hidden">
+                    <div className="absolute bottom-full right-0 mb-2 w-48 bg-surface border border-border rounded-lg shadow-xl z-20 overflow-hidden backdrop-blur-sm">
                         {languages.map((language) => {
                             const isActive = language.code === locale;
                             return (
@@ -75,11 +75,11 @@ export default function LanguageToggle() {
                                             : 'text-secondary hover:bg-background hover:text-foreground'
                                         }`}
                                 >
-                                    <span className="text-xs font-mono text-secondary">{language.code.toUpperCase()}</span>
+                                    <span className="text-xs font-mono text-secondary w-8">{language.code.toUpperCase()}</span>
                                     <span className="flex-1 text-sm">{language.name}</span>
                                     {isActive && (
                                         <svg
-                                            className="w-4 h-4 text-primary"
+                                            className="w-4 h-4 text-primary flex-shrink-0"
                                             fill="currentColor"
                                             viewBox="0 0 20 20"
                                         >

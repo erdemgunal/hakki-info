@@ -45,7 +45,7 @@ export default function Footer() {
     };
 
     return (
-        <footer className="bg-surface mt-6 sm:mt-8 md:mt-12 lg:mt-16 relative overflow-hidden w-full">
+        <footer className="bg-surface mt-6 sm:mt-8 md:mt-12 lg:mt-16 relative overflow-hidden w-full font-mono">
             <div className="w-full py-6 sm:py-8 md:py-10 lg:py-12 relative z-10">
                 {/* Text Sections - Top */}
                 <div className="max-w-5xl mx-auto px-4 sm:px-6 md:px-8 lg:px-16">
@@ -125,8 +125,8 @@ export default function Footer() {
 
                 {/* Social Media + Theme/Language Toggles - Below Image */}
                 <div className="mt-6 sm:mt-8 w-full flex flex-col md:flex-row items-center md:items-center md:justify-between gap-3 sm:gap-4 px-4 sm:px-6 md:px-8 lg:px-16">
-                    <div className="flex flex-wrap justify-center md:justify-start gap-2 sm:gap-3 w-full md:w-auto">
-                        {renderSocialLinks(socialLinks, "w-7 h-7 sm:w-8 sm:h-8 bg-background border border-border rounded-lg flex items-center justify-center text-secondary hover:text-foreground hover:border-foreground/30 transition-all duration-200", "w-3.5 h-3.5 sm:w-4 sm:h-4")}
+                    <div className="flex flex-wrap justify-between md:justify-start gap-2 sm:gap-3 w-full md:w-auto">
+                        {renderSocialLinks(socialLinks, "w-9 h-9 sm:w-10 sm:h-10 bg-background border border-border rounded-lg flex items-center justify-center text-secondary hover:text-foreground hover:border-foreground/30 transition-all duration-200", "w-4.5 h-4.5 sm:w-5 sm:h-5")}
                     </div>
                     <div className="flex items-center gap-2 bg-background/80 backdrop-blur-sm border border-border rounded-lg px-2 py-1.5 sm:py-2 relative z-30">
                         <LanguageToggle />
@@ -137,17 +137,18 @@ export default function Footer() {
 
                 {/* Copyright and Terms - Bottom */}
                 <div className="mt-6 sm:mt-8 pt-4 border-t border-border/50 w-full px-4 sm:px-6 md:px-8 lg:px-16">
-                    <div className="flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-4 sm:space-y-0 w-full">
-                        <div className="text-secondary text-xs sm:text-sm text-center sm:text-left">
-                            © {currentYear}, All rights reserved
-                        </div>
-                        <div className="flex items-center gap-3 sm:gap-4 text-secondary text-xs sm:text-sm">
-                            <I18nLink href="/terms" className="hover:text-foreground transition-colors duration-200">
-                                Terms
-                            </I18nLink>
-                            <I18nLink href="/privacy" className="hover:text-foreground transition-colors duration-200">
-                                Privacy
-                            </I18nLink>
+                    <div className="flex flex-col sm:flex-row items-center sm:items-start gap-2 sm:gap-4 w-full">
+                        <div className="text-secondary text-xs sm:text-sm text-center sm:text-left flex items-center gap-3 sm:gap-4 flex-wrap justify-center sm:justify-start">
+                            <span>© {currentYear}, All rights reserved</span>
+                            <span className="hidden sm:inline text-border">•</span>
+                            <div className="flex items-center gap-3 sm:gap-4">
+                                <I18nLink href="/terms" className="hover:text-foreground transition-colors duration-200">
+                                    Terms
+                                </I18nLink>
+                                <I18nLink href="/privacy" className="hover:text-foreground transition-colors duration-200">
+                                    Privacy
+                                </I18nLink>
+                            </div>
                         </div>
                     </div>
                 </div>
