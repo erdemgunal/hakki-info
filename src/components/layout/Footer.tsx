@@ -9,13 +9,10 @@ import { renderSocialLinks } from '@/lib/social-links';
 import { getCurrentYear } from '@/lib/date-utils';
 import MessageBubbleIcon from '@/components/icon/MessageBubbleIcon';
 import { transformSocialLinks } from '@/lib/icon-mapper';
-import type { ResumeData } from '@/lib/fetch-resume-data';
+import { useResumeData } from '@/contexts/ResumeDataContext';
 
-interface FooterProps {
-    resumeData: ResumeData;
-}
-
-export default function Footer({ resumeData }: FooterProps) {
+export default function Footer() {
+    const resumeData = useResumeData();
     const { hero, footer } = resumeData;
     const socialLinks = transformSocialLinks(hero.contact?.social || []);
     const currentYear = getCurrentYear();
@@ -29,12 +26,12 @@ export default function Footer({ resumeData }: FooterProps) {
 
     const getFooterImage = () => {
         if (!mounted) {
-            return "/images/footer/dark_mode_footer.png";
+            return "/images/footer/dark_mode_footer.jpg";
         }
         if (resolvedTheme === 'light') {
-            return "/images/footer/light_mode_footer.png";
+            return "/images/footer/light_mode_footer.jpg";
         }
-        return "/images/footer/dark_mode_footer.png";
+        return "/images/footer/dark_mode_footer.jpg";
     };
 
     const getGlowShadow = () => {
@@ -48,47 +45,51 @@ export default function Footer({ resumeData }: FooterProps) {
     };
 
     return (
-        <footer className="bg-surface mt-8 sm:mt-12 md:mt-16 relative overflow-hidden">
-            <div className="max-w-5xl mx-auto px-4 sm:px-6 md:px-8 lg:px-16 py-8 sm:py-10 md:py-12 relative z-10">
-                <div className="grid md:grid-cols-3 gap-6 sm:gap-8">
+        <footer className="bg-surface mt-6 sm:mt-8 md:mt-12 lg:mt-16 relative overflow-hidden w-full">
+            <div className="w-full py-6 sm:py-8 md:py-10 lg:py-12 relative z-10">
+                {/* Text Sections - Top */}
+                <div className="max-w-5xl mx-auto px-4 sm:px-6 md:px-8 lg:px-16">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-6 md:gap-8">
                     {/* Brand Section */}
-                    <div className="space-y-4">
-                        <div className="flex items-center space-x-2">
-                            <div>
-                                <span className="text-xl font-bold text-foreground">{footer.brand.name}</span>
-                            </div>
+                    <div className="space-y-3 sm:space-y-4">
+                        <div className="flex items-center">
+                            <span className="text-lg sm:text-xl font-bold text-foreground">{footer.brand.name}</span>
                         </div>
-                        <p className="text-secondary text-sm leading-relaxed">
+                        <p className="text-secondary text-xs sm:text-sm leading-relaxed">
                             {footer.brand.description}
                         </p>
                     </div>
 
-                    {/* Quick Links */}
-                    <div className="space-y-4">
-                        <div className='flex items-center space-x-2'>
-                            <span className="text-xl font-bold text-foreground">{footer.quickLinks.title}</span>
+                    {/* Quick Links Section */}
+                    <div className="space-y-3 sm:space-y-4">
+                        <div className='flex items-center'>
+                            <span className="text-lg sm:text-xl font-bold text-foreground">{footer.quickLinks.title}</span>
                         </div>
-                        <div className="space-y-2">
+                        <div className="space-y-1.5 sm:space-y-2">
                             {footer.quickLinks.links.map((link, index) => (
-                                <Link key={index} href={link.href} className="block text-secondary hover:text-foreground text-sm">
+                                <Link 
+                                    key={index} 
+                                    href={link.href} 
+                                    className="block text-secondary hover:text-foreground text-xs sm:text-sm transition-colors duration-200"
+                                >
                                     {link.text}
                                 </Link>
                             ))}
                         </div>
                     </div>
 
-                    {/* Contact & Social */}
-                    <div className="space-y-4">
-                        <div className='flex items-center space-x-2'>
-                            <span className="text-xl font-bold text-foreground">{footer.contact.title}</span>
+                    {/* Contact Section */}
+                    <div className="space-y-3 sm:space-y-4 sm:col-span-2 lg:col-span-1">
+                        <div className='flex items-center'>
+                            <span className="text-lg sm:text-xl font-bold text-foreground">{footer.contact.title}</span>
                         </div>
-                        <div className="space-y-2">
-                            <div className="flex items-center space-x-2 text-secondary text-sm">
-                                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                        <div className="space-y-1.5 sm:space-y-2">
+                            <div className="flex items-start sm:items-center space-x-2 text-secondary text-xs sm:text-sm">
+                                <svg className="w-4 h-4 shrink-0 mt-0.5 sm:mt-0" fill="currentColor" viewBox="0 0 20 20">
                                     <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
                                     <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
                                 </svg>
-                                <div>
+                                <div className="wrap-break-word">
                                     <Link
                                         href={`mailto:${hero.email}`}
                                         className="hover:text-foreground transition-colors duration-200"
@@ -97,70 +98,70 @@ export default function Footer({ resumeData }: FooterProps) {
                                     </Link>
                                 </div>
                             </div>
-                            <div className="flex items-center space-x-2 text-secondary text-sm">
-                                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <div className="flex items-start sm:items-center space-x-2 text-secondary text-xs sm:text-sm">
+                                <svg className="w-4 h-4 shrink-0 mt-0.5 sm:mt-0" fill="currentColor" viewBox="0 0 20 20">
                                     <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
                                 </svg>
-                                <div>
+                                <div className="wrap-break-word">
                                     <span>{hero.location}</span>
                                 </div>
                             </div>
                         </div>
-
-                        {/* Social Links */}
-                        <div className="flex space-x-3 pt-2">
-                            {renderSocialLinks(socialLinks, "w-8 h-8 bg-background border border-border rounded-lg flex items-center justify-center text-secondary hover:text-foreground hover:border-foreground/30", "w-4 h-4")}
-                        </div>
                     </div>
                 </div>
-
-                {/* Language Toggle - Above Bottom Bar */}
-                <div className="mt-6 flex justify-end">
-                    <div className="flex items-center space-x-3 scale-125 md:scale-100 relative z-30">
-                        <LanguageToggle />
-                        <ThemeToggle />
-                    </div>
                 </div>
 
-                {/* Bottom Bar */}
-                <div className="mt-2 pt-4">
-                    <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-                        <div className="text-secondary text-sm">
-                            © {currentYear}, All rights reserved
-                        </div>
-                        <div className="flex items-center space-x-4 text-secondary text-sm">
-                            <I18nLink href="/terms" className="hover:text-foreground">
-                                Terms
-                            </I18nLink>
-                            <I18nLink href="/privacy" className="hover:text-foreground">
-                                Privacy
-                            </I18nLink>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Footer Image */}
-                <div className="mt-8 sm:mt-12 md:mt-16 w-full flex justify-center relative z-0">
+                {/* Footer Image - Middle */}
+                <div className="mt-6 sm:mt-8 md:mt-10 lg:mt-12 xl:mt-16 w-full flex justify-center relative z-0">
                     <Image
                         src={getFooterImage()}
                         alt="Footer Neon Sign"
                         width={1200}
                         height={200}
-                        className="w-full max-w-4xl h-auto object-contain mix-blend-screen opacity-90"
+                        className="w-full max-w-full sm:max-w-2xl md:max-w-3xl lg:max-w-4xl h-auto object-contain mix-blend-screen opacity-90"
                         priority={false}
                     />
                 </div>
+
+                {/* Social Media + Theme/Language Toggles - Below Image */}
+                <div className="mt-6 sm:mt-8 w-full flex flex-col md:flex-row items-center md:items-center md:justify-between gap-3 sm:gap-4 px-4 sm:px-6 md:px-8 lg:px-16">
+                    <div className="flex flex-wrap justify-center md:justify-start gap-2 sm:gap-3 w-full md:w-auto">
+                        {renderSocialLinks(socialLinks, "w-7 h-7 sm:w-8 sm:h-8 bg-background border border-border rounded-lg flex items-center justify-center text-secondary hover:text-foreground hover:border-foreground/30 transition-all duration-200", "w-3.5 h-3.5 sm:w-4 sm:h-4")}
+                    </div>
+                    <div className="flex items-center gap-2 bg-background/80 backdrop-blur-sm border border-border rounded-lg px-2 py-1.5 sm:py-2 relative z-30">
+                        <LanguageToggle />
+                        <div className="h-5 sm:h-6 w-px bg-border" />
+                        <ThemeToggle />
+                    </div>
+                </div>
+
+                {/* Copyright and Terms - Bottom */}
+                <div className="mt-6 sm:mt-8 pt-4 border-t border-border/50 w-full px-4 sm:px-6 md:px-8 lg:px-16">
+                    <div className="flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-4 sm:space-y-0 w-full">
+                        <div className="text-secondary text-xs sm:text-sm text-center sm:text-left">
+                            © {currentYear}, All rights reserved
+                        </div>
+                        <div className="flex items-center gap-3 sm:gap-4 text-secondary text-xs sm:text-sm">
+                            <I18nLink href="/terms" className="hover:text-foreground transition-colors duration-200">
+                                Terms
+                            </I18nLink>
+                            <I18nLink href="/privacy" className="hover:text-foreground transition-colors duration-200">
+                                Privacy
+                            </I18nLink>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            {/* Message Bubble Icon - Bottom Right Corner */}
-            <div className="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 lg:right-8 z-20">
-                <div 
-                    className="w-14 h-14 rounded-full bg-primary flex items-center justify-center text-primary-foreground transition-all duration-300 hover:scale-110 cursor-pointer"
+            {/* Floating Message Button */}
+            <div className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 md:bottom-6 md:right-6 lg:right-8 z-20">
+                <div
+                    className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-primary flex items-center justify-center text-primary-foreground transition-all duration-300 hover:scale-110 active:scale-95 cursor-pointer"
                     style={{
                         boxShadow: getGlowShadow()
                     }}
                 >
-                    <MessageBubbleIcon className="w-6 h-6" />
+                    <MessageBubbleIcon className="w-5 h-5 sm:w-6 sm:h-6" />
                 </div>
             </div>
         </footer>

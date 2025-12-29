@@ -11,8 +11,8 @@ interface SectionProps {
 
 export default function Section({ id, children, className = '', containerClassName = 'max-w-4xl mx-auto' }: SectionProps) {
     return (
-        <section 
-            id={id} 
+        <section
+            id={id}
             className={`py-8 sm:py-12 md:py-16 lg:py-20 scroll-mt-20 ${className}`}
         >
             <div className={containerClassName}>
@@ -21,4 +21,3 @@ export default function Section({ id, children, className = '', containerClassNa
         </section>
     );
 }
-

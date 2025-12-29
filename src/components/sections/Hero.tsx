@@ -5,60 +5,52 @@ import GlobeIcon from "@/components/icon/GlobeIcon";
 import ExternalLinkIcon from "@/components/icon/ExternalLinkIcon";
 import ChevronDownIcon from "@/components/icon/ChevronDownIcon";
 import { Button } from '@/components/ui/button';
-import { SocialLinks, LanguageToggle } from '@/components/ui-widgets';
+import { SocialLinks } from '@/components/ui-widgets';
 import { transformSocialLinks } from '@/lib/icon-mapper';
-import type { ResumeData } from '@/lib/fetch-resume-data';
+import { useResumeData } from '@/contexts/ResumeDataContext';
 
-interface HeroProps {
-    resumeData: ResumeData;
-}
-
-export default function Hero({ resumeData }: HeroProps) {
+export default function Hero() {
+    const resumeData = useResumeData();
     const { hero } = resumeData;
     const socialLinks = transformSocialLinks(hero.contact?.social || []);
 
     return (
-        <section id="hero" className="relative min-h-[80vh] sm:min-h-[85vh] flex flex-col items-center justify-center text-center py-12 sm:py-16 md:py-20">
-            {/* Language Toggle - Top Right */}
-            <div className="absolute top-4 right-4 sm:top-6 sm:right-6 lg:right-8 z-10">
-                <LanguageToggle />
-            </div>
-            
-            <div className="w-full max-w-3xl mx-auto flex flex-col items-center justify-center">
-                <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 sm:mb-8 text-foreground">
+        <section id="hero" className="relative min-h-[80vh] sm:min-h-[85vh] flex items-center justify-center text-center px-4 sm:px-6">
+            <div className="w-full max-w-3xl mx-auto flex flex-col items-center justify-center text-center space-y-6 sm:space-y-8">
+                <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-foreground">
                     {hero.name}
                 </h1>
 
-                <div className="max-w-2xl mx-auto mb-8 sm:mb-10">
-                    <p className="text-base sm:text-lg md:text-xl leading-relaxed text-secondary text-center">
+                <div className="w-full max-w-2xl mx-auto">
+                    <p className="text-sm sm:text-lg md:text-xl leading-relaxed text-secondary text-center">
                         {hero.summary}
                     </p>
                 </div>
 
-                <div className="inline-flex items-center gap-2 text-secondary mb-8 sm:mb-10">
+                <div className="flex items-center justify-center gap-2 text-secondary">
                     <GlobeIcon className="w-5 h-5" />
-                    <span className="text-sm sm:text-base md:text-lg">{hero.location}</span>
+                    <span className="text-xs sm:text-base md:text-lg">{hero.location}</span>
                 </div>
 
-                <div className="flex flex-wrap items-center justify-center gap-4 mb-8 sm:mb-10">
+                <div className="flex items-center justify-center gap-4">
                     <Link href="/hakki_erdem_cv.pdf" target="_blank" rel="noopener noreferrer">
                         <Button
                             size="lg"
                             variant="outline"
                             className="hover:bg-primary/10 transition-all duration-200 rounded-lg"
                         >
-                            Özgeçmiş
+                            {hero.downloadCv}
                             <ExternalLinkIcon className="w-4 h-4 ml-2" />
                         </Button>
                     </Link>
                 </div>
 
-                <div className="flex flex-wrap justify-center gap-5 mb-8">
+                <div className="flex flex-wrap items-center justify-center gap-5">
                     <SocialLinks socialLinks={socialLinks} />
                 </div>
             </div>
-            
-            <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+
+            <div className="absolute bottom-8 inset-x-0 flex justify-center animate-bounce">
                 <ChevronDownIcon className="w-6 h-6 text-secondary" />
             </div>
         </section>

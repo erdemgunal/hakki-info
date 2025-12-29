@@ -10,6 +10,7 @@ export interface ResumeData {
     location: string;
     profileImage: string;
     summary: string;
+    downloadCv: string;
     contact: {
       phone: string;
       social: Array<{
@@ -36,19 +37,27 @@ export interface ResumeData {
     };
   };
   about: {
+    title: string;
     description: string;
   };
-  education: Array<{
-    degree: string;
-    school: string;
-    start: string;
-    end: string;
-  }>;
-  languages: Array<{
-    name: string;
-    level: string;
-  }>;
+  education: {
+    title: string;
+    items: Array<{
+      degree: string;
+      school: string;
+      start: string;
+      end: string;
+    }>;
+  };
+  languages: {
+    title: string;
+    items: Array<{
+      name: string;
+      level: string;
+    }>;
+  };
   skills: {
+    title: string;
     technical: Array<{
       name: string;
       skills: Array<{
@@ -59,21 +68,26 @@ export interface ResumeData {
       name: string;
     }>;
   };
-  projects: Array<{
+  projects: {
     title: string;
-    description: string;
-    problem: string;
-    solution: string;
-    result: string;
-    techStack: string[];
-    label: string;
-    year: string;
-    images: string[];
-    links: {
-      live: string | null;
-      github: string;
-    };
-  }>;
+    viewMoreButtonText: string;
+    viewProjectText: string;
+    items: Array<{
+      title: string;
+      description: string;
+      problem: string;
+      solution: string;
+      result: string;
+      techStack: string[];
+      label: string;
+      year: string;
+      images: string[];
+      links: {
+        live: string | null;
+        github: string;
+      };
+    }>;
+  };
 }
 
 export async function fetchResumeData(locale: Locale = 'tr'): Promise<ResumeData> {
@@ -81,7 +95,10 @@ export async function fetchResumeData(locale: Locale = 'tr'): Promise<ResumeData
   
   try {
     const response = await fetch(url, {
-      next: { revalidate: 3600 } // Revalidate every hour
+      next: { revalidate: 3600 },
+      headers: {
+        'Content-Type': 'application/json',
+      },
     });
 
     if (!response.ok) {
@@ -92,7 +109,6 @@ export async function fetchResumeData(locale: Locale = 'tr'): Promise<ResumeData
     return data as ResumeData;
   } catch (error) {
     console.error(`Error fetching resume data for locale ${locale}:`, error);
-    // Fallback to Turkish if fetch fails
     if (locale !== 'tr') {
       return fetchResumeData('tr');
     }

@@ -24,20 +24,18 @@ export default function ThemeToggle() {
     if (!mounted) {
         return (
             <div className="flex items-center">
-                <div className="relative bg-background border border-border rounded-full p-1">
-                    <div className="flex space-x-1">
-                        {themes.map((themeOption) => {
-                            const Icon = themeOption.icon;
-                            return (
-                                <div
-                                    key={themeOption.id}
-                                    className="w-8 h-8 rounded-full flex items-center justify-center text-foreground"
-                                >
-                                    <Icon className="w-4 h-4" />
-                                </div>
-                            );
-                        })}
-                    </div>
+                <div className="flex gap-0.5">
+                    {themes.map((themeOption) => {
+                        const Icon = themeOption.icon;
+                        return (
+                            <div
+                                key={themeOption.id}
+                                className="w-7 h-7 rounded-md flex items-center justify-center text-secondary"
+                            >
+                                <Icon className="w-3.5 h-3.5" />
+                            </div>
+                        );
+                    })}
                 </div>
             </div>
         );
@@ -45,36 +43,30 @@ export default function ThemeToggle() {
 
     return (
         <div className="flex items-center">
-            {/* Switch Container */}
-            <div className="relative bg-background border border-border rounded-full p-1">
-                <div className="flex space-x-1">
-                    {themes.map((themeOption) => {
-                        const Icon = themeOption.icon;
-                        const isActive =
-                            (themeOption.id === 'system' && theme === 'system') ||
-                            (themeOption.id === 'light' && theme === 'light') ||
-                            (themeOption.id === 'dark' && theme === 'dark');
+            <div className="flex gap-0.5">
+                {themes.map((themeOption) => {
+                    const Icon = themeOption.icon;
+                    const isActive =
+                        (themeOption.id === 'system' && theme === 'system') ||
+                        (themeOption.id === 'light' && theme === 'light') ||
+                        (themeOption.id === 'dark' && theme === 'dark');
 
-                        return (
-                            <button
-                                key={themeOption.id}
-                                onClick={() => setTheme(themeOption.id)}
-                                className={`relative w-8 h-8 rounded-full flex items-center justify-center transition-colors duration-200 ${isActive
-                                        ? 'bg-foreground text-background'
-                                        : 'text-foreground hover:text-foreground'
-                                    }`}
-                                title={themeOption.name}
-                            >
-                                <Icon className="w-4 h-4" />
-
-                                {/* Active indicator */}
-                                {isActive && (
-                                    <div className="absolute inset-0 bg-foreground rounded-full -z-10" />
-                                )}
-                            </button>
-                        );
-                    })}
-                </div>
+                    return (
+                        <button
+                            key={themeOption.id}
+                            onClick={() => setTheme(themeOption.id)}
+                            className={`relative w-7 h-7 rounded-md flex items-center justify-center transition-all duration-200 ${
+                                isActive
+                                    ? 'bg-foreground text-background'
+                                    : 'text-secondary hover:text-foreground hover:bg-background'
+                            }`}
+                            title={themeOption.name}
+                            aria-label={themeOption.name}
+                        >
+                            <Icon className="w-3.5 h-3.5" />
+                        </button>
+                    );
+                })}
             </div>
         </div>
     );
