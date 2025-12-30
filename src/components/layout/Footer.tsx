@@ -18,10 +18,30 @@ export default function Footer() {
     const currentYear = getCurrentYear();
     const { resolvedTheme } = useTheme();
     const [mounted, setMounted] = useState(false);
+    const [istanbulTime, setIstanbulTime] = useState('');
 
     useEffect(() => {
         // eslint-disable-next-line react-hooks/set-state-in-effect
         setMounted(true);
+    }, []);
+
+    useEffect(() => {
+        const updateTime = () => {
+            const now = new Date();
+            const istanbulTimeString = now.toLocaleTimeString('en-US', {
+                timeZone: 'Europe/Istanbul',
+                hour12: false,
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+            });
+            setIstanbulTime(istanbulTimeString);
+        };
+
+        updateTime();
+        const interval = setInterval(updateTime, 1000);
+
+        return () => clearInterval(interval);
     }, []);
 
     const getFooterImage = () => {
@@ -149,6 +169,14 @@ export default function Footer() {
                                     Privacy
                                 </I18nLink>
                             </div>
+                            {istanbulTime && (
+                                <>
+                                    <span className="hidden sm:inline text-border">•</span>
+                                    <span className="text-accent font-medium">
+                                        Istanbul: {istanbulTime}
+                                    </span>
+                                </>
+                            )}
                         </div>
                     </div>
                 </div>
