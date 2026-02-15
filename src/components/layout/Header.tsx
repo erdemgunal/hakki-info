@@ -1,6 +1,7 @@
 'use client';
 
-import { Link, usePathname } from '@/i18n/routing';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import MenuIcon from '@/components/icon/MenuIcon';
 
@@ -26,7 +27,7 @@ export default function Header() {
                     <div className="hidden sm:flex items-center gap-6 absolute left-1/2 -translate-x-1/2">
                         <Link
                             href="/"
-                            className={`text-sm font-medium transition-colors duration-200 ${pathname === '/' || pathname === '/tr' || pathname === '/en' || pathname === '/de' || pathname === '/fr'
+                            className={`text-sm font-medium transition-colors duration-200 ${pathname === '/'
                                     ? 'text-accent'
                                     : 'text-secondary hover:text-foreground'
                                 }`}
@@ -75,7 +76,7 @@ export default function Header() {
                             <Link
                                 href="/"
                                 onClick={closeMenu}
-                                className={`block px-4 py-3 text-sm font-medium transition-colors duration-200 border-b border-border/50 last:border-b-0 ${pathname === '/' || pathname === '/tr' || pathname === '/en' || pathname === '/de' || pathname === '/fr'
+                                className={`block px-4 py-3 text-sm font-medium transition-colors duration-200 border-b border-border/50 last:border-b-0 ${pathname === '/'
                                         ? 'text-accent bg-accent/10'
                                         : 'text-secondary hover:text-foreground hover:bg-background/50'
                                     }`}

@@ -1,8 +1,29 @@
-import { redirect } from 'next/navigation';
-import { routing } from '@/i18n/routing';
+import {
+    Hero,
+    About,
+    Education,
+    Languages,
+    Skills,
+    Projects,
+} from '@/components/sections';
 
-// This page only renders when the user visits `/`
-// The middleware will redirect to the appropriate locale
-export default function RootPage() {
-  redirect(`/${routing.defaultLocale}`);
+export default async function Home() {
+    return (
+        <main className="min-h-screen bg-background">
+            <div className="mx-auto max-w-5xl px-4 sm:px-6 md:px-8 lg:px-16 pt-20 sm:pt-24 md:pt-28 pb-4 sm:pb-6 md:pb-8">
+                <div className="bg-surface border border-border rounded-2xl shadow-xl shadow-white/5 backdrop-blur-sm overflow-hidden">
+                    <div className="mx-4 sm:mx-6 md:mx-8 lg:mx-10">
+                        <Hero />
+                        <div className="space-y-10 sm:space-y-12 md:space-y-14 lg:space-y-16 pb-10 sm:pb-12 md:pb-14 lg:pb-16">
+                            <About />
+                            <Education />
+                            <Languages />
+                            <Skills />
+                            <Projects />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    );
 }

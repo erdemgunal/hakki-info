@@ -1,20 +1,15 @@
 'use client';
 
-import { Button } from "@/components/ui/button"
-import {
-    renderTechStackBadges,
-    renderBadges
-}
-    from "@/lib/badge-utils"
+import { Button } from '@/components/ui/button';
+import { renderTechStackBadges, renderBadges } from '@/lib/badge-utils';
 import { generateSlug } from '@/lib/slug-utils';
-import Image from "next/image"
-import { Link } from '@/i18n/routing'
-import ExternalLinkIcon from "@/components/icon/ExternalLinkIcon"
+import Image from 'next/image';
+import Link from 'next/link';
+import ExternalLinkIcon from '@/components/icon/ExternalLinkIcon';
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 import Section from './Section';
 import { useResumeData } from '@/contexts/ResumeDataContext';
-import Footer from '../layout/Footer';
 
 export default function Projects() {
     const resumeData = useResumeData();
@@ -64,7 +59,7 @@ export default function Projects() {
                                             <div className="absolute inset-0 bg-black/10 group-hover:bg-black/5 transition-colors duration-200" />
 
                                             <div className="absolute top-4 left-4">
-                                                {renderBadges([project.label], "outline", "text-xs bg-background/80 backdrop-blur-sm")}
+                                                {renderBadges([project.label], 'outline', 'text-xs bg-background/80 backdrop-blur-sm')}
                                             </div>
 
                                             <div className="absolute bottom-4 right-4">
@@ -81,10 +76,10 @@ export default function Projects() {
                                                 <p className="text-muted-foreground text-xs sm:text-sm mb-3 leading-relaxed">{project.description}</p>
 
                                                 <div className="flex flex-wrap gap-2 mb-4">
-                                                    {renderTechStackBadges(project.techStack.slice(0, 3), 3, "outline", "text-xs")}
+                                                    {renderTechStackBadges(project.techStack.slice(0, 3), 3, 'outline', 'text-xs')}
                                                     {project.techStack.length > 3 && (
                                                         <span className="text-xs text-muted-foreground bg-muted px-2 py-1 rounded">
-                                                            +{project.techStack.length - 3} daha
+                                                            +{project.techStack.length - 3} more
                                                         </span>
                                                     )}
                                                 </div>

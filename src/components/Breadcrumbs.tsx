@@ -28,7 +28,7 @@ export default function Breadcrumbs({ section }: BreadcrumbsProps) {
       <>
         <nav aria-label="Breadcrumb">
           <ol className="flex items-center space-x-2 text-sm text-muted-foreground">
-            <li><Link href="/">Anasayfa</Link></li>
+            <li><Link href="/">Home</Link></li>
             <li>/</li>
             <li>{section}</li>
           </ol>

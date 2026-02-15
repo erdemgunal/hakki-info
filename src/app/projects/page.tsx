@@ -1,30 +1,15 @@
-import { fetchResumeData, type Locale } from '@/lib/fetch-resume-data';
-import { routing } from '@/i18n/routing';
+import { fetchResumeData } from '@/lib/fetch-resume-data';
 import { ResumeDataProvider } from '@/contexts/ResumeDataContext';
 import { generateSlug } from '@/lib/slug-utils';
-import { Link } from '@/i18n/routing';
+import Link from 'next/link';
 import Image from 'next/image';
 import { renderBadges, renderTechStackBadges } from '@/lib/badge-utils';
 import { Button } from '@/components/ui/button';
 import ExternalLinkIcon from '@/components/icon/ExternalLinkIcon';
 import Breadcrumbs from '@/components/Breadcrumbs';
 
-export function generateStaticParams() {
-    return routing.locales.map((locale) => ({ locale }));
-}
-
-export default async function ProjectsPage({
-    params
-}: {
-    params: Promise<{ locale: string }>;
-}) {
-    const { locale } = await params;
-
-    const validLocale = (routing.locales as readonly string[]).includes(locale)
-        ? (locale as Locale)
-        : 'en' as Locale;
-
-    const resumeData = await fetchResumeData(validLocale);
+export default async function ProjectsPage() {
+    const resumeData = await fetchResumeData();
     const { projects, hero } = resumeData;
 
     const getPlaceholderImage = () => {
@@ -38,7 +23,7 @@ export default async function ProjectsPage({
                     <div className="mb-8">
                         <Breadcrumbs section="Projects" />
                     </div>
-                    
+
                     <div className="text-left mb-8 sm:mb-12">
                         <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4">
                             {projects.title}

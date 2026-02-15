@@ -27,7 +27,7 @@ export default function Skills() {
                             </div>
 
                             <div className="flex flex-wrap gap-2">
-                                {renderBadges(category.skills.map(skill => skill.name), "blue", "text-sm")}
+                                {renderBadges(category.skills.map(skill => skill.name), 'blue', 'text-sm')}
                             </div>
                         </div>
                     ))}
@@ -39,7 +39,7 @@ export default function Skills() {
                     </div>
 
                     <div className="flex flex-wrap gap-2">
-                        {renderBadges(soft.map(skill => skill.name), "blue", "text-sm")}
+                        {renderBadges(soft.map(skill => skill.name), 'blue', 'text-sm')}
                     </div>
                 </div>
             </div>

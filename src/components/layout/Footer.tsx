@@ -3,8 +3,8 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useTheme } from 'next-themes';
-import { Link as I18nLink, Link } from '@/i18n/routing';
-import { ThemeToggle, LanguageToggle } from '@/components/ui-widgets';
+import Link from 'next/link';
+import { ThemeToggle } from '@/components/ui-widgets';
 import { renderSocialLinks } from '@/lib/social-links';
 import { getCurrentYear } from '@/lib/date-utils';
 import MessageBubbleIcon from '@/components/icon/MessageBubbleIcon';
@@ -87,8 +87,8 @@ export default function Footer() {
                         </div>
                         <div className="space-y-1.5 sm:space-y-2">
                             {footer.quickLinks.links.map((link, index) => (
-                                <Link 
-                                    key={index} 
+                                <Link
+                                    key={index}
                                     href={link.href} 
                                     className="block text-secondary hover:text-foreground text-xs sm:text-sm transition-colors duration-200"
                                 >
@@ -149,8 +149,6 @@ export default function Footer() {
                         {renderSocialLinks(socialLinks, "w-9 h-9 sm:w-10 sm:h-10 bg-background border border-border rounded-lg flex items-center justify-center text-secondary hover:text-foreground hover:border-foreground/30 transition-all duration-200", "w-4.5 h-4.5 sm:w-5 sm:h-5")}
                     </div>
                     <div className="flex items-center gap-2 bg-background/80 backdrop-blur-sm border border-border rounded-lg px-2 py-1.5 sm:py-2 relative z-30">
-                        <LanguageToggle />
-                        <div className="h-5 sm:h-6 w-px bg-border" />
                         <ThemeToggle />
                     </div>
                 </div>
@@ -162,12 +160,12 @@ export default function Footer() {
                             <span>© {currentYear}, All rights reserved</span>
                             <span className="hidden sm:inline text-border">•</span>
                             <div className="flex items-center gap-3 sm:gap-4">
-                                <I18nLink href="/terms" className="hover:text-foreground transition-colors duration-200">
+                                <Link href="/terms" className="hover:text-foreground transition-colors duration-200">
                                     Terms
-                                </I18nLink>
-                                <I18nLink href="/privacy" className="hover:text-foreground transition-colors duration-200">
+                                </Link>
+                                <Link href="/privacy" className="hover:text-foreground transition-colors duration-200">
                                     Privacy
-                                </I18nLink>
+                                </Link>
                             </div>
                             {istanbulTime && (
                                 <>

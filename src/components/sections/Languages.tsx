@@ -1,6 +1,7 @@
 'use client';
 
 import { renderBadges } from '@/lib/badge-utils';
+
 import Section from './Section';
 import { useResumeData } from '@/contexts/ResumeDataContext';
 
@@ -24,8 +25,8 @@ export default function Languages() {
                             <h3 className="text-base sm:text-xl font-semibold text-foreground">
                                 {language.name}
                             </h3>
-                            <div className="flex flex-shrink-0">
-                                {renderBadges([language.level], "blue", "text-sm")}
+                            <div className="flex shrink-0">
+                                {renderBadges([language.level], 'blue', 'text-sm')}
                             </div>
                         </div>
                     </div>

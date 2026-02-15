@@ -1,9 +1,9 @@
 'use client';
 
 import Link from 'next/link';
-import GlobeIcon from "@/components/icon/GlobeIcon";
-import ExternalLinkIcon from "@/components/icon/ExternalLinkIcon";
-import ChevronDownIcon from "@/components/icon/ChevronDownIcon";
+import GlobeIcon from '@/components/icon/GlobeIcon';
+import ExternalLinkIcon from '@/components/icon/ExternalLinkIcon';
+import ChevronDownIcon from '@/components/icon/ChevronDownIcon';
 import { Button } from '@/components/ui/button';
 import { SocialLinks } from '@/components/ui-widgets';
 import { transformSocialLinks } from '@/lib/icon-mapper';
