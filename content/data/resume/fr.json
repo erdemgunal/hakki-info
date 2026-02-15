@@ -1,0 +1,362 @@
+{
+    "hero": {
+        "name": "<Hakkı />",
+        "title": "Développeur Full Stack Axé sur l'Automatisation",
+        "email": "me@hakki.info",
+        "location": "Istanbul, Turquie",
+        "profileImage": "https://avatars.githubusercontent.com/u/65365648?v=4",
+        "downloadCv": "CV",
+        "summary": "En tant que développeur full-stack, je développe des solutions logicielles évolutives et conviviales en automatisant des processus complexes grâce à ma capacité de pensée analytique.",
+        "contact": {
+            "phone": "905320664332",
+            "social": [
+                {
+                    "name": "Email",
+                    "url": "mailto:me@hakki.info",
+                    "iconKey": "mail"
+                },
+                {
+                    "name": "WhatsApp",
+                    "url": "https://wa.me/905320664332",
+                    "iconKey": "whatsapp"
+                },
+                {
+                    "name": "GitHub",
+                    "url": "https://github.com/erdemgunal",
+                    "iconKey": "github"
+                },
+                {
+                    "name": "LinkedIn",
+                    "url": "https://linkedin.com/in/erdemgunal",
+                    "iconKey": "linkedin"
+                },
+                {
+                    "name": "Twitter",
+                    "url": "https://x.com/erdemgunal",
+                    "iconKey": "twitter"
+                }
+            ]
+        }
+    },
+    "footer": {
+        "brand": {
+            "name": "Hakkı Günal",
+            "description": "Portfolio personnel d'un développeur logiciel spécialisé dans les technologies web modernes et l'automatisation."
+        },
+        "quickLinks": {
+            "title": "Liens Rapides",
+            "links": [
+                {
+                    "href": "#hero",
+                    "text": "Accueil"
+                },
+                {
+                    "href": "#about",
+                    "text": "À propos"
+                },
+                {
+                    "href": "#projects",
+                    "text": "Projets"
+                }
+            ]
+        },
+        "contact": {
+            "title": "Contact"
+        }
+    },
+    "about": {
+        "title": "À propos",
+        "description": "Ma passion pour le monde du logiciel a été le début de mon parcours pour devenir développeur full-stack. Je développe des projets avec Python depuis 5 ans, JavaScript depuis 2 ans et React depuis 1 an. Ma capacité de pensée analytique, issue de ma formation en physique, me permet d'aborder chaque problème avec une perspective logique. Guidé par la philosophie 'le temps, c'est de l'argent', je me concentre sur l'automatisation des processus manuels. De cette façon, je ne me contente pas d'écrire du code, mais je produis des solutions orientées vers l'utilisateur et l'entreprise. Je vise à créer de la valeur dans chaque projet grâce à un fort travail d'équipe, un instinct de leadership et une capacité d'apprentissage continu."
+    },
+    "education": {
+        "title": "Formation",
+        "items": [
+            {
+                "degree": "Physique",
+                "school": "Université de Marmara",
+                "start": "2024",
+                "end": "En cours"
+            }
+        ]
+    },
+    "languages": {
+        "title": "Compétences Linguistiques",
+        "items": [
+            {
+                "name": "Turc",
+                "level": "Langue maternelle"
+            },
+            {
+                "name": "Anglais",
+                "level": "B2-C1"
+            }
+        ]
+    },
+    "skills": {
+        "title": "Compétences Techniques",
+        "technical": [
+            {
+                "name": "Frontend",
+                "skills": [
+                    {
+                        "name": "React"
+                    },
+                    {
+                        "name": "JavaScript"
+                    },
+                    {
+                        "name": "Tailwind CSS"
+                    },
+                    {
+                        "name": "HTML/CSS"
+                    },
+                    {
+                        "name": "Shadcn UI"
+                    }
+                ]
+            },
+            {
+                "name": "Backend",
+                "skills": [
+                    {
+                        "name": "Python"
+                    },
+                    {
+                        "name": "Node.js"
+                    },
+                    {
+                        "name": "Express.js"
+                    },
+                    {
+                        "name": "FastAPI"
+                    }
+                ]
+            },
+            {
+                "name": "Base de Données & Infrastructure",
+                "skills": [
+                    {
+                        "name": "PostgreSQL"
+                    },
+                    {
+                        "name": "MongoDB"
+                    },
+                    {
+                        "name": "Docker"
+                    },
+                    {
+                        "name": "AWS"
+                    }
+                ]
+            },
+            {
+                "name": "Outils & Méthodologies",
+                "skills": [
+                    {
+                        "name": "Git"
+                    },
+                    {
+                        "name": "pytest"
+                    },
+                    {
+                        "name": "Framer Motion"
+                    },
+                    {
+                        "name": "REST API"
+                    },
+                    {
+                        "name": "Agile/Scrum"
+                    },
+                    {
+                        "name": "Clean Architecture"
+                    },
+                    {
+                        "name": "Microservices"
+                    },
+                    {
+                        "name": "Développement piloté par les tests"
+                    }
+                ]
+            }
+        ],
+        "soft": [
+            {
+                "name": "Résolution de problèmes"
+            },
+            {
+                "name": "Travail d'équipe"
+            },
+            {
+                "name": "Leadership"
+            },
+            {
+                "name": "Pensée analytique"
+            },
+            {
+                "name": "Amélioration continue"
+            },
+            {
+                "name": "Esprit entrepreneurial"
+            },
+            {
+                "name": "Communication"
+            },
+            {
+                "name": "Ouverture aux nouvelles technologies"
+            }
+        ]
+    },
+    "projects": {
+        "title": "Projets",
+        "viewMoreButtonText": "Voir plus de projets",
+        "viewProjectText": "Cliquez pour voir les détails",
+        "items": [
+            {
+                "title": "Hakkınızla Uçun",
+                "description": "Une plateforme de recherche de vols automatisant les allers-retours court terme entre la Turquie et l'Europe.",
+                "problem": "Trouver des vols internationaux abordables et à court terme était un processus manuel long et laborieux. La rapidité était cruciale, surtout pour les billets promotionnels.",
+                "solution": "J'ai développé un système d'automatisation utilisant Next.js et Python qui récupère les données de vols aller-retour et les filtre selon les critères souhaités (2-7 jours, prix le plus bas). Ce système a complètement éliminé le processus de recherche manuel.",
+                "result": "Grâce à ce système, j'ai pu trouver des billets pour des destinations comme la Suisse, les Pays-Bas et l'Autriche à des prix très abordables. Ce succès personnel a servi de preuve concrète que l'automatisation permet d'économiser du temps et de l'argent, se transformant finalement en une startup.",
+                "techStack": [
+                    "Next.js",
+                    "Python",
+                    "RESTful APIs",
+                    "Vercel"
+                ],
+                "label": "Automatisation",
+                "year": "2024",
+                "images": [
+                    "/images/hakkinizlaucun/1.png"
+                ],
+                "links": {
+                    "live": "https://hakkinizlaucun.com",
+                    "github": "https://github.com/erdemgunal/hakkinizla-ucun"
+                }
+            },
+            {
+                "title": "Monitorist",
+                "description": "Une plateforme de surveillance en temps réel suivant l'inventaire de plus de 20 sites e-commerce.",
+                "problem": "Le suivi manuel de l'état des stocks des produits en édition limitée (hype) sur les sites e-commerce entraînait une perte d'efficacité importante. Comme les stocks étaient réapprovisionnés sans préavis, manquer des opportunités était inévitable.",
+                "solution": "J'ai mis en place une automatisation de web scraping avec Python qui fonctionne 24h/24 et 7j/7. Ce système surveillait en continu les produits hype, enregistrait les changements de stock dans une base de données SQLite et envoyait des notifications instantanées aux abonnés via des webhooks Discord.",
+                "result": "Cette automatisation a fourni un flux d'informations instantané à moi-même et aux revendeurs, offrant la possibilité d'agir dès l'ajout des stocks. Ce projet a démontré ma capacité à commercialiser une idée, à bâtir une communauté et à générer un revenu tangible grâce à la vente d'abonnements mensuels.",
+                "techStack": [
+                    "Python",
+                    "SQLite",
+                    "Discord Webhook",
+                    "Web Scraping"
+                ],
+                "label": "Automatisation",
+                "year": "2021-2023",
+                "images": [
+                    "/images/monitorist/1.png",
+                    "/images/monitorist/2.png"
+                ],
+                "links": {
+                    "live": "https://monitorist.vercel.app",
+                    "github": "https://github.com/erdemgunal/monitorist"
+                }
+            },
+            {
+                "title": "Analyse de Sécurité SoliClub",
+                "description": "Détection et analyse d'une faille de sécurité critique dans le système de paiement de la cafétéria de l'Université de Marmara.",
+                "problem": "J'ai identifié que le système de paiement SoliClub présentait une faille de sécurité due à un manque de validation du montant du paiement envoyé depuis le côté client.",
+                "solution": "J'ai découvert la faille en analysant le trafic API à l'aide de techniques de rétro-ingénierie et d'interception de requêtes. J'ai démontré cette vulnérabilité avec une application de démonstration développée avec des technologies web modernes (Next.js, React, Tailwind).",
+                "result": "La faille de sécurité a été signalée à l'équipe informatique de l'université selon le principe de la divulgation responsable et a ensuite été corrigée. Ce projet a prouvé ma compétence en hacking éthique, en analyse d'API et en sécurité des systèmes, parallèlement à mes compétences en développement web.",
+                "techStack": [
+                    "Next.js",
+                    "React",
+                    "Tailwind CSS",
+                    "API Security",
+                    "Ethical Hacking"
+                ],
+                "label": "Sécurité",
+                "year": "2024",
+                "images": [
+                    "/images/soliclub/1.png",
+                    "/images/soliclub/2.png"
+                ],
+                "links": {
+                    "live": null,
+                    "github": "https://github.com/erdemgunal/soliclub-security-poc"
+                }
+            },
+            {
+                "title": "MarunGPT",
+                "description": "Un chatbot de soutien aux étudiants alimenté par l'IA et entraîné avec les données de l'Université de Marmara.",
+                "problem": "Il manquait une plateforme pour fournir des réponses rapides et conviviales aux questions fréquemment posées par les étudiants (cours, emploi du temps, services du campus). Cette situation créait une charge pour les unités administratives.",
+                "solution": "Nous avons développé un chatbot intégré à l'API OpenAI et Elasticsearch, entraîné avec les documents officiels de l'école. Nous avons créé une interface intuitive avec React et Tailwind CSS, géré les données dans MongoDB et conteneurisé le tout avec Docker.",
+                "result": "Ce projet a permis aux étudiants d'accéder instantanément aux informations qu'ils recherchaient et a automatisé les processus administratifs. Bien qu'il n'ait pas eu de modèle de revenus, ce fut une étude de cas importante pour présenter mes compétences en intégration de l'IA et en développement de produits centrés sur l'utilisateur.",
+                "techStack": [
+                    "React",
+                    "Tailwind CSS",
+                    "OpenAI API",
+                    "MongoDB",
+                    "Elasticsearch",
+                    "Docker"
+                ],
+                "label": "Intelligence Artificielle",
+                "year": "2023",
+                "images": [
+                    "/images/marungpt/1.png",
+                    "/images/marungpt/2.png"
+                ],
+                "links": {
+                    "live": "https://marungpt.com",
+                    "github": "https://github.com/erdemgunal/marungpt"
+                }
+            },
+            {
+                "title": "TeknoPazar",
+                "description": "Un système de gestion e-commerce moderne et convivial.",
+                "problem": "Les systèmes de gestion existants dans le secteur du e-commerce réduisaient l'efficacité des entreprises en proposant des processus d'ajout de produits complexes et des fonctionnalités insuffisantes.",
+                "solution": "En utilisant Next.js 15, PostgreSQL et AWS S3, j'ai développé un système de gestion e-commerce complet comprenant des fonctionnalités telles qu'un assistant d'ajout de produits en 7 étapes, la gestion des images par glisser-déposer et une authentification sécurisée.",
+                "result": "Ce système a réduit le temps d'ajout de produits tout en diminuant le taux d'erreur grâce aux validations effectuées avec Zod. Il a aidé les entreprises à renforcer leurs actifs numériques en offrant un panneau de gestion plus efficace.",
+                "techStack": [
+                    "Next.js",
+                    "React",
+                    "PostgreSQL",
+                    "Tailwind CSS",
+                    "AWS",
+                    "Stripe",
+                    "Zod",
+                    "Radix UI"
+                ],
+                "label": "Full Stack",
+                "year": "2024",
+                "images": [
+                    "/images/teknopazar/1.png",
+                    "/images/teknopazar/2.png",
+                    "/images/teknopazar/3.png",
+                    "/images/teknopazar/4.png",
+                    "/images/teknopazar/5.png",
+                    "/images/teknopazar/6.png"
+                ],
+                "links": {
+                    "live": "https://ecommerce-demo.com",
+                    "github": "https://github.com/erdemgunal/tekno-pazar"
+                }
+            },
+            {
+                "title": "Hakkı Info (Portfolio)",
+                "description": "Un site web de portfolio personnel conçu avec une esthétique moderne et axé sur la performance, développé spécialement pour vous.",
+                "problem": "Il était nécessaire de créer un site de portfolio moderne, unique et personnalisé pour présenter l'identité professionnelle, les projets et les compétences de la manière la plus efficace.",
+                "solution": "J'ai développé ce site en utilisant les technologies les plus récentes telles que Next.js 15, Tailwind CSS et Framer Motion. J'ai ajouté des fonctionnalités telles qu'une structure modulaire, une gestion centralisée des données et un support des thèmes sombre/clair.",
+                "result": "Le produit résultant est devenu un site de portfolio puissant tant sur le plan esthétique que fonctionnel. Ce projet prouve mes capacités en développement full-stack moderne et ma compétence à gérer tous les processus d'un produit, de la conception au déploiement.",
+                "techStack": [
+                    "Next.js",
+                    "React",
+                    "Tailwind CSS",
+                    "Framer Motion",
+                    "shadcn/ui"
+                ],
+                "label": "Full Stack",
+                "year": "2024",
+                "images": [],
+                "links": {
+                    "live": "https://hakki.info",
+                    "github": "https://github.com/erdemgunal/hakki-info"
+                }
+            }
+        ]
+    }
+}
