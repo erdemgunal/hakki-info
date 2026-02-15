@@ -7,7 +7,6 @@ import Link from 'next/link';
 import { ThemeToggle } from '@/components/ui-widgets';
 import { renderSocialLinks } from '@/lib/social-links';
 import { getCurrentYear } from '@/lib/date-utils';
-import MessageBubbleIcon from '@/components/icon/MessageBubbleIcon';
 import { transformSocialLinks } from '@/lib/icon-mapper';
 import { useResumeData } from '@/contexts/ResumeDataContext';
 
@@ -177,18 +176,6 @@ export default function Footer() {
                             )}
                         </div>
                     </div>
-                </div>
-            </div>
-
-            {/* Floating Message Button */}
-            <div className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 md:bottom-6 md:right-6 lg:right-8 z-20">
-                <div
-                    className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-primary flex items-center justify-center text-primary-foreground transition-all duration-300 hover:scale-110 active:scale-95 cursor-pointer"
-                    style={{
-                        boxShadow: getGlowShadow()
-                    }}
-                >
-                    <MessageBubbleIcon className="w-5 h-5 sm:w-6 sm:h-6" />
                 </div>
             </div>
         </footer>

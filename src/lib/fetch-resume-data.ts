@@ -1,4 +1,6 @@
-const RESUME_BASE_URL = 'https://raw.githubusercontent.com/erdemgunal/hakki-info/refs/heads/main/content/data/resume';
+import fs from 'fs/promises';
+import path from 'path';
+import matter from 'gray-matter';
 
 export interface ResumeData {
     hero: {
@@ -88,21 +90,11 @@ export interface ResumeData {
     };
 }
 
+const RESUME_PATH = path.join(process.cwd(), 'content', 'data', 'resume.md');
+
 export async function fetchResumeData(): Promise<ResumeData> {
-    const url = `${RESUME_BASE_URL}/en.json`;
-
-    const response = await fetch(url, {
-        next: { revalidate: 3600 },
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    });
-
-    if (!response.ok) {
-        throw new Error(`Failed to fetch resume data: ${response.statusText}`);
-    }
-
-    const data = await response.json();
+    const fileContent = await fs.readFile(RESUME_PATH, 'utf-8');
+    const { data } = matter(fileContent);
     return data as ResumeData;
 }
 
