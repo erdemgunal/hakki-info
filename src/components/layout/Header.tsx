@@ -1,6 +1,8 @@
 'use client';
 
+import Link from 'next/link';
 import { useState, useCallback, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 
 const SECTIONS = [
     { id: 'hero', label: 'Home' },
@@ -11,13 +13,16 @@ const SECTIONS = [
     { id: 'projects', label: 'Projects' },
 ] as const;
 
+const PAGE_LINKS = [
+    { href: '/', label: 'Home' },
+    { href: '/projects', label: 'Projects' },
+    { href: '/blog', label: 'Blog' },
+] as const;
+
 export default function Header() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-    const scrollToTop = useCallback(() => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-        setMobileMenuOpen(false);
-    }, []);
+    const pathname = usePathname();
+    const isHomePage = pathname === '/';
 
     const scrollToSection = useCallback((id: string) => {
         const element = document.getElementById(id);
@@ -31,29 +36,41 @@ export default function Header() {
         setMobileMenuOpen(false);
     }, []);
 
-    // Close mobile menu on escape key
     useEffect(() => {
-        const handleEscape = (e: KeyboardEvent) => {
-            if (e.key === 'Escape') setMobileMenuOpen(false);
-        };
-        if (mobileMenuOpen) {
-            document.addEventListener('keydown', handleEscape);
-            return () => document.removeEventListener('keydown', handleEscape);
-        }
-    }, [mobileMenuOpen]);
+        setMobileMenuOpen(false);
+    }, [pathname]);
 
     return (
         <header className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-full max-w-6xl px-2 sm:px-4 md:px-6 lg:px-8">
             <div className="bg-surface/80 backdrop-blur-md border-[0.5px] border-border rounded-2xl shadow-lg shadow-black/10 dark:shadow-white/5 px-4 sm:px-6 py-3 sm:py-3.5">
-                <nav className="flex items-center justify-between">
-                    <button
-                        onClick={scrollToTop}
+                <nav className="relative flex items-center justify-between">
+                    <Link
+                        href="/"
                         className="text-foreground font-heading font-bold text-lg sm:text-xl hover:text-accent transition-colors"
                     >
                         Hakkı Erdem
-                    </button>
+                    </Link>
 
-                    {/* Mobile Menu Button */}
+                    <div className="hidden lg:flex absolute left-1/2 -translate-x-1/2 items-center gap-1 text-sm">
+                        {PAGE_LINKS.map((link, index) => (
+                            <div key={link.href} className="flex items-center gap-1">
+                                <Link
+                                    href={link.href}
+                                    className={`px-2 py-1 rounded transition-colors ${
+                                        pathname === link.href
+                                            ? 'text-foreground font-medium'
+                                            : 'text-muted-foreground hover:text-foreground'
+                                    }`}
+                                >
+                                    {link.label}
+                                </Link>
+                                {index < PAGE_LINKS.length - 1 && (
+                                    <span className="text-border select-none">|</span>
+                                )}
+                            </div>
+                        ))}
+                    </div>
+
                     <button
                         type="button"
                         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -73,22 +90,53 @@ export default function Header() {
                     </button>
                 </nav>
 
-                {/* Mobile Menu Panel */}
                 {mobileMenuOpen && (
-                    <div className="lg:hidden mt-3 pt-3 border-t border-border/50 animate-in slide-in-from-top-2 duration-200">
-                        <ul className="flex flex-col gap-0.5">
-                            {SECTIONS.map(({ id, label }) => (
-                                <li key={id}>
-                                    <button
-                                        type="button"
-                                        onClick={() => scrollToSection(id)}
-                                        className="w-full rounded-lg px-3 py-2.5 text-left text-sm text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
-                                    >
-                                        {label}
-                                    </button>
-                                </li>
-                            ))}
-                        </ul>
+                    <div className="lg:hidden mt-3 pt-3 border-t border-border/50">
+                        {/* Page Links - Always visible */}
+                        <div className="mb-3">
+                            <p className="px-3 mb-1.5 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                                Pages
+                            </p>
+                            <ul className="flex flex-col gap-0.5">
+                                {PAGE_LINKS.map((link) => (
+                                    <li key={link.href}>
+                                        <Link
+                                            href={link.href}
+                                            className={`block w-full rounded-lg px-3 py-2.5 text-left text-sm transition-colors ${
+                                                pathname === link.href
+                                                    ? 'text-foreground bg-accent/10 font-medium'
+                                                    : 'text-muted-foreground hover:bg-muted hover:text-foreground'
+                                            }`}
+                                        >
+                                            {link.label}
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+
+                        {isHomePage && (
+                            <>
+                                <div className="border-t border-border/50 pt-3">
+                                    <p className="px-3 mb-1.5 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                                        Sections
+                                    </p>
+                                    <ul className="flex flex-col gap-0.5">
+                                        {SECTIONS.map(({ id, label }) => (
+                                            <li key={id}>
+                                                <button
+                                                    type="button"
+                                                    onClick={() => scrollToSection(id)}
+                                                    className="w-full rounded-lg px-3 py-2.5 text-left text-sm text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
+                                                >
+                                                    {label}
+                                                </button>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            </>
+                        )}
                     </div>
                 )}
             </div>

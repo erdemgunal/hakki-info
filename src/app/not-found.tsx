@@ -11,7 +11,7 @@ export default async function NotFound() {
             <h1 className="text-9xl font-bold text-foreground p-8">
                 404
             </h1>
-            <Link href="/" className="text-primary hover:underline">Go back to the home page</Link>
+            <Link href="/" className="text-secondary hover:text-foreground hover:bg-muted/50 transition-all duration-200 rounded-lg">Go back to the home page</Link>
         </div>
     );
 }

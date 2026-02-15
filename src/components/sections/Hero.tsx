@@ -15,29 +15,32 @@ export default function Hero() {
     const socialLinks = transformSocialLinks(hero.contact?.social || []);
 
     return (
-        <section id="hero" className="relative min-h-[80vh] sm:min-h-[85vh] flex items-center justify-center text-center px-4 sm:px-6">
-            <div className="w-full max-w-3xl mx-auto flex flex-col items-center justify-center text-center space-y-6 sm:space-y-8">
-                <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-foreground">
+        <section 
+            id="hero" 
+            className="relative flex items-center justify-center text-center py-16 sm:py-20 md:py-24 lg:py-28"
+        >
+            <div className="w-full max-w-3xl mx-auto flex flex-col items-center justify-center space-y-6 sm:space-y-7 md:space-y-8">
+                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-foreground leading-tight">
                     {hero.name}
                 </h1>
 
-                <div className="w-full max-w-2xl mx-auto">
-                    <p className="text-sm sm:text-lg md:text-xl leading-relaxed text-secondary text-center">
+                <div className="w-full max-w-2xl">
+                    <p className="text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed text-secondary">
                         {hero.summary}
                     </p>
                 </div>
 
                 <div className="flex items-center justify-center gap-2 text-secondary">
-                    <GlobeIcon className="w-5 h-5" />
-                    <span className="text-xs sm:text-base md:text-lg">{hero.location}</span>
+                    <GlobeIcon className="w-4 h-4 sm:w-5 sm:h-5" />
+                    <span className="text-xs sm:text-sm md:text-base">{hero.location}</span>
                 </div>
 
-                <div className="flex items-center justify-center gap-4">
+                <div className="flex items-center justify-center pt-2">
                     <Link href="/hakki_erdem_cv.pdf" target="_blank" rel="noopener noreferrer">
                         <Button
                             size="lg"
                             variant="outline"
-                            className="hover:bg-primary/10 transition-all duration-200 rounded-lg"
+                            className="text-secondary hover:text-foreground hover:bg-muted/50 transition-all duration-200 rounded-lg"
                         >
                             {hero.downloadCv}
                             <ExternalLinkIcon className="w-4 h-4 ml-2" />
@@ -45,14 +48,15 @@ export default function Hero() {
                     </Link>
                 </div>
 
-                <div className="flex flex-wrap items-center justify-center gap-5">
+                <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 pt-2">
                     <SocialLinks socialLinks={socialLinks} />
                 </div>
             </div>
 
-            <div className="absolute bottom-8 inset-x-0 flex justify-center animate-bounce">
-                <ChevronDownIcon className="w-6 h-6 text-secondary" />
+            {/* Scroll indicator */}
+            <div className="absolute bottom-6 sm:bottom-8 inset-x-0 flex justify-center animate-bounce">
+                <ChevronDownIcon className="w-5 h-5 sm:w-6 sm:h-6 text-secondary" />
             </div>
         </section>
     );
-} 
+}

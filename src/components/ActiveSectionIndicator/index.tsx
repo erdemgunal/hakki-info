@@ -1,93 +1,23 @@
 'use client';
 
-import { useEffect, useState, useCallback, useRef } from 'react';
-
-const SECTIONS = [
-    { id: 'hero', label: 'Home' },
-    { id: 'about', label: 'About' },
-    { id: 'education', label: 'Education' },
-    { id: 'languages', label: 'Languages' },
-    { id: 'skills', label: 'Skills' },
-    { id: 'projects', label: 'Projects' },
-] as const;
-
-const FOOTER_ID = 'footer';
+import { useState, useCallback, useRef, useEffect } from 'react';
+import { SECTIONS, FOOTER_ID } from './constants';
+import { useSectionVisibility } from '@/hooks/useSectionVisibility';
+import { useFooterInView } from '@/hooks/useFooterInView';
+import { scrollToSection as scrollToSectionUtil } from '@/lib/scroll-to-section';
 
 export default function ActiveSectionIndicator() {
-    const [activeId, setActiveId] = useState<string>('hero');
+    const sectionIds = SECTIONS.map((s) => s.id);
+    const activeId = useSectionVisibility(sectionIds, 'hero');
+    const footerInView = useFooterInView(FOOTER_ID);
+
     const [menuOpen, setMenuOpen] = useState(false);
-    const [footerInView, setFooterInView] = useState(false);
     const closeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-    // Track section visibility
-    useEffect(() => {
-        const sectionIds = SECTIONS.map((s) => s.id);
-        const elements = sectionIds
-            .map((id) => document.getElementById(id))
-            .filter((el): el is HTMLElement => el != null);
-        
-        if (elements.length === 0) return;
-
-        const visibility = new Map<string, number>();
-
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    visibility.set(entry.target.id, entry.intersectionRatio);
-                });
-                
-                const visibleSections = sectionIds.filter((id) => {
-                    const ratio = visibility.get(id) ?? 0;
-                    return ratio > 0;
-                });
-
-                if (visibleSections.length > 0) {
-                    const mostVisible = visibleSections.reduce((a, b) =>
-                        (visibility.get(a) ?? 0) >= (visibility.get(b) ?? 0) ? a : b
-                    );
-                    setActiveId(mostVisible);
-                }
-            },
-            {
-                rootMargin: '-10% 0px -60% 0px',
-                threshold: [0, 0.1, 0.25, 0.5, 0.75, 1],
-            }
-        );
-
-        elements.forEach((el) => observer.observe(el));
-        return () => observer.disconnect();
-    }, []);
-
-    // Track footer visibility
-    useEffect(() => {
-        const footer = document.getElementById(FOOTER_ID);
-        if (!footer) return;
-
-        const footerObserver = new IntersectionObserver(
-            ([entry]) => setFooterInView(entry.isIntersecting),
-            { rootMargin: '0px 0px -10% 0px', threshold: 0 }
-        );
-
-        footerObserver.observe(footer);
-        return () => footerObserver.disconnect();
-    }, []);
-
-    // Smooth scroll to section
     const scrollToSection = useCallback((id: string) => {
-        const element = document.getElementById(id);
-        if (!element) return;
-
-        const headerOffset = 100;
-        const elementPosition = element.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-        window.scrollTo({
-            top: offsetPosition,
-            behavior: 'smooth'
-        });
+        scrollToSectionUtil(id);
     }, []);
 
-    // Handle mouse enter - only on dots or menu
     const handleMouseEnter = useCallback(() => {
         if (closeTimeoutRef.current) {
             clearTimeout(closeTimeoutRef.current);
@@ -96,14 +26,12 @@ export default function ActiveSectionIndicator() {
         setMenuOpen(true);
     }, []);
 
-    // Handle mouse leave with delayed closing
     const handleMouseLeave = useCallback(() => {
         closeTimeoutRef.current = setTimeout(() => {
             setMenuOpen(false);
         }, 200);
     }, []);
 
-    // Cleanup timeout on unmount
     useEffect(() => {
         return () => {
             if (closeTimeoutRef.current) {
@@ -115,8 +43,8 @@ export default function ActiveSectionIndicator() {
     return (
         <div
             className={`fixed left-4 top-1/2 z-40 hidden -translate-y-1/2 lg:flex items-center gap-3 transition-all duration-300 ${
-                footerInView 
-                    ? 'pointer-events-none opacity-0 -translate-x-4' 
+                footerInView
+                    ? 'pointer-events-none opacity-0 -translate-x-4'
                     : 'opacity-100 translate-x-0'
             }`}
         >
@@ -153,8 +81,8 @@ export default function ActiveSectionIndicator() {
             {/* Navigation Menu */}
             <div
                 className={`rounded-lg border border-border/50 bg-card/90 backdrop-blur-sm text-card-foreground shadow-lg transition-all duration-150 ${
-                    menuOpen 
-                        ? 'pointer-events-auto opacity-100 translate-x-0' 
+                    menuOpen
+                        ? 'pointer-events-auto opacity-100 translate-x-0'
                         : 'pointer-events-none opacity-0 -translate-x-1'
                 }`}
                 style={{ minWidth: '10rem' }}

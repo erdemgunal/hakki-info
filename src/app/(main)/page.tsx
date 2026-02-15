@@ -12,11 +12,11 @@ export default async function Home() {
     return (
         <main className="min-h-screen bg-background relative">
             <ActiveSectionIndicator />
-            <div className="mx-auto max-w-5xl px-4 sm:px-6 md:px-8 lg:px-16 pt-20 sm:pt-24 md:pt-28 pb-4 sm:pb-6 md:pb-8">
+            <div className="mx-auto max-w-5xl px-4 sm:px-6 md:px-8 lg:px-12 pt-24 sm:pt-28 md:pt-32 pb-8 sm:pb-12 md:pb-16">
                 <div className="bg-surface border border-border rounded-2xl shadow-xl shadow-white/5 backdrop-blur-sm overflow-hidden">
-                    <div className="mx-4 sm:mx-6 md:mx-8 lg:mx-10">
+                    <div className="px-6 sm:px-8 md:px-10 lg:px-12">
                         <Hero />
-                        <div className="space-y-10 sm:space-y-12 md:space-y-14 lg:space-y-16 pb-10 sm:pb-12 md:pb-14 lg:pb-16">
+                        <div className="space-y-12 sm:space-y-16 md:space-y-20 lg:space-y-24 pb-12 sm:pb-16 md:pb-20 lg:pb-24">
                             <About />
                             <Education />
                             <Languages />
