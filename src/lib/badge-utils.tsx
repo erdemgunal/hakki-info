@@ -2,7 +2,7 @@ import { Badge } from '@/components/ui/badge';
 import { VariantProps } from 'class-variance-authority';
 import { badgeVariants } from '@/components/ui/badge';
 
-export function renderBadges(badges: string[], variant = "blue", className = "text-sm") {
+export function renderBadges(badges: string[], variant = "default", className = "text-sm") {
     if (!badges || badges.length === 0) return null;
 
     return badges.map((badge: string, index: number) => (

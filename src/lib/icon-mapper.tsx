@@ -6,23 +6,23 @@ import MailIcon from "@/components/icon/MailIcon";
 import { SVGProps } from "react";
 
 const iconMap: Record<string, (props: SVGProps<SVGSVGElement>) => React.ReactNode> = {
-  github: GitHubIcon,
-  linkedin: LinkedInIcon,
-  twitter: TwitterIcon,
-  whatsapp: WhatsAppIcon,
-  mail: MailIcon,
+    github: GitHubIcon,
+    linkedin: LinkedInIcon,
+    twitter: TwitterIcon,
+    whatsapp: WhatsAppIcon,
+    mail: MailIcon,
 };
 
 export function getIconComponent(iconKey: string) {
-  const key = iconKey.toLowerCase();
-  return iconMap[key] || MailIcon; // Default to MailIcon if not found
+    const key = iconKey.toLowerCase();
+    return iconMap[key] || MailIcon;
 }
 
 export function transformSocialLinks(socialLinks: Array<{ name: string; url: string; iconKey: string }>) {
-  return socialLinks.map(social => ({
-    name: social.name,
-    url: social.url,
-    icon: getIconComponent(social.iconKey)
-  }));
+    return socialLinks.map(social => ({
+        name: social.name,
+        url: social.url,
+        icon: getIconComponent(social.iconKey)
+    }));
 }
 

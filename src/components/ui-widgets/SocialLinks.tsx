@@ -20,7 +20,7 @@ export function SocialLinks({ socialLinks, className = "", iconClassName = "w-5 
 
     return socialLinks.map((social) => {
         const Icon = social.icon;
-        
+
         return (
             <div key={social.name}>
                 <Link

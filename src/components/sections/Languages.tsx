@@ -26,7 +26,7 @@ export default function Languages() {
                                 {language.name}
                             </h3>
                             <div className="flex shrink-0">
-                                {renderBadges([language.level], 'blue', 'text-sm')}
+                                {renderBadges([language.level], 'default', 'text-sm')}
                             </div>
                         </div>
                     </div>

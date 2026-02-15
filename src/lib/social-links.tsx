@@ -5,7 +5,7 @@ export function renderSocialLinks(socialLinks: { name: string; url: string; icon
 
     return socialLinks.map((social: { name: string; url: string; icon: React.ElementType }) => {
         const Icon = social.icon;
-        
+
         return (
             <Link
                 key={social.name}

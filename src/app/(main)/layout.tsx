@@ -1,5 +1,5 @@
 import { Crimson_Text, Oxygen, JetBrains_Mono } from "next/font/google";
-import "./globals.css";
+import "../globals.css";
 import { ThemeProvider } from "@/lib/ThemeProvider";
 import Script from "next/script";
 import { consoleArtScript } from "@/lib/console-art";

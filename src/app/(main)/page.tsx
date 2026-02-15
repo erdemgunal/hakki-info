@@ -6,10 +6,12 @@ import {
     Skills,
     Projects,
 } from '@/components/sections';
+import ActiveSectionIndicator from '@/components/ActiveSectionIndicator';
 
 export default async function Home() {
     return (
-        <main className="min-h-screen bg-background">
+        <main className="min-h-screen bg-background relative">
+            <ActiveSectionIndicator />
             <div className="mx-auto max-w-5xl px-4 sm:px-6 md:px-8 lg:px-16 pt-20 sm:pt-24 md:pt-28 pb-4 sm:pb-6 md:pb-8">
                 <div className="bg-surface border border-border rounded-2xl shadow-xl shadow-white/5 backdrop-blur-sm overflow-hidden">
                     <div className="mx-4 sm:mx-6 md:mx-8 lg:mx-10">

@@ -17,7 +17,6 @@ export default function ThemeToggle() {
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
-        // eslint-disable-next-line react-hooks/set-state-in-effect
         setMounted(true);
     }, []);
 
@@ -55,11 +54,10 @@ export default function ThemeToggle() {
                         <button
                             key={themeOption.id}
                             onClick={() => setTheme(themeOption.id)}
-                            className={`relative w-7 h-7 rounded-md flex items-center justify-center transition-all duration-200 ${
-                                isActive
+                            className={`relative w-7 h-7 rounded-md flex items-center justify-center transition-all duration-200 ${isActive
                                     ? 'bg-foreground text-background'
                                     : 'text-secondary hover:text-foreground hover:bg-background'
-                            }`}
+                                }`}
                             title={themeOption.name}
                             aria-label={themeOption.name}
                         >

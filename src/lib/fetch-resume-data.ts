@@ -90,7 +90,7 @@ export interface ResumeData {
     };
 }
 
-const RESUME_PATH = path.join(process.cwd(), 'content', 'data', 'resume.md');
+const RESUME_PATH = path.join(process.cwd(), 'content', 'data', 'resume.mdx');
 
 export async function fetchResumeData(): Promise<ResumeData> {
     const fileContent = await fs.readFile(RESUME_PATH, 'utf-8');
