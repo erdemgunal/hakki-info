@@ -2,7 +2,6 @@
 
 import { Button } from '@/components/ui/button';
 import { renderTechStackBadges, renderBadges } from '@/lib/badge-utils';
-import { generateSlug } from '@/lib/slug-utils';
 import Image from 'next/image';
 import Link from 'next/link';
 import ExternalLinkIcon from '@/components/icon/ExternalLinkIcon';
@@ -18,7 +17,6 @@ export default function Projects() {
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
-        // eslint-disable-next-line react-hooks/set-state-in-effect
         setMounted(true);
     }, []);
 
@@ -39,14 +37,9 @@ export default function Projects() {
                     <h2 className="text-2xl sm:text-4xl font-bold text-foreground mb-3 sm:mb-4">{projects.title}</h2>
                 </div>
                 <div className="grid gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3">
-                    {projects.items.map((project, index) => {
-                        const projectSlug = generateSlug(project.title);
-
-                        return (
-                            <div
-                                key={index}
-                            >
-                                <Link href={`/projects/${projectSlug}`}>
+                    {projects.items.map((project, index) => (
+                            <div key={index}>
+                                <Link href={`/projects/${project.slug}`}>
                                     <div className="bg-surface rounded-lg border border-border overflow-hidden hover:border-foreground/30 cursor-pointer hover:shadow-lg group flex flex-col h-full transition-all duration-200">
                                         <div className="h-40 bg-background relative overflow-hidden">
                                             <Image
@@ -92,8 +85,7 @@ export default function Projects() {
                                     </div>
                                 </Link>
                             </div>
-                        );
-                    })}
+                        ))}
                 </div>
 
                 <div className="text-center mt-8 sm:mt-12">
