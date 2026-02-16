@@ -37,7 +37,7 @@ export default function Header() {
     }, []);
 
     useEffect(() => {
-        setMobileMenuOpen(false);
+        queueMicrotask(() => setMobileMenuOpen(false));
     }, [pathname]);
 
     return (

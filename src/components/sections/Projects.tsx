@@ -6,19 +6,15 @@ import Image from 'next/image';
 import Link from 'next/link';
 import ExternalLinkIcon from '@/components/icon/ExternalLinkIcon';
 import { useTheme } from 'next-themes';
-import { useEffect, useState } from 'react';
 import Section from './Section';
 import { useResumeData } from '@/contexts/ResumeDataContext';
+import { useIsMounted } from '@/hooks/useIsMounted';
 
 export default function Projects() {
     const resumeData = useResumeData();
     const { projects, hero } = resumeData;
     const { resolvedTheme } = useTheme();
-    const [mounted, setMounted] = useState(false);
-
-    useEffect(() => {
-        setMounted(true);
-    }, []);
+    const mounted = useIsMounted();
 
     const getPlaceholderImage = () => {
         if (!mounted) {

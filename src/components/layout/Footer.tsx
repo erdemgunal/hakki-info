@@ -9,6 +9,7 @@ import { renderSocialLinks } from '@/lib/social-links';
 import { getCurrentYear } from '@/lib/date-utils';
 import { transformSocialLinks } from '@/lib/icon-mapper';
 import { useResumeData } from '@/contexts/ResumeDataContext';
+import { useIsMounted } from '@/hooks/useIsMounted';
 
 export default function Footer() {
     const resumeData = useResumeData();
@@ -16,12 +17,8 @@ export default function Footer() {
     const socialLinks = transformSocialLinks(hero.contact?.social || []);
     const currentYear = getCurrentYear();
     const { resolvedTheme } = useTheme();
-    const [mounted, setMounted] = useState(false);
+    const mounted = useIsMounted();
     const [istanbulTime, setIstanbulTime] = useState('');
-
-    useEffect(() => {
-        setMounted(true);
-    }, []);
 
     useEffect(() => {
         const updateTime = () => {
@@ -50,16 +47,6 @@ export default function Footer() {
             return "/images/footer/light_mode_footer.jpg";
         }
         return "/images/footer/dark_mode_footer.jpg";
-    };
-
-    const getGlowShadow = () => {
-        if (!mounted) {
-            return '0 0 20px rgba(187, 134, 252, 0.6), 0 0 40px rgba(187, 134, 252, 0.4), 0 0 60px rgba(187, 134, 252, 0.2)';
-        }
-        if (resolvedTheme === 'light') {
-            return '0 0 20px rgba(98, 0, 238, 0.6), 0 0 40px rgba(98, 0, 238, 0.4), 0 0 60px rgba(98, 0, 238, 0.2)';
-        }
-        return '0 0 20px rgba(187, 134, 252, 0.6), 0 0 40px rgba(187, 134, 252, 0.4), 0 0 60px rgba(187, 134, 252, 0.2)';
     };
 
     return (

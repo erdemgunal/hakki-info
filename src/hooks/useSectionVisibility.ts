@@ -42,7 +42,7 @@ export function useSectionVisibility(sectionIds: readonly string[], defaultId = 
 
         elements.forEach((el) => observer.observe(el));
         return () => observer.disconnect();
-    }, [sectionIds.join(',')]);
+    }, [sectionIds]);
 
     return activeId;
 }

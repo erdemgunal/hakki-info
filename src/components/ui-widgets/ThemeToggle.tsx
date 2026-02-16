@@ -4,8 +4,8 @@ import { useTheme } from 'next-themes';
 import SunIcon from '@/components/icon/SunIcon';
 import MoonIcon from '@/components/icon/MoonIcon';
 import MonitorIcon from '@/components/icon/MonitorIcon';
-import { useEffect, useState } from 'react';
 import { THEMES } from '@/lib/constants';
+import { useIsMounted } from '@/hooks/useIsMounted';
 
 const themes = THEMES.map(theme => ({
     ...theme,
@@ -14,11 +14,7 @@ const themes = THEMES.map(theme => ({
 
 export default function ThemeToggle() {
     const { theme, setTheme } = useTheme();
-    const [mounted, setMounted] = useState(false);
-
-    useEffect(() => {
-        setMounted(true);
-    }, []);
+    const mounted = useIsMounted();
 
     if (!mounted) {
         return (
