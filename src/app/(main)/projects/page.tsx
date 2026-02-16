@@ -72,7 +72,7 @@ export default async function ProjectsPage() {
                                             </div>
                                         </div>
 
-                                        <div className="text-sm text-accent font-medium text-center mt-auto pt-4 border-t border-border/50 group-hover:text-foreground transition-colors duration-200">
+                                        <div className="text-sm text-accent font-medium text-center mt-auto pt-4 border-t border-border group-hover:text-foreground transition-colors duration-200">
                                             View Project Details
                                         </div>
                                     </div>

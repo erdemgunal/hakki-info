@@ -1,0 +1,17 @@
+{
+  "projects": {
+    "title": "Projects – Selected Work",
+    "description": "Explore selected projects by Hakkı Erdem, including automation, security, and full‑stack development work.",
+    "url": "/projects"
+  },
+  "blog": {
+    "title": "Blog – Notes & Deep Dives",
+    "description": "Short notes and deep dives on development, automation, and things I am learning.",
+    "url": "/blog"
+  },
+  "contact": {
+    "title": "Contact – Work with Hakkı",
+    "description": "Get in touch with Hakkı Erdem for collaboration, consulting, or new opportunities.",
+    "url": "/contact"
+  }
+}

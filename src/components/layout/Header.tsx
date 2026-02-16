@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useState, useCallback, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
+import { Button } from '@/components/ui/button';
 
 const SECTIONS = [
     { id: 'hero', label: 'Home' },
@@ -72,6 +73,23 @@ export default function Header() {
                         ))}
                     </div>
 
+                    {/* Desktop Resume button */}
+                    <div className="hidden lg:flex items-center gap-2">
+                        <Link
+                            href="/hakki_erdem_cv.pdf"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <Button
+                                variant="destructive"
+                                size="sm"
+                                className="rounded-lg"
+                            >
+                                Resume
+                            </Button>
+                        </Link>
+                    </div>
+
                     <button
                         type="button"
                         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -92,7 +110,7 @@ export default function Header() {
                 </nav>
 
                 {mobileMenuOpen && (
-                    <div className="lg:hidden mt-3 pt-3 border-t border-border/50">
+                    <div className="lg:hidden mt-3 pt-3 border-t border-border">
                         <div className="mb-3">
                             <ul className="flex flex-col gap-0.5">
                                 {PAGE_LINKS.map((link) => (
@@ -109,12 +127,24 @@ export default function Header() {
                                         </Link>
                                     </li>
                                 ))}
+
+                                {/* Mobile Resume button inside menu */}
+                                <li className="mt-1">
+                                    <Link
+                                        href="/hakki_erdem_cv.pdf"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="block w-full rounded-lg px-3 py-2.5 text-center text-sm font-medium bg-destructive text-white hover:bg-destructive/90 transition-colors"
+                                    >
+                                        Resume
+                                    </Link>
+                                </li>
                             </ul>
                         </div>
 
                         {isHomePage && (
                             <>
-                                <div className="border-t border-border/50 pt-3">
+                                <div className="border-t border-border pt-3">
                                     <p className="px-3 mb-1.5 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                                         Sections
                                     </p>

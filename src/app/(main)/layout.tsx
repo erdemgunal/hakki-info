@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Crimson_Text, Oxygen, JetBrains_Mono } from "next/font/google";
 import "../globals.css";
 import { ThemeProvider } from "@/lib/ThemeProvider";
@@ -7,6 +8,7 @@ import GoogleAnalytics from "@/components/GoogleAnalytics";
 import { Header, Footer } from "@/components/layout";
 import { fetchResumeData } from '@/lib/fetch-resume-data';
 import { ResumeDataProvider } from '@/contexts/ResumeDataContext';
+import seo from '@/config/seo.json';
 
 const headingFont = Crimson_Text({
     variable: "--font-heading",
@@ -25,6 +27,36 @@ const monoFont = JetBrains_Mono({
     subsets: ["latin"],
     weight: ["400", "500", "600", "700"],
 });
+
+export const metadata: Metadata = {
+    metadataBase: new URL(seo.url),
+    title: {
+        default: seo.title,
+        template: `%s | ${seo.siteName}`,
+    },
+    description: seo.description,
+    openGraph: {
+        title: seo.title,
+        description: seo.description,
+        url: seo.url,
+        siteName: seo.siteName,
+        images: [
+            {
+                url: seo.image,
+                width: 1200,
+                height: 630,
+                alt: seo.title,
+            },
+        ],
+        type: "website",
+    },
+    twitter: {
+        card: seo.twitterCard as "summary_large_image",
+        title: seo.twitterTitle,
+        description: seo.twitterDescription,
+        images: [seo.image],
+    },
+};
 
 export default async function RootLayout({
     children,

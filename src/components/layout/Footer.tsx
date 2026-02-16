@@ -13,7 +13,7 @@ import { useIsMounted } from '@/hooks/useIsMounted';
 
 export default function Footer() {
     const resumeData = useResumeData();
-    const { hero, footer } = resumeData;
+    const { hero } = resumeData;
     const socialLinks = transformSocialLinks(hero.contact?.social || []);
     const currentYear = getCurrentYear();
     const { resolvedTheme } = useTheme();
@@ -80,7 +80,7 @@ export default function Footer() {
                 </div>
 
                 {/* Copyright and Terms - Bottom */}
-                <div className="mt-6 sm:mt-8 pt-4 border-t border-border/50 w-full px-4 sm:px-6 md:px-8 lg:px-16">
+                <div className="mt-6 sm:mt-8 pt-4 border-t border-border w-full px-4 sm:px-6 md:px-8 lg:px-16">
                     <div className="flex flex-col sm:flex-row items-center sm:items-start gap-2 sm:gap-4 w-full">
                         <div className="text-secondary text-xs sm:text-sm text-center sm:text-left flex items-center gap-3 sm:gap-4 flex-wrap justify-center sm:justify-start">
                             <span>© {currentYear}, All rights reserved</span>

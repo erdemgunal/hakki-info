@@ -28,7 +28,7 @@ export default function StructuredData() {
                 ],
                 "knowsAbout": [
                     "React", "Next.js", "JavaScript", "Python", "Node.js",
-                    "Full Stack Development", "Web Development", "Software Engineering"
+                    "Full Stack Development", "Web Development", "Software Development"
                 ]
             },
             {
