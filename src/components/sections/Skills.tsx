@@ -13,7 +13,7 @@ export default function Skills() {
         <Section id="skills">
             <div className="space-y-6 sm:space-y-8">
                 <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground">
-                    {skills.title}
+                    Skills
                 </h2>
                 
                 {/* Technical Skills Grid */}

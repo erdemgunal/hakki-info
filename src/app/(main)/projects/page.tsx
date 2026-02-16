@@ -19,8 +19,8 @@ export default async function ProjectsPage() {
             <main className="min-h-screen bg-background">
                 <div className="mx-auto max-w-5xl px-4 sm:px-6 md:px-8 lg:px-16 pt-24 sm:pt-24 md:pt-28 pb-4 sm:pb-6 md:pb-8">
                     <div className="text-left mb-8 sm:mb-12">
-                        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4">
-                            {projects.title}
+                        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-4">
+                            Projects
                         </h1>
                         <p className="text-muted-foreground text-lg">
                             Explore my portfolio of projects showcasing automation, full-stack development, and innovative solutions.
@@ -73,7 +73,7 @@ export default async function ProjectsPage() {
                                         </div>
 
                                         <div className="text-sm text-accent font-medium text-center mt-auto pt-4 border-t border-border/50 group-hover:text-foreground transition-colors duration-200">
-                                            {projects.viewProjectText}
+                                            View Project Details
                                         </div>
                                     </div>
                                 </div>
@@ -89,7 +89,7 @@ export default async function ProjectsPage() {
                                 rel="noopener noreferrer"
                                 className="flex items-center gap-2 mx-auto text-accent"
                             >
-                                {projects.viewMoreButtonText}
+                                View more on GitHub
                                 <ExternalLinkIcon className="w-4 h-4" />
                             </Link>
                         </Button>

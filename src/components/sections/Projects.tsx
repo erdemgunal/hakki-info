@@ -30,7 +30,7 @@ export default function Projects() {
         <>
             <Section id="projects">
                 <div className="text-left mb-6 sm:mb-8 md:mb-12">
-                    <h2 className="text-2xl sm:text-4xl font-bold text-foreground mb-3 sm:mb-4">{projects.title}</h2>
+                    <h2 className="text-2xl sm:text-4xl font-bold text-foreground mb-3 sm:mb-4">Projects</h2>
                 </div>
                 <div className="grid gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3">
                     {projects.items.map((project, index) => (
@@ -75,7 +75,7 @@ export default function Projects() {
                                             </div>
 
                                             <div className="text-xs sm:text-sm text-accent font-medium text-center mt-auto pt-4 border-t border-border/50 group-hover:text-foreground transition-colors duration-200">
-                                                {projects.viewProjectText}
+                                                View Project
                                             </div>
                                         </div>
                                     </div>
@@ -92,7 +92,7 @@ export default function Projects() {
                             rel="noopener noreferrer"
                             className="flex items-center gap-2 mx-auto text-accent"
                         >
-                            {projects.viewMoreButtonText}
+                            View more on GitHub
                             <ExternalLinkIcon className="w-4 h-4" />
                         </Link>
                     </Button>

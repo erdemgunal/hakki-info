@@ -11,7 +11,7 @@ export default function Education() {
         <Section id="education">
             <div className="space-y-4 sm:space-y-6">
                 <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground">
-                    {education.title}
+                    Education
                 </h2>
                 
                 <div className="space-y-3 sm:space-y-4">

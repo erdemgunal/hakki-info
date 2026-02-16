@@ -36,7 +36,7 @@ export default function StructuredData() {
                 "@id": "https://hakki.info/#website",
                 "url": "https://hakki.info",
                 "name": "Hakkı Günal - Full Stack Developer Portfolio",
-                "description": "Professional portfolio of Hakkı Günal, a Full Stack Developer from Istanbul, Turkey",
+                "description": "Professional portfolio of Hakkı Günal, a Full Stack Developer from Istanbul, Türkiye",
                 "publisher": {
                     "@id": "https://hakki.info/#person"
                 },
