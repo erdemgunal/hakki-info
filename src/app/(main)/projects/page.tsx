@@ -17,7 +17,7 @@ export default async function ProjectsPage() {
     return (
         <ResumeDataProvider resumeData={resumeData}>
             <main className="min-h-screen bg-background">
-                <div className="mx-auto max-w-5xl px-4 sm:px-6 md:px-8 lg:px-16 pt-20 sm:pt-24 md:pt-28 pb-4 sm:pb-6 md:pb-8">
+                <div className="mx-auto max-w-5xl px-4 sm:px-6 md:px-8 lg:px-16 pt-24 sm:pt-24 md:pt-28 pb-4 sm:pb-6 md:pb-8">
                     <div className="text-left mb-8 sm:mb-12">
                         <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4">
                             {projects.title}
