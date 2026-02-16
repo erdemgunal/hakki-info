@@ -17,6 +17,7 @@ const PAGE_LINKS = [
     { href: '/', label: 'Home' },
     { href: '/projects', label: 'Projects' },
     { href: '/blog', label: 'Blog' },
+    { href: '/contact', label: 'Contact' },
 ] as const;
 
 export default function Header() {
@@ -37,7 +38,7 @@ export default function Header() {
     }, []);
 
     useEffect(() => {
-        setMobileMenuOpen(false);
+        queueMicrotask(() => setMobileMenuOpen(false));
     }, [pathname]);
 
     return (
@@ -92,11 +93,7 @@ export default function Header() {
 
                 {mobileMenuOpen && (
                     <div className="lg:hidden mt-3 pt-3 border-t border-border/50">
-                        {/* Page Links - Always visible */}
                         <div className="mb-3">
-                            <p className="px-3 mb-1.5 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                                Pages
-                            </p>
                             <ul className="flex flex-col gap-0.5">
                                 {PAGE_LINKS.map((link) => (
                                     <li key={link.href}>

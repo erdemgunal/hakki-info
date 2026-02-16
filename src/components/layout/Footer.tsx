@@ -9,6 +9,7 @@ import { renderSocialLinks } from '@/lib/social-links';
 import { getCurrentYear } from '@/lib/date-utils';
 import { transformSocialLinks } from '@/lib/icon-mapper';
 import { useResumeData } from '@/contexts/ResumeDataContext';
+import { useIsMounted } from '@/hooks/useIsMounted';
 
 export default function Footer() {
     const resumeData = useResumeData();
@@ -16,12 +17,8 @@ export default function Footer() {
     const socialLinks = transformSocialLinks(hero.contact?.social || []);
     const currentYear = getCurrentYear();
     const { resolvedTheme } = useTheme();
-    const [mounted, setMounted] = useState(false);
+    const mounted = useIsMounted();
     const [istanbulTime, setIstanbulTime] = useState('');
-
-    useEffect(() => {
-        setMounted(true);
-    }, []);
 
     useEffect(() => {
         const updateTime = () => {
@@ -52,82 +49,9 @@ export default function Footer() {
         return "/images/footer/dark_mode_footer.jpg";
     };
 
-    const getGlowShadow = () => {
-        if (!mounted) {
-            return '0 0 20px rgba(187, 134, 252, 0.6), 0 0 40px rgba(187, 134, 252, 0.4), 0 0 60px rgba(187, 134, 252, 0.2)';
-        }
-        if (resolvedTheme === 'light') {
-            return '0 0 20px rgba(98, 0, 238, 0.6), 0 0 40px rgba(98, 0, 238, 0.4), 0 0 60px rgba(98, 0, 238, 0.2)';
-        }
-        return '0 0 20px rgba(187, 134, 252, 0.6), 0 0 40px rgba(187, 134, 252, 0.4), 0 0 60px rgba(187, 134, 252, 0.2)';
-    };
-
     return (
         <footer id="footer" className="bg-surface mt-6 sm:mt-8 md:mt-12 lg:mt-16 relative overflow-hidden w-full font-mono">
             <div className="w-full py-6 sm:py-8 md:py-10 lg:py-12 relative z-10">
-                {/* Text Sections - Top */}
-                <div className="max-w-5xl mx-auto px-4 sm:px-6 md:px-8 lg:px-16">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-6 md:gap-8">
-                        {/* Brand Section */}
-                        <div className="space-y-3 sm:space-y-4">
-                            <div className="flex items-center">
-                                <span className="text-lg sm:text-xl font-bold text-foreground">{footer.brand.name}</span>
-                            </div>
-                            <p className="text-secondary text-xs sm:text-sm leading-relaxed">
-                                {footer.brand.description}
-                            </p>
-                        </div>
-
-                        {/* Quick Links Section - Privacy only */}
-                        <div className="space-y-3 sm:space-y-4">
-                            <div className='flex items-center'>
-                                <span className="text-lg sm:text-xl font-bold text-foreground">{footer.quickLinks.title}</span>
-                            </div>
-                            <div className="space-y-1.5 sm:space-y-2">
-                                {footer.quickLinks.links.map((link, index) => (
-                                    <Link
-                                        key={index}
-                                        href={link.href}
-                                        className="block text-secondary hover:text-foreground text-xs sm:text-sm transition-colors duration-200"
-                                    >
-                                        {link.text}
-                                    </Link>
-                                ))}
-                            </div>
-                        </div>
-
-                        {/* Contact Section */}
-                        <div className="space-y-3 sm:space-y-4 sm:col-span-2 lg:col-span-1">
-                            <div className='flex items-center'>
-                                <span className="text-lg sm:text-xl font-bold text-foreground">{footer.contact.title}</span>
-                            </div>
-                            <div className="space-y-1.5 sm:space-y-2">
-                                <div className="flex items-start sm:items-center space-x-2 text-secondary text-xs sm:text-sm">
-                                    <svg className="w-4 h-4 shrink-0 mt-0.5 sm:mt-0" fill="currentColor" viewBox="0 0 20 20">
-                                        <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-                                        <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
-                                    </svg>
-                                    <div className="wrap-break-word">
-                                        <Link
-                                            href={`mailto:${hero.email}`}
-                                            className="hover:text-foreground transition-colors duration-200"
-                                        >
-                                            {hero.email}
-                                        </Link>
-                                    </div>
-                                </div>
-                                <div className="flex items-start sm:items-center space-x-2 text-secondary text-xs sm:text-sm">
-                                    <svg className="w-4 h-4 shrink-0 mt-0.5 sm:mt-0" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
-                                    </svg>
-                                    <div className="wrap-break-word">
-                                        <span>{hero.location}</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
                 {/* Footer Image - Middle */}
                 <div className="mt-6 sm:mt-8 md:mt-10 lg:mt-12 xl:mt-16 w-full flex justify-center relative z-0">

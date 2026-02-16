@@ -9,13 +9,18 @@ interface SectionProps {
     containerClassName?: string;
 }
 
-export default function Section({ id, children, className = '', containerClassName = 'max-w-4xl mx-auto' }: SectionProps) {
+export default function Section({ 
+    id, 
+    children, 
+    className = '', 
+    containerClassName = '' 
+}: SectionProps) {
     return (
         <section
             id={id}
-            className={`py-8 sm:py-12 md:py-16 lg:py-20 scroll-mt-20 ${className}`}
+            className={`scroll-mt-24 ${className}`}
         >
-            <div className={containerClassName}>
+            <div className={containerClassName || 'w-full'}>
                 {children}
             </div>
         </section>

@@ -42,7 +42,7 @@ export default function Hero() {
                             variant="outline"
                             className="text-secondary hover:text-foreground hover:bg-muted/50 transition-all duration-200 rounded-lg"
                         >
-                            {hero.downloadCv}
+                            Download CV
                             <ExternalLinkIcon className="w-4 h-4 ml-2" />
                         </Button>
                     </Link>

@@ -4,8 +4,8 @@ import { useTheme } from 'next-themes';
 import SunIcon from '@/components/icon/SunIcon';
 import MoonIcon from '@/components/icon/MoonIcon';
 import MonitorIcon from '@/components/icon/MonitorIcon';
-import { useEffect, useState } from 'react';
 import { THEMES } from '@/lib/constants';
+import { useIsMounted } from '@/hooks/useIsMounted';
 
 const themes = THEMES.map(theme => ({
     ...theme,
@@ -14,22 +14,18 @@ const themes = THEMES.map(theme => ({
 
 export default function ThemeToggle() {
     const { theme, setTheme } = useTheme();
-    const [mounted, setMounted] = useState(false);
-
-    useEffect(() => {
-        setMounted(true);
-    }, []);
+    const mounted = useIsMounted();
 
     if (!mounted) {
         return (
             <div className="flex items-center">
-                <div className="flex gap-0.5">
+                <div className="flex">
                     {themes.map((themeOption) => {
                         const Icon = themeOption.icon;
                         return (
                             <div
                                 key={themeOption.id}
-                                className="w-7 h-7 rounded-md flex items-center justify-center text-secondary"
+                                className="w-6 h-6 rounded-md flex items-center justify-center text-secondary"
                             >
                                 <Icon className="w-3.5 h-3.5" />
                             </div>
@@ -54,7 +50,7 @@ export default function ThemeToggle() {
                         <button
                             key={themeOption.id}
                             onClick={() => setTheme(themeOption.id)}
-                            className={`relative w-7 h-7 rounded-md flex items-center justify-center transition-all duration-200 ${isActive
+                            className={`relative w-6 h-6 rounded-md flex items-center justify-center transition-all duration-200 ${isActive
                                     ? 'bg-foreground text-background'
                                     : 'text-secondary hover:text-foreground hover:bg-background'
                                 }`}

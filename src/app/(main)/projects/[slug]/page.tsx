@@ -23,13 +23,6 @@ export default async function ProjectPage({
     return (
         <main className="min-h-screen bg-background">
             <div className="mx-auto max-w-5xl px-4 sm:px-6 md:px-8 lg:px-16 pt-20 sm:pt-24 md:pt-28 pb-12 sm:pb-16 md:pb-20">
-                <Link
-                    href="/projects"
-                    className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground mb-6 sm:mb-8 transition-colors"
-                >
-                    <span aria-hidden>←</span>
-                    Back to projects
-                </Link>
 
                 <header className="mb-8 sm:mb-12">
                     <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-3">
