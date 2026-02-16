@@ -89,10 +89,6 @@ export async function GET(
                             {seo.url.replace(/^https?:\/\//, '')} • {project.year}
                         </span>
                     </div>
-                    
-                    <div style={{ width: '80px', height: '80px', borderRadius: '20px', background: 'linear-gradient(135deg, #22c55e, #16a34a)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, color: '#020617', fontSize: '32px' }}>
-                        HE
-                    </div>
                 </div>
             </div>
         ),

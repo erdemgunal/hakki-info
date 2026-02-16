@@ -47,7 +47,7 @@ export default function Hero() {
                     </Link>
                 </div>
 
-                <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 pt-2">
+                <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
                     <SocialLinks socialLinks={socialLinks} />
                 </div>
             </div>

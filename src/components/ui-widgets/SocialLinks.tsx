@@ -25,7 +25,7 @@ export function SocialLinks({ socialLinks, className = "", iconClassName = "w-5 
             <div key={social.name}>
                 <Link
                     href={social.url}
-                    className={`inline-flex items-center justify-center text-secondary hover:text-foreground transition-all duration-200 p-2 rounded-full hover:bg-primary/10 ${className}`}
+                    className={`inline-flex items-center justify-center text-secondary hover:text-foreground transition-all duration-200 p-2 rounded-full hover:bg-primary/10 min-w-[24px] min-h-[24px] ${className}`}
                     aria-label={social.name}
                     target="_blank"
                     rel="noopener noreferrer"

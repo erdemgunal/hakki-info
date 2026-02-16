@@ -85,7 +85,7 @@ export default function Footer() {
                         <div className="text-secondary text-xs sm:text-sm text-center sm:text-left flex items-center gap-3 sm:gap-4 flex-wrap justify-center sm:justify-start">
                             <span>© {currentYear}, All rights reserved</span>
                             <span className="hidden sm:inline text-border">•</span>
-                            <Link href="/privacy" className="hover:text-foreground transition-colors duration-200">
+                            <Link href="/privacy" className="inline-flex min-h-[24px] min-w-[24px] items-center py-1 hover:text-foreground transition-colors duration-200">
                                 Privacy
                             </Link>
                             {istanbulTime && (

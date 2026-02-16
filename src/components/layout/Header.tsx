@@ -48,17 +48,17 @@ export default function Header() {
                 <nav className="relative flex items-center justify-between">
                     <Link
                         href="/"
-                        className="text-foreground font-heading font-bold text-lg sm:text-xl hover:text-accent transition-colors"
+                        className="inline-flex items-center min-h-[24px] min-w-[24px] text-foreground font-heading font-bold text-lg sm:text-xl hover:text-accent transition-colors"
                     >
                         Hakkı Erdem
                     </Link>
 
-                    <div className="hidden lg:flex absolute left-1/2 -translate-x-1/2 items-center gap-1 text-sm">
+                    <div className="hidden lg:flex absolute left-1/2 -translate-x-1/2 items-center gap-2 text-sm">
                         {PAGE_LINKS.map((link, index) => (
-                            <div key={link.href} className="flex items-center gap-1">
+                            <div key={link.href} className="flex items-center gap-2">
                                 <Link
                                     href={link.href}
-                                    className={`px-2 py-1 rounded transition-colors ${
+                                    className={`min-h-[24px] min-w-[24px] px-3 py-2 inline-flex items-center rounded transition-colors ${
                                         pathname === link.href
                                             ? 'text-foreground font-medium'
                                             : 'text-muted-foreground hover:text-foreground'
@@ -93,7 +93,7 @@ export default function Header() {
                     <button
                         type="button"
                         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                        className="lg:hidden p-2 -mr-1 text-foreground hover:text-accent transition-colors rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                        className="lg:hidden min-w-[24px] min-h-[24px] p-2 -mr-1 text-foreground hover:text-accent transition-colors rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
                         aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
                         aria-expanded={mobileMenuOpen}
                     >
@@ -117,7 +117,7 @@ export default function Header() {
                                     <li key={link.href}>
                                         <Link
                                             href={link.href}
-                                            className={`block w-full rounded-lg px-3 py-2.5 text-left text-sm transition-colors ${
+                                            className={`block w-full min-h-[24px] rounded-lg px-3 py-2.5 text-left text-sm transition-colors ${
                                                 pathname === link.href
                                                     ? 'text-foreground bg-accent/10 font-medium'
                                                     : 'text-muted-foreground hover:bg-muted hover:text-foreground'
@@ -130,12 +130,12 @@ export default function Header() {
 
                                 {/* Mobile Resume button inside menu */}
                                 <li className="mt-1">
-                                    <Link
-                                        href="/hakki_erdem_cv.pdf"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="block w-full rounded-lg px-3 py-2.5 text-center text-sm font-medium bg-destructive text-white hover:bg-destructive/90 transition-colors"
-                                    >
+                                        <Link
+                                            href="/hakki_erdem_cv.pdf"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="block w-full min-h-[24px] rounded-lg px-3 py-2.5 text-center text-sm font-medium bg-destructive text-white hover:bg-destructive/90 transition-colors"
+                                        >
                                         Resume
                                     </Link>
                                 </li>
@@ -154,7 +154,7 @@ export default function Header() {
                                                 <button
                                                     type="button"
                                                     onClick={() => scrollToSection(id)}
-                                                    className="w-full rounded-lg px-3 py-2.5 text-left text-sm text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
+                                                    className="w-full min-h-[24px] rounded-lg px-3 py-2.5 text-left text-sm text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
                                                 >
                                                     {label}
                                                 </button>

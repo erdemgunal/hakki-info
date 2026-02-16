@@ -38,7 +38,7 @@ export default function ThemeToggle() {
 
     return (
         <div className="flex items-center">
-            <div className="flex gap-0.5">
+            <div className="flex gap-2">
                 {themes.map((themeOption) => {
                     const Icon = themeOption.icon;
                     const isActive =
@@ -50,7 +50,7 @@ export default function ThemeToggle() {
                         <button
                             key={themeOption.id}
                             onClick={() => setTheme(themeOption.id)}
-                            className={`relative w-6 h-6 rounded-md flex items-center justify-center transition-all duration-200 ${isActive
+                            className={`relative min-w-[24px] min-h-[24px] w-6 h-6 rounded-md flex items-center justify-center transition-all duration-200 ${isActive
                                     ? 'bg-foreground text-background'
                                     : 'text-secondary hover:text-foreground hover:bg-background'
                                 }`}
