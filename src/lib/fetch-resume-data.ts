@@ -103,6 +103,9 @@ export interface ProjectData {
         live: string | null;
         github: string;
     };
+    seoTitle?: string;
+    seoDescription?: string;
+    seoImage?: string;
 }
 
 const PROJECTS_DIR = path.join(process.cwd(), 'content', 'data', 'projects');

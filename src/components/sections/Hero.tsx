@@ -3,7 +3,6 @@
 import Link from 'next/link';
 import GlobeIcon from '@/components/icon/GlobeIcon';
 import ExternalLinkIcon from '@/components/icon/ExternalLinkIcon';
-import ChevronDownIcon from '@/components/icon/ChevronDownIcon';
 import { Button } from '@/components/ui/button';
 import { SocialLinks } from '@/components/ui-widgets';
 import { transformSocialLinks } from '@/lib/icon-mapper';
@@ -51,11 +50,6 @@ export default function Hero() {
                 <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 pt-2">
                     <SocialLinks socialLinks={socialLinks} />
                 </div>
-            </div>
-
-            {/* Scroll indicator */}
-            <div className="absolute bottom-6 sm:bottom-8 inset-x-0 flex justify-center animate-bounce">
-                <ChevronDownIcon className="w-5 h-5 sm:w-6 sm:h-6 text-secondary" />
             </div>
         </section>
     );

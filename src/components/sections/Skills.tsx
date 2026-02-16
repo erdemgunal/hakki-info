@@ -21,7 +21,7 @@ export default function Skills() {
                     {technical.map((category, index) => (
                         <div
                             key={index}
-                            className="bg-surface/50 p-4 sm:p-5 md:p-6 rounded-xl border border-border/50 hover:border-border transition-colors"
+                            className="bg-surface/50 p-4 sm:p-5 md:p-6 rounded-xl border border-border hover:border-border transition-colors"
                         >
                             <h3 className="text-base sm:text-lg md:text-xl font-semibold text-foreground mb-3 sm:mb-4">
                                 {category.name}
@@ -38,7 +38,7 @@ export default function Skills() {
                 </div>
 
                 {/* Soft Skills */}
-                <div className="bg-surface/50 p-4 sm:p-5 md:p-6 rounded-xl border border-border/50 hover:border-border transition-colors">
+                <div className="bg-surface/50 p-4 sm:p-5 md:p-6 rounded-xl border border-border hover:border-border transition-colors">
                     <h3 className="text-base sm:text-lg md:text-xl font-semibold text-foreground mb-3 sm:mb-4">
                         Soft Skills
                     </h3>

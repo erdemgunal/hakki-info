@@ -74,7 +74,7 @@ export default function Projects() {
                                                 </div>
                                             </div>
 
-                                            <div className="text-xs sm:text-sm text-accent font-medium text-center mt-auto pt-4 border-t border-border/50 group-hover:text-foreground transition-colors duration-200">
+                                            <div className="text-xs sm:text-sm text-accent font-medium text-center mt-auto pt-4 border-t border-border group-hover:text-foreground transition-colors duration-200">
                                                 View Project
                                             </div>
                                         </div>

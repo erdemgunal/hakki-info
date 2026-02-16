@@ -18,7 +18,7 @@ export default function Education() {
                     {education.items.map((edu, index) => (
                         <div
                             key={index}
-                            className="bg-surface/50 p-4 sm:p-5 md:p-6 rounded-xl border border-border/50 hover:border-border transition-colors"
+                            className="bg-surface/50 p-4 sm:p-5 md:p-6 rounded-xl border border-border hover:border-border transition-colors"
                         >
                             <div className="flex items-start gap-3 sm:gap-4">
                                 <div className="flex-1 min-w-0">

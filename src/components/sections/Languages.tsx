@@ -19,7 +19,7 @@ export default function Languages() {
                     {languages.items.map((language, index) => (
                         <div
                             key={index}
-                            className="bg-surface/50 p-4 sm:p-5 rounded-xl border border-border/50 hover:border-border transition-colors"
+                            className="bg-surface/50 p-4 sm:p-5 rounded-xl border border-border hover:border-border transition-colors"
                         >
                             <div className="flex items-center justify-between gap-3">
                                 <h3 className="text-base sm:text-lg md:text-xl font-semibold text-foreground">

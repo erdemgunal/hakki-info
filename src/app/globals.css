@@ -1,91 +1,101 @@
 @import "tailwindcss";
 
 @layer base {
-    :root {
-        /* Modern Light Theme 
-           Using a soft slate-white for better eye comfort 
-        */
-        --background: #f8fafc; 
-        --foreground: #0f172a;
-        --secondary: #64748b;
-        --accent: #4f46e5; /* Professional Indigo */
-        --surface: #ffffff;
-        --border: #e2e8f0;
-
-        /* Shadcn compatibility */
-        --card: var(--surface);
-        --card-foreground: var(--foreground);
-        --primary: var(--accent);
-        --primary-foreground: #ffffff;
-        --secondary-foreground: var(--foreground);
-        --muted: #f1f5f9;
-        --muted-foreground: #64748b;
-        --accent-foreground: #ffffff;
-        --destructive: #ef4444;
-        --input: #f1f5f9;
-        --ring: var(--accent);
-    }
-
-    .dark {
-        /* Deep Dark Theme 
-           Updated to match the refined Indigo vibe 
-        */
-        --background: #0a0a0a;
-        --foreground: #f8fafc;
-        --secondary: #94a3b8;
-        --accent: #818cf8; /* Softer Indigo for Dark Mode */
-        --surface: #161616;
-        --border: #262626;
-
-        /* Shadcn compatibility */
-        --card: var(--surface);
-        --card-foreground: var(--foreground);
-        --primary: var(--accent);
-        --primary-foreground: #0f172a;
-        --secondary-foreground: var(--foreground);
-        --muted: #1e293b;
-        --muted-foreground: #94a3b8;
-        --accent-foreground: #ffffff;
-        --destructive: #f87171;
-        --input: #1e293b;
-        --ring: var(--accent);
-    }
-
-    html,
-    body {
-        font-family: var(--font-body);
-        background-color: var(--background);
-        color: var(--foreground);
-        transition: background-color 0.3s ease, color 0.3s ease;
-        scroll-behavior: smooth;
-    }
-
-    h1, h2, h3, h4, h5, h6 {
-        font-family: var(--font-heading);
-        color: var(--foreground);
-        font-weight: 700;
-        letter-spacing: -0.02em;
-    }
+  :root {
+    /* Modern Light Theme
+       Soft slate base with professional indigo accent – eye-friendly and clean for portfolios
+    */
+    --background: #f8fafc;
+    --foreground: #0f172a;
+    --secondary: #64748b;
+    --accent: #4f46e5; /* Indigo-600: Professional, techy, and versatile */
+    --surface: #ffffff;
+    --border: #e2e8f0;
+    
+    /* Full Shadcn compatibility (added popover, destructive-foreground, etc. for seamless UI components) */
+    --card: var(--surface);
+    --card-foreground: var(--foreground);
+    --popover: var(--surface);
+    --popover-foreground: var(--foreground);
+    --primary: var(--accent);
+    --primary-foreground: #ffffff;
+    --secondary-foreground: var(--foreground);
+    --muted: #f1f5f9;
+    --muted-foreground: #64748b;
+    --accent-foreground: #ffffff;
+    --destructive: #e11d48; /* Rose-600: Warmer red that harmonizes beautifully with indigo (cool + warm contrast) */
+    --destructive-foreground: #ffffff;
+    --input: #f1f5f9;
+    --ring: var(--accent);
+  }
+  
+  .dark {
+    /* Deep Dark Theme
+       Rich black with softer indigo – matches your current screenshot vibe (sleek, modern, high-contrast)
+    */
+    --background: #0a0a0a;
+    --foreground: #f8fafc;
+    --secondary: #94a3b8;
+    --accent: #818cf8; /* Indigo-400: Softer glow in dark for that premium dev feel */
+    --surface: #161616;
+    --border: #262626;
+    
+    /* Full Shadcn compatibility */
+    --card: var(--surface);
+    --card-foreground: var(--foreground);
+    --popover: var(--surface);
+    --popover-foreground: var(--foreground);
+    --primary: var(--accent);
+    --primary-foreground: #0f172a;
+    --secondary-foreground: var(--foreground);
+    --muted: #1e293b;
+    --muted-foreground: #94a3b8;
+    --accent-foreground: #ffffff;
+    --destructive: #f43f5e; /* Rose-500: Vibrant yet balanced – pops in dark mode, complements indigo's depth */
+    --destructive-foreground: #ffffff;
+    --input: #1e293b;
+    --ring: var(--accent);
+  }
+  
+  html,
+  body {
+    font-family: var(--font-body);
+    background-color: var(--background);
+    color: var(--foreground);
+    /* Subtle theme transition – feels natural, not animated */
+    transition: background-color 0.3s ease, color 0.3s ease;
+    scroll-behavior: smooth;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    color: var(--foreground);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
 }
 
 @theme {
-    --color-background: var(--background);
-    --color-foreground: var(--foreground);
-    --color-secondary: var(--secondary);
-    --color-accent: var(--accent);
-    --color-surface: var(--surface);
-    --color-border: var(--border);
-
-    /* Shadcn compatibility mapping */
-    --color-card: var(--card);
-    --color-card-foreground: var(--card-foreground);
-    --color-primary: var(--primary);
-    --color-primary-foreground: var(--primary-foreground);
-    --color-secondary-foreground: var(--secondary-foreground);
-    --color-muted: var(--muted);
-    --color-muted-foreground: var(--muted-foreground);
-    --color-accent-foreground: var(--accent-foreground);
-    --color-destructive: var(--destructive);
-    --color-input: var(--input);
-    --color-ring: var(--ring);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+  --color-surface: var(--surface);
+  --color-border: var(--border);
+  
+  /* Shadcn full mapping */
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
 }

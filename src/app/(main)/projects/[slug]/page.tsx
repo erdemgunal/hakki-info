@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { getProjectSlugs, fetchProjectBySlug } from '@/lib/fetch-resume-data';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
@@ -5,17 +6,61 @@ import Image from 'next/image';
 import { renderBadges, renderTechStackBadges } from '@/lib/badge-utils';
 import { Button } from '@/components/ui/button';
 import ExternalLinkIcon from '@/components/icon/ExternalLinkIcon';
+import seo from '@/config/seo.json';
 
 export async function generateStaticParams() {
     const slugs = await getProjectSlugs();
     return slugs.map((slug) => ({ slug }));
 }
 
-export default async function ProjectPage({
-    params,
-}: {
+interface ProjectPageParams {
     params: Promise<{ slug: string }>;
-}) {
+}
+
+export async function generateMetadata(
+    { params }: ProjectPageParams
+): Promise<Metadata> {
+    const { slug } = await params;
+    const project = await fetchProjectBySlug(slug);
+
+    if (!project) {
+        return {};
+    }
+
+    const title = project.seoTitle ?? project.title;
+    const description = project.seoDescription ?? project.description;
+    const dynamicOgUrl = new URL(`/api/og/${slug}`, seo.url).toString();
+    const image = project.seoImage ?? project.images[0] ?? dynamicOgUrl;
+    const canonicalUrl = new URL(`/projects/${slug}`, seo.url).toString();
+
+    return {
+        title,
+        description,
+        openGraph: {
+            title,
+            description,
+            url: canonicalUrl,
+            siteName: seo.siteName,
+            images: [
+                {
+                    url: image,
+                    width: 1200,
+                    height: 630,
+                    alt: title,
+                },
+            ],
+            type: 'article',
+        },
+        twitter: {
+            card: seo.twitterCard as 'summary_large_image',
+            title,
+            description,
+            images: [image],
+        },
+    };
+}
+
+export default async function ProjectPage({ params }: ProjectPageParams) {
     const { slug } = await params;
     const project = await fetchProjectBySlug(slug);
     if (!project) notFound();
