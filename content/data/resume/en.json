@@ -3,7 +3,11 @@
         "name": "<Hakkı />",
         "title": "Automation-Focused Full Stack Developer",
         "email": "me@hakki.info",
+<<<<<<< HEAD
         "location": "Istanbul, Türkiye",
+=======
+        "location": "Istanbul, Turkey",
+>>>>>>> 9efccec0dc9f0771ad7650bb3fd45f472068a336
         "profileImage": "https://avatars.githubusercontent.com/u/65365648?v=4",
         "downloadCv": "Resume",
         "summary": "As a full-stack developer, I develop scalable and user-friendly software solutions by automating complex processes with my analytical thinking skills.",
@@ -359,4 +363,8 @@
             }
         ]
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 9efccec0dc9f0771ad7650bb3fd45f472068a336
