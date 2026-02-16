@@ -30,7 +30,7 @@ export async function generateMetadata(
     const title = project.seoTitle ?? project.title;
     const description = project.seoDescription ?? project.description;
     const dynamicOgUrl = new URL(`/api/og/${slug}`, seo.url).toString();
-    const image = project.seoImage ?? project.images[0] ?? dynamicOgUrl;
+    const ogImage = project.seoImage ?? dynamicOgUrl;
     const canonicalUrl = new URL(`/projects/${slug}`, seo.url).toString();
 
     return {
@@ -43,7 +43,7 @@ export async function generateMetadata(
             siteName: seo.siteName,
             images: [
                 {
-                    url: image,
+                    url: ogImage,
                     width: 1200,
                     height: 630,
                     alt: title,
@@ -55,7 +55,7 @@ export async function generateMetadata(
             card: seo.twitterCard as 'summary_large_image',
             title,
             description,
-            images: [image],
+            images: [ogImage],
         },
     };
 }
