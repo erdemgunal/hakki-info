@@ -15,7 +15,6 @@ export async function GET(
 
     if (!project) return new Response('Not found', { status: 404 });
 
-    // Boundary Logic: Truncate to prevent design break
     const clampText = (text: string, max: number) => 
         text.length > max ? `${text.substring(0, max)}...` : text;
 
@@ -30,19 +29,18 @@ export async function GET(
                     height: '630px',
                     display: 'flex',
                     flexDirection: 'column',
-                    justifyContent: 'space-between', // Keeps Header and Footer at edges
+                    justifyContent: 'space-between',
                     padding: '80px',
                     fontFamily: 'system-ui, sans-serif',
                     background: '#020617',
                     color: '#f8fafc',
                     position: 'relative',
-                    overflow: 'hidden', // Extra safety
+                    overflow: 'hidden',
                 }}
             >
-                {/* Background Accents */}
                 <div style={{ position: 'absolute', top: -100, right: -100, width: 600, height: 600, background: 'radial-gradient(circle, rgba(34,197,94,0.12) 0%, transparent 70%)', borderRadius: '100%' }} />
                 
-                {/* Header */}
+                {/* header */}
                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                     <div style={{ width: '12px', height: '12px', borderRadius: '50%', backgroundColor: '#22c55e', boxShadow: '0 0 10px #22c55e' }} />
                     <span style={{ fontSize: '24px', fontWeight: 500, color: '#94a3b8' }}>
@@ -50,10 +48,10 @@ export async function GET(
                     </span>
                 </div>
 
-                {/* Main Content Area - Fixed Height to prevent footer push */}
+                {/* main content area */}
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', flexGrow: 1, justifyContent: 'center' }}>
                     <h1 style={{
-                        fontSize: title.length > 40 ? '72px' : '84px', // Adaptive font size
+                        fontSize: title.length > 40 ? '72px' : '84px',
                         lineHeight: 1.1,
                         fontWeight: 800,
                         letterSpacing: '-0.04em',
@@ -75,7 +73,7 @@ export async function GET(
                     </p>
                 </div>
 
-                {/* Footer - Guaranteed Position */}
+                {/* footer */}
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', paddingTop: '20px' }}>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                         <div style={{ display: 'flex', gap: '10px' }}>
