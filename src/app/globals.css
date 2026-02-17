@@ -99,3 +99,36 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
 }
+
+/* rehype-pretty-code / KaTeX refinements for blog prose */
+@layer base {
+    /* rehype-pretty-code injects inline colour tokens — make sure they show */
+    [data-rehype-pretty-code-figure] pre {
+        @apply overflow-x-auto rounded-xl border border-border bg-[#0d1117] p-5 text-sm leading-relaxed shadow-md;
+    }
+
+    /* File-name / language label added by rehype-pretty-code */
+    [data-rehype-pretty-code-title] {
+        @apply rounded-t-xl border border-b-0 border-border bg-muted px-4 py-2 font-mono text-xs text-muted-foreground;
+    }
+
+    /* Highlighted lines (add {2,4} syntax in fences) — border only, no fill */
+    [data-highlighted-line] {
+        @apply -mx-5 border-l-2 border-accent px-5;
+    }
+
+    /* Highlighted words (add /word/ syntax) */
+    [data-highlighted-chars] {
+        @apply rounded bg-accent/20 px-1;
+    }
+
+    /* KaTeX display equations — horizontal scroll on small screens */
+    .katex-display {
+        @apply my-8 overflow-x-auto overflow-y-hidden py-1;
+    }
+
+    /* Make sure KaTeX text inherits the theme foreground colour */
+    .katex {
+        color: var(--foreground);
+    }
+}
