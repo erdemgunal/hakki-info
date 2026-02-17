@@ -86,25 +86,9 @@ export default async function BlogPostPage({ params }: BlogPostPageParams) {
                                 </time>
                                 <span className="opacity-40">•</span>
                                 <span>{post.readTimeMinutes} min read</span>
-                                {post.tags.length > 0 && (
-                                    <>
-                                        <span className="opacity-40">•</span>
-                                        <div className="flex flex-wrap gap-2">
-                                            {post.tags.map((tag) => (
-                                                <span
-                                                    key={tag}
-                                                    className="px-2.5 py-0.5 rounded-full bg-muted text-muted-foreground text-xs font-medium tracking-wide border border-border/60"
-                                                >
-                                                    {tag}
-                                                </span>
-                                            ))}
-                                        </div>
-                                    </>
-                                )}
                             </div>
                         </header>
 
-                        {/* Prose ayarlarını optimize ettik: Başlıklar serif, metinler okunaklı sans */}
                         <div className="prose prose-lg prose-neutral dark:prose-invert max-w-none 
                             prose-headings:font-serif prose-headings:font-semibold prose-headings:tracking-tight
                             prose-p:leading-relaxed prose-p:text-foreground/90
@@ -118,6 +102,19 @@ export default async function BlogPostPage({ params }: BlogPostPageParams) {
                                 {normalizeMathDelimiters(post.content)}
                             </ReactMarkdown>
                         </div>
+
+                        {post.tags.length > 0 && (
+                            <div className="flex flex-wrap gap-2 mt-8 justify-start">
+                                {post.tags.map((tag) => (
+                                    <span
+                                        key={tag}
+                                        className="px-2.5 py-0.5 rounded-full bg-muted text-muted-foreground text-xs font-medium tracking-wide border border-border/60"
+                                    >
+                                        {tag}
+                                    </span>
+                                ))}
+                            </div>
+                        )}
 
                         <div className="mt-16 lg:hidden border-t pt-8">
                             <PostSidebar title={post.title} shareUrl={shareUrl} />
