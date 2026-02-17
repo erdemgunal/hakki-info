@@ -10,8 +10,11 @@ import { useResumeData } from '@/contexts/ResumeDataContext';
 
 export default function Hero() {
     const resumeData = useResumeData();
-    const { hero } = resumeData;
-    const socialLinks = transformSocialLinks(hero.contact?.social || []);
+    const { hero, social } = resumeData;
+    const heroSocial = (social || []).filter((s) =>
+        ['mail', 'github', 'linkedin'].includes(s.iconKey.toLowerCase())
+    );
+    const socialLinks = transformSocialLinks(heroSocial);
 
     return (
         <section 

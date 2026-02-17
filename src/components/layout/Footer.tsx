@@ -13,8 +13,8 @@ import { useIsMounted } from '@/hooks/useIsMounted';
 
 export default function Footer() {
     const resumeData = useResumeData();
-    const { hero } = resumeData;
-    const socialLinks = transformSocialLinks(hero.contact?.social || []);
+    const { social } = resumeData;
+    const socialLinks = transformSocialLinks(social || []);
     const currentYear = getCurrentYear();
     const { resolvedTheme } = useTheme();
     const mounted = useIsMounted();

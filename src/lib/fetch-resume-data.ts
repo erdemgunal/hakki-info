@@ -13,13 +13,13 @@ export interface ResumeData {
         downloadCv: string;
         contact: {
             phone: string;
-            social: Array<{
-                name: string;
-                url: string;
-                iconKey: string;
-            }>;
         };
     };
+    social?: Array<{
+        name: string;
+        url: string;
+        iconKey: string;
+    }>;
     footer: {
         brand: {
             name: string;
