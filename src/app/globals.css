@@ -2,17 +2,13 @@
 
 @layer base {
   :root {
-    /* Modern Light Theme
-       Soft slate base with professional indigo accent – eye-friendly and clean for portfolios
-    */
     --background: #f8fafc;
     --foreground: #0f172a;
     --secondary: #64748b;
-    --accent: #4f46e5; /* Indigo-600: Professional, techy, and versatile */
+    --accent: #4f46e5;
     --surface: #ffffff;
     --border: #e2e8f0;
-    
-    /* Full Shadcn compatibility (added popover, destructive-foreground, etc. for seamless UI components) */
+
     --card: var(--surface);
     --card-foreground: var(--foreground);
     --popover: var(--surface);
@@ -23,24 +19,20 @@
     --muted: #f1f5f9;
     --muted-foreground: #64748b;
     --accent-foreground: #ffffff;
-    --destructive: #e11d48; /* Rose-600: Warmer red that harmonizes beautifully with indigo (cool + warm contrast) */
+    --destructive: #e11d48;
     --destructive-foreground: #ffffff;
     --input: #f1f5f9;
     --ring: var(--accent);
   }
-  
+
   .dark {
-    /* Deep Dark Theme
-       Rich black with softer indigo – matches your current screenshot vibe (sleek, modern, high-contrast)
-    */
     --background: #0a0a0a;
     --foreground: #f8fafc;
     --secondary: #94a3b8;
-    --accent: #818cf8; /* Indigo-400: Softer glow in dark for that premium dev feel */
+    --accent: #818cf8;
     --surface: #161616;
     --border: #262626;
-    
-    /* Full Shadcn compatibility */
+
     --card: var(--surface);
     --card-foreground: var(--foreground);
     --popover: var(--surface);
@@ -51,22 +43,20 @@
     --muted: #1e293b;
     --muted-foreground: #94a3b8;
     --accent-foreground: #ffffff;
-    --destructive: #f43f5e; /* Rose-500: Vibrant yet balanced – pops in dark mode, complements indigo's depth */
+    --destructive: #f43f5e;
     --destructive-foreground: #ffffff;
     --input: #1e293b;
     --ring: var(--accent);
   }
-  
-  html,
-  body {
+
+  html, body {
     font-family: var(--font-body);
     background-color: var(--background);
     color: var(--foreground);
-    /* Subtle theme transition – feels natural, not animated */
     transition: background-color 0.3s ease, color 0.3s ease;
     scroll-behavior: smooth;
   }
-  
+
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
     color: var(--foreground);
@@ -82,8 +72,6 @@
   --color-accent: var(--accent);
   --color-surface: var(--surface);
   --color-border: var(--border);
-  
-  /* Shadcn full mapping */
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
   --color-popover: var(--popover);
@@ -100,35 +88,39 @@
   --color-ring: var(--ring);
 }
 
-/* rehype-pretty-code / KaTeX refinements for blog prose */
+/* ─── rehype-pretty-code ──────────────────────────────────────────────────── */
+
 @layer base {
-    /* rehype-pretty-code injects inline colour tokens — make sure they show */
-    [data-rehype-pretty-code-figure] pre {
-        @apply overflow-x-auto rounded-xl border border-border bg-[#0d1117] p-5 text-sm leading-relaxed shadow-md;
-    }
+  [data-rehype-pretty-code-figure] pre {
+    @apply overflow-x-auto rounded-xl bg-[#0d1117] p-5 text-sm leading-relaxed;
+  }
 
-    /* File-name / language label added by rehype-pretty-code */
-    [data-rehype-pretty-code-title] {
-        @apply rounded-t-xl border border-b-0 border-border bg-muted px-4 py-2 font-mono text-xs text-muted-foreground;
-    }
+  /* File name label */
+  [data-rehype-pretty-code-title] {
+    @apply rounded-t-xl bg-muted px-4 py-1.5 font-mono text-xs text-muted-foreground;
+  }
 
-    /* Highlighted lines (add {2,4} syntax in fences) — border only, no fill */
-    [data-highlighted-line] {
-        @apply -mx-5 border-l-2 border-accent px-5;
-    }
+  /* When title is present, remove top rounding from pre */
+  [data-rehype-pretty-code-title] + pre {
+    @apply rounded-t-none;
+  }
 
-    /* Highlighted words (add /word/ syntax) */
-    [data-highlighted-chars] {
-        @apply rounded bg-accent/20 px-1;
-    }
+  /* Highlighted lines */
+  [data-highlighted-line] {
+    @apply -mx-5 border-l-2 border-accent/70 bg-accent/5 px-5;
+  }
 
-    /* KaTeX display equations — horizontal scroll on small screens */
-    .katex-display {
-        @apply my-8 overflow-x-auto overflow-y-hidden py-1;
-    }
+  /* Highlighted words */
+  [data-highlighted-chars] {
+    @apply rounded bg-accent/20 px-1;
+  }
 
-    /* Make sure KaTeX text inherits the theme foreground colour */
-    .katex {
-        color: var(--foreground);
-    }
+  /* KaTeX */
+  .katex-display {
+    @apply my-6 overflow-x-auto overflow-y-hidden py-1;
+  }
+
+  .katex {
+    color: var(--foreground);
+  }
 }

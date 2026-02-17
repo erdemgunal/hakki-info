@@ -17,7 +17,6 @@ export function CodeBlock({
     const [lineCount, setLineCount] = useState(0);
     const preRef = useRef<HTMLPreElement>(null);
 
-    // Count lines after mount via rehype-pretty-code's [data-line] spans
     useEffect(() => {
         if (!preRef.current) return;
         const dataLines = preRef.current.querySelectorAll('[data-line]');
@@ -48,60 +47,60 @@ export function CodeBlock({
     };
 
     return (
-        <div className="not-prose group my-6 rounded-xl overflow-hidden border border-border shadow-sm bg-muted/40">
+        <div className="not-prose group my-5 rounded-xl overflow-hidden bg-[#0d1117]">
 
-            {/* ── Top bar ────────────────────────────────────────────────── */}
-            <div className="flex items-center justify-between px-4 py-2.5 border-b border-border bg-background/60">
+            {/* ── Top bar ──────────────────────────────────────────────── */}
+            <div className="flex items-center justify-between px-4 py-2 bg-white/[0.04]">
 
-                {/* Language label — top-left; when collapsed show hidden line count */}
+                {/* Language label */}
                 <div className="flex items-center gap-2">
-                    <span className="text-[11px] font-mono font-semibold uppercase tracking-[0.14em] text-muted-foreground select-none">
+                    <span className="text-[11px] font-mono font-medium uppercase tracking-[0.12em] text-white/30 select-none">
                         {language && language !== 'plaintext' ? language : 'code'}
                     </span>
                     {collapsed && lineCount > 0 && (
-                        <span className="text-[11px] font-medium text-muted-foreground select-none">
-                            {lineCount} hidden {lineCount === 1 ? 'line' : 'lines'}
+                        <span className="text-[11px] text-white/25 select-none">
+                            · {lineCount} {lineCount === 1 ? 'line' : 'lines'} hidden
                         </span>
                     )}
                 </div>
 
-                {/* Action buttons — top-right (icons only; labels via title hover) */}
-                <div className="flex items-center gap-1">
-                    <TopBarButton
+                {/* Action buttons */}
+                <div className="flex items-center gap-0.5">
+                    <BarButton
                         onClick={() => setCollapsed((v) => !v)}
                         aria-label={collapsed ? 'Expand' : 'Collapse'}
                         title={collapsed ? 'Expand' : 'Collapse'}
                         active={collapsed}
                     >
                         <CollapseIcon collapsed={collapsed} />
-                    </TopBarButton>
+                    </BarButton>
 
-                    <TopBarButton
+                    <BarButton
                         onClick={() => setWrapped((v) => !v)}
                         aria-label="Toggle line wrap"
                         title="Toggle line wrap"
                         active={wrapped}
                     >
                         <WrapIcon />
-                    </TopBarButton>
+                    </BarButton>
 
-                    <TopBarButton
+                    <BarButton
                         onClick={handleCopy}
                         aria-label="Copy code"
                         title={copied ? 'Copied!' : 'Copy'}
                     >
                         {copied ? (
-                            <span className="text-emerald-500 dark:text-emerald-400">
+                            <span className="text-emerald-400">
                                 <CheckIcon />
                             </span>
                         ) : (
                             <CopyIcon />
                         )}
-                    </TopBarButton>
+                    </BarButton>
                 </div>
             </div>
 
-            {/* ── Code area ──────────────────────────────────────────────── */}
+            {/* ── Code area ────────────────────────────────────────────── */}
             {!collapsed && (
                 <div className="flex overflow-hidden">
 
@@ -110,10 +109,9 @@ export function CodeBlock({
                         <div
                             aria-hidden
                             className="shrink-0 select-none flex flex-col items-end
-                                       pt-5 pb-5 pl-4 pr-4
+                                       pt-5 pb-5 pl-4 pr-3
                                        text-[13px] leading-[1.75] font-mono
-                                       text-muted-foreground/40
-                                       border-r border-border"
+                                       text-white/20"
                         >
                             {Array.from({ length: lineCount }, (_, i) => (
                                 <span key={i}>{i + 1}</span>
@@ -127,16 +125,14 @@ export function CodeBlock({
                         className={[
                             'flex-1 m-0 px-5 py-5',
                             'text-[13px] leading-[1.75] font-mono',
-                            'bg-transparent border-0 rounded-none',
-                            // wrap toggle
+                            'bg-transparent border-0 rounded-none shadow-none',
                             wrapped ? 'whitespace-pre-wrap break-all' : 'overflow-x-auto',
-                            // rehype-pretty-code line spans
                             '[&_[data-line]]:block',
-                            // highlighted lines (border only, no fill)
                             '[&_[data-highlighted-line]]:-mx-5',
                             '[&_[data-highlighted-line]]:px-5',
                             '[&_[data-highlighted-line]]:border-l-2',
-                            '[&_[data-highlighted-line]]:border-accent',
+                            '[&_[data-highlighted-line]]:border-accent/70',
+                            '[&_[data-highlighted-line]]:bg-accent/5',
                         ].join(' ')}
                         {...props}
                     >
@@ -148,9 +144,9 @@ export function CodeBlock({
     );
 }
 
-// ─── Shared top-bar button ─────────────────────────────────────────────────────
+// ─── Bar button ───────────────────────────────────────────────────────────────
 
-function TopBarButton({
+function BarButton({
     children,
     active,
     ...props
@@ -158,12 +154,11 @@ function TopBarButton({
     return (
         <button
             className={[
-                'flex items-center gap-1.5 px-2.5 py-1 rounded-md',
-                'text-[11px] font-medium transition-all duration-150',
-                'border cursor-pointer select-none',
+                'flex items-center px-2 py-1 rounded',
+                'text-[11px] transition-colors duration-100 cursor-pointer',
                 active
-                    ? 'bg-accent/10 border-accent/30 text-accent'
-                    : 'border-transparent text-muted-foreground hover:text-foreground hover:bg-muted hover:border-border',
+                    ? 'text-accent/80'
+                    : 'text-white/30 hover:text-white/60',
             ].join(' ')}
             {...props}
         >
@@ -172,16 +167,15 @@ function TopBarButton({
     );
 }
 
-// ─── Icons ─────────────────────────────────────────────────────────────────────
+// ─── Icons ────────────────────────────────────────────────────────────────────
 
 function CollapseIcon({ collapsed }: { collapsed: boolean }) {
-    // Chevron up = collapse, chevron down = expand
     return (
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none"
             stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
             {collapsed
-                ? <polyline points="6 9 12 15 18 9" />   /* down = expand */
-                : <polyline points="18 15 12 9 6 15" />  /* up = collapse */
+                ? <polyline points="6 9 12 15 18 9" />
+                : <polyline points="18 15 12 9 6 15" />
             }
         </svg>
     );
