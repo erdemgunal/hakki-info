@@ -1,3 +1,4 @@
+
 import fs from 'fs/promises';
 import path from 'path';
 import matter from 'gray-matter';
@@ -17,7 +18,7 @@ export interface BlogPost extends BlogPostMeta {
     content: string;
 }
 
-const BLOG_DIR = path.join(process.cwd(), 'content', 'data', 'blog');
+const BLOG_DIR = path.join(process.cwd(), 'content', 'blog');
 
 export async function getBlogPosts(): Promise<BlogPostMeta[]> {
     const entries = await fs.readdir(BLOG_DIR);
