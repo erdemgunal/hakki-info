@@ -12,7 +12,7 @@ import { useIsMounted } from '@/hooks/useIsMounted';
 
 export default function Projects() {
     const resumeData = useResumeData();
-    const { projects, hero } = resumeData;
+    const { projects, social } = resumeData;
     const { resolvedTheme } = useTheme();
     const mounted = useIsMounted();
 
@@ -87,7 +87,7 @@ export default function Projects() {
                 <div className="text-center mt-8 sm:mt-12">
                     <Button variant="outline" size="lg" asChild>
                         <Link
-                            href={hero.contact.social.find(social => social.name === "GitHub")?.url || "#"}
+                            href={social?.find(s => s.iconKey === "github" || s.name === "GitHub")?.url || "#"}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="flex items-center gap-2 mx-auto text-accent"

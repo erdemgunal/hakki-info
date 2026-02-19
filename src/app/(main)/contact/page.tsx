@@ -3,7 +3,7 @@ import { fetchResumeData } from '@/lib/fetch-resume-data';
 
 export default async function ContactPage() {
     const resumeData = await fetchResumeData();
-    const { hero } = resumeData;
+    const { hero, social } = resumeData;
 
     return (
         <main className="min-h-screen bg-background">
@@ -28,16 +28,17 @@ export default async function ContactPage() {
                         </div>
 
                         <div className="pt-4">
-                            <ul className="space-y-1.5">
-                                {(hero.contact?.social || []).map((social) => (
-                                    <li key={social.name}>
+                            <p className="text-secondary mb-3">Social</p>
+                            <ul className="flex flex-col gap-2">
+                                {(social || []).map((item) => (
+                                    <li key={item.name}>
                                         <Link
-                                            href={social.url}
+                                            href={item.url}
                                             className="text-accent hover:text-foreground"
                                             target="_blank"
                                             rel="noopener noreferrer"
                                         >
-                                            {social.name}
+                                            {item.name}
                                         </Link>
                                     </li>
                                 ))}

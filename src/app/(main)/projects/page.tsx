@@ -8,7 +8,7 @@ import ExternalLinkIcon from '@/components/icon/ExternalLinkIcon';
 
 export default async function ProjectsPage() {
     const resumeData = await fetchResumeData();
-    const { projects, hero } = resumeData;
+    const { projects, social } = resumeData;
 
     const getPlaceholderImage = () => {
         return "/placeholder-light.svg";
@@ -23,7 +23,7 @@ export default async function ProjectsPage() {
                             Projects
                         </h1>
                         <p className="text-muted-foreground text-lg">
-                            Explore my portfolio of projects showcasing automation, full-stack development, and innovative solutions.
+                            Explore my portfolio of projects showcasing automation, full-stack development and innovative solutions.
                         </p>
                     </div>
 
@@ -84,7 +84,7 @@ export default async function ProjectsPage() {
                     <div className="text-center mt-12 sm:mt-16">
                         <Button variant="outline" size="lg" asChild>
                             <Link
-                                href={hero.contact.social.find(social => social.name === "GitHub")?.url || "#"}
+                                href={social?.find(s => s.iconKey === "github" || s.name === "GitHub")?.url || "#"}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="flex items-center gap-2 mx-auto text-accent"
