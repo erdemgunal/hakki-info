@@ -6,21 +6,23 @@ status: "published"
 tags: ["data science", "statistics", "visualization"]
 ---
 
-### Giriş
-
 Bu yazıda, Maaş Anketi Analizi çalışmasının özeti sunulmaktadır. Amaç; anketten elde edilen verilerle teknoloji sektöründe maaş dağılımlarını, deneyim ve seviye ile ilişkisini, çalışma biçiminin (remote/hibrit/ofis) etkisini ve kullanılan teknoloji/araçların maaşa olan katkısını (ROI) sayısal ve görsel olarak ortaya koymaktır.
 
 Proje; veri temizleme, özellik standardizasyonu, istatistiksel hipotez testleri, zengin görselleştirmeler ve Streamlit ile etkileşimli bir mini dashboard’tan oluşuyor. Bu yazıyı, portföyümde projeyi hızlıca değerlendirmek isteyenler için hazırladım; kaynak kodlara ve çıktılara repo içinde bağlantı verdim.
 
-### Veri ve Kapsam
+---
+
+## Veri ve Kapsam
 
 - Örneklem: Sadece 2025 anket yanıtları (temizleme sonrası anlamlı örneklem korunmuştur). 2024 verisiyle karşılaştırmalı analiz, sonraki sürümde planlanmaktadır.
 - Hedef değişken: Ortalama Maaş (salary_numeric) ve toplam tazminat (standartlaştırılmış)
 - Boyutlar: Seviye, rol, cinsiyet, çalışma biçimi, şirket konumu, istihdam türü, kullanılan teknoloji ve araç setleri
 
-### Metodoloji (Kısa Özet)
+---
 
-1) Veri Temizleme ve Standartlaştırma  
+## Metodoloji (Kısa Özet)
+
+1) Veri Temizleme ve Standartlaştırma
    - Eksik/değersiz kayıtlar ele alındı; kategoriler standardize edildi, Ortalama Maaş (salary_numeric) metriği üretildi ve normalize edildi.
 
 2) İstatistiksel Analiz  
@@ -38,7 +40,9 @@ Proje; veri temizleme, özellik standardizasyonu, istatistiksel hipotez testleri
 5) Raporlama  
    - Bulguların PDF raporu Overleaf üzerinde LaTeX ile yazıldı.
 
-### Öne Çıkan Bulgular
+---
+
+## Öne Çıkan Bulgular
 
 - Deneyim ve Ortalama Maaş: Deneyim arttıkça ortalama maaşta anlamlı artış gözlenmektedir.
 - Seviye Dağılımı: Üst seviyelerde dağılım genişler; pazar segmentasyonu ve sorumluluk farklılıkları etkilidir.
@@ -50,7 +54,9 @@ Proje; veri temizleme, özellik standardizasyonu, istatistiksel hipotez testleri
 
 > Not: İstatistiksel anlamlılık ve etki büyüklüğü metrikleri, p-değerine bağımlı kalmadan yorumlandı; örneklem büyüklüğü ve pratik önem birlikte değerlendirildi.
 
-### Görsellerden Birkaç Örnek
+---
+
+## Görsellerden Birkaç Örnek
 
 ![Korelasyon heatmap](https://cdn.jsdelivr.net/gh/erdemgunal/hakki-info-assets@latest/blog/salary-survey-analysis/heatmap_correlation.png)
 
@@ -66,16 +72,22 @@ Not: Bu heatmap, çalışma şekli ve şirket lokasyonu kombinasyonlarında Orta
 
 - Box plots (lokasyon/seviye/çalışma biçimi) ve kariyer akışı (Sankey) gibi etkileşimli örnekler üretildi. Blog içinde temsilî görselleri paylaşıyorum; etkileşimli sürümler sitede gömülü olarak sunulabilir.
 
-### Bağlantılar
+---
+
+## Bağlantılar
 
 - GitHub repo: [salary_analysis_project](http://github.com/erdemgunal/salary_analysis_project)
 - Canlı interaktif dashboard: [maas-anketi.streamlit.app](http://maas-anketi.streamlit.app/)
 
-### Kullandığım Araçlar
+---
+
+## Kullandığım Araçlar
 
 - Python, pandas, numpy, scipy, seaborn, matplotlib, plotly, streamlit
 
-### Hızlı Başlangıç (İsterseniz Yerelde Deneyin)
+---
+
+## Hızlı Başlangıç (İsterseniz Yerelde Deneyin)
 
 ```bash
 python3 -m venv venv
@@ -86,11 +98,13 @@ pip install -r requirements.txt
 jupyter notebook
 ```
 
-### Kodu ile Yeniden Üret (Seçme Parçalar)
+---
+
+## Kodu ile Yeniden Üret (Seçme Parçalar)
 
 Aşağıdaki örnekler, repodaki betiklerin sadeleştirilmiş birer özetidir. Tam akış için `src/` ve `notebooks/` klasörlerine bakabilirsiniz.
 
-#### 1) Veri Yükleme ve Basit Temizleme
+### 1) Veri Yükleme ve Basit Temizleme
 
 ```python
 import pandas as pd
@@ -130,7 +144,7 @@ if "salary_numeric" not in df:
 df = df.dropna(subset=["salary_numeric"]).query("salary_numeric > 0")
 ```
 
-#### 2) İstatistiksel Karşılaştırma (Ör. Kıdem Grupları)
+### 2) İstatistiksel Karşılaştırma (Ör. Kıdem Grupları)
 
 ```python
 import numpy as np
@@ -145,7 +159,7 @@ result = {"test": "kruskal", "stat": float(stat), "p_value": float(p)}
 result
 ```
 
-#### 3) Görselleştirme (Seaborn ve Plotly)
+### 3) Görselleştirme (Seaborn ve Plotly)
 
 ```python
 import seaborn as sns
@@ -163,7 +177,7 @@ fig = px.box(df, x="company_location", y="salary_numeric", points=False)
 fig.show()
 ```
 
-#### 4) Basit ROI Yaklaşımı (Teknoloji/araç kullanımına göre)
+### 4) Basit ROI Yaklaşımı (Teknoloji/araç kullanımına göre)
 
 ```python
 # Varsayım: her satırda kullanılan belli araç/teknoloji için işaret (1/0) kolonları var
@@ -181,7 +195,7 @@ if feature in df:
     print(roi_df)
 ```
 
-#### 5) Mini Streamlit Uygulaması (Seçimlere göre box plot)
+### 5) Mini Streamlit Uygulaması (Seçimlere göre box plot)
 
 Not: Tam özellikli sürüm için `src/streamlit_dashboard.py` dosyasındaki dashboard'u kullanabilirsiniz.
 
@@ -243,13 +257,17 @@ else:
     st.info("Başlamak için CSV yükleyin.")
 ```
 
-### İstatistiksel Testler ve Yorumlama İlkeleri
+---
+
+## İstatistiksel Testler ve Yorumlama İlkeleri
 
 - Varsayımlar (normallik/varyans homojenliği) ihlali durumunda sağlam (robust) alternatifler kullanıldı.  
 - Çoklu karşılaştırmalarda yalancı pozitifleri azaltmak için düzeltmeler uygulandı (gerekli yerlerde).  
 - Sonuçlar yalnızca korelasyon değil, nedensellik iddiası taşımayan ilişkiler olarak yorumlandı.
 
-### Karşılaşılan Problemler ve Çözümler
+---
+
+## Karşılaşılan Problemler ve Çözümler
 
 - Kategori Standardizasyonu: Farklı yazımlarla gelen rol/seviye/konum etiketleri analizde gürültü oluşturdu.  
   Çözüm: Özel eşleme sözlükleri ile birleşik etiketler; düşük frekanslı kategorileri "Diğer" altında toplama.
@@ -263,7 +281,9 @@ else:
 - Karıştırıcı Değişkenler: Rol/kıdem/lokasyon etkileri üst üste biniyordu.  
   Çözüm: Parçalı karşılaştırmalar; gerektiğinde çoklu değişkenli kontrollü kıyas.
 
-### Kıdem Modelleme Notu (IC vs Managerial/Ownership)
+---
+
+## Kıdem Modelleme Notu (IC vs Managerial/Ownership)
 
 Anketin “Hangi seviyedesin?” yanıtları tek bir sıralı yapı içinde değerlendirilemeyecek kadar farklı türden rolleri içerdiği için öncelikle iki ana kategori tanımlandı: Individual Contributor (IC) ve Managerial/Ownership.  
 - IC: Junior, Mid, Senior, Staff Engineer, Team Lead, Architect  
@@ -273,7 +293,9 @@ IC seviyeleri ordinal değişken olarak yeniden kodlandı: Junior=1, Mid=2, Seni
 Managerial/Ownership rolleri ise doğası gereği ordinal değil, kategorik değişken olarak ele alındı; Engineering Manager, Director, C-Level, Partner için ayrı kategoriler tanımlandı ve One-Hot encoding uygulandı. Ek olarak `is_manager` ikili değişkeni tanımlanarak yönetim/sahiplik rolü basitçe işaretlendi.  
 Raporlamada IC seviyeleri tek bir ordinal eksende gösterildi; yönetim ve sahiplik rollerinin dağılımları ise ayrı kategorik karşılaştırmalarla sunuldu.
 
-### Çalışan Lokasyonu Tahmini (Heuristik)
+---
+
+## Çalışan Lokasyonu Tahmini (Heuristik)
 
 Çalışan lokasyonu, şirket lokasyonu ve çalışma şekline dayanarak tahmin edilmektedir; %100 doğruluk garantisi yoktur.  
 Kurallar:  
@@ -285,7 +307,9 @@ Kurallar:
 - Şirket Lokasyon = "Yurtdışı TR hub" ve Çalışma Şekli ∈ {Hybrid, Office} → 0 (aykırı değer; dışarıda bırak)  
 Not: “Yurtdışı TR hub” değeri, “is likely company location” değerlendirmesinden çıkarılmıştır.
 
-### Kolon İsimleri ve Kodlama Kuralları
+---
+
+## Kolon İsimleri ve Kodlama Kuralları
 
 Temizlenmiş kolon isimleri, boşlukların alt çizgi ile değiştirilmesi ve Türkçe karakterlerin latinize edilmesi prensibine göre güncellenmiştir. Örnekler (güncel):  
 - `management_Staff_Engineer`  
@@ -295,13 +319,17 @@ Temizlenmiş kolon isimleri, boşlukların alt çizgi ile değiştirilmesi ve T�
 
 Bu yaklaşım hem okunabilirliği korur hem de kod tarafında güvenli ve tutarlı erişim sağlar.
 
-### Gelecek Çalışma
+---
+
+## Gelecek Çalışma
 
 - Ücret tahmini için düzenli regresyon (Ridge/Lasso) ve ağaç tabanlı modellerle karşılaştırmalı deneyler  
 - Bayesçi modelleme ile belirsizlik tahmini  
 - Daha fazla anket dalgası ile zaman serisi eğilim analizi  
 - Öznitelik mühendisliği: rol-araç eşleşmelerinden etkileşim terimleri
 
-### İletişim
+---
+
+## İletişim
 
 Bu yazı tek sayfalık bir brifing olarak hazırlandı; daha fazla detay görmek isteyenler GitHub reposuna göz atabilir. Sorular/öneriler için bana ulaşabilirsiniz.

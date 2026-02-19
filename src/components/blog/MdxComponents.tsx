@@ -165,22 +165,24 @@ export const mdxComponents: MDXComponents = {
     ),
 
     // ── Images ────────────────────────────────────────────────────────────────
+    // Renders phrasing content only (img + optional span) so it stays valid when
+    // MDX wraps markdown images in a <p> (avoids hydration error from <figure> inside <p>).
     img: ({ src, alt, ...props }) => (
-        <figure className="not-prose my-6">
+        <>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
                 src={src}
                 alt={alt ?? ''}
-                className="w-full rounded-lg"
+                className="w-full rounded-lg my-6"
                 loading="lazy"
                 {...props}
             />
             {alt && (
-                <figcaption className="mt-2 text-center text-xs text-muted-foreground">
+                <span className="mt-2 block text-center text-xs text-muted-foreground">
                     {alt}
-                </figcaption>
+                </span>
             )}
-        </figure>
+        </>
     ),
 
     // ── HR ────────────────────────────────────────────────────────────────────
