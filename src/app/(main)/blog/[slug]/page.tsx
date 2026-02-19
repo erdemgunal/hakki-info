@@ -122,7 +122,7 @@ export default async function BlogPostPage({ params }: BlogPostPageParams) {
                             prose-img:rounded-lg prose-img:my-6
                             prose-table:text-sm
                             [&_.katex]:text-foreground
-                            [&_.katex-display]:my-6 [&_.katex-display]:overflow-x-auto [&_.katex-display]:py-1
+                            [&_.katex-display]:my-6 [&_.katex-display]:overflow-x-auto [&_.katex-display]:overflow-y-hidden [&_.katex-display]:py-1
                         ">
                             <MDXRemote
                                 source={post.content}

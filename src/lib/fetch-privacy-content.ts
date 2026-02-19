@@ -2,7 +2,7 @@ import fs from 'fs/promises';
 import path from 'path';
 import matter from 'gray-matter';
 
-const PRIVACY_PATH = path.join(process.cwd(), 'content', 'data', 'privacy.mdx');
+const PRIVACY_PATH = path.join(process.cwd(), 'content', 'privacy.mdx');
 
 export interface PrivacyFrontmatter {
     title: string;

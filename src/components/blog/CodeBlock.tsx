@@ -50,7 +50,7 @@ export function CodeBlock({
         <div className="not-prose group my-5 rounded-xl overflow-hidden bg-[#0d1117]">
 
             {/* ── Top bar ──────────────────────────────────────────────── */}
-            <div className="flex items-center justify-between px-4 py-2 bg-white/[0.04]">
+            <div className="flex items-center justify-between px-4 py-2 bg-white/4">
 
                 {/* Language label */}
                 <div className="flex items-center gap-2">
@@ -127,12 +127,12 @@ export function CodeBlock({
                             'text-[13px] leading-[1.75] font-mono',
                             'bg-transparent border-0 rounded-none shadow-none',
                             wrapped ? 'whitespace-pre-wrap break-all' : 'whitespace-pre overflow-x-auto',
-                            '[&_[data-line]]:block',
-                            '[&_[data-highlighted-line]]:-mx-5',
-                            '[&_[data-highlighted-line]]:px-5',
-                            '[&_[data-highlighted-line]]:border-l-2',
-                            '[&_[data-highlighted-line]]:border-accent/70',
-                            '[&_[data-highlighted-line]]:bg-accent/5',
+                            '**:data-line:block',
+                            '**:data-highlighted-line:-mx-5',
+                            '**:data-highlighted-line:px-5',
+                            '**:data-highlighted-line:border-l-2',
+                            '**:data-highlighted-line:border-accent/70',
+                            '**:data-highlighted-line:bg-accent/5',
                         ].join(' ')}
                         {...props}
                     >

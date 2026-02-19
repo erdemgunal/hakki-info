@@ -73,6 +73,12 @@
     font-weight: 700;
     letter-spacing: -0.02em;
   }
+
+  /* KaTeX block equations: horizontal scroll only, no vertical scrollbar */
+  .katex-display {
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
 }
 
 @theme {

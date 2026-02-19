@@ -3,10 +3,10 @@ import { getProjectSlugs, fetchProjectBySlug } from '@/lib/fetch-resume-data';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
-import { renderBadges, renderTechStackBadges } from '@/lib/badge-utils';
+import seo from '@/config/seo.json';
 import { Button } from '@/components/ui/button';
 import ExternalLinkIcon from '@/components/icon/ExternalLinkIcon';
-import seo from '@/config/seo.json';
+import { renderBadges, renderTechStackBadges } from '@/lib/badge-utils';
 
 export async function generateStaticParams() {
     const slugs = await getProjectSlugs();
@@ -67,7 +67,7 @@ export default async function ProjectPage({ params }: ProjectPageParams) {
 
     return (
         <main className="min-h-screen bg-background">
-            <div className="mx-auto max-w-5xl px-4 sm:px-6 md:px-8 lg:px-16 pt-20 sm:pt-24 md:pt-28 pb-12 sm:pb-16 md:pb-20">
+            <div className="mx-auto max-w-5xl px-4 sm:px-6 md:px-8 lg:px-16 pt-24 sm:pt-24 md:pt-28 pb-12 sm:pb-16 md:pb-20">
 
                 <header className="mb-8 sm:mb-12">
                     <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-3">
