@@ -1,320 +1,224 @@
 ---
-title: "Küresel Koordinatlarda Laplace Operatörünün Ayrıntılı Türetimi"
-date: "2026-02-16"
-excerpt: "Kartezyen bileşenlerden başlayarak küresel koordinatlarda Laplace operatörünü ($\\nabla^2$) adım adım, ara işlemleri göstererek türetiyoruz."
+title: "Küresel Koordinatlarda Laplace Operatörünün Detaylı Türetimi"
+date: "2026-02-17"
+excerpt: "Kartezyen ∇ operatöründen başlayarak küresel koordinatlarda Laplace operatörünü (∇²) türetiyoruz. Operatörlerin katsayılar üzerindeki türev etkileri (çarpım kuralı) açıkça gösterilir."
 status: "published"
-tags: ["matematik", "fizik", "laplace", "küresel-koordinatlar"]
+tags: ["physics", "mathematics", "electromagnetism", "derivation"]
 ---
 
-Bu yazıda, kartezyen birim vektörler cinsinden verilen gradyan (del) operatöründen yola çıkarak küresel koordinatlarda Laplace operatörünü (\( \nabla^2 \)) **adım adım** türeteceğiz. Özellikle, operatörlerin katsayılar üzerindeki etkisini (çarpım kuralı) açıkça vurgulayacağız.
+Bu çalışmanın amacı, kartezyen birim vektörler cinsinden verilen $\nabla$ (del) operatörünü kullanarak, küresel koordinatlarda Laplace operatörünü ($\nabla^2$) türetmektir. Türetim sırasında operatörlerin katsayılar üzerindeki türev etkileri (çarpım kuralı) açıkça gösterilecektir.
 
-## 1. Giriş ve Tanımlar
+---
 
-Başlangıç noktası olarak, \(\nabla\) operatörünü kartezyen birim vektörler üzerinden
+## Giriş ve Tanımlar
 
-\[
-    \nabla = A \,\hat{i} + B \,\hat{j} + C \,\hat{k}
-\]
+Verilen $\nabla$ operatörü:
 
-şeklinde yazalım.
+$$
+\nabla = A\,\hat{i} + B\,\hat{j} + C\,\hat{k}
+$$
 
-Burada \(A, B, C\) operatör bileşenleri küresel koordinatlar cinsinden:
+Burada $A$, $B$, $C$ operatör bileşenleri:
 
-\[
-    A = \sin\theta\cos\phi\,\frac{\partial}{\partial r}
-        + \frac{\cos\theta\cos\phi}{r}\,\frac{\partial}{\partial \theta}
-        - \frac{\sin\phi}{r\sin\theta}\,\frac{\partial}{\partial \phi}
-\]
+$$
+A = \sin\theta\cos\phi\,\frac{\partial}{\partial r} + \frac{\cos\theta\cos\phi}{r}\frac{\partial}{\partial \theta} - \frac{\sin\phi}{r\sin\theta}\frac{\partial}{\partial \phi}
+$$
 
-\[
-    B = \sin\theta\sin\phi\,\frac{\partial}{\partial r}
-        + \frac{\cos\theta\sin\phi}{r}\,\frac{\partial}{\partial \theta}
-        + \frac{\cos\phi}{r\sin\theta}\,\frac{\partial}{\partial \phi}
-\]
+$$
+B = \sin\theta\sin\phi\,\frac{\partial}{\partial r} + \frac{\cos\theta\sin\phi}{r}\frac{\partial}{\partial \theta} + \frac{\cos\phi}{r\sin\theta}\frac{\partial}{\partial \phi}
+$$
 
-\[
-    C = \cos\theta\,\frac{\partial}{\partial r}
-        - \frac{\sin\theta}{r}\,\frac{\partial}{\partial \theta}
-\]
+$$
+C = \cos\theta\,\frac{\partial}{\partial r} - \frac{\sin\theta}{r}\frac{\partial}{\partial \theta}
+$$
 
-Bu formülasyon, ileride \(\nabla^2\) hesaplanırken tüm bileşenlerin karelerini ve çapraz etkileşimlerini açıkça yazmamıza imkân verir.
+---
 
-## 2. Laplace Operatörünün Mantığı
+## Laplace Operatörünün Mantığı
 
 Laplace operatörü, gradyan operatörünün kendisiyle skaler çarpımıdır:
 
-\[
-    \nabla^2 = \nabla \cdot \nabla = A^2 + B^2 + C^2.
-\]
-
-Burada önemli nokta, \(A, B, C\) nin **operatör** olmasıdır. Dolayısıyla katsayılar ve türev operatörleri çarpılırken çarpım kuralı devreye girer:
-
-Eğer \(X = f \,\partial\) ve \(Y = g \,\partial\) ise:
+$$
+\nabla^2 = \nabla \cdot \nabla = A^2 + B^2 + C^2
+$$
 
-\[
-    X(Y u)
-    = f \partial \big( g \partial u \big)
-    = f \left( \frac{\partial g}{\partial(\dots)} \partial u
-        + g \frac{\partial^2 u}{\partial(\dots)^2} \right).
-\]
-
-Buradaki \(\partial g\) terimleri, **birinci türevli** terimlerin kaynağıdır; \(g \partial^2\) kısmı ise **ikinci türevli** terimleri üretir.
-
-## 3. Bileşenlerin Detaylı Hesaplanması
-
-### 3.1. \(I_3 = C \cdot C\) Teriminin Ayrıntılı Hesabı
-
-\[
-    C \cdot C
-    = \left( \cos\theta\frac{\partial}{\partial r}
-        - \frac{\sin\theta}{r}\frac{\partial}{\partial \theta} \right)
-      \left( \cos\theta\frac{\partial}{\partial r}
-        - \frac{\sin\theta}{r}\frac{\partial}{\partial \theta} \right)
-\]
+Bu çarpım yapılırken dikkat edilmesi gereken en kritik nokta, operatörlerin sıralamasıdır. $X$ bir operatör ve $f$, $g$ katsayı fonksiyonları ise genel kural:
 
-Bunu üç parçaya ayıralım:
+$$
+(f\,\partial) \cdot (g\,\partial) = f\left( \frac{\partial g}{\partial \cdots}\,\partial + g\,\frac{\partial^2}{\partial \cdots^2} \right)
+$$
 
-- **\(r-r\) etkileşimi:**
+Birinci türev terimleri, bu çarpım kuralından (katsayının türevlenmesinden) doğar.
 
-  \[
-      \cos\theta \frac{\partial}{\partial r}
-      \left( \cos\theta \frac{\partial}{\partial r} \right)
-      = \cos^2\theta \frac{\partial^2}{\partial r^2}.
-  \]
-
-  Burada \(\cos\theta\), \(r\)'den bağımsız olduğu için türevlenmez.
+---
 
-- **\(r-\theta\) etkileşimi:** \(\partial_r\) operatörü sağdaki \(1/r\) katsayısını türevler.
-
-  \[
-      \cos\theta \frac{\partial}{\partial r}
-      \left( -\frac{\sin\theta}{r} \frac{\partial}{\partial \theta} \right)
-      = \cos\theta
-      \left[
-        \frac{\partial}{\partial r}\left(-\frac{\sin\theta}{r}\right) \frac{\partial}{\partial \theta}
-        - \frac{\sin\theta}{r} \frac{\partial^2}{\partial r \partial \theta}
-      \right]
-  \]
-
-  \[
-      = \frac{\sin\theta\cos\theta}{r^2} \frac{\partial}{\partial \theta}
-        - \frac{\sin\theta\cos\theta}{r} \frac{\partial^2}{\partial r \partial \theta}.
-  \]
-
-- **\(\theta-\theta\) etkileşimi:** \(\partial_\theta\) operatörü sağdaki \(\sin\theta\) katsayısını türevler.
-
-  \[
-      -\frac{\sin\theta}{r} \frac{\partial}{\partial \theta}
-      \left( -\frac{\sin\theta}{r} \frac{\partial}{\partial \theta} \right)
-      = -\frac{\sin\theta}{r}
-      \left[
-        \frac{\partial}{\partial \theta}\left(-\frac{\sin\theta}{r}\right) \frac{\partial}{\partial \theta}
-        - \frac{\sin\theta}{r} \frac{\partial^2}{\partial \theta^2}
-      \right]
-  \]
-
-  \[
-      = \frac{\sin\theta\cos\theta}{r^2}\frac{\partial}{\partial \theta}
-        + \frac{\sin^2\theta}{r^2} \frac{\partial^2}{\partial \theta^2}.
-  \]
-
-Bu üç parçayı topladığımızda:
-
-\[
-    I_3 = C \cdot C
-        = \cos^2\theta \frac{\partial^2}{\partial r^2}
-        + \frac{\sin^2\theta}{r^2} \frac{\partial^2}{\partial \theta^2}
-        - \frac{2\sin\theta\cos\theta}{r} \frac{\partial^2}{\partial r \partial \theta}
-        + \frac{\sin^2\theta}{r} \frac{\partial}{\partial r}
-        + \frac{2\sin\theta\cos\theta}{r^2} \frac{\partial}{\partial \theta}.
-\]
-
-### 3.2. \(I_1 = A \cdot A\) (x-bileşeni karesi)
-
-Benzer şekilde, \(A\) bileşeninin karesi alınırken hem ikinci türevli hem de birinci türevli terimler ortaya çıkar. Ayrıntılı çarpımları özetleyerek:
-
-\[
-    I_1 = A \cdot A
-\]
-
-şu yapıda terimler içerir:
-
-- **İkinci türevler:**
-
-\[
-    \sin^2\theta\cos^2\phi \,\frac{\partial^2}{\partial r^2}
-    + \frac{\cos^2\theta\cos^2\phi}{r^2} \frac{\partial^2}{\partial \theta^2}
-    + \frac{\sin^2\phi}{r^2\sin^2\theta} \frac{\partial^2}{\partial \phi^2}
-    + \text{(karışık türevler)}
-\]
+## Bileşenlerin Detaylı Hesaplanması
 
-- **Birinci türevler (katsayı türevlerinden gelenler):**
+### 1. $I_3$ Teriminin Detaylı Analizi ($C \cdot C$)
 
-\[
-    \left(
-      \frac{\cos^2\theta\cos^2\phi}{r} + \frac{\sin^2\phi}{r}
-    \right)\frac{\partial}{\partial r}
-    + \left(
-      \frac{\cos\theta\sin^2\phi}{r^2\sin\theta}
-      - \frac{2\sin\theta\cos\theta\cos^2\phi}{r^2}
-    \right)\frac{\partial}{\partial \theta}
-    + \dots (\partial_\phi \text{ terimleri}).
-\]
-
-### 3.3. \(I_2 = B \cdot B\) (y-bileşeni karesi)
-
-Benzer şekilde:
-
-\[
-    I_2 = B \cdot B
-\]
-
-şu terimleri içerir:
-
-- **İkinci türevler:**
-
-\[
-    \sin^2\theta\sin^2\phi \frac{\partial^2}{\partial r^2}
-    + \frac{\cos^2\theta\sin^2\phi}{r^2} \frac{\partial^2}{\partial \theta^2}
-    + \frac{\cos^2\phi}{r^2\sin^2\theta} \frac{\partial^2}{\partial \phi^2}
-    + \text{(karışık türevler)}
-\]
+$$
+C \cdot C = \left( \cos\theta\,\frac{\partial}{\partial r} - \frac{\sin\theta}{r}\frac{\partial}{\partial \theta} \right) \cdot \left( \cos\theta\,\frac{\partial}{\partial r} - \frac{\sin\theta}{r}\frac{\partial}{\partial \theta} \right)
+$$
 
-- **Birinci türevler (katsayı türevlerinden gelenler):**
-
-\[
-    \left(
-      \frac{\cos^2\theta\sin^2\phi}{r}
-      + \frac{\cos^2\phi}{r}
-    \right)\frac{\partial}{\partial r}
-    + \left(
-      \frac{\cos\theta\cos^2\phi}{r^2\sin\theta}
-      - \frac{2\sin\theta\cos\theta\sin^2\phi}{r^2}
-    \right)\frac{\partial}{\partial \theta}
-    + \dots (\partial_\phi \text{ terimleri}).
-\]
+**1. Parça ($r$-$r$ etkileşimi):**
 
-## 4. Sadeleştirme: Birinci Türevlerin Toplanması
+$$
+\cos\theta\,\frac{\partial}{\partial r}\!\left(\cos\theta\,\frac{\partial}{\partial r}\right) = \cos^2\theta\,\frac{\partial^2}{\partial r^2}
+$$
 
-Şimdi
+(Not: $\cos\theta$, $r$'den bağımsız olduğu için türevlenmedi.)
 
-\[
-    \nabla^2 = I_1 + I_2 + I_3
-\]
+**2. Parça ($r$-$\theta$ etkileşimi):** $\frac{\partial}{\partial r}$ operatörü, sağdaki $1/r$ katsayısını türevler.
 
-yazıp, özellikle birinci türev terimlerinin katsayılarını sadeleştirelim.
+$$
+\cos\theta\,\frac{\partial}{\partial r}\!\left(-\frac{\sin\theta}{r}\frac{\partial}{\partial \theta}\right) = \cos\theta\left[ \underbrace{\frac{\partial}{\partial r}\!\left(-\frac{\sin\theta}{r}\right)}_{\text{Katsayı Türevi}} \frac{\partial}{\partial \theta} - \frac{\sin\theta}{r}\,\frac{\partial^2}{\partial r\,\partial\theta} \right]
+$$
 
-### 4.1. Radyal türev (\(\partial_r\)) katsayısı
+$$
+= \frac{\sin\theta\cos\theta}{r^2}\,\frac{\partial}{\partial \theta} - \frac{\sin\theta\cos\theta}{r}\,\frac{\partial^2}{\partial r\,\partial\theta}
+$$
 
-Tüm \(\partial_r\) terimlerinin katsayılarını toplayalım:
+**3. Parça ($\theta$-$r$ etkileşimi):** $\frac{\partial}{\partial \theta}$ operatörü, sağdaki $\cos\theta$ katsayısını türevler.
 
-\[
-    \frac{1}{r}\big(
-      \underbrace{\cos^2\theta\cos^2\phi}_{I_1}
-      + \underbrace{\sin^2\phi}_{I_1}
-      + \underbrace{\cos^2\theta\sin^2\phi}_{I_2}
-      + \underbrace{\cos^2\phi}_{I_2}
-      + \underbrace{\sin^2\theta}_{I_3}
-    \big).
-\]
+$$
+-\frac{\sin\theta}{r}\,\frac{\partial}{\partial\theta}\!\left(\cos\theta\,\frac{\partial}{\partial r}\right)
+= -\frac{\sin\theta}{r}\!\left[-\sin\theta\,\frac{\partial}{\partial r} + \cos\theta\,\frac{\partial^2}{\partial\theta\,\partial r}\right]
+= \frac{\sin^2\theta}{r}\,\frac{\partial}{\partial r} - \frac{\sin\theta\cos\theta}{r}\,\frac{\partial^2}{\partial\theta\,\partial r}
+$$
 
-Bu ifade trigonometrik özdeşlikler kullanılarak sadeleşir:
+**4. Parça ($\theta$-$\theta$ etkileşimi):** $\frac{\partial}{\partial \theta}$ operatörü, sağdaki $\sin\theta$ katsayısını türevler.
 
-\[
-    \cos^2\theta(\cos^2\phi + \sin^2\phi)
-    + (\sin^2\phi + \cos^2\phi)
-    + \sin^2\theta
-    = \cos^2\theta + 1 + \sin^2\theta = 2.
-\]
+$$
+-\frac{\sin\theta}{r}\,\frac{\partial}{\partial\theta}\!\left(-\frac{\sin\theta}{r}\frac{\partial}{\partial \theta}\right) = -\frac{\sin\theta}{r}\left[ \underbrace{\frac{\partial}{\partial \theta}\!\left(-\frac{\sin\theta}{r}\right)}_{\text{Katsayı Türevi}} \frac{\partial}{\partial \theta} - \frac{\sin\theta}{r}\,\frac{\partial^2}{\partial \theta^2} \right]
+$$
 
-Dolayısıyla:
+$$
+= -\frac{\sin\theta}{r}\!\left(-\frac{\cos\theta}{r}\right)\frac{\partial}{\partial \theta} + \frac{\sin^2\theta}{r^2}\,\frac{\partial^2}{\partial \theta^2} = \frac{\sin\theta\cos\theta}{r^2}\,\frac{\partial}{\partial \theta} + \frac{\sin^2\theta}{r^2}\,\frac{\partial^2}{\partial \theta^2}
+$$
 
-\[
-    \text{Katsayı} = \frac{2}{r}
-\]
+Bu parçalar toplandığında $I_3$ elde edilir (karışık türevler $\partial^2_{r\theta}$ birbirini götürür):
 
-ve radyal birinci türev terimi
+$$
+I_3 = \cos^2\theta\,\frac{\partial^2}{\partial r^2} + \frac{\sin^2\theta}{r^2}\,\frac{\partial^2}{\partial \theta^2} - \frac{2\sin\theta\cos\theta}{r}\,\frac{\partial^2}{\partial r\,\partial \theta} + \frac{\sin^2\theta}{r}\,\frac{\partial}{\partial r} + \frac{2\sin\theta\cos\theta}{r^2}\,\frac{\partial}{\partial \theta}
+$$
 
-\[
-    \boxed{\frac{2}{r}\,\frac{\partial}{\partial r}}
-\]
+---
 
-olarak elde edilir.
+### 2. $I_1$ Terimi ($A \cdot A$, $x$-bileşeni karesi)
 
-### 4.2. Açısal türev (\(\partial_\theta\)) katsayısı
+Benzer katsayı türevleri uygulanarak $A \cdot A$ hesaplanır:
 
-Bu kez \(\partial_\theta\) katsayılarını toplayalım:
+$$
+I_1 = \underbrace{\sin^2\theta\cos^2\phi\,\frac{\partial^2}{\partial r^2} + \frac{\cos^2\theta\cos^2\phi}{r^2}\,\frac{\partial^2}{\partial \theta^2} + \frac{\sin^2\phi}{r^2\sin^2\theta}\,\frac{\partial^2}{\partial \phi^2}}_{\text{İkinci Türevler}}
+$$
 
-\[
-    \left(
-      -\frac{2\sin\theta\cos\theta\cos^2\phi}{r^2}
-      + \frac{\cos\theta\sin^2\phi}{r^2\sin\theta}
-    \right)_{I_1}
-    + \left(
-      -\frac{2\sin\theta\cos\theta\sin^2\phi}{r^2}
-      + \frac{\cos\theta\cos^2\phi}{r^2\sin\theta}
-    \right)_{I_2}
-    + \left(
-      \frac{2\sin\theta\cos\theta}{r^2}
-    \right)_{I_3}.
-\]
+$$
++ \text{Karışık türevler} \quad (\partial^2_{r\theta},\, \partial^2_{r\phi},\, \partial^2_{\theta\phi})
+$$
 
-Burada ilk kısımlar
+$$
++ \underbrace{\left( \frac{\cos^2\theta\cos^2\phi}{r} + \frac{\sin^2\phi}{r} \right)\frac{\partial}{\partial r}}_{\text{Katsayı türevlerinden gelen } \partial_r}
++ \underbrace{\left( \frac{\cos\theta\sin^2\phi}{r^2\sin\theta} - \frac{2\sin\theta\cos\theta\cos^2\phi}{r^2} \right)\frac{\partial}{\partial \theta}}_{\text{Katsayı türevlerinden gelen } \partial_\theta}
++ \cdots (\partial_\phi \text{ terimleri})
+$$
 
-\[
-    -\frac{2\sin\theta\cos\theta\cos^2\phi}{r^2}
-    -\frac{2\sin\theta\cos\theta\sin^2\phi}{r^2}
-    = -\frac{2\sin\theta\cos\theta}{r^2}
-\]
+### 3. $I_2$ Terimi ($B \cdot B$, $y$-bileşeni karesi)
 
-olur ve bu, \(I_3\) içindeki
+$$
+I_2 = \sin^2\theta\sin^2\phi\,\frac{\partial^2}{\partial r^2} + \frac{\cos^2\theta\sin^2\phi}{r^2}\,\frac{\partial^2}{\partial \theta^2} + \frac{\cos^2\phi}{r^2\sin^2\theta}\,\frac{\partial^2}{\partial \phi^2}
+$$
 
-\[
-    \frac{2\sin\theta\cos\theta}{r^2}
-\]
+$$
++ \text{Karışık türevler...}
+$$
 
-terimi ile birbirini götürür.
+$$
++ \left( \frac{\cos^2\theta\sin^2\phi}{r} + \frac{\cos^2\phi}{r} \right)\frac{\partial}{\partial r}
++ \left( \frac{\cos\theta\cos^2\phi}{r^2\sin\theta} - \frac{2\sin\theta\cos\theta\sin^2\phi}{r^2} \right)\frac{\partial}{\partial \theta}
++ \cdots (\partial_\phi \text{ terimleri})
+$$
 
-Geriye kalanlar:
+---
 
-\[
-    \frac{\cos\theta}{r^2\sin\theta}(\sin^2\phi + \cos^2\phi)
-    = \frac{\cos\theta}{r^2\sin\theta}
-\]
+## Sadeleştirme ve Sonuç
 
-olur ve böylece açısal birinci türev terimi
+$I_1 + I_2 + I_3$ toplamını yaparken, türev operatörlerinin katsayılarını topluyoruz.
 
-\[
-    \boxed{\frac{\cos\theta}{r^2\sin\theta}\,\frac{\partial}{\partial \theta}}
-\]
+### İkinci Türevler
 
-şeklinde yazılır.
+**$\partial^2/\partial r^2$ katsayısı:**
 
-## 5. Nihai Form: Küresel Laplace Operatörü
+$$
+\sin^2\theta\cos^2\phi + \sin^2\theta\sin^2\phi + \cos^2\theta
+= \sin^2\theta\underbrace{(\cos^2\phi+\sin^2\phi)}_{1} + \cos^2\theta = 1
+$$
 
-Tüm ikinci ve birinci türevli terimleri topladığımızda, küresel koordinatlarda Laplace operatörünü diferansiyel formda:
+**$\partial^2/\partial\theta^2$ katsayısı:**
 
-\[
-    \nabla^2
-    = \frac{\partial^2}{\partial r^2}
-    + \frac{2}{r}\frac{\partial}{\partial r}
-    + \frac{1}{r^2}\frac{\partial^2}{\partial \theta^2}
-    + \frac{\cos\theta}{r^2\sin\theta}\frac{\partial}{\partial \theta}
-    + \frac{1}{r^2\sin^2\theta}\frac{\partial^2}{\partial \phi^2}
-\]
+$$
+\frac{1}{r^2}\!\left[\cos^2\theta\cos^2\phi + \cos^2\theta\sin^2\phi + \sin^2\theta\right]
+= \frac{\cos^2\theta + \sin^2\theta}{r^2} = \frac{1}{r^2}
+$$
 
-şeklinde elde ederiz.
+**$\partial^2/\partial\phi^2$ katsayısı:**
 
-Bu ifade, daha kompakt ve simetrik bir biçimde de yazılabilir:
+$$
+\frac{\sin^2\phi + \cos^2\phi}{r^2\sin^2\theta} = \frac{1}{r^2\sin^2\theta}
+$$
 
-\[
-    \boxed{
-      \nabla^2
-      = \frac{1}{r^2}\frac{\partial}{\partial r}\left(r^2 \frac{\partial}{\partial r}\right)
-        + \frac{1}{r^2\sin\theta}\frac{\partial}{\partial \theta}\left(\sin\theta \frac{\partial}{\partial \theta}\right)
-        + \frac{1}{r^2\sin^2\theta}\frac{\partial^2}{\partial \phi^2}
-    }.
-\]
+**Karışık türevler** ($\partial^2_{r\theta}$, $\partial^2_{r\phi}$, $\partial^2_{\theta\phi}$): $I_1 + I_2 + I_3$ toplamında tam iptal olurlar.
 
-Bu son form, fizikte (örneğin kuantum mekaniğinde Schrödinger denklemi, elektromanyetizmada potansiyel problemleri vb.) ve matematikte, küresel simetri içeren problemlerde standart olarak kullanılan küresel Laplace operatörüdür.
+### Birinci Türevlerin ($\partial_r$ ve $\partial_\theta$) Toplanması
 
+**Radyal Türev ($\partial_r$):**
+
+Katsayı türevlerinden gelen terimlerin toplamı:
+
+$$
+\text{Katsayı} = \frac{1}{r}\!\left(\underbrace{\cos^2\theta\cos^2\phi + \sin^2\phi}_{I_1} + \underbrace{\cos^2\theta\sin^2\phi + \cos^2\phi}_{I_2} + \underbrace{\sin^2\theta}_{I_3}\right)
+$$
+
+$$
+= \frac{1}{r}\left[ \cos^2\theta(\cos^2\phi+\sin^2\phi) + (\sin^2\phi+\cos^2\phi) + \sin^2\theta \right]
+= \frac{1}{r}\left[ \cos^2\theta + 1 + \sin^2\theta \right] = \frac{2}{r}
+$$
+
+Sonuç terimi: $\displaystyle\frac{2}{r}\,\frac{\partial}{\partial r}$
+
+**Açısal Türev ($\partial_\theta$):**
+
+Katsayı türevlerinden gelen terimlerin toplamı:
+
+$$
+\text{Katsayı} = \left( -\frac{2\sin\theta\cos\theta\cos^2\phi}{r^2} + \frac{\cos\theta\sin^2\phi}{r^2\sin\theta} \right)_{\!I_1}
++ \left( -\frac{2\sin\theta\cos\theta\sin^2\phi}{r^2} + \frac{\cos\theta\cos^2\phi}{r^2\sin\theta} \right)_{\!I_2}
++ \left( \frac{2\sin\theta\cos\theta}{r^2} \right)_{\!I_3}
+$$
+
+İlk kısımlar ($I_1+I_2$) birleşince $-\frac{2\sin\theta\cos\theta}{r^2}$ olur ve $I_3$ ile birbirini götürür. Geriye kalanlar:
+
+$$
+\frac{\cos\theta}{r^2\sin\theta}(\sin^2\phi + \cos^2\phi) = \frac{\cos\theta}{r^2\sin\theta}
+$$
+
+Sonuç terimi: $\displaystyle\frac{\cos\theta}{r^2\sin\theta}\,\frac{\partial}{\partial \theta}$
+
+---
+
+## Nihai Formül
+
+Tüm ikinci ve birinci türevleri birleştirdiğimizde küresel Laplace operatörü:
+
+$$
+\nabla^2 = \frac{\partial^2}{\partial r^2} + \frac{2}{r}\frac{\partial}{\partial r} + \frac{1}{r^2}\frac{\partial^2}{\partial\theta^2} + \frac{\cos\theta}{r^2\sin\theta}\frac{\partial}{\partial\theta} + \frac{1}{r^2\sin^2\theta}\frac{\partial^2}{\partial\phi^2}
+$$
+
+Bu ifade, diferansiyel formda (kapalı form) şu şekilde de yazılabilir:
+
+$$
+\boxed{
+\nabla^2 = \frac{1}{r^2}\frac{\partial}{\partial r}\!\left(r^2\frac{\partial}{\partial r}\right) + \frac{1}{r^2\sin\theta}\frac{\partial}{\partial \theta}\!\left(\sin\theta\frac{\partial}{\partial \theta}\right) + \frac{1}{r^2\sin^2\theta}\frac{\partial^2}{\partial \phi^2}
+}
+$$
+
+Bu, ders kitaplarında verilen standart formdur. Schrödinger denklemini küresel koordinatlarda yazdığınızda bu ifade doğrudan karşınıza çıkar — radyal ve açısal kısımların neden bu şekilde ayrıştığını artık biliyorsunuz.

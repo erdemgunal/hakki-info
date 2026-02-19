@@ -51,7 +51,7 @@ export async function getBlogPosts(): Promise<BlogPostMeta[]> {
 
 export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> {
     const fullPath = path.join(BLOG_DIR, `${slug}.mdx`);
-
+    
     try {
         const source = await fs.readFile(fullPath, 'utf8');
         const { data, content } = matter(source);
@@ -73,7 +73,8 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
             tags,
             content: content.trim(),
         };
-    } catch {
+    } catch (error) {
+        console.log(error);
         return null;
     }
 }
