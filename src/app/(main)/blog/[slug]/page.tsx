@@ -4,11 +4,13 @@ import { getBlogPostBySlug, getBlogPosts } from '@/lib/blog';
 import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import remarkGfm from 'remark-gfm';
+import remarkBreaks from 'remark-breaks';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import rehypePrettyCode from 'rehype-pretty-code';
 import { mdxComponents } from '@/components/blog/MdxComponents';
 import { PostSidebar } from '@/components/blog/PostSidebar';
+import { ScrollProgressIndicator } from '@/components/blog/ScrollProgressIndicator';
 import seo from '@/config/seo.json';
 import { formatBlogDate } from '@/lib/date-utils';
 import 'katex/dist/katex.min.css';
@@ -65,6 +67,7 @@ export default async function BlogPostPage({ params }: BlogPostPageParams) {
 
     return (
         <main className="min-h-screen bg-background">
+            <ScrollProgressIndicator />
             <div className="mx-auto max-w-5xl px-4 sm:px-6 md:px-8 pt-24 pb-20">
                 <div className="grid grid-cols-1 lg:grid-cols-[1fr_200px] gap-16">
 
@@ -119,13 +122,13 @@ export default async function BlogPostPage({ params }: BlogPostPageParams) {
                             prose-img:rounded-lg prose-img:my-6
                             prose-table:text-sm
                             [&_.katex]:text-foreground
-                            [&_.katex-display]:my-6 [&_.katex-display]:overflow-x-auto [&_.katex-display]:py-1
+                            [&_.katex-display]:my-6 [&_.katex-display]:overflow-x-auto [&_.katex-display]:overflow-y-hidden [&_.katex-display]:py-1
                         ">
                             <MDXRemote
                                 source={post.content}
                                 options={{
                                     mdxOptions: {
-                                        remarkPlugins: [remarkGfm, remarkMath],
+                                        remarkPlugins: [remarkGfm, remarkBreaks, remarkMath],
                                         rehypePlugins: [
                                             rehypeKatex,
                                             [rehypePrettyCode, prettyCodeOptions],
@@ -137,8 +140,8 @@ export default async function BlogPostPage({ params }: BlogPostPageParams) {
                         </div>
                     </article>
 
-                    {/* ── Sidebar — desktop only ───────────────────────────── */}
-                    <aside className="hidden lg:block">
+                    {/* ── Sidebar (visible on desktop and mobile) ───────────────── */}
+                    <aside className="max-lg:mt-8 max-lg:pt-6 max-lg:border-t max-lg:border-border/50">
                         <div className="sticky top-32">
                             <PostSidebar title={post.title} shareUrl={shareUrl} />
                         </div>

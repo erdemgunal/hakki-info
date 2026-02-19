@@ -1,199 +1,176 @@
-// src/app/(main)/blog/[slug]/page.tsx
 import type { Metadata } from 'next';
-import { getBlogPostBySlug, getBlogPosts } from '@/lib/blog';
+import { getProjectSlugs, fetchProjectBySlug } from '@/lib/fetch-resume-data';
 import { notFound } from 'next/navigation';
-import { MDXRemote } from 'next-mdx-remote/rsc';
-import remarkGfm from 'remark-gfm';
-import remarkMath from 'remark-math';
-import rehypeKatex from 'rehype-katex';
-import rehypePrettyCode from 'rehype-pretty-code';
-import { PostSidebar } from '@/components/blog/PostSidebar';
-import { mdxComponents } from '@/components/blog/MdxComponents';
+import Link from 'next/link';
+import Image from 'next/image';
 import seo from '@/config/seo.json';
-import { formatBlogDate } from '@/lib/date-utils';
-import 'katex/dist/katex.min.css';
-
-// ─── rehype-pretty-code config ────────────────────────────────────────────────
-
-const prettyCodeOptions = {
-    // Ships with Shiki — matches a dark code bg on both light & dark themes
-    theme: 'github-dark-dimmed',
-    // We control the background via our <pre> in MdxComponents, so keep it transparent
-    keepBackground: false,
-    // Prevent empty lines from collapsing
-    onVisitLine(node: { children: { type: string; value?: string }[] }) {
-        if (node.children.length === 0) {
-            node.children = [{ type: 'text', value: ' ' }];
-        }
-    },
-};
-
-// ─── Static generation ────────────────────────────────────────────────────────
+import { Button } from '@/components/ui/button';
+import ExternalLinkIcon from '@/components/icon/ExternalLinkIcon';
+import { renderBadges, renderTechStackBadges } from '@/lib/badge-utils';
 
 export async function generateStaticParams() {
-    const posts = await getBlogPosts();
-    return posts.map((post) => ({ slug: post.slug }));
+    const slugs = await getProjectSlugs();
+    return slugs.map((slug) => ({ slug }));
 }
 
-interface BlogPostPageParams {
+interface ProjectPageParams {
     params: Promise<{ slug: string }>;
 }
 
-// ─── Metadata ─────────────────────────────────────────────────────────────────
-
 export async function generateMetadata(
-    { params }: BlogPostPageParams
+    { params }: ProjectPageParams
 ): Promise<Metadata> {
     const { slug } = await params;
-    const post = await getBlogPostBySlug(slug);
-    if (!post) return {};
+    const project = await fetchProjectBySlug(slug);
 
-    const canonicalUrl = new URL(`/blog/${slug}`, seo.url).toString();
+    if (!project) {
+        return {};
+    }
+
+    const title = project.seoTitle ?? project.title;
+    const description = project.seoDescription ?? project.description;
+    const dynamicOgUrl = new URL(`/api/og/${slug}`, seo.url).toString();
+    const ogImage = project.seoImage ?? dynamicOgUrl;
+    const canonicalUrl = new URL(`/projects/${slug}`, seo.url).toString();
 
     return {
-        title: post.title,
-        description: post.excerpt,
+        title,
+        description,
         openGraph: {
-            title: post.title,
-            description: post.excerpt,
+            title,
+            description,
             url: canonicalUrl,
             siteName: seo.siteName,
+            images: [
+                {
+                    url: ogImage,
+                    width: 1200,
+                    height: 630,
+                    alt: title,
+                },
+            ],
             type: 'article',
-            publishedTime: post.date,
         },
         twitter: {
-            card: 'summary' as const,
-            title: post.title,
-            description: post.excerpt,
+            card: seo.twitterCard as 'summary_large_image',
+            title,
+            description,
+            images: [ogImage],
         },
     };
 }
 
-// ─── Page ─────────────────────────────────────────────────────────────────────
-
-export default async function BlogPostPage({ params }: BlogPostPageParams) {
+export default async function ProjectPage({ params }: ProjectPageParams) {
     const { slug } = await params;
-    const post = await getBlogPostBySlug(slug);
-    if (!post) notFound();
-
-    const shareUrl = new URL(`/blog/${slug}`, seo.url).toString();
+    const project = await fetchProjectBySlug(slug);
+    if (!project) notFound();
 
     return (
         <main className="min-h-screen bg-background">
-            <div className="mx-auto max-w-5xl px-4 sm:px-6 md:px-8 lg:px-16 pt-24 pb-20">
-                <div className="grid grid-cols-1 lg:grid-cols-[1fr_250px] gap-12">
+            <div className="mx-auto max-w-5xl px-4 sm:px-6 md:px-8 lg:px-16 pt-24 sm:pt-24 md:pt-28 pb-12 sm:pb-16 md:pb-20">
 
-                    {/* ── Article ───────────────────────────────────────────── */}
-                    <article className="min-w-0">
+                <header className="mb-8 sm:mb-12">
+                    <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-3">
+                        {renderBadges([project.label], 'outline', 'text-xs bg-background/80')}
+                        <span className="text-sm text-muted-foreground">{project.year}</span>
+                    </div>
+                    <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4">
+                        {project.title}
+                    </h1>
+                    <p className="text-lg text-muted-foreground leading-relaxed max-w-3xl">
+                        {project.description}
+                    </p>
+                </header>
 
-                        {/* Header */}
-                        <header className="mb-12 border-b border-border pb-8">
-                            <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif font-bold tracking-tight text-foreground mb-6">
-                                {post.title}
-                            </h1>
-                            <div className="flex flex-wrap items-center gap-3 text-[15px] text-muted-foreground font-medium">
-                                <time dateTime={post.date}>
-                                    {formatBlogDate(post.date)}
-                                </time>
-                                <span className="opacity-40">•</span>
-                                <span>{post.readTimeMinutes} min read</span>
-                            </div>
-                            {post.excerpt && (
-                                <p className="mt-5 text-base text-muted-foreground leading-relaxed border-l-2 border-border/50 pl-4">
-                                    {post.excerpt}
-                                </p>
-                            )}
-                        </header>
-
-                        {/* MDX body */}
-                        <div
-                            className="
-                                prose prose-lg prose-neutral dark:prose-invert max-w-none
-
-                                /* Headings — font-serif to match the page title */
-                                prose-headings:font-serif prose-headings:font-semibold prose-headings:tracking-tight
-
-                                /* Body copy */
-                                prose-p:leading-[1.85] prose-p:text-foreground/85
-
-                                /* Links — use accent colour */
-                                prose-a:text-accent prose-a:no-underline hover:prose-a:underline
-
-                                /* Inline code — pill style (MdxComponents overrides fenced blocks) */
-                                prose-code:rounded prose-code:bg-muted prose-code:px-1.5 prose-code:py-0.5
-                                prose-code:text-accent prose-code:font-mono prose-code:text-[0.84em]
-                                prose-code:before:content-none prose-code:after:content-none
-
-                                /* Fenced code blocks */
-                                prose-pre:rounded-xl prose-pre:border prose-pre:border-border
-                                prose-pre:bg-[#0d1117] prose-pre:shadow-md
-
-                                /* Blockquote */
-                                prose-blockquote:border-l-accent/60 prose-blockquote:text-muted-foreground
-                                prose-blockquote:not-italic
-
-                                /* HR */
-                                prose-hr:border-border/40
-
-                                /* Lists */
-                                prose-ul:marker:text-accent prose-ol:marker:text-muted-foreground
-
-                                /* Tables */
-                                prose-table:border prose-table:border-border
-                                prose-th:bg-muted prose-th:text-muted-foreground
-                                prose-td:border-border/40
-
-                                /* KaTeX */
-                                [&_.katex]:text-foreground
-                                [&_.katex-display]:my-8
-                                [&_.katex-display]:overflow-x-auto
-                                [&_.katex-display]:overflow-y-hidden
-                                [&_.katex-display]:py-1
-                            "
-                        >
-                            <MDXRemote
-                                source={post.content}
-                                options={{
-                                    mdxOptions: {
-                                        remarkPlugins: [remarkGfm, remarkMath],
-                                        rehypePlugins: [
-                                            rehypeKatex,
-                                            [rehypePrettyCode, prettyCodeOptions],
-                                        ],
-                                    },
-                                }}
-                                components={mdxComponents}
-                            />
+                {project.images.length > 0 && (
+                    <section className="mb-10 sm:mb-14">
+                        <div className="grid gap-4 sm:gap-6 grid-cols-1 md:grid-cols-2">
+                            {project.images.map((src, index) => (
+                                <div
+                                    key={index}
+                                    className="relative aspect-video sm:aspect-16/10 rounded-lg border border-border overflow-hidden bg-muted"
+                                >
+                                    <Image
+                                        src={src}
+                                        alt={`${project.title} screenshot ${index + 1}`}
+                                        fill
+                                        className="object-cover"
+                                        sizes="(max-width: 768px) 100vw, 50vw"
+                                        priority={index === 0}
+                                    />
+                                </div>
+                            ))}
                         </div>
+                    </section>
+                )}
 
-                        {/* Tags */}
-                        {post.tags.length > 0 && (
-                            <div className="flex flex-wrap gap-2 mt-10 pt-8 border-t border-border/40">
-                                {post.tags.map((tag) => (
-                                    <span
-                                        key={tag}
-                                        className="px-2.5 py-0.5 rounded-full bg-muted text-muted-foreground text-xs font-medium tracking-wide border border-border/60"
-                                    >
-                                        #{tag}
-                                    </span>
-                                ))}
-                            </div>
+                <section className="space-y-8 sm:space-y-10 mb-10 sm:mb-14">
+                    <div>
+                        <h2 className="text-base sm:text-lg font-semibold text-foreground mb-2">
+                            Problem
+                        </h2>
+                        <p className="text-muted-foreground leading-relaxed">
+                            {project.problem}
+                        </p>
+                    </div>
+                    <div>
+                        <h2 className="text-base sm:text-lg font-semibold text-foreground mb-2">
+                            Solution
+                        </h2>
+                        <p className="text-muted-foreground leading-relaxed">
+                            {project.solution}
+                        </p>
+                    </div>
+                    <div>
+                        <h2 className="text-base sm:text-lg font-semibold text-foreground mb-2">
+                            Result
+                        </h2>
+                        <p className="text-muted-foreground leading-relaxed">
+                            {project.result}
+                        </p>
+                    </div>
+                </section>
+
+                <section className="mb-10 sm:mb-14">
+                    <h2 className="text-base sm:text-lg font-semibold text-foreground mb-3">
+                        Tech stack
+                    </h2>
+                    <div className="flex flex-wrap gap-2">
+                        {renderTechStackBadges(
+                            project.techStack,
+                            project.techStack.length,
+                            'outline',
+                            'text-xs'
                         )}
+                    </div>
+                </section>
 
-                        {/* Sidebar — mobile (below content) */}
-                        <div className="mt-16 lg:hidden border-t pt-8">
-                            <PostSidebar title={post.title} shareUrl={shareUrl} />
-                        </div>
-                    </article>
-
-                    {/* ── Sidebar — desktop ─────────────────────────────────── */}
-                    <aside className="hidden lg:block">
-                        <div className="sticky top-32">
-                            <PostSidebar title={post.title} shareUrl={shareUrl} />
-                        </div>
-                    </aside>
-
-                </div>
+                <section className="flex flex-wrap gap-3">
+                    {project.links.live && (
+                        <Button variant="default" size="lg" asChild>
+                            <Link
+                                href={project.links.live}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-2"
+                            >
+                                View live site
+                                <ExternalLinkIcon className="w-4 h-4" />
+                            </Link>
+                        </Button>
+                    )}
+                    <Button variant="outline" size="lg" asChild>
+                        <Link
+                            href={project.links.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2"
+                        >
+                            View on GitHub
+                            <ExternalLinkIcon className="w-4 h-4" />
+                        </Link>
+                    </Button>
+                </section>
             </div>
         </main>
     );
