@@ -11,9 +11,9 @@ export function CodeBlock({
     'data-language': language,
     ...props
 }: CodeBlockProps) {
-    const [copied, setCopied]       = useState(false);
+    const [copied, setCopied] = useState(false);
     const [collapsed, setCollapsed] = useState(false);
-    const [wrapped, setWrapped]     = useState(false);
+    const [wrapped, setWrapped] = useState(false);
     const [lineCount, setLineCount] = useState(0);
     const preRef = useRef<HTMLPreElement>(null);
 
