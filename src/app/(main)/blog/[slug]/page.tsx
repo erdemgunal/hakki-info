@@ -40,6 +40,12 @@ export async function generateMetadata({ params }: BlogPostPageParams): Promise<
     const post = await getBlogPostBySlug(slug);
     if (!post) return {};
     const canonicalUrl = new URL(`/blog/${slug}`, seo.url).toString();
+    const imageUrl =
+        post.images?.length > 0
+            ? post.images[0].startsWith('http')
+                ? post.images[0]
+                : new URL(post.images[0], seo.url).toString()
+            : seo.image;
     return {
         title: post.title,
         description: post.excerpt,
@@ -50,11 +56,13 @@ export async function generateMetadata({ params }: BlogPostPageParams): Promise<
             siteName: seo.siteName,
             type: 'article',
             publishedTime: post.date,
+            images: [{ url: imageUrl }],
         },
         twitter: {
-            card: 'summary' as const,
+            card: 'summary_large_image' as const,
             title: post.title,
             description: post.excerpt,
+            images: [imageUrl],
         },
     };
 }

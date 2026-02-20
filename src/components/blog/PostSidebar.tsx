@@ -108,7 +108,7 @@ export function PostSidebar({ title, shareUrl }: PostSidebarProps) {
                     href={shareLinks.facebook}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-3 py-2 bg-[#1877f2] hover:bg-[#1877f2]/90 text-white text-xs font-semibold transition-colors"
+                    className="flex items-center gap-2 px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold transition-colors"
                     aria-label="Share on Facebook"
                 >
                     <FacebookIcon className="w-4 h-4" />

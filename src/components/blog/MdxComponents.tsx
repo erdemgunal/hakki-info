@@ -170,14 +170,19 @@ export const mdxComponents: MDXComponents = {
     // ── Images ────────────────────────────────────────────────────────────────
     // Renders phrasing content only (img + optional span) so it stays valid when
     // MDX wraps markdown images in a <p> (avoids hydration error from <figure> inside <p>).
-    img: ({ src, alt, ...props }) => (
+    // width/height when provided reduce CLS; decoding="async" keeps main thread free.
+    img: ({ src, alt, width, height, ...props }) => (
         <>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
                 src={src}
                 alt={alt ?? ''}
-                className="w-full rounded-lg my-6"
+                width={width}
+                height={height}
+                decoding="async"
                 loading="lazy"
+                className="w-full max-w-full h-auto rounded-lg my-6"
+                style={typeof width === 'number' && typeof height === 'number' ? { aspectRatio: `${width} / ${height}` } : undefined}
                 {...props}
             />
             {alt && (
