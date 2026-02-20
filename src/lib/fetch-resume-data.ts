@@ -13,13 +13,13 @@ export interface ResumeData {
         downloadCv: string;
         contact: {
             phone: string;
-            social: Array<{
-                name: string;
-                url: string;
-                iconKey: string;
-            }>;
         };
     };
+    social?: Array<{
+        name: string;
+        url: string;
+        iconKey: string;
+    }>;
     footer: {
         brand: {
             name: string;
@@ -108,7 +108,7 @@ export interface ProjectData {
     seoImage?: string;
 }
 
-const PROJECTS_DIR = path.join(process.cwd(), 'content', 'data', 'projects');
+const PROJECTS_DIR = path.join(process.cwd(), 'content', 'projects');
 
 export async function getProjectSlugs(): Promise<string[]> {
     const files = await fs.readdir(PROJECTS_DIR);
@@ -128,7 +128,7 @@ export async function fetchProjectBySlug(slug: string): Promise<ProjectData | nu
     }
 }
 
-const RESUME_PATH = path.join(process.cwd(), 'content', 'data', 'resume.mdx');
+const RESUME_PATH = path.join(process.cwd(), 'content', 'resume.mdx');
 
 type ResumeProjectItemRaw = {
     slug: string;

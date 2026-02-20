@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Crimson_Text, Oxygen, JetBrains_Mono } from "next/font/google";
+import { Schibsted_Grotesk, Oxygen, JetBrains_Mono } from "next/font/google";
 import "../globals.css";
 import { ThemeProvider } from "@/lib/ThemeProvider";
 import Script from "next/script";
@@ -10,22 +10,28 @@ import { fetchResumeData } from '@/lib/fetch-resume-data';
 import { ResumeDataProvider } from '@/contexts/ResumeDataContext';
 import seo from '@/config/seo.json';
 
-const headingFont = Crimson_Text({
+const headingFont = Schibsted_Grotesk({
     variable: "--font-heading",
     subsets: ["latin"],
     weight: ["400", "700"],
+    display: "swap",
+    adjustFontFallback: true,
 });
 
 const bodyFont = Oxygen({
     variable: "--font-body",
     subsets: ["latin"],
     weight: ["400", "700"],
+    display: "swap",
+    adjustFontFallback: true,
 });
 
 const monoFont = JetBrains_Mono({
     variable: "--font-mono",
     subsets: ["latin"],
     weight: ["400", "500", "600", "700"],
+    display: "swap",
+    adjustFontFallback: true,
 });
 
 export const metadata: Metadata = {
@@ -71,7 +77,7 @@ export default async function RootLayout({
                 <GoogleAnalytics />
                 <Script
                     id="microsoft-clarity"
-                    strategy="afterInteractive"
+                    strategy="lazyOnload"
                     dangerouslySetInnerHTML={{
                         __html: `
               (function(c,l,a,r,i,t,y){
@@ -84,7 +90,7 @@ export default async function RootLayout({
                 />
                 <Script
                     id="console-art"
-                    strategy="afterInteractive"
+                    strategy="lazyOnload"
                     dangerouslySetInnerHTML={{
                         __html: consoleArtScript,
                     }}

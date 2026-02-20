@@ -5,6 +5,7 @@ import UpvoteIcon from '@/components/icon/UpvoteIcon';
 import TwitterIcon from '@/components/icon/TwitterIcon';
 import LinkedInIcon from '@/components/icon/LinkedInIcon';
 import FacebookIcon from '@/components/icon/FacebookIcon';
+import Link from 'next/link';
 
 interface PostSidebarProps {
     title: string;
@@ -107,7 +108,7 @@ export function PostSidebar({ title, shareUrl }: PostSidebarProps) {
                     href={shareLinks.facebook}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-3 py-2 bg-[#1877f2] hover:bg-[#1877f2]/90 text-white text-xs font-semibold transition-colors"
+                    className="flex items-center gap-2 px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold transition-colors"
                     aria-label="Share on Facebook"
                 >
                     <FacebookIcon className="w-4 h-4" />
@@ -124,6 +125,27 @@ export function PostSidebar({ title, shareUrl }: PostSidebarProps) {
                     Share
                 </a>
             </div>
+            {/* divider */}
+            <div className="pt-2">
+                <Link
+                    href="/blog"
+                    className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors"
+                >
+                    <ArrowLeftIcon className="w-3 h-3" />
+                    All posts
+                </Link>
+            </div>
         </aside>
+    );
+}
+
+
+function ArrowLeftIcon({ className }: { className?: string }) {
+    return (
+        <svg className={className} viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M19 12H5" />
+            <polyline points="12 19 5 12 12 5" />
+        </svg>
     );
 }
