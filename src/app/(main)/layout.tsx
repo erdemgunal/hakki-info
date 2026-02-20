@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Crimson_Text, Oxygen, JetBrains_Mono } from "next/font/google";
+import { Schibsted_Grotesk, Oxygen, JetBrains_Mono } from "next/font/google";
 import "../globals.css";
 import { ThemeProvider } from "@/lib/ThemeProvider";
 import Script from "next/script";
@@ -10,7 +10,7 @@ import { fetchResumeData } from '@/lib/fetch-resume-data';
 import { ResumeDataProvider } from '@/contexts/ResumeDataContext';
 import seo from '@/config/seo.json';
 
-const headingFont = Crimson_Text({
+const headingFont = Schibsted_Grotesk({
     variable: "--font-heading",
     subsets: ["latin"],
     weight: ["400", "700"],

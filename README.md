@@ -7,7 +7,7 @@ A personal portfolio and resume site built with Next.js. Content is driven by MD
 - **Framework:** Next.js 16
 - **UI:** React 19, Tailwind CSS 4, Radix UI (Dialog, Slot), shadcn-style components
 - **Content:** MDX with gray-matter for frontmatter, react-markdown for rendering
-- **Fonts:** Crimson Text (headings), Oxygen (body), JetBrains Mono (code)
+- **Fonts:** Schibsted Grotesk (headings), Oxygen (body), JetBrains Mono (code)
 - **Theming:** next-themes
 
 ## Prerequisites
