@@ -7,17 +7,14 @@ export default async function BlogPage() {
 
     return (
         <main className="min-h-screen bg-background">
-            <div className="mx-auto max-w-3xl px-4 sm:px-6 md:px-8 pt-24 sm:pt-28 pb-16">
+            <div className="mx-auto max-w-5xl px-4 sm:px-6 md:px-8 lg:px-16 pt-24 sm:pt-24 md:pt-28 pb-4 sm:pb-6 md:pb-8">
 
                 {/* Header */}
-                <div className="mb-12">
-                    <p className="text-[11px] font-mono uppercase tracking-widest text-muted-foreground/50 mb-3">
-                        Writing
-                    </p>
-                    <h1 className="text-3xl sm:text-4xl font-bold text-foreground tracking-tight mb-3">
+                <div className="text-left mb-8 sm:mb-12">
+                    <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-4">
                         Blog
                     </h1>
-                    <p className="text-muted-foreground text-base leading-relaxed max-w-md">
+                    <p className="text-muted-foreground text-lg">
                         Notes on physics, research, and software development.
                     </p>
                 </div>
@@ -26,7 +23,7 @@ export default async function BlogPage() {
                 {posts.length === 0 ? (
                     <p className="text-sm text-muted-foreground">No posts yet.</p>
                 ) : (
-                    <ul className="divide-y divide-border/40">
+                    <ul className="space-y-0">
                         {posts.map((post) => (
                             <li key={post.slug}>
                                 <Link
