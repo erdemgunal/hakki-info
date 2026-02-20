@@ -1,132 +1,154 @@
 @import "tailwindcss";
 
 @layer base {
-  :root {
-    --background: #f8fafc;
-    --foreground: #0f172a;
-    --secondary: #64748b;
-    --accent: #4f46e5;
-    --surface: #ffffff;
-    --border: #e2e8f0;
+    :root {
+        --background: #f8fafc;
+        --foreground: #0f172a;
+        --secondary: #64748b;
+        --accent: #4f46e5;
+        --surface: #ffffff;
+        --border: #e2e8f0;
 
-    --card: var(--surface);
-    --card-foreground: var(--foreground);
-    --popover: var(--surface);
-    --popover-foreground: var(--foreground);
-    --primary: var(--accent);
-    --primary-foreground: #ffffff;
-    --secondary-foreground: var(--foreground);
-    --muted: #f1f5f9;
-    --muted-foreground: #64748b;
-    --accent-foreground: #ffffff;
-    --destructive: #e11d48;
-    --destructive-foreground: #ffffff;
-    --input: #f1f5f9;
-    --ring: var(--accent);
-  }
+        --card: var(--surface);
+        --card-foreground: var(--foreground);
+        --popover: var(--surface);
+        --popover-foreground: var(--foreground);
+        --primary: var(--accent);
+        --primary-foreground: #ffffff;
+        --secondary-foreground: var(--foreground);
+        --muted: #f1f5f9;
+        --muted-foreground: #64748b;
+        --accent-foreground: #ffffff;
+        --destructive: #e11d48;
+        --destructive-foreground: #ffffff;
+        --input: #f1f5f9;
+        --ring: var(--accent);
+    }
 
-  .dark {
-    --background: #0a0a0a;
-    --foreground: #f8fafc;
-    --secondary: #94a3b8;
-    --accent: #818cf8;
-    --surface: #161616;
-    --border: #262626;
+    .dark {
+        --background: #0a0a0a;
+        --foreground: #f8fafc;
+        --secondary: #94a3b8;
+        --accent: #818cf8;
+        --surface: #161616;
+        --border: #262626;
 
-    --card: var(--surface);
-    --card-foreground: var(--foreground);
-    --popover: var(--surface);
-    --popover-foreground: var(--foreground);
-    --primary: var(--accent);
-    --primary-foreground: #0f172a;
-    --secondary-foreground: var(--foreground);
-    --muted: #1e293b;
-    --muted-foreground: #94a3b8;
-    --accent-foreground: #ffffff;
-    --destructive: #f43f5e;
-    --destructive-foreground: #ffffff;
-    --input: #1e293b;
-    --ring: var(--accent);
-  }
+        --card: var(--surface);
+        --card-foreground: var(--foreground);
+        --popover: var(--surface);
+        --popover-foreground: var(--foreground);
+        --primary: var(--accent);
+        --primary-foreground: #0f172a;
+        --secondary-foreground: var(--foreground);
+        --muted: #1e293b;
+        --muted-foreground: #94a3b8;
+        --accent-foreground: #ffffff;
+        --destructive: #f43f5e;
+        --destructive-foreground: #ffffff;
+        --input: #1e293b;
+        --ring: var(--accent);
+    }
 
-  html, body {
-    font-family: var(--font-body);
-    background-color: var(--background);
-    color: var(--foreground);
-    transition: background-color 0.3s ease, color 0.3s ease;
-    scroll-behavior: smooth;
-  }
+    html,
+    body {
+        font-family: var(--font-body);
+        background-color: var(--background);
+        color: var(--foreground);
+        transition: background-color 0.3s ease, color 0.3s ease;
+        scroll-behavior: smooth;
+    }
 
-  h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-heading);
-    color: var(--foreground);
-    font-weight: 700;
-    letter-spacing: -0.02em;
-  }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: var(--font-heading);
+        color: var(--foreground);
+        font-weight: 700;
+        letter-spacing: -0.02em;
+    }
 
-  /* KaTeX block equations: horizontal scroll only, no vertical scrollbar */
-  .katex-display {
-    overflow-x: auto;
-    overflow-y: hidden;
-  }
+    .katex-display {
+        overflow-x: auto;
+        overflow-y: hidden;
+    }
 }
 
 @theme {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-secondary: var(--secondary);
-  --color-accent: var(--accent);
-  --color-surface: var(--surface);
-  --color-border: var(--border);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --color-secondary: var(--secondary);
+    --color-accent: var(--accent);
+    --color-surface: var(--surface);
+    --color-border: var(--border);
+    --color-card: var(--card);
+    --color-card-foreground: var(--card-foreground);
+    --color-popover: var(--popover);
+    --color-popover-foreground: var(--popover-foreground);
+    --color-primary: var(--primary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-secondary-foreground: var(--secondary-foreground);
+    --color-muted: var(--muted);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-accent-foreground: var(--accent-foreground);
+    --color-destructive: var(--destructive);
+    --color-destructive-foreground: var(--destructive-foreground);
+    --color-input: var(--input);
+    --color-ring: var(--ring);
 }
 
-/* ─── rehype-pretty-code ──────────────────────────────────────────────────── */
-
 @layer base {
-  [data-rehype-pretty-code-figure] pre {
-    @apply overflow-x-auto rounded-xl bg-[#0d1117] p-5 text-sm leading-relaxed;
-  }
+    [data-rehype-pretty-code-title] {
+        @apply rounded-t-xl bg-muted px-4 py-1.5 font-mono text-xs text-muted-foreground;
+    }
+    
+    [data-rehype-pretty-code-title]+pre {
+        @apply rounded-t-none;
+    }
+    
+    [data-highlighted-chars] {
+        @apply rounded bg-accent/20 px-1;
+    }
+    
+    .katex-display {
+        @apply my-6 overflow-x-auto overflow-y-hidden py-1;
+    }
 
-  /* File name label */
-  [data-rehype-pretty-code-title] {
-    @apply rounded-t-xl bg-muted px-4 py-1.5 font-mono text-xs text-muted-foreground;
-  }
+    .katex {
+        color: var(--foreground);
+    }
+}
 
-  /* When title is present, remove top rounding from pre */
-  [data-rehype-pretty-code-title] + pre {
-    @apply rounded-t-none;
-  }
+.not-prose pre {
+    counter-reset: line;
+}
 
-  /* Highlighted lines */
-  [data-highlighted-line] {
-    @apply -mx-5 border-l-2 border-accent/70 bg-accent/5 px-5;
-  }
+.not-prose pre [data-line] {
+    counter-increment: line;
+    position: relative;
+    display: block;
+    padding-left: calc(2.5rem + 12px);
+    padding-right: 20px;
+}
 
-  /* Highlighted words */
-  [data-highlighted-chars] {
-    @apply rounded bg-accent/20 px-1;
-  }
+.not-prose pre [data-line]::before {
+    content: counter(line);
+    position: absolute;
+    left: 0;
+    width: 2.5rem;
+    text-align: right;
+    padding-right: 12px;
+    font-size: 11px;
+    font-family: inherit;
+    line-height: inherit;
+    color: rgba(255, 255, 255, 0.2);
+    user-select: none;
+    pointer-events: none;
+}
 
-  /* KaTeX */
-  .katex-display {
-    @apply my-6 overflow-x-auto overflow-y-hidden py-1;
-  }
-
-  .katex {
-    color: var(--foreground);
-  }
+.not-prose pre [data-highlighted-line] {
+    background-color: color-mix(in srgb, var(--accent) 6%, transparent);
+    border-left: 2px solid color-mix(in srgb, var(--accent) 50%, transparent);
 }

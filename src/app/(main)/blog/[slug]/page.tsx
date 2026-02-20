@@ -14,6 +14,7 @@ import { ScrollProgressIndicator } from '@/components/blog/ScrollProgressIndicat
 import seo from '@/config/seo.json';
 import { formatBlogDate } from '@/lib/date-utils';
 import 'katex/dist/katex.min.css';
+import Image from 'next/image';
 
 const prettyCodeOptions = {
     theme: 'github-dark-dimmed',
@@ -61,6 +62,7 @@ export async function generateMetadata({ params }: BlogPostPageParams): Promise<
 export default async function BlogPostPage({ params }: BlogPostPageParams) {
     const { slug } = await params;
     const post = await getBlogPostBySlug(slug);
+    console.log(post);
     if (!post) notFound();
 
     const shareUrl = new URL(`/blog/${slug}`, seo.url).toString();
@@ -76,7 +78,16 @@ export default async function BlogPostPage({ params }: BlogPostPageParams) {
 
                         {/* Header */}
                         <header className="mb-10">
-                            <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground mb-3">
+                            {post.images && post.images.length > 0 && (
+                                <Image
+                                    src={post.images[0]}
+                                    alt={post.title}
+                                    width={1000}
+                                    height={1000}
+                                    className="w-full rounded-lg mb-6"
+                                />
+                            )}
+                            <h1 className="mt-10 mb-3 text-3xl sm:text-4xl font-bold tracking-tight text-foreground">
                                 {post.title}
                             </h1>
                             <div className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">

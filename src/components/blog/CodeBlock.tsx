@@ -1,34 +1,23 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 
 interface CodeBlockProps extends React.HTMLAttributes<HTMLPreElement> {
     'data-language'?: string;
+    'data-theme'?: string;
 }
 
 export function CodeBlock({
     children,
     'data-language': language,
+    'data-theme': _theme,
+    style: _style,
     ...props
 }: CodeBlockProps) {
     const [copied, setCopied] = useState(false);
     const [collapsed, setCollapsed] = useState(false);
     const [wrapped, setWrapped] = useState(false);
-    const [lineCount, setLineCount] = useState(0);
     const preRef = useRef<HTMLPreElement>(null);
-
-    useEffect(() => {
-        if (!preRef.current) return;
-        const dataLines = preRef.current.querySelectorAll('[data-line]');
-        if (dataLines.length > 0) {
-            setLineCount(dataLines.length);
-        } else {
-            const raw = preRef.current.innerText ?? '';
-            const lines = raw.split('\n');
-            const count = lines.at(-1)?.trim() === '' ? lines.length - 1 : lines.length;
-            setLineCount(Math.max(1, count));
-        }
-    }, [children]);
 
     const handleCopy = async () => {
         const text = preRef.current?.innerText ?? '';
@@ -46,25 +35,26 @@ export function CodeBlock({
         setTimeout(() => setCopied(false), 2000);
     };
 
+    const langLabel = language && language !== 'plaintext' ? language : 'code';
+
     return (
-        <div className="not-prose group my-5 rounded-xl overflow-hidden bg-[#0d1117]">
-
+        <div className="
+            not-prose group my-5 overflow-hidden
+            rounded-xl border border-white/[0.07]
+            bg-[#1e2029] dark:bg-[#0d1117]
+            text-[#cdd9e5] dark:text-[#cdd9e5]
+        ">
             {/* ── Top bar ──────────────────────────────────────────────── */}
-            <div className="flex items-center justify-between px-4 py-2 bg-white/4">
+            <div className="
+                flex items-center justify-between px-4 py-2
+                bg-[#262b36] dark:bg-[#161b22]
+                border-b border-white/[0.07]
+            ">
+                <span className="text-[11px] font-mono font-medium uppercase tracking-[0.12em] text-white/40 select-none">
+                    {langLabel}
+                    {collapsed && <span className="ml-2 text-white/20">· hidden</span>}
+                </span>
 
-                {/* Language label */}
-                <div className="flex items-center gap-2">
-                    <span className="text-[11px] font-mono font-medium uppercase tracking-[0.12em] text-white/30 select-none">
-                        {language && language !== 'plaintext' ? language : 'code'}
-                    </span>
-                    {collapsed && lineCount > 0 && (
-                        <span className="text-[11px] text-white/25 select-none">
-                            · {lineCount} {lineCount === 1 ? 'line' : 'lines'} hidden
-                        </span>
-                    )}
-                </div>
-
-                {/* Action buttons */}
                 <div className="flex items-center gap-0.5">
                     <BarButton
                         onClick={() => setCollapsed((v) => !v)}
@@ -89,56 +79,41 @@ export function CodeBlock({
                         aria-label="Copy code"
                         title={copied ? 'Copied!' : 'Copy'}
                     >
-                        {copied ? (
-                            <span className="text-emerald-400">
-                                <CheckIcon />
-                            </span>
-                        ) : (
-                            <CopyIcon />
-                        )}
+                        {copied
+                            ? <span className="text-emerald-400"><CheckIcon /></span>
+                            : <CopyIcon />
+                        }
                     </BarButton>
                 </div>
             </div>
 
             {/* ── Code area ────────────────────────────────────────────── */}
             {!collapsed && (
-                <div className="flex overflow-hidden">
-
-                    {/* Line number gutter */}
-                    {lineCount > 0 && (
-                        <div
-                            aria-hidden
-                            className="shrink-0 select-none flex flex-col items-end
-                                       pt-5 pb-5 pl-4 pr-3
-                                       text-[13px] leading-[1.75] font-mono
-                                       text-white/20"
-                        >
-                            {Array.from({ length: lineCount }, (_, i) => (
-                                <span key={i}>{i + 1}</span>
-                            ))}
-                        </div>
-                    )}
-
-                    {/* Code */}
-                    <pre
-                        ref={preRef}
-                        className={[
-                            'flex-1 m-0 px-5 py-5',
-                            'text-[13px] leading-[1.75] font-mono',
-                            'bg-transparent border-0 rounded-none shadow-none',
-                            wrapped ? 'whitespace-pre-wrap break-all' : 'whitespace-pre overflow-x-auto',
-                            '**:data-line:block',
-                            '**:data-highlighted-line:-mx-5',
-                            '**:data-highlighted-line:px-5',
-                            '**:data-highlighted-line:border-l-2',
-                            '**:data-highlighted-line:border-accent/70',
-                            '**:data-highlighted-line:bg-accent/5',
-                        ].join(' ')}
-                        {...props}
-                    >
-                        {children}
-                    </pre>
-                </div>
+                <pre
+                    ref={preRef}
+                    {...props}
+                    data-theme={undefined}
+                    style={undefined}
+                    className={[
+                        'm-0 py-4 px-0',
+                        'text-[13px] leading-[1.75] font-mono',
+                        'bg-transparent border-0 rounded-none shadow-none',
+                        wrapped
+                            ? 'whitespace-pre-wrap break-all overflow-x-hidden'
+                            : 'whitespace-pre overflow-x-auto',
+                        '[counter-reset:line]',
+                        '**:data-line:block',
+                        '**:data-line:pl-[calc(2.5rem+12px)]',
+                        '**:data-line:pr-5',
+                        '**:data-line:relative',
+                        '**:data-line:[counter-increment:line]',
+                        '**:data-highlighted-line:bg-accent/5',
+                        '**:data-highlighted-line:border-l-2',
+                        '**:data-highlighted-line:border-accent/60',
+                    ].join(' ')}
+                >
+                    {children}
+                </pre>
             )}
         </div>
     );
@@ -156,9 +131,7 @@ function BarButton({
             className={[
                 'flex items-center px-2 py-1 rounded',
                 'text-[11px] transition-colors duration-100 cursor-pointer',
-                active
-                    ? 'text-accent/80'
-                    : 'text-white/30 hover:text-white/60',
+                active ? 'text-accent/80' : 'text-white/30 hover:text-white/60',
             ].join(' ')}
             {...props}
         >
@@ -175,8 +148,7 @@ function CollapseIcon({ collapsed }: { collapsed: boolean }) {
             stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
             {collapsed
                 ? <polyline points="6 9 12 15 18 9" />
-                : <polyline points="18 15 12 9 6 15" />
-            }
+                : <polyline points="18 15 12 9 6 15" />}
         </svg>
     );
 }
