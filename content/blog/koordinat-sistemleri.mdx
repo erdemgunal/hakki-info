@@ -1,0 +1,75 @@
+---
+title: "Koordinat Sistemleri Rehberi: Kartezyen, Polar, Silindirik ve Küresel"
+date: "2026-02-20"
+excerpt: "Matematik ve mühendisliğin temel taşı olan koordinat sistemlerini keşfedin. Hangi senaryoda hangi sistemi seçmeniz gerektiğini örneklerle öğrenin."
+status: "published"
+tags: ["mathematics", "engineering", "geometry", "guide"]
+---
+
+# Koordinat Sistemleri Rehberi: Kartezyen'den Küresel'e
+
+Karmaşık bir dünyada bir noktanın yerini belirlemek, kullandığınız "dil" yani **koordinat sistemi** ile ilgilidir. Robotik projelerinden oyun geliştirmeye, veri görselleştirmeden fizik simülasyonlarına kadar doğru sistemi seçmek işinizi inanılmaz kolaylaştırabilir.
+
+<Callout type="info">
+  Koordinat sistemleri temelde bir "referans noktası" (orijin) ve bu noktaya göre yön belirleyen "eksenler" bütünüdür.
+</Callout>
+
+## 1. Kartezyen Koordinat Sistemi (Cartesian)
+
+Hepimizin aşina olduğu, dik açılı eksenlerden oluşan sistemdir. $x$, $y$ ve (3D ise) $z$ değerleri ile tanımlanır.
+
+* **Kullanım Alanı:** Genel amaçlı grafikler, UI tasarımı, haritacılık.
+* **Avantajı:** Mesafe hesaplamaları ($d = \sqrt{\Delta x^2 + \Delta y^2}$) çok doğrusaldır.
+
+
+
+## 2. Polar Koordinat Sistemi (Polar)
+
+2D düzlemde bir noktayı merkeze olan uzaklık ($r$) ve bir referans ekseniyle yaptığı açı ($\theta$) ile tanımlarız.
+
+* **Formül:** $x = r \cos(\theta)$, $y = r \sin(\theta)$
+* **Kullanım Alanı:** Dairesel hareketler, radar sistemleri, anten sinyalleri.
+
+<Callout type="warning">
+  Eğer projenizde bir nesne bir merkezin etrafında dönüyorsa, Kartezyen kullanmak yerine Polar koordinatlara geçmek matematiksel yükünüzü %80 azaltacaktır.
+</Callout>
+
+
+
+## 3. Silindirik Koordinat Sistemi (Cylindrical)
+
+Polar sistemin 3. boyuta ($z$ ekseni) dikey olarak genişletilmiş halidir. Bir noktayı $(r, \theta, z)$ olarak tanımlarız.
+
+
+
+| Bileşen | Tanım |
+| :--- | :--- |
+| **r** | Z eksenine olan yatay uzaklık |
+| **$\theta$** | X-Y düzlemindeki açı (azimut) |
+| **z** | Standart yükseklik |
+
+**Kullanım Alanı:** Su boruları tasarımı, manyetik alan hesaplamaları veya dönen silindirik nesneler.
+
+## 4. Küresel Koordinat Sistemi (Spherical)
+
+3D dünyada bir noktayı merkeze olan uzaklık ($\rho$) ve iki farklı açı ($\theta, \phi$) ile tanımlarız.
+
+* **Bileşenler:** $(\rho, \theta, \phi)$
+* **Kullanım Alanı:** Astronomi (yıldızların konumu), oyun motorlarında kamera sistemleri ve 3D tarama.
+
+
+
+<Callout type="error">
+  Küresel koordinatlarda "kutup noktalarına" yaklaştıkça (Gimbal Lock gibi) matematiksel tekillikler oluşabilir. Bu duruma dikkat edilmelidir.
+</Callout>
+
+---
+
+## Özet Karşılaştırma
+
+| Sistem | Boyut | Parametreler | En İyi Senaryo |
+| :--- | :--- | :--- | :--- |
+| **Kartezyen** | 2D/3D | $x, y, z$ | Izgara tabanlı yapılar, UI |
+| **Polar** | 2D | $r, \theta$ | Dairesel animasyonlar |
+| **Silindirik** | 3D | $r, \theta, z$ | Boru hatları, silindirik nesneler |
+| **Küresel** | 3D | $\rho, \theta, \phi$ | Gezegen yüzeyleri, 3D kameralar |
