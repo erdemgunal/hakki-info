@@ -113,6 +113,8 @@ export interface ProjectData {
     seoTitle?: string;
     seoDescription?: string;
     seoImage?: string;
+    role?: string;
+    contribution?: string;
 }
 
 const PROJECTS_DIR = path.join(process.cwd(), 'content', 'projects');

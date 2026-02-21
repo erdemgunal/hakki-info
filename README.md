@@ -73,8 +73,8 @@ content/
 
 ## Content
 
-- **Resume data:** Edit `content/data/resume.mdx`. The YAML frontmatter defines hero, footer, about, education, languages, skills, and the list of projects (with slugs linking to project MDX files).
-- **Projects:** Add or edit `.mdx` files in `content/data/projects/`. Each file’s frontmatter should include `title`, `slug`, `description`, `techStack`, `label`, `year`, `images`, and optional `links` (e.g. `live`, `github`). The `slug` must match the filename (without extension) or be set explicitly for the URL.
+- **Resume data:** Edit `content/data/resume.mdx`. The YAML frontmatter defines hero, footer, about, education, languages, skills and the list of projects (with slugs linking to project MDX files).
+- **Projects:** Add or edit `.mdx` files in `content/data/projects/`. Each file’s frontmatter should include `title`, `slug`, `description`, `techStack`, `label`, `year`, `images` and optional `links` (e.g. `live`, `github`). The `slug` must match the filename (without extension) or be set explicitly for the URL.
 
 ## License
 
