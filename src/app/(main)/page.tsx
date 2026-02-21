@@ -3,6 +3,7 @@ import {
     About,
     Education,
     Languages,
+    Community,
     Skills,
     Projects,
 } from '@/components/sections';
@@ -20,6 +21,7 @@ export default async function Home() {
                             <About />
                             <Education />
                             <Languages />
+                            <Community />
                             <Skills />
                             <Projects />
                         </div>
