@@ -70,7 +70,6 @@ export async function generateMetadata({ params }: BlogPostPageParams): Promise<
 export default async function BlogPostPage({ params }: BlogPostPageParams) {
     const { slug } = await params;
     const post = await getBlogPostBySlug(slug);
-    console.log(post);
     if (!post) notFound();
 
     const shareUrl = new URL(`/blog/${slug}`, seo.url).toString();

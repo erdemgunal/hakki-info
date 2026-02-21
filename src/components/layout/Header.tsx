@@ -11,6 +11,7 @@ const SECTIONS = [
     { id: 'about', label: 'About' },
     { id: 'education', label: 'Education' },
     { id: 'languages', label: 'Languages' },
+    { id: 'community', label: 'Community' },
     { id: 'skills', label: 'Skills' },
     { id: 'projects', label: 'Projects' },
 ] as const;
@@ -53,7 +54,7 @@ export default function Header() {
                             alt="Hakkı Erdem"
                             width={100}
                             height={100}
-                            className="w-full h-full object-cover"
+                            className="w-full h-full object-cover object-[55%_50%]"
                         />
                     </Link>
 

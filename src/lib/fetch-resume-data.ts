@@ -56,6 +56,13 @@ export interface ResumeData {
             level: string;
         }>;
     };
+    community?: {
+        items: Array<{
+            title: string;
+            description: string;
+            period?: string;
+        }>;
+    };
     skills: {
         title: string;
         technical: Array<{
