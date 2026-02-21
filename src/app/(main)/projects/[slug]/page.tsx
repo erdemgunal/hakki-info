@@ -80,6 +80,22 @@ export default async function ProjectPage({ params }: ProjectPageParams) {
                     <p className="text-lg text-muted-foreground leading-relaxed max-w-3xl">
                         {project.description}
                     </p>
+                    {(project.role ?? project.contribution) && (
+                        <div className="mt-4 flex flex-col gap-2 text-sm text-muted-foreground">
+                            {project.role && (
+                                <p>
+                                    <span className="font-medium text-foreground">Role:</span>{' '}
+                                    {project.role}
+                                </p>
+                            )}
+                            {project.contribution && (
+                                <p>
+                                    <span className="font-medium text-foreground">Contribution:</span>{' '}
+                                    {project.contribution}
+                                </p>
+                            )}
+                        </div>
+                    )}
                 </header>
 
                 {project.images.length > 0 && (

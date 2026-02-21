@@ -15,7 +15,7 @@ export default async function BlogPage() {
                         Blog
                     </h1>
                     <p className="text-muted-foreground text-lg">
-                        Notes on physics, research, and software development.
+                        Notes on physics, research and software development.
                     </p>
                 </div>
 
