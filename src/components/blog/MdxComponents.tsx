@@ -132,7 +132,6 @@ export const mdxComponents: MDXComponents = {
     // ── Code block ────────────────────────────────────────────────────────────
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     pre: (props: any) => {
-        console.log(props);
         return <CodeBlock {...props} />;
     },
 
