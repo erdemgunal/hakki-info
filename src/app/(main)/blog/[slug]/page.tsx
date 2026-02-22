@@ -161,7 +161,7 @@ export default async function BlogPostPage({ params }: BlogPostPageParams) {
                     {/* ── Sidebar (visible on desktop and mobile) ───────────────── */}
                     <aside className="max-lg:mt-8 max-lg:pt-6 max-lg:border-t max-lg:border-border/50">
                         <div className="sticky top-32">
-                            <PostSidebar title={post.title} shareUrl={shareUrl} />
+                            <PostSidebar title={post.title} shareUrl={shareUrl} slug={slug} />
                         </div>
                     </aside>
                 </div>

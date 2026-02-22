@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Schibsted_Grotesk, Oxygen, JetBrains_Mono } from "next/font/google";
+import { Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google"; // Updated imports
 import "../globals.css";
 import { ThemeProvider } from "@/lib/ThemeProvider";
 import Script from "next/script";
@@ -10,20 +10,20 @@ import { fetchResumeData } from '@/lib/fetch-resume-data';
 import { ResumeDataProvider } from '@/contexts/ResumeDataContext';
 import seo from '@/config/seo.json';
 
-const headingFont = Schibsted_Grotesk({
+// Replacement for Mluvka Grotesk
+const headingFont = Plus_Jakarta_Sans({
     variable: "--font-heading",
     subsets: ["latin"],
-    weight: ["400", "700"],
+    weight: ["400", "500", "600", "700", "800"], // Added weights for more flexibility
     display: "swap",
-    adjustFontFallback: true,
 });
 
-const bodyFont = Oxygen({
+// Using Plus Jakarta Sans for body as well for a consistent "Mluvka" brand look
+const bodyFont = Plus_Jakarta_Sans({
     variable: "--font-body",
     subsets: ["latin"],
-    weight: ["400", "700"],
+    weight: ["400", "500", "600"],
     display: "swap",
-    adjustFontFallback: true,
 });
 
 const monoFont = JetBrains_Mono({
@@ -31,7 +31,6 @@ const monoFont = JetBrains_Mono({
     subsets: ["latin"],
     weight: ["400", "500", "600", "700"],
     display: "swap",
-    adjustFontFallback: true,
 });
 
 export const metadata: Metadata = {
