@@ -23,7 +23,7 @@ export default async function ProjectsPage() {
                             Projects
                         </h1>
                         <p className="text-muted-foreground text-lg">
-                            Explore my portfolio of projects showcasing automation, full-stack development and innovative solutions.
+                            Explore my portfolio of projects showcasing automation, fullstack development and innovative solutions.
                         </p>
                     </div>
 

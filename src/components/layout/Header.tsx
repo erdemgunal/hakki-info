@@ -48,9 +48,9 @@ export default function Header() {
         <header className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-full max-w-6xl px-2 sm:px-4 md:px-6 lg:px-8">
             <div className="bg-surface/80 backdrop-blur-md border-[0.5px] border-border rounded-2xl shadow-lg shadow-black/10 dark:shadow-white/5 px-4 sm:px-6 py-3 sm:py-3.5">
                 <nav className="relative flex items-center justify-between">
-                    <Link href="/" className="shrink-0 w-10 h-10 rounded-full overflow-hidden ring-1 ring-border">
+                    <Link href="/" className="shrink-0 w-12 h-12 rounded-full overflow-hidden ring-1 ring-border">
                         <Image
-                            src="https://cdn.jsdelivr.net/gh/erdemgunal/hakki-info-assets@latest/a55c1506-9eba-451b-9334-dd3eb0421529.png"
+                            src="https://cdn.jsdelivr.net/gh/erdemgunal/hakki-info-assets@latest/0fd05493-bb14-4e2d-bf3a-11b1a1101f93.jpeg"
                             alt="Hakkı Erdem"
                             width={100}
                             height={100}
