@@ -56,7 +56,6 @@ export function Callout({
 
     return (
         <div className={`not-prose my-5 flex gap-3 rounded-lg px-4 py-3 text-sm leading-relaxed ${styles[type]}`}>
-            <span className="shrink-0 opacity-70">{icons[type]}</span>
             <div>{children}</div>
         </div>
     );
