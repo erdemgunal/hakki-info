@@ -7,6 +7,7 @@ import seo from '@/config/seo.json';
 import { Button } from '@/components/ui/button';
 import ExternalLinkIcon from '@/components/icon/ExternalLinkIcon';
 import { renderBadges, renderTechStackBadges } from '@/lib/badge-utils';
+import { PageAnalyticsWidget } from '@/components/analytics/PageAnalyticsWidget';
 
 export async function generateStaticParams() {
     const slugs = await getProjectSlugs();
@@ -161,7 +162,7 @@ export default async function ProjectPage({ params }: ProjectPageParams) {
                     </div>
                 </section>
 
-                <section className="flex flex-wrap gap-3">
+                <section className="flex flex-wrap items-center gap-3">
                     {project.links.live && (
                         <Button variant="default" size="lg" asChild>
                             <Link
@@ -186,6 +187,7 @@ export default async function ProjectPage({ params }: ProjectPageParams) {
                             <ExternalLinkIcon className="w-4 h-4" />
                         </Link>
                     </Button>
+                    <PageAnalyticsWidget pagePath={`/projects/${slug}`} title="Page analytics" />
                 </section>
             </div>
         </main>

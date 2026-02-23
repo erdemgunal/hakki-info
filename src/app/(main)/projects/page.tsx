@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { renderBadges, renderTechStackBadges } from '@/lib/badge-utils';
 import { Button } from '@/components/ui/button';
 import ExternalLinkIcon from '@/components/icon/ExternalLinkIcon';
+import { PageAnalyticsWidget } from '@/components/analytics/PageAnalyticsWidget';
 
 export default async function ProjectsPage() {
     const resumeData = await fetchResumeData();

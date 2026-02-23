@@ -8,6 +8,7 @@ import {
     Projects,
 } from '@/components/sections';
 import ActiveSectionIndicator from '@/components/ActiveSectionIndicator';
+import { PageAnalyticsWidget } from '@/components/analytics/PageAnalyticsWidget';
 
 export default async function Home() {
     return (
@@ -25,6 +26,7 @@ export default async function Home() {
                             <Skills />
                             <Projects />
                         </div>
+                        <PageAnalyticsWidget pagePath="/" title="Page analytics" />
                     </div>
                 </div>
             </div>
