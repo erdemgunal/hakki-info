@@ -11,7 +11,6 @@ import rehypePrettyCode from 'rehype-pretty-code';
 import { mdxComponents } from '@/components/blog/MdxComponents';
 import { PostSidebar } from '@/components/blog/PostSidebar';
 import { ScrollProgressIndicator } from '@/components/blog/ScrollProgressIndicator';
-import { PageAnalyticsWidget } from '@/components/analytics/PageAnalyticsWidget';
 import seo from '@/config/seo.json';
 import { formatBlogDate } from '@/lib/date-utils';
 import 'katex/dist/katex.min.css';
@@ -158,14 +157,6 @@ export default async function BlogPostPage({ params }: BlogPostPageParams) {
                             />
                         </div>
                     </article>
-
-                    {/* ── Sidebar (visible on desktop and mobile) ───────────────── */}
-                    <aside className="max-lg:mt-8 max-lg:pt-6 max-lg:border-t max-lg:border-border/50">
-                        <div className="sticky top-32 space-y-6">
-                            <PostSidebar title={post.title} shareUrl={shareUrl} slug={slug} />
-                            <PageAnalyticsWidget pagePath={`/blog/${slug}`} title="Page analytics" />
-                        </div>
-                    </aside>
                 </div>
             </div>
         </main>

@@ -86,9 +86,8 @@ export default function Header() {
                             rel="noopener noreferrer"
                         >
                             <Button
-                                variant="destructive"
                                 size="sm"
-                                className="rounded-lg"
+                                className="rounded-lg bg-destructive text-white hover:bg-destructive/90"
                             >
                                 Resume
                             </Button>

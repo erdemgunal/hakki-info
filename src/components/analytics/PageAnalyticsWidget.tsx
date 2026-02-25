@@ -1,81 +1,112 @@
 import {
-    fetchUmamiStats,
+    fetchUmamiStatsForPeriod,
     fetchUmamiMetrics,
-    fetchUmamiPageviews,
     isUmamiApiConfigured,
+    UmamiTimeRangeKey,
+    UmamiMetricRow,
 } from '@/lib/umami-api';
-import { PageAnalyticsPopover } from '@/components/analytics/PageAnalyticsPopover';
-
-const PUBLIC_SHARE_URL = process.env.NEXT_PUBLIC_UMAMI_PUBLIC_SHARE_URL || '';
+import { PageAnalyticsWidgetClient } from './PageAnalyticsWidgetClient';
 
 interface PageAnalyticsWidgetProps {
-    /** Current page path for filtering, e.g. "/", "/blog", "/blog/my-post", "/projects", "/projects/my-project", "/contact" */
     pagePath: string;
-    /** Optional title for the section (e.g. "Page stats") */
     title?: string;
-    /** Revalidate interval in seconds for server cache (default 300) */
     revalidate?: number;
 }
 
-/**
- * Public analytics widget: a popover trigger that opens a dialog with page stats,
- * 30-day pageviews graph, and breakdowns (country, referrers, devices).
- * - If Umami API is configured: fetches server-side and passes data to PageAnalyticsPopover.
- * - Else if public share URL is set: popover with iframe only.
- * - Otherwise renders nothing.
- */
 export async function PageAnalyticsWidget({
     pagePath,
-    title = 'Page analytics',
+    title = 'Page Analytics',
     revalidate = 300,
 }: PageAnalyticsWidgetProps) {
     const path = pagePath || '/';
 
-    if (isUmamiApiConfigured()) {
-        const [statsResult, country, referrer, device, pageviews7, pageviews30] = await Promise.all([
-            fetchUmamiStats(path, { revalidate }),
-            fetchUmamiMetrics(path, 'country', { revalidate, limit: 5 }),
-            fetchUmamiMetrics(path, 'referrer', { revalidate, limit: 5 }),
-            fetchUmamiMetrics(path, 'device', { revalidate, limit: 5 }),
-            fetchUmamiPageviews(path, 7, { revalidate }),
-            fetchUmamiPageviews(path, 30, { revalidate }),
-        ]);
-
-        const { stats7, stats30 } = statsResult;
-        if (!stats7 && !stats30) {
-            return null;
-        }
-
-        const data = {
-            stats7: stats7 ? { pageviews: stats7.pageviews, visitors: stats7.visitors, totaltime: stats7.totaltime } : null,
-            stats30: stats30 ? { pageviews: stats30.pageviews, visitors: stats30.visitors, totaltime: stats30.totaltime } : null,
-            country,
-            referrer,
-            device,
-            pageviews7: pageviews7?.pageviews?.slice(-7) ?? [],
-            pageviews30: pageviews30?.pageviews ?? [],
-            sessions30: pageviews30?.sessions ?? [],
-        };
-
-        return (
-            <PageAnalyticsPopover
-                pagePath={path}
-                title={title}
-                data={data}
-            />
-        );
+    if (!isUmamiApiConfigured()) {
+        return null;
     }
 
-    if (PUBLIC_SHARE_URL) {
-        return (
-            <PageAnalyticsPopover
-                pagePath={path}
-                title={title}
-                data={null}
-                publicShareUrl={PUBLIC_SHARE_URL}
-            />
-        );
-    }
+    const periods: UmamiTimeRangeKey[] = [
+        'today',
+        'yesterday',
+        'thisWeek',
+        'last7Days',
+        'last30Days',
+        'thisMonth',
+        'lastMonth',
+        'thisYear',
+        'lastYear',
+        'allTime',
+    ];
 
-    return null;
+    const statsByPeriod = await Promise.all(
+        periods.map((period) => fetchUmamiStatsForPeriod(path, period, { revalidate }))
+    );
+
+    const ranges = periods.reduce<
+        Record<UmamiTimeRangeKey, { pageviews: number; visitors: number } | null>
+    >(
+        (acc, key, index) => {
+            const stats = statsByPeriod[index];
+            acc[key] = stats
+                ? { pageviews: stats.pageviews, visitors: stats.visitors }
+                : null;
+            return acc;
+        },
+        {} as Record<UmamiTimeRangeKey, { pageviews: number; visitors: number } | null>
+    );
+
+    const [deviceMetrics, referrerMetrics, countryMetrics] = await Promise.all([
+        fetchUmamiMetrics(path, 'device', { revalidate, limit: 10 }),
+        fetchUmamiMetrics(path, 'referrer', { revalidate, limit: 10 }),
+        fetchUmamiMetrics(path, 'country', { revalidate, limit: 20 }),
+    ]);
+
+    const totalDeviceVisits = deviceMetrics.reduce((sum: number, row: UmamiMetricRow) => sum + row.y, 0);
+    let mobileVisits = 0, desktopVisits = 0, otherVisits = 0;
+
+    deviceMetrics.forEach((row) => {
+        const label = row.x.toLowerCase();
+        if (label.includes('mobile')) mobileVisits += row.y;
+        else if (label.includes('desktop')) desktopVisits += row.y;
+        else otherVisits += row.y;
+    });
+
+    const deviceSummary =
+        totalDeviceVisits > 0
+            ? {
+                  total: totalDeviceVisits,
+                  mobile: { visits: mobileVisits, share: mobileVisits / totalDeviceVisits },
+                  desktop: { visits: desktopVisits, share: desktopVisits / totalDeviceVisits },
+                  other: { visits: otherVisits, share: otherVisits / totalDeviceVisits },
+                  breakdown: deviceMetrics.map((row) => ({
+                      device: row.x,
+                      visits: row.y,
+                      share: row.y / totalDeviceVisits,
+                  })),
+              }
+            : null;
+
+    const totalReferrerVisits = referrerMetrics.reduce((sum: number, row: UmamiMetricRow) => sum + row.y, 0);
+    const referrersSummary =
+        totalReferrerVisits > 0
+            ? referrerMetrics.map((row) => ({ source: row.x, visits: row.y, share: row.y / totalReferrerVisits }))
+            : [];
+
+    const totalCountryVisits = countryMetrics.reduce((sum: number, row: UmamiMetricRow) => sum + row.y, 0);
+    const countriesSummary =
+        totalCountryVisits > 0
+            ? countryMetrics.map((row) => ({ country: row.x, visits: row.y, share: row.y / totalCountryVisits }))
+            : [];
+
+    return (
+        <PageAnalyticsWidgetClient
+            data={{
+                title,
+                path,
+                ranges,
+                deviceSummary,
+                referrersSummary,
+                countriesSummary,
+            }}
+        />
+    );
 }

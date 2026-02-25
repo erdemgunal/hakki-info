@@ -5,8 +5,12 @@
  * Requires: UMAMI_APP_URL, UMAMI_WEBSITE_ID, UMAMI_API_TOKEN in env.
  */
 
-const UMAMI_APP_URL = process.env.UMAMI_APP_URL || process.env.NEXT_PUBLIC_UMAMI_SCRIPT_SRC?.replace(/\/script\.js$/, '') || '';
-const UMAMI_WEBSITE_ID = process.env.UMAMI_WEBSITE_ID || process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID || '';
+const UMAMI_APP_URL =
+    process.env.UMAMI_APP_URL ||
+    process.env.NEXT_PUBLIC_UMAMI_SCRIPT_SRC?.replace(/\/script\.js$/, '') ||
+    '';
+const UMAMI_WEBSITE_ID =
+    process.env.UMAMI_WEBSITE_ID || process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID || '';
 const UMAMI_API_TOKEN = process.env.UMAMI_API_TOKEN;
 
 export type UmamiStats = {
@@ -29,6 +33,18 @@ export type UmamiPageviewsResponse = {
     pageviews: { x: string; y: number }[];
     sessions: { x: string; y: number }[];
 };
+
+export type UmamiTimeRangeKey =
+    | 'today'
+    | 'yesterday'
+    | 'thisWeek'
+    | 'last7Days'
+    | 'last30Days'
+    | 'thisMonth'
+    | 'lastMonth'
+    | 'thisYear'
+    | 'lastYear'
+    | 'allTime';
 
 function getAuthHeaders(): HeadersInit {
     if (!UMAMI_API_TOKEN) return {};
@@ -56,6 +72,67 @@ function getTimeRanges(): { startAt7: number; endAt: number; startAt30: number }
     const startAt7 = endAt - 7 * 24 * 60 * 60 * 1000;
     const startAt30 = endAt - 30 * 24 * 60 * 60 * 1000;
     return { startAt7, endAt, startAt30 };
+}
+
+function getStartOfDay(d: Date): Date {
+    const date = new Date(d);
+    date.setHours(0, 0, 0, 0);
+    return date;
+}
+
+function getCustomTimeRange(period: UmamiTimeRangeKey): { startAt: number; endAt: number } {
+    const now = new Date();
+    const nowMs = now.getTime();
+    const dayMs = 24 * 60 * 60 * 1000;
+
+    switch (period) {
+        case 'today': {
+            const start = getStartOfDay(now);
+            return { startAt: start.getTime(), endAt: nowMs };
+        }
+        case 'yesterday': {
+            const startOfToday = getStartOfDay(now);
+            const end = startOfToday.getTime();
+            const start = new Date(startOfToday);
+            start.setDate(start.getDate() - 1);
+            return { startAt: start.getTime(), endAt: end };
+        }
+        case 'thisWeek': {
+            // ISO-like: week starts Monday
+            const start = getStartOfDay(now);
+            const day = (start.getDay() + 6) % 7; // 0 = Monday
+            start.setDate(start.getDate() - day);
+            return { startAt: start.getTime(), endAt: nowMs };
+        }
+        case 'last7Days': {
+            return { startAt: nowMs - 7 * dayMs, endAt: nowMs };
+        }
+        case 'last30Days': {
+            return { startAt: nowMs - 30 * dayMs, endAt: nowMs };
+        }
+        case 'thisMonth': {
+            const start = new Date(now.getFullYear(), now.getMonth(), 1);
+            return { startAt: start.getTime(), endAt: nowMs };
+        }
+        case 'lastMonth': {
+            const start = new Date(now.getFullYear(), now.getMonth() - 1, 1);
+            const end = new Date(now.getFullYear(), now.getMonth(), 1);
+            return { startAt: start.getTime(), endAt: end.getTime() };
+        }
+        case 'thisYear': {
+            const start = new Date(now.getFullYear(), 0, 1);
+            return { startAt: start.getTime(), endAt: nowMs };
+        }
+        case 'lastYear': {
+            const start = new Date(now.getFullYear() - 1, 0, 1);
+            const end = new Date(now.getFullYear(), 0, 1);
+            return { startAt: start.getTime(), endAt: end.getTime() };
+        }
+        case 'allTime':
+        default: {
+            return { startAt: 0, endAt: nowMs };
+        }
+    }
 }
 
 /**
@@ -100,12 +177,43 @@ export async function fetchUmamiStats(
     }
 }
 
+export async function fetchUmamiStatsForPeriod(
+    path: string,
+    period: UmamiTimeRangeKey,
+    options?: { revalidate?: number }
+): Promise<UmamiStats | null> {
+    if (!UMAMI_APP_URL || !UMAMI_WEBSITE_ID || !UMAMI_API_TOKEN) {
+        return null;
+    }
+
+    const { startAt, endAt } = getCustomTimeRange(period);
+    const pathFilter = path || '/';
+
+    const url = buildUrl(`/api/websites/${UMAMI_WEBSITE_ID}/stats`, {
+        startAt,
+        endAt,
+        path: pathFilter,
+    });
+
+    try {
+        const res = await fetch(url, {
+            headers: getAuthHeaders(),
+            next: { revalidate: options?.revalidate ?? 300 },
+        });
+        if (!res.ok) return null;
+        const data: UmamiStats = await res.json();
+        return data;
+    } catch {
+        return null;
+    }
+}
+
 /**
- * Fetches pageviews time series for trend (e.g. last 7 or 30 days).
+ * Fetches pageviews time series for trend (e.g. last N days).
  */
 export async function fetchUmamiPageviews(
     path: string,
-    days: 7 | 30 = 7,
+    days: number = 30,
     options?: { revalidate?: number }
 ): Promise<UmamiPageviewsResponse | null> {
     if (!UMAMI_APP_URL || !UMAMI_WEBSITE_ID || !UMAMI_API_TOKEN) return null;
@@ -161,6 +269,44 @@ export async function fetchUmamiMetrics(
         return Array.isArray(data) ? data : [];
     } catch {
         return [];
+    }
+}
+
+/**
+ * Fetches pageviews timeseries for a specific UmamiTimeRangeKey period.
+ * Uses hourly units for short ranges (today/yesterday), daily for everything else.
+ */
+
+export async function fetchUmamiPageviewsForPeriod(
+    path: string,
+    period: UmamiTimeRangeKey,
+    options?: { revalidate?: number }
+): Promise<UmamiPageviewsResponse | null> {
+    if (!UMAMI_APP_URL || !UMAMI_WEBSITE_ID || !UMAMI_API_TOKEN) return null;
+
+    const { startAt, endAt } = getCustomTimeRange(period);
+    const pathFilter = path || '/';
+
+    const unit: 'hour' | 'day' | 'month' =
+        period === 'today' || period === 'yesterday' ? 'hour'
+            : period === 'thisYear' || period === 'lastYear' || period === 'allTime' ? 'month'
+                : 'day';
+
+    const url = buildUrl(`/api/websites/${UMAMI_WEBSITE_ID}/pageviews`, {
+        startAt,
+        endAt,
+        unit,
+        path: pathFilter,
+    });
+
+    try {
+        const res = await fetch(url, {
+            headers: getAuthHeaders(),
+            next: { revalidate: options?.revalidate ?? 300 },
+        });
+        return res.ok ? await res.json() : null;
+    } catch {
+        return null;
     }
 }
 

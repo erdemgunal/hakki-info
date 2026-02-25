@@ -7,7 +7,6 @@ import seo from '@/config/seo.json';
 import { Button } from '@/components/ui/button';
 import ExternalLinkIcon from '@/components/icon/ExternalLinkIcon';
 import { renderBadges, renderTechStackBadges } from '@/lib/badge-utils';
-import { PageAnalyticsWidget } from '@/components/analytics/PageAnalyticsWidget';
 
 export async function generateStaticParams() {
     const slugs = await getProjectSlugs();
@@ -187,7 +186,6 @@ export default async function ProjectPage({ params }: ProjectPageParams) {
                             <ExternalLinkIcon className="w-4 h-4" />
                         </Link>
                     </Button>
-                    <PageAnalyticsWidget pagePath={`/projects/${slug}`} title="Page analytics" />
                 </section>
             </div>
         </main>

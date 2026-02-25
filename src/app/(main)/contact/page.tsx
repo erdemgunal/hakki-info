@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import { fetchResumeData } from '@/lib/fetch-resume-data';
-import { PageAnalyticsWidget } from '@/components/analytics/PageAnalyticsWidget';
 
 export default async function ContactPage() {
     const resumeData = await fetchResumeData();
@@ -46,10 +45,6 @@ export default async function ContactPage() {
                             </ul>
                         </div>
                     </div>
-                </div>
-
-                <div className="mt-12">
-                    <PageAnalyticsWidget pagePath="/contact" title="Page analytics" />
                 </div>
             </div>
         </main>

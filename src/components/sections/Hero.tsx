@@ -37,19 +37,6 @@ export default function Hero() {
                     <span className="text-xs sm:text-sm md:text-base">{hero.location}</span>
                 </div>
 
-                <div className="flex items-center justify-center pt-2">
-                    <Link href="/hakki_erdem_cv.pdf" target="_blank" rel="noopener noreferrer">
-                        <Button
-                            size="lg"
-                            variant="outline"
-                            className="text-secondary hover:text-foreground hover:bg-muted/50 transition-all duration-200 rounded-lg"
-                        >
-                            Download CV
-                            <ExternalLinkIcon className="w-4 h-4 ml-2" />
-                        </Button>
-                    </Link>
-                </div>
-
                 <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
                     <SocialLinks socialLinks={socialLinks} />
                 </div>

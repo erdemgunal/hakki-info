@@ -1,16 +1,10 @@
-import {
-    Hero,
-    About,
-    Education,
-    Languages,
-    Community,
-    Skills,
-    Projects,
-} from '@/components/sections';
+import { Hero, About, Education, Languages, Community, Skills, Projects } from '@/components/sections';
 import ActiveSectionIndicator from '@/components/ActiveSectionIndicator';
-import { PageAnalyticsWidget } from '@/components/analytics/PageAnalyticsWidget';
+import { PageAnalyticsSection } from '@/components/analytics/PageAnalyticsSection';
 
 export default async function Home() {
+    const path = '/';
+
     return (
         <main className="min-h-screen bg-background relative">
             <ActiveSectionIndicator />
@@ -26,10 +20,10 @@ export default async function Home() {
                             <Skills />
                             <Projects />
                         </div>
-                        <PageAnalyticsWidget pagePath="/" title="Page analytics" />
                     </div>
                 </div>
-            </div>
+                <PageAnalyticsSection path={path} />
+            </div> 
         </main>
     );
 }
