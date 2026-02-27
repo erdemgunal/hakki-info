@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import Image from 'next/image';
 import { useTheme } from 'next-themes';
 import Link from 'next/link';
 import { ThemeToggle } from '@/components/ui-widgets';
@@ -53,19 +52,7 @@ export default function Footer() {
         <footer id="footer" className="bg-surface mt-6 sm:mt-8 md:mt-12 lg:mt-16 relative overflow-hidden w-full font-mono">
             <div className="w-full py-6 sm:py-8 md:py-10 lg:py-12 relative z-10">
 
-                {/* Footer Image - Middle */}
-                <div className="mt-6 sm:mt-8 md:mt-10 lg:mt-12 xl:mt-16 w-full flex justify-center relative z-0">
-                    <Image
-                        src={getFooterImage()}
-                        alt="Footer Neon Sign"
-                        width={1200}
-                        height={200}
-                        className="w-full max-w-full sm:max-w-2xl md:max-w-3xl lg:max-w-4xl h-auto object-contain mix-blend-screen opacity-90"
-                        priority={false}
-                    />
-                </div>
-
-                {/* Social Media + Theme/Language Toggles - Below Image (mobile-first) */}
+                {/* Social Media + Theme/Language Toggles */}
                 <div className="mt-6 sm:mt-8 w-full flex flex-col md:flex-row items-center justify-center md:justify-between gap-4 sm:gap-5 px-4 sm:px-6 md:px-8 lg:px-16">
                     <div className="flex flex-wrap justify-center sm:justify-center md:justify-start gap-3 sm:gap-4 w-full md:w-auto">
                         {renderSocialLinks(
