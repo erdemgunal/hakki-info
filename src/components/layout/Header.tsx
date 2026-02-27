@@ -135,14 +135,20 @@ export default function Header() {
 
                                 {/* Mobile Resume button inside menu */}
                                 <li className="mt-1">
+                                    <Button
+                                        asChild
+                                        variant="destructive"
+                                        size="sm"
+                                        className="w-full rounded-lg px-3 py-2.5 text-center text-sm font-medium"
+                                    >
                                         <Link
                                             href="/hakki_erdem_cv.pdf"
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="block w-full min-h-[24px] rounded-lg px-3 py-2.5 text-center text-sm font-medium bg-destructive text-white hover:bg-destructive/90 transition-colors"
                                         >
-                                        Resume
-                                    </Link>
+                                            Resume
+                                        </Link>
+                                    </Button>
                                 </li>
                             </ul>
                         </div>
