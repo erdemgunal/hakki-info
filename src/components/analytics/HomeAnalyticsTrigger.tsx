@@ -9,7 +9,9 @@ interface HomeAnalyticsTriggerProps {
     children: React.ReactNode;
 }
 
-const HEADER_BOTTOM = 80;
+// Z_MODAL (40) > Z_HEADER (20) > Z_FOOTER (10) — defined in globals.css @theme
+// Using inline value here since this component is portaled to <body>
+const Z_MODAL = 40;
 
 export function HomeAnalyticsTrigger({ pagePath, views, children }: HomeAnalyticsTriggerProps) {
     const [open, setOpen] = useState(false);
@@ -31,38 +33,72 @@ export function HomeAnalyticsTrigger({ pagePath, views, children }: HomeAnalytic
     const label = views != null ? `${views.toLocaleString()} Views` : 'View analytics';
 
     const modal = open ? (
-        <div className="fixed inset-0 z-modal flex flex-col">
+        // Full-screen overlay — portaled to body, above header
+        <div
+            style={{
+                position: 'fixed',
+                inset: 0,
+                zIndex: Z_MODAL,
+                // Flex center — dialog floats in viewport
+                display: 'flex',
+                alignItems: 'flex-start',
+                justifyContent: 'center',
+                // Semi-transparent — header is visible behind it (like ESN Wiki)
+                background: 'rgba(0, 0, 0, 0.5)',
+                backdropFilter: 'blur(2px)',
+                // Scrollable when dialog content is taller than viewport
+                overflowY: 'auto',
+                padding: '80px 16px 40px', // top pad clears the header
+            }}
+            onClick={() => setOpen(false)}
+        >
+            {/* Dialog panel — centered, max-width, does NOT close on click inside */}
             <div
-                className="absolute inset-0 bg-black/90"
-                onClick={() => setOpen(false)}
-            />
-            <div
-                className="relative flex-1 overflow-y-auto"
-                style={{ paddingTop: HEADER_BOTTOM }}
+                style={{
+                    position: 'relative',
+                    width: '100%',
+                    maxWidth: 760,
+                    background: '#fff',
+                    borderRadius: 12,
+                    boxShadow: '0 20px 60px rgba(0,0,0,0.25)',
+                    overflow: 'hidden',
+                    // Prevent backdrop click from firing when clicking inside
+                    pointerEvents: 'auto',
+                }}
+                onClick={(e) => e.stopPropagation()}
             >
-                <div
-                    className="mx-auto max-w-5xl px-4 sm:px-6 md:px-8 lg:px-16 pb-12"
-                    onClick={(e) => e.stopPropagation()}
-                >
-                    {/* Close */}
-                    <div className="flex justify-end py-2">
-                        <button
-                            type="button"
-                            onClick={() => setOpen(false)}
-                            className="inline-flex items-center gap-1.5 text-xs text-white/50 hover:text-white/90 transition-colors"
-                            aria-label="Close analytics"
-                        >
-                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                                <path d="M1 1l10 10M11 1L1 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                            </svg>
-                            Close
-                        </button>
-                    </div>
+                {children}
 
-                    {/* Widget */}
-                    <div className="w-full rounded-2xl overflow-hidden shadow-2xl">
-                        {children}
-                    </div>
+                {/* Close button — bottom-right inside dialog, matching ESN Wiki */}
+                <div
+                    style={{
+                        display: 'flex',
+                        justifyContent: 'flex-end',
+                        padding: '12px 24px 16px',
+                        borderTop: '1px solid #f3f4f6',
+                    }}
+                >
+                    <button
+                        type="button"
+                        onClick={() => setOpen(false)}
+                        style={{
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            gap: 6,
+                            fontSize: 13,
+                            fontWeight: 500,
+                            color: '#374151',
+                            background: '#fff',
+                            border: '1px solid #e5e7eb',
+                            borderRadius: 6,
+                            padding: '6px 16px',
+                            cursor: 'pointer',
+                            fontFamily: 'inherit',
+                        }}
+                        aria-label="Close analytics"
+                    >
+                        Close
+                    </button>
                 </div>
             </div>
         </div>
@@ -76,14 +112,11 @@ export function HomeAnalyticsTrigger({ pagePath, views, children }: HomeAnalytic
                 className="inline-flex items-center gap-2 text-xs text-muted-foreground group cursor-pointer"
                 aria-label={`Open analytics for ${pagePath}`}
             >
-                <span
-                    className="inline-flex h-6 w-6 items-center justify-center rounded-full border border-border bg-surface shadow-sm"
-                    aria-hidden="true"
-                >
+                <span className="inline-flex h-6 w-6 items-center justify-center rounded-full border border-border bg-surface shadow-sm">
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="text-primary">
-                        <rect x="1.5" y="7" width="2" height="5" rx="0.75" fill="currentColor" />
-                        <rect x="5.5" y="4" width="2" height="8" rx="0.75" fill="currentColor" />
-                        <rect x="9.5" y="2" width="2" height="10" rx="0.75" fill="currentColor" />
+                        <rect x="1.5" y="7"  width="2" height="5"  rx="0.75" fill="currentColor" />
+                        <rect x="5.5" y="4"  width="2" height="8"  rx="0.75" fill="currentColor" />
+                        <rect x="9.5" y="2"  width="2" height="10" rx="0.75" fill="currentColor" />
                     </svg>
                 </span>
                 <span className="underline-offset-2 hover:underline">{label}</span>

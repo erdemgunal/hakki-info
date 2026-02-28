@@ -49,7 +49,7 @@ export default function Footer() {
     };
 
     return (
-        <footer id="footer" className="bg-surface mt-6 sm:mt-8 md:mt-12 lg:mt-16 relative overflow-hidden w-full font-mono">
+        <footer id="footer" className="bg-surface mt-6 sm:mt-8 md:mt-12 lg:mt-16 relative z-footer overflow-hidden w-full font-mono">
             <div className="w-full py-6 sm:py-8 md:py-10 lg:py-12 relative z-10">
 
                 {/* Social Media + Theme/Language Toggles */}
