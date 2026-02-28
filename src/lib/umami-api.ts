@@ -37,6 +37,7 @@ export type UmamiPageviewsResponse = {
 export type UmamiTimeRangeKey =
     | 'today'
     | 'yesterday'
+    | 'last48Hours'
     | 'thisWeek'
     | 'last7Days'
     | 'last30Days'
@@ -96,6 +97,9 @@ function getCustomTimeRange(period: UmamiTimeRangeKey): { startAt: number; endAt
             const start = new Date(startOfToday);
             start.setDate(start.getDate() - 1);
             return { startAt: start.getTime(), endAt: end };
+        }
+        case 'last48Hours': {
+            return { startAt: nowMs - 48 * 60 * 60 * 1000, endAt: nowMs };
         }
         case 'thisWeek': {
             // ISO-like: week starts Monday
@@ -257,6 +261,38 @@ export async function fetchUmamiMetrics(
         type,
         path: pathFilter,
         limit: options?.limit ?? 10,
+    });
+
+    try {
+        const res = await fetch(url, {
+            headers: getAuthHeaders(),
+            next: { revalidate: options?.revalidate ?? 300 },
+        });
+        if (!res.ok) return [];
+        const data = await res.json();
+        return Array.isArray(data) ? data : [];
+    } catch {
+        return [];
+    }
+}
+
+/**
+ * Fetches pageview counts per path for the whole website.
+ * Used to sort blog posts by views (e.g. WEBSITE_EVENT / url_path in Umami).
+ * Returns rows like [{ x: "/blog/my-post", y: 123 }, ...].
+ */
+export async function fetchUmamiPathsPageviews(
+    period: UmamiTimeRangeKey = 'allTime',
+    options?: { revalidate?: number; limit?: number }
+): Promise<UmamiMetricRow[]> {
+    if (!UMAMI_APP_URL || !UMAMI_WEBSITE_ID || !UMAMI_API_TOKEN) return [];
+    const { startAt, endAt } = getCustomTimeRange(period);
+
+    const url = buildUrl(`/api/websites/${UMAMI_WEBSITE_ID}/metrics`, {
+        startAt,
+        endAt,
+        type: 'path',
+        limit: options?.limit ?? 500,
     });
 
     try {
