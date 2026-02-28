@@ -1,17 +1,18 @@
 ---
 title: "Hakkı Info (Portfolio)"
 slug: "hakki-info-portfolio"
-description: "A personal portfolio and blog built to go beyond the CV: projects, career insights and technical writing in one place, tailored to my own taste and workflow."
+description: "A personal portfolio and blog with self-hosted analytics: projects, career insights and technical writing in one place, plus Umami analytics on AWS for high availability and security."
 seoTitle: "Hakkı Info – Personal Portfolio & Blog"
-seoDescription: "fullstack portfolio site with MDX blog, dynamic OG images, dark/light theme and resume-style content. Next.js, TypeScript, Tailwind, MDX."
-problem: "A CV alone wasn’t enough to share projects and context. As a software developer, I kept asking myself why I didn’t have my own site a single place for my work, my writing and the kind of career and technical content I actually use."
-solution: "I considered Vite for a lean frontend at first, but I needed APIs and a fullstack setup. Next.js gave more flexibility: MDX for blog and project content, API routes for dynamic OG images, centralized content (gray-matter) and a resume-driven layout. I built a site that fits my taste blog posts, project case studies and career-useful knowledge with dark/light theme, readable typography and code-friendly article rendering (syntax highlighting, math, GFM)."
-result: "A single place that works as both portfolio and blog: project showcases with clear problem/solution/result, technical and career articles and a resume-style overview. The stack and content pipeline also demonstrate modern fullstack and frontend skills from content to deployment."
-techStack: ["Next.js", "React", "TypeScript", "Tailwind CSS"]
+seoDescription: "fullstack portfolio site with MDX blog, dynamic OG images, dark/light theme, resume-style content and Umami analytics on AWS. Next.js, TypeScript, Tailwind, MDX, EC2, ALB, ACM."
+problem: "A CV alone wasn’t enough to share projects and context. As a software developer, I kept asking myself why I didn’t have my own site—a single place for my work, my writing and the kind of career and technical content I actually use. I also wanted privacy-friendly analytics under my control with high availability and security."
+solution: "I considered Vite for a lean frontend at first, but I needed APIs and a fullstack setup. Next.js gave more flexibility: MDX for blog and project content, API routes for dynamic OG images, centralized content (gray-matter) and a resume-driven layout. I built a site that fits my taste: blog posts, project case studies and career-useful knowledge with dark/light theme, readable typography and code-friendly article rendering (syntax highlighting, math, GFM). For analytics I self-hosted Umami on AWS: VPC in eu-central-1 with two subnets (multi-AZ), EC2 for the app, an Application Load Balancer (umami-alb) for HTTP/HTTPS with SSL termination via ACM (analytics.hakki.info), and Route 53 for DNS. Health checks, TLS 1.3–ready policy and HTTP/2 complete the setup."
+result: "A single place that works as both portfolio and blog: project showcases with clear problem/solution/result, technical and career articles and a resume-style overview. Analytics run at https://analytics.hakki.info with high availability (multi-AZ), SSL/TLS and modern security (CSP, ACM). The stack and content pipeline demonstrate fullstack and infra skills from content to deployment and observability."
+techStack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "MDX", "Umami", "AWS (EC2, ALB, ACM, VPC, Route 53)"]
 label: "Full Stack"
 year: "2024"
 images: []
 links:
   live: "https://hakki.info"
   github: "https://github.com/erdemgunal/hakki-info"
+contribution: "Site, blog, content pipeline and analytics infrastructure (Umami on AWS: ALB, ACM, multi-AZ)."
 ---
