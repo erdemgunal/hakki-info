@@ -1,24 +1,22 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google"; // Updated imports
+import { Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
 import "../globals.css";
 import { ThemeProvider } from "@/lib/ThemeProvider";
 import Script from "next/script";
 import { consoleArtScript } from "@/lib/console-art";
-import GoogleAnalytics from "@/components/GoogleAnalytics";
+import UmamiAnalytics from "@/components/UmamiAnalytics";
 import { Header, Footer } from "@/components/layout";
 import { fetchResumeData } from '@/lib/fetch-resume-data';
 import { ResumeDataProvider } from '@/contexts/ResumeDataContext';
 import seo from '@/config/seo.json';
 
-// Replacement for Mluvka Grotesk
 const headingFont = Plus_Jakarta_Sans({
     variable: "--font-heading",
     subsets: ["latin"],
-    weight: ["400", "500", "600", "700", "800"], // Added weights for more flexibility
+    weight: ["400", "500", "600", "700", "800"],
     display: "swap",
 });
 
-// Using Plus Jakarta Sans for body as well for a consistent "Mluvka" brand look
 const bodyFont = Plus_Jakarta_Sans({
     variable: "--font-body",
     subsets: ["latin"],
@@ -73,7 +71,7 @@ export default async function RootLayout({
     return (
         <html lang="en" suppressHydrationWarning>
             <head>
-                <GoogleAnalytics />
+                <UmamiAnalytics />
                 <Script
                     id="microsoft-clarity"
                     strategy="lazyOnload"

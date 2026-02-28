@@ -95,6 +95,11 @@
     --color-destructive-foreground: var(--destructive-foreground);
     --color-input: var(--input);
     --color-ring: var(--ring);
+
+    --z-index-footer: 10;
+    --z-index-header: 20;
+    --z-index-dropdown: 30;
+    --z-index-modal: 40;
 }
 
 @layer base {

@@ -4,9 +4,11 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { renderBadges, renderTechStackBadges } from '@/lib/badge-utils';
 import { Button } from '@/components/ui/button';
+import { PageAnalyticsSection } from '@/components/analytics/PageAnalyticsSection';
 import ExternalLinkIcon from '@/components/icon/ExternalLinkIcon';
 
 export default async function ProjectsPage() {
+    const path = '/projects';
     const resumeData = await fetchResumeData();
     const { projects, social } = resumeData;
 
@@ -94,6 +96,7 @@ export default async function ProjectsPage() {
                             </Link>
                         </Button>
                     </div>
+                    <PageAnalyticsSection path={path} />
                 </div>
             </main>
         </ResumeDataProvider>

@@ -15,7 +15,7 @@ export default function Skills() {
                 <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground">
                     Skills
                 </h2>
-                
+
                 {/* Technical Skills Grid */}
                 <div className="grid gap-4 sm:gap-5 sm:grid-cols-2">
                     {technical.map((category, index) => (
@@ -28,8 +28,8 @@ export default function Skills() {
                             </h3>
                             <div className="flex flex-wrap gap-2">
                                 {renderBadges(
-                                    category.skills.map(skill => skill.name), 
-                                    'default', 
+                                    category.skills.map(skill => skill.name),
+                                    'default',
                                     'text-xs sm:text-sm'
                                 )}
                             </div>
@@ -44,8 +44,8 @@ export default function Skills() {
                     </h3>
                     <div className="flex flex-wrap gap-2">
                         {renderBadges(
-                            soft.map(skill => skill.name), 
-                            'default', 
+                            soft.map(skill => skill.name),
+                            'default',
                             'text-xs sm:text-sm'
                         )}
                     </div>

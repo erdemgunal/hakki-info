@@ -17,8 +17,8 @@ export default function Hero() {
     const socialLinks = transformSocialLinks(heroSocial);
 
     return (
-        <section 
-            id="hero" 
+        <section
+            id="hero"
             className="relative flex items-center justify-center text-center py-16 sm:py-20 md:py-24 lg:py-28"
         >
             <div className="w-full max-w-3xl mx-auto flex flex-col items-center justify-center space-y-6 sm:space-y-7 md:space-y-8">
@@ -35,19 +35,6 @@ export default function Hero() {
                 <div className="flex items-center justify-center gap-2 text-secondary">
                     <GlobeIcon className="w-4 h-4 sm:w-5 sm:h-5" />
                     <span className="text-xs sm:text-sm md:text-base">{hero.location}</span>
-                </div>
-
-                <div className="flex items-center justify-center pt-2">
-                    <Link href="/hakki_erdem_cv.pdf" target="_blank" rel="noopener noreferrer">
-                        <Button
-                            size="lg"
-                            variant="outline"
-                            className="text-secondary hover:text-foreground hover:bg-muted/50 transition-all duration-200 rounded-lg"
-                        >
-                            Download CV
-                            <ExternalLinkIcon className="w-4 h-4 ml-2" />
-                        </Button>
-                    </Link>
                 </div>
 
                 <div className="flex flex-wrap items-center justify-center gap-4 pt-2">

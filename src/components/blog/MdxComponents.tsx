@@ -4,6 +4,9 @@ import Link from 'next/link';
 import Image from 'next/image';
 import type { MDXComponents } from 'mdx/types';
 import { CodeBlock } from '@/components/blog/CodeBlock';
+import InfoIcon from '@/components/icon/InfoIcon';
+import WarningIcon from '@/components/icon/WarningIcon';
+import ErrorIcon from '@/components/icon/ErrorIcon';
 
 // ─── BlogImage ────────────────────────────────────────────────────────────────
 
@@ -48,14 +51,15 @@ export function Callout({
     children: React.ReactNode;
 }) {
     const styles = {
-        info:    'bg-muted text-foreground/80',
+        info: 'bg-muted text-foreground/80',
         warning: 'bg-amber-500/10 text-amber-700 dark:text-amber-400',
-        error:   'bg-destructive/10 text-destructive',
+        error: 'bg-destructive/10 text-destructive',
     };
-    const icons = { info: 'ℹ', warning: '⚠', error: '✕' };
+    const IconComponent = { info: InfoIcon, warning: WarningIcon, error: ErrorIcon }[type];
 
     return (
         <div className={`not-prose my-5 flex gap-3 rounded-lg px-4 py-3 text-sm leading-relaxed ${styles[type]}`}>
+            <IconComponent className="h-5 w-5 shrink-0 mt-0.5" aria-hidden />
             <div>{children}</div>
         </div>
     );

@@ -2,7 +2,7 @@
 
 import { useSyncExternalStore } from 'react';
 
-const emptySubscribe = () => () => {};
+const emptySubscribe = () => () => { };
 
 export function useIsMounted(): boolean {
     return useSyncExternalStore(

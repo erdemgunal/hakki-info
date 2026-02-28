@@ -5,11 +5,14 @@ import {
     Languages,
     Community,
     Skills,
-    Projects,
+    Projects
 } from '@/components/sections';
 import ActiveSectionIndicator from '@/components/ActiveSectionIndicator';
+import { PageAnalyticsSection } from '@/components/analytics/PageAnalyticsSection';
 
 export default async function Home() {
+    const path = '/';
+
     return (
         <main className="min-h-screen bg-background relative">
             <ActiveSectionIndicator />
@@ -27,6 +30,7 @@ export default async function Home() {
                         </div>
                     </div>
                 </div>
+                <PageAnalyticsSection path={path} />
             </div>
         </main>
     );
