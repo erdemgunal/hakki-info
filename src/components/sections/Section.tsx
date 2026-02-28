@@ -9,11 +9,11 @@ interface SectionProps {
     containerClassName?: string;
 }
 
-export default function Section({ 
-    id, 
-    children, 
-    className = '', 
-    containerClassName = '' 
+export default function Section({
+    id,
+    children,
+    className = '',
+    containerClassName = ''
 }: SectionProps) {
     return (
         <section

@@ -34,32 +34,29 @@ export function PageAnalyticsWidgetClient({ data }: PageAnalyticsWidgetClientPro
 
     const chartPoints: ChartPoint[] = tsData
         ? tsData.pageviews.map((pv, i) => ({
-              date: new Date(pv.x),
-              pageviews: pv.y,
-              sessions: tsData.sessions[i]?.y ?? 0,
-          }))
+            date: new Date(pv.x),
+            pageviews: pv.y,
+            sessions: tsData.sessions[i]?.y ?? 0,
+        }))
         : [];
 
     const currentStat = data.ranges[activeRange];
     const activeLabel = DATE_RANGES.find((r) => r.key === activeRange)?.label ?? '';
 
     return (
-        // No outer padding/border — the dialog wrapper in HomeAnalyticsTrigger provides the shell
         <div className="w-full" style={{ background: '#fff' }}>
 
-            {/* ── Top bar: path breadcrumb + legend + range picker ── */}
+            {/* ── Top bar ── */}
             <div
-                className="flex items-center justify-between gap-3 flex-wrap px-6 pt-5 pb-4"
+                className="flex items-center justify-between gap-3 flex-wrap px-6 py-4"
                 style={{ borderBottom: '1px solid #f3f4f6' }}
             >
                 <div className="flex items-center gap-4 flex-wrap min-w-0">
-                    {/* Breadcrumb */}
                     <span className="text-sm font-medium" style={{ color: '#374151' }}>
                         Page Analytics
                         <span className="mx-1.5 font-normal" style={{ color: '#d1d5db' }}>/</span>
                         <span style={{ color: '#6b7280', fontWeight: 400 }}>{data.path}</span>
                     </span>
-                    {/* Legend */}
                     <div className="flex items-center gap-3">
                         <span className="flex items-center gap-1.5 text-xs" style={{ color: '#6b7280' }}>
                             <svg width="16" height="2" viewBox="0 0 16 2">
@@ -78,14 +75,14 @@ export function PageAnalyticsWidgetClient({ data }: PageAnalyticsWidgetClientPro
                 <DateRangeSelect value={activeRange} onChange={setActiveRange} />
             </div>
 
-            {/* ── Chart — full width, prominent ── */}
-            <div className="px-6 pt-5 pb-4">
+            {/* ── Chart ── */}
+            <div className="px-6 pt-4 pb-3">
                 <LineChart points={chartPoints} range={activeRange} loading={loading} />
             </div>
 
-            {/* ── Stat row — joined cells like ESN Wiki ── */}
+            {/* ── Stat cards ── */}
             <div
-                className="grid grid-cols-2 mx-6 mb-6 rounded-lg overflow-hidden"
+                className="grid grid-cols-2 mx-6 mb-5 rounded-lg overflow-hidden"
                 style={{ border: '1px solid #e5e7eb', gap: 1, background: '#e5e7eb' }}
             >
                 <div style={{ background: '#fff' }}>
@@ -96,7 +93,7 @@ export function PageAnalyticsWidgetClient({ data }: PageAnalyticsWidgetClientPro
                 </div>
             </div>
 
-            {/* ── Device breakdown ── */}
+            {/* ── Device ── */}
             {data.deviceSummary && (
                 <div className="px-6">
                     <Divider />
@@ -104,8 +101,8 @@ export function PageAnalyticsWidgetClient({ data }: PageAnalyticsWidgetClientPro
                     <div className="grid grid-cols-3 gap-2 mb-3">
                         {[
                             { label: 'Desktop', val: data.deviceSummary.desktop },
-                            { label: 'Mobile',  val: data.deviceSummary.mobile  },
-                            { label: 'Other',   val: data.deviceSummary.other   },
+                            { label: 'Mobile', val: data.deviceSummary.mobile },
+                            { label: 'Other', val: data.deviceSummary.other },
                         ].map(({ label, val }) => (
                             <div key={label} className="rounded-lg p-3 text-center"
                                 style={{ border: '1px solid #e5e7eb', background: '#f9fafb' }}>
@@ -153,8 +150,8 @@ export function PageAnalyticsWidgetClient({ data }: PageAnalyticsWidgetClientPro
                 </div>
             )}
 
-            {/* Bottom padding to give space before the Close button row */}
-            <div style={{ height: 8 }} />
+            {/* Spacer before Close button row */}
+            <div style={{ height: 4 }} />
         </div>
     );
 }

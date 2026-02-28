@@ -13,7 +13,7 @@ export default function Education() {
                 <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground">
                     Education
                 </h2>
-                
+
                 <div className="space-y-3 sm:space-y-4">
                     {education.items.map((edu, index) => (
                         <div

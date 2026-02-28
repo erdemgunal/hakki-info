@@ -6,9 +6,11 @@ interface StatCardProps {
     sub?: string;
 }
 
+// Note: StatCard has no outer border/background — the parent joined-grid wrapper
+// in PageAnalyticsWidgetClient provides the container and the 1px divider between cells.
 export function StatCard({ label, value, sub }: StatCardProps) {
     return (
-        <div className="rounded-lg p-4" style={{ border: '1px solid #e5e7eb', background: '#fff' }}>
+        <div className="p-4">
             <div className="text-xs mb-1" style={{ color: '#9ca3af' }}>
                 {label}
             </div>

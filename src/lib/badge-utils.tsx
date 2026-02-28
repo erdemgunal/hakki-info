@@ -6,7 +6,7 @@ export function renderBadges(badges: string[], variant = "default", className = 
     if (!badges || badges.length === 0) return null;
 
     return badges.map((badge: string, index: number) => (
-        <Badge 
+        <Badge
             key={index}
             variant={variant as VariantProps<typeof badgeVariants>['variant']}
             className={className as string}

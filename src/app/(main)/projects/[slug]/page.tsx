@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import seo from '@/config/seo.json';
 import { Button } from '@/components/ui/button';
+import { PageAnalyticsSection } from '@/components/analytics/PageAnalyticsSection';
 import ExternalLinkIcon from '@/components/icon/ExternalLinkIcon';
 import { renderBadges, renderTechStackBadges } from '@/lib/badge-utils';
 
@@ -62,6 +63,7 @@ export async function generateMetadata(
 
 export default async function ProjectPage({ params }: ProjectPageParams) {
     const { slug } = await params;
+    const path = `/projects/${slug}`;
     const project = await fetchProjectBySlug(slug);
     if (!project) notFound();
 
@@ -187,6 +189,7 @@ export default async function ProjectPage({ params }: ProjectPageParams) {
                         </Link>
                     </Button>
                 </section>
+                <PageAnalyticsSection path={path} />
             </div>
         </main>
     );

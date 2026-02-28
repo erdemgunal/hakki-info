@@ -63,11 +63,10 @@ export default function Header() {
                             <div key={link.href} className="flex items-center gap-2">
                                 <Link
                                     href={link.href}
-                                    className={`min-h-[24px] min-w-[24px] px-3 py-2 inline-flex items-center rounded transition-colors ${
-                                        pathname === link.href
+                                    className={`min-h-[24px] min-w-[24px] px-3 py-2 inline-flex items-center rounded transition-colors ${pathname === link.href
                                             ? 'text-foreground font-medium'
                                             : 'text-muted-foreground hover:text-foreground'
-                                    }`}
+                                        }`}
                                 >
                                     {link.label}
                                 </Link>
@@ -121,11 +120,10 @@ export default function Header() {
                                     <li key={link.href}>
                                         <Link
                                             href={link.href}
-                                            className={`block w-full min-h-[24px] rounded-lg px-3 py-2.5 text-left text-sm transition-colors ${
-                                                pathname === link.href
+                                            className={`block w-full min-h-[24px] rounded-lg px-3 py-2.5 text-left text-sm transition-colors ${pathname === link.href
                                                     ? 'text-foreground bg-accent/10 font-medium'
                                                     : 'text-muted-foreground hover:bg-muted hover:text-foreground'
-                                            }`}
+                                                }`}
                                         >
                                             {link.label}
                                         </Link>

@@ -17,8 +17,8 @@ export default function Hero() {
     const socialLinks = transformSocialLinks(heroSocial);
 
     return (
-        <section 
-            id="hero" 
+        <section
+            id="hero"
             className="relative flex items-center justify-center text-center py-16 sm:py-20 md:py-24 lg:py-28"
         >
             <div className="w-full max-w-3xl mx-auto flex flex-col items-center justify-center space-y-6 sm:space-y-7 md:space-y-8">

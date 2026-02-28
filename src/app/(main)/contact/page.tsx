@@ -1,9 +1,11 @@
 import Link from 'next/link';
 import { fetchResumeData } from '@/lib/fetch-resume-data';
+import { PageAnalyticsSection } from '@/components/analytics/PageAnalyticsSection';
 
 export default async function ContactPage() {
     const resumeData = await fetchResumeData();
     const { hero, social } = resumeData;
+    const path = '/contact';
 
     return (
         <main className="min-h-screen bg-background">
@@ -46,6 +48,7 @@ export default async function ContactPage() {
                         </div>
                     </div>
                 </div>
+                <PageAnalyticsSection path={path} />
             </div>
         </main>
     )

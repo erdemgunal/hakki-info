@@ -11,6 +11,7 @@ import rehypePrettyCode from 'rehype-pretty-code';
 import { mdxComponents } from '@/components/blog/MdxComponents';
 import { PostSidebar } from '@/components/blog/PostSidebar';
 import { ScrollProgressIndicator } from '@/components/blog/ScrollProgressIndicator';
+import { PageAnalyticsSection } from '@/components/analytics/PageAnalyticsSection';
 import seo from '@/config/seo.json';
 import { formatBlogDate } from '@/lib/date-utils';
 import 'katex/dist/katex.min.css';
@@ -69,6 +70,7 @@ export async function generateMetadata({ params }: BlogPostPageParams): Promise<
 
 export default async function BlogPostPage({ params }: BlogPostPageParams) {
     const { slug } = await params;
+    const path = `/blog/${slug}`;
     const post = await getBlogPostBySlug(slug);
     if (!post) notFound();
 
@@ -157,7 +159,15 @@ export default async function BlogPostPage({ params }: BlogPostPageParams) {
                             />
                         </div>
                     </article>
+                    
+                     {/* ── Sidebar (visible on desktop and mobile) ───────────────── */}
+                    <aside className="max-lg:mt-8 max-lg:pt-6 max-lg:border-t max-lg:border-border/50">
+                        <div className="sticky top-32">
+                            <PostSidebar title={post.title} shareUrl={shareUrl} slug={slug} />
+                        </div>
+                    </aside>
                 </div>
+                <PageAnalyticsSection path={path} />
             </div>
         </main>
     );

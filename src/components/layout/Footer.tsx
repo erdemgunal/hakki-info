@@ -56,9 +56,9 @@ export default function Footer() {
                 <div className="mt-6 sm:mt-8 w-full flex flex-col md:flex-row items-center justify-center md:justify-between gap-4 sm:gap-5 px-4 sm:px-6 md:px-8 lg:px-16">
                     <div className="flex flex-wrap justify-center sm:justify-center md:justify-start gap-3 sm:gap-4 w-full md:w-auto">
                         {renderSocialLinks(
-                          socialLinks,
-                          'w-11 h-11 sm:w-10 sm:h-10 bg-background border border-border rounded-lg flex items-center justify-center hover:border-foreground/30 transition-all duration-200 touch-manipulation',
-                          'w-5 h-5 sm:w-5 sm:h-5'
+                            socialLinks,
+                            'w-11 h-11 sm:w-10 sm:h-10 bg-background border border-border rounded-lg flex items-center justify-center hover:border-foreground/30 transition-all duration-200 touch-manipulation',
+                            'w-5 h-5 sm:w-5 sm:h-5'
                         )}
                     </div>
                     <div className="flex items-center gap-2 bg-background/80 backdrop-blur-sm border border-border rounded-lg px-2 py-2 sm:py-2 relative z-30 shrink-0">

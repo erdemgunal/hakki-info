@@ -62,7 +62,6 @@ export async function PageAnalyticsWidget({
 
     const totalDeviceVisits = deviceMetrics.reduce((sum: number, row: UmamiMetricRow) => sum + row.y, 0);
     let mobileVisits = 0, desktopVisits = 0, otherVisits = 0;
-
     deviceMetrics.forEach((row) => {
         const label = row.x.toLowerCase();
         if (label.includes('mobile')) mobileVisits += row.y;
@@ -73,16 +72,16 @@ export async function PageAnalyticsWidget({
     const deviceSummary =
         totalDeviceVisits > 0
             ? {
-                  total: totalDeviceVisits,
-                  mobile: { visits: mobileVisits, share: mobileVisits / totalDeviceVisits },
-                  desktop: { visits: desktopVisits, share: desktopVisits / totalDeviceVisits },
-                  other: { visits: otherVisits, share: otherVisits / totalDeviceVisits },
-                  breakdown: deviceMetrics.map((row) => ({
-                      device: row.x,
-                      visits: row.y,
-                      share: row.y / totalDeviceVisits,
-                  })),
-              }
+                total: totalDeviceVisits,
+                mobile: { visits: mobileVisits, share: mobileVisits / totalDeviceVisits },
+                desktop: { visits: desktopVisits, share: desktopVisits / totalDeviceVisits },
+                other: { visits: otherVisits, share: otherVisits / totalDeviceVisits },
+                breakdown: deviceMetrics.map((row) => ({
+                    device: row.x,
+                    visits: row.y,
+                    share: row.y / totalDeviceVisits,
+                })),
+            }
             : null;
 
     const totalReferrerVisits = referrerMetrics.reduce((sum: number, row: UmamiMetricRow) => sum + row.y, 0);

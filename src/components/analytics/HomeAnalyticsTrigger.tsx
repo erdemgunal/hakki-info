@@ -114,9 +114,9 @@ export function HomeAnalyticsTrigger({ pagePath, views, children }: HomeAnalytic
             >
                 <span className="inline-flex h-6 w-6 items-center justify-center rounded-full border border-border bg-surface shadow-sm">
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="text-primary">
-                        <rect x="1.5" y="7"  width="2" height="5"  rx="0.75" fill="currentColor" />
-                        <rect x="5.5" y="4"  width="2" height="8"  rx="0.75" fill="currentColor" />
-                        <rect x="9.5" y="2"  width="2" height="10" rx="0.75" fill="currentColor" />
+                        <rect x="1.5" y="7" width="2" height="5" rx="0.75" fill="currentColor" />
+                        <rect x="5.5" y="4" width="2" height="8" rx="0.75" fill="currentColor" />
+                        <rect x="9.5" y="2" width="2" height="10" rx="0.75" fill="currentColor" />
                     </svg>
                 </span>
                 <span className="underline-offset-2 hover:underline">{label}</span>
