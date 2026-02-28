@@ -20,11 +20,12 @@ export default async function ProjectsPage() {
         <ResumeDataProvider resumeData={resumeData}>
             <main className="min-h-screen bg-background">
                 <div className="mx-auto max-w-5xl px-4 sm:px-6 md:px-8 lg:px-16 pt-24 sm:pt-24 md:pt-28 pb-4 sm:pb-6 md:pb-8">
-                    <div className="text-left mb-8 sm:mb-12">
-                        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-4">
+                    {/* Header */}
+                    <div className="text-left mb-6 sm:mb-8">
+                        <h1 className="text-2xl sm:text-3xl md:text-3xl font-bold text-foreground mb-3">
                             Projects
                         </h1>
-                        <p className="text-muted-foreground text-lg">
+                        <p className="text-muted-foreground text-base">
                             Explore my portfolio of projects showcasing automation, fullstack development and innovative solutions.
                         </p>
                     </div>
