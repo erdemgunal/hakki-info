@@ -3,8 +3,19 @@ import Link from 'next/link';
 import { getBlogPosts } from '@/lib/blog';
 import { PageAnalyticsSection } from '@/components/analytics/PageAnalyticsSection';
 
+const DAYS_CONSIDERED_NEW = 14;
+
+function isNewPost(date: string): boolean {
+    if (!date) return false;
+    const postDate = new Date(date);
+    const now = new Date();
+    const diffMs = now.getTime() - postDate.getTime();
+    const diffDays = diffMs / (24 * 60 * 60 * 1000);
+    return diffDays <= DAYS_CONSIDERED_NEW;
+}
+
 export default async function BlogPage() {
-    const posts = await getBlogPosts();
+    const posts = await getBlogPosts({ sortBy: 'score', promoteLowViews: 2 });
     const path = '/blog';
 
     return (
@@ -34,10 +45,17 @@ export default async function BlogPage() {
                                                -mx-3 px-3 rounded-lg hover:bg-muted/20 transition-colors duration-150"
                                 >
                                     <div className="min-w-0 flex-1 space-y-1">
-                                        <h2 className="text-base font-medium text-foreground
-                                                       group-hover:text-accent transition-colors duration-150 leading-snug">
-                                            {post.title}
-                                        </h2>
+                                        <div className="flex items-center gap-2">
+                                            <h2 className="text-base font-medium text-foreground
+                                                           group-hover:text-accent transition-colors duration-150 leading-snug">
+                                                {post.title}
+                                            </h2>
+                                            {isNewPost(post.date) && (
+                                                <span className="shrink-0 text-[10px] font-medium uppercase tracking-wider text-accent/80">
+                                                    New
+                                                </span>
+                                            )}
+                                        </div>
                                         {post.excerpt && (
                                             <p className="text-sm text-muted-foreground line-clamp-1 leading-relaxed">
                                                 {post.excerpt}

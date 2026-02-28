@@ -14,6 +14,7 @@ import { ScrollProgressIndicator } from '@/components/blog/ScrollProgressIndicat
 import { PageAnalyticsSection } from '@/components/analytics/PageAnalyticsSection';
 import seo from '@/config/seo.json';
 import { formatBlogDate } from '@/lib/date-utils';
+import DotIcon from '@/components/icon/DotIcon';
 import 'katex/dist/katex.min.css';
 import Image from 'next/image';
 
@@ -57,6 +58,7 @@ export async function generateMetadata({ params }: BlogPostPageParams): Promise<
             siteName: seo.siteName,
             type: 'article',
             publishedTime: post.date,
+            ...(post.lastUpdated && post.lastUpdated !== post.date && { modifiedTime: post.lastUpdated }),
             images: [{ url: imageUrl }],
         },
         twitter: {
@@ -81,9 +83,8 @@ export default async function BlogPostPage({ params }: BlogPostPageParams) {
             <ScrollProgressIndicator />
             <div className="mx-auto max-w-5xl px-4 sm:px-6 md:px-8 pt-24 pb-20">
                 <div className="grid grid-cols-1 lg:grid-cols-[1fr_200px] gap-16">
-
                     {/* ── Article ─────────────────────────────────────────── */}
-                    <article className="min-w-0">
+                    <article className="min-w-0 lg:col-start-1">
 
                         {/* Header */}
                         <header className="mb-10">
@@ -101,16 +102,16 @@ export default async function BlogPostPage({ params }: BlogPostPageParams) {
                             </h1>
                             <div className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
                                 <time dateTime={post.date}>{formatBlogDate(post.date)}</time>
-                                <span>·</span>
-                                <span>{post.readTimeMinutes} min read</span>
-                                {post.tags.length > 0 && (
+                                {post.lastUpdated && post.lastUpdated !== post.date && (
                                     <>
-                                        <span>·</span>
-                                        {post.tags.map((tag) => (
-                                            <span key={tag}>#{tag}</span>
-                                        ))}
+                                        <DotIcon className="w-1.5 h-1.5 shrink-0 opacity-60" />
+                                        <time dateTime={post.lastUpdated} className="text-foreground/20">
+                                            Updated {formatBlogDate(post.lastUpdated)}
+                                        </time>
                                     </>
                                 )}
+                                <DotIcon className="w-1.5 h-1.5 shrink-0 opacity-60" />
+                                <span>{post.readTimeMinutes} min read</span>
                             </div>
                             {post.excerpt && (
                                 <p className="mt-4 text-base text-muted-foreground leading-relaxed">
@@ -159,14 +160,37 @@ export default async function BlogPostPage({ params }: BlogPostPageParams) {
                             />
                         </div>
                     </article>
-                    
-                     {/* ── Sidebar (visible on desktop and mobile) ───────────────── */}
-                    <aside className="max-lg:mt-8 max-lg:pt-6 max-lg:border-t max-lg:border-border/50">
+
+                    {/* ── Tags: mobilde article ile sidebar arasında ── */}
+                    {post.tags.length > 0 && (
+                        <div
+                            className="flex flex-wrap gap-2 text-sm text-muted-foreground order-2 lg:hidden pt-6"
+                            aria-label="Tags"
+                        >
+                            {post.tags.map((tag) => (
+                                <span key={tag} className="font-mono">#{tag}</span>
+                            ))}
+                        </div>
+                    )}
+
+                    {/* ── Sidebar ───────────────────────────────────────────── */}
+                    <aside className="max-lg:order-3 max-lg:mt-8 max-lg:pt-6 max-lg:border-t max-lg:border-border/50 lg:col-start-2 lg:row-span-1">
                         <div className="sticky top-32">
                             <PostSidebar title={post.title} shareUrl={shareUrl} slug={slug} />
                         </div>
                     </aside>
                 </div>
+                {/* ── Tags: masaüstünde grid ile analytics arasında, tam genişlik ── */}
+                {post.tags.length > 0 && (
+                    <div
+                        className="hidden lg:flex flex-wrap gap-2 text-sm text-muted-foreground pt-6 mt-6"
+                        aria-label="Tags"
+                    >
+                        {post.tags.map((tag) => (
+                            <span key={tag} className="font-mono">#{tag}</span>
+                        ))}
+                    </div>
+                )}
                 <PageAnalyticsSection path={path} />
             </div>
         </main>
