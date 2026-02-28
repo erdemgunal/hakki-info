@@ -1,4 +1,12 @@
-import { Hero, About, Education, Languages, Community, Skills, Projects } from '@/components/sections';
+import {
+    Hero,
+    About,
+    Education,
+    Languages,
+    Community,
+    Skills,
+    Projects
+} from '@/components/sections';
 import ActiveSectionIndicator from '@/components/ActiveSectionIndicator';
 import { PageAnalyticsSection } from '@/components/analytics/PageAnalyticsSection';
 
@@ -23,7 +31,7 @@ export default async function Home() {
                     </div>
                 </div>
                 <PageAnalyticsSection path={path} />
-            </div> 
+            </div>
         </main>
     );
 }
