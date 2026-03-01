@@ -1,69 +1,13 @@
 // src/components/blog/MdxComponents.tsx
-import React from 'react';
+import React, { type ComponentProps } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import type { MDXComponents } from 'mdx/types';
 import { CodeBlock } from '@/components/blog/CodeBlock';
-import InfoIcon from '@/components/icon/InfoIcon';
-import WarningIcon from '@/components/icon/WarningIcon';
-import ErrorIcon from '@/components/icon/ErrorIcon';
+import { BlogImage, Callout } from '@/components/blog/mdx-elements';
 
-// ─── BlogImage ────────────────────────────────────────────────────────────────
-
-export function BlogImage({
-    src,
-    alt,
-    caption,
-    width = 900,
-    height = 500,
-}: {
-    src: string;
-    alt: string;
-    caption?: string;
-    width?: number;
-    height?: number;
-}) {
-    return (
-        <figure className="not-prose my-4">
-            <Image
-                src={src}
-                alt={alt}
-                width={width}
-                height={height}
-                className="w-full rounded-lg"
-            />
-            {caption && (
-                <figcaption className="mt-1 text-center text-xs text-muted-foreground">
-                    {caption}
-                </figcaption>
-            )}
-        </figure>
-    );
-}
-
-// ─── Callout (Good to know / Warning / etc.) ──────────────────────────────────
-
-export function Callout({
-    type = 'info',
-    children,
-}: {
-    type?: 'info' | 'warning' | 'error';
-    children: React.ReactNode;
-}) {
-    const styles = {
-        info: 'bg-muted text-foreground/80',
-        warning: 'bg-amber-500/10 text-amber-700 dark:text-amber-400',
-        error: 'bg-destructive/10 text-destructive',
-    };
-    const IconComponent = { info: InfoIcon, warning: WarningIcon, error: ErrorIcon }[type];
-
-    return (
-        <div className={`not-prose my-4 flex gap-3 rounded-lg px-4 py-2.5 text-sm leading-relaxed ${styles[type]}`}>
-            <IconComponent className="h-5 w-5 shrink-0 mt-0.5" aria-hidden />
-            <div>{children}</div>
-        </div>
-    );
-}
+// Re-export for consumers that import from MdxComponents
+export type { BlogImageProps, CalloutProps } from '@/components/blog/mdx-elements';
+export { BlogImage, Callout } from '@/components/blog/mdx-elements';
 
 // ─── MDX component map ────────────────────────────────────────────────────────
 
@@ -133,8 +77,7 @@ export const mdxComponents: MDXComponents = {
     },
 
     // ── Code block ────────────────────────────────────────────────────────────
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    pre: (props: any) => {
+    pre: (props: ComponentProps<typeof CodeBlock>) => {
         return <CodeBlock {...props} />;
     },
 
