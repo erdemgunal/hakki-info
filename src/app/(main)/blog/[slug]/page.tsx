@@ -81,26 +81,26 @@ export default async function BlogPostPage({ params }: BlogPostPageParams) {
     return (
         <main className="min-h-screen bg-background">
             <ScrollProgressIndicator />
-            <div className="mx-auto max-w-5xl px-4 sm:px-6 md:px-8 pt-24 pb-20">
-                <div className="grid grid-cols-1 lg:grid-cols-[1fr_200px] gap-16">
+            <div className="mx-auto max-w-5xl px-4 sm:px-6 md:px-8 lg:px-16 pt-24 sm:pt-24 md:pt-28 pb-4 sm:pb-6 md:pb-8 lg:pb-12">
+                <div className="grid grid-cols-1 lg:grid-cols-[1fr_200px] gap-6 sm:gap-8 lg:gap-12">
                     {/* ── Article ─────────────────────────────────────────── */}
                     <article className="min-w-0 lg:col-start-1">
-
-                        {/* Header */}
-                        <header className="mb-10">
+                        {/* Header — projects sayfası referanslı, mobile-first */}
+                        <header className="text-left mb-6 sm:mb-8">
                             {post.images && post.images.length > 0 && (
                                 <Image
                                     src={post.images[0]}
                                     alt={post.title}
                                     width={1000}
                                     height={1000}
-                                    className="w-full rounded-lg mb-6"
+                                    className="w-full rounded-lg mb-4 mt-0 object-cover"
+                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 720px"
                                 />
                             )}
-                            <h1 className="mt-10 mb-3 text-3xl sm:text-4xl font-bold tracking-tight text-foreground">
+                            <h1 className="text-2xl sm:text-3xl md:text-3xl font-bold tracking-tight text-foreground mb-3 mt-0">
                                 {post.title}
                             </h1>
-                            <div className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
+                            <div className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground mb-3">
                                 <time dateTime={post.date}>{formatBlogDate(post.date)}</time>
                                 {post.lastUpdated && post.lastUpdated !== post.date && (
                                     <>
@@ -114,7 +114,7 @@ export default async function BlogPostPage({ params }: BlogPostPageParams) {
                                 <span>{post.readTimeMinutes} min read</span>
                             </div>
                             {post.excerpt && (
-                                <p className="mt-4 text-base text-muted-foreground leading-relaxed">
+                                <p className="text-muted-foreground text-base leading-relaxed">
                                     {post.excerpt}
                                 </p>
                             )}
@@ -123,27 +123,27 @@ export default async function BlogPostPage({ params }: BlogPostPageParams) {
                         {/* MDX body */}
                         <div className="
                             prose prose-neutral dark:prose-invert max-w-none
-                            prose-p:leading-[1.8] prose-p:text-foreground/85 prose-p:my-4
+                            prose-p:leading-[1.7] prose-p:text-foreground/85 prose-p:my-3
                             prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-foreground
-                            prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-3
-                            prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-2
-                            prose-h4:text-base prose-h4:mt-6 prose-h4:mb-1
+                            prose-h2:text-xl prose-h2:mt-8 prose-h2:mb-2
+                            prose-h3:text-lg prose-h3:mt-6 prose-h3:mb-1
+                            prose-h4:text-base prose-h4:mt-4 prose-h4:mb-1
                             prose-a:text-accent prose-a:no-underline hover:prose-a:underline prose-a:font-normal
                             prose-code:rounded prose-code:bg-muted prose-code:px-1.5 prose-code:py-0.5
                             prose-code:text-accent prose-code:font-mono prose-code:text-[0.84em]
                             prose-code:before:content-none prose-code:after:content-none
-                            prose-pre:my-5 prose-pre:rounded-xl prose-pre:p-0 prose-pre:bg-transparent prose-pre:border-0
+                            prose-pre:my-4 prose-pre:rounded-xl prose-pre:p-0 prose-pre:bg-transparent prose-pre:border-0
                             prose-blockquote:border-l-2 prose-blockquote:border-border prose-blockquote:text-muted-foreground
-                            prose-blockquote:not-italic prose-blockquote:pl-4 prose-blockquote:my-5
+                            prose-blockquote:not-italic prose-blockquote:pl-4 prose-blockquote:my-4
                             prose-blockquote:[&>p]:my-0
-                            prose-hr:border-border/30 prose-hr:my-8
-                            prose-ul:my-4 prose-ul:marker:text-muted-foreground
-                            prose-ol:my-4 prose-ol:marker:text-muted-foreground
+                            prose-hr:border-border/30 prose-hr:my-6
+                            prose-ul:my-3 prose-ul:marker:text-muted-foreground
+                            prose-ol:my-3 prose-ol:marker:text-muted-foreground
                             prose-li:my-1
-                            prose-img:rounded-lg prose-img:my-6
+                            prose-img:rounded-lg prose-img:my-4
                             prose-table:text-sm
                             [&_.katex]:text-foreground
-                            [&_.katex-display]:my-6 [&_.katex-display]:overflow-x-auto [&_.katex-display]:overflow-y-hidden [&_.katex-display]:py-1
+                            [&_.katex-display]:my-4 [&_.katex-display]:overflow-x-auto [&_.katex-display]:overflow-y-hidden [&_.katex-display]:py-1
                         ">
                             <MDXRemote
                                 source={post.content}
@@ -164,7 +164,7 @@ export default async function BlogPostPage({ params }: BlogPostPageParams) {
                     {/* ── Tags: mobilde article ile sidebar arasında ── */}
                     {post.tags.length > 0 && (
                         <div
-                            className="flex flex-wrap gap-2 text-sm text-muted-foreground order-2 lg:hidden pt-6"
+                            className="flex flex-wrap gap-2 text-sm text-muted-foreground order-2 lg:hidden pt-4"
                             aria-label="Tags"
                         >
                             {post.tags.map((tag) => (
@@ -174,7 +174,7 @@ export default async function BlogPostPage({ params }: BlogPostPageParams) {
                     )}
 
                     {/* ── Sidebar ───────────────────────────────────────────── */}
-                    <aside className="max-lg:order-3 max-lg:mt-8 max-lg:pt-6 max-lg:border-t max-lg:border-border/50 lg:col-start-2 lg:row-span-1">
+                    <aside className="max-lg:order-3 max-lg:mt-6 max-lg:pt-4 max-lg:border-t max-lg:border-border/50 lg:col-start-2 lg:row-span-1">
                         <div className="sticky top-32">
                             <PostSidebar title={post.title} shareUrl={shareUrl} slug={slug} />
                         </div>
@@ -183,7 +183,7 @@ export default async function BlogPostPage({ params }: BlogPostPageParams) {
                 {/* ── Tags: masaüstünde grid ile analytics arasında, tam genişlik ── */}
                 {post.tags.length > 0 && (
                     <div
-                        className="hidden lg:flex flex-wrap gap-2 text-sm text-muted-foreground pt-6 mt-6"
+                        className="hidden lg:flex flex-wrap gap-2 text-sm text-muted-foreground pt-4 mt-4"
                         aria-label="Tags"
                     >
                         {post.tags.map((tag) => (

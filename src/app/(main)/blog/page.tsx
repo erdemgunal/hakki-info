@@ -20,9 +20,8 @@ export default async function BlogPage() {
 
     return (
         <main className="min-h-screen bg-background">
-            <div className="mx-auto max-w-5xl px-4 sm:px-6 md:px-8 lg:px-16 pt-20 sm:pt-24 md:pt-28 pb-4 sm:pb-6 md:pb-8">
-
-                {/* Header */}
+            <div className="mx-auto max-w-5xl px-4 sm:px-6 md:px-8 lg:px-16 pt-24 sm:pt-24 md:pt-28 pb-4 sm:pb-6 md:pb-8">
+                {/* Header — projects sayfası ile aynı yapı, mobile-first */}
                 <div className="text-left mb-6 sm:mb-8">
                     <h1 className="text-2xl sm:text-3xl md:text-3xl font-bold text-foreground mb-3">
                         Blog
