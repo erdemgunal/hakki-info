@@ -33,7 +33,11 @@ export default function Projects() {
                 <div className="grid gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3">
                     {projects.items.map((project, index) => (
                         <div key={index}>
-                            <Link href={`/projects/${project.slug}`}>
+                            <Link
+                                href={`/projects/${project.slug}`}
+                                data-umami-event="project-click"
+                                data-umami-event-slug={project.slug}
+                            >
                                 <div className="bg-surface rounded-lg border border-border overflow-hidden hover:border-foreground/30 cursor-pointer hover:shadow-lg group flex flex-col h-full transition-all duration-200">
                                     <div className="h-40 bg-background relative overflow-hidden">
                                         <Image
@@ -87,6 +91,7 @@ export default function Projects() {
                         <Link
                             href="/projects"
                             className="flex items-center gap-2 mx-auto text-accent"
+                            data-umami-event="nav-view-all-projects"
                         >
                             View all projects
                         </Link>

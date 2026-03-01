@@ -15,6 +15,7 @@ export default function ActiveSectionIndicator() {
     const closeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
     const scrollToSection = useCallback((id: string) => {
+        window.umami?.track('section-scroll', { section: id });
         scrollToSectionUtil(id);
     }, []);
 

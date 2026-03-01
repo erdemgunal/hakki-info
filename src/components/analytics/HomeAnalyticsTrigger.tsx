@@ -106,7 +106,10 @@ export function HomeAnalyticsTrigger({ pagePath, views, children }: HomeAnalytic
         <>
             <button
                 type="button"
-                onClick={() => setOpen(true)}
+                onClick={() => {
+                    window.umami?.track('analytics-modal-open');
+                    setOpen(true);
+                }}
                 className="inline-flex items-center gap-2 text-xs text-muted-foreground group cursor-pointer"
                 aria-label={`Open analytics for ${pagePath}`}
             >

@@ -37,6 +37,7 @@ export function CodeBlock({
             document.execCommand('copy');
             document.body.removeChild(ta);
         }
+        window.umami?.track('code-copy', { language: langLabel });
         setCopied(true);
         setTimeout(() => setCopied(false), 2000);
     };

@@ -22,6 +22,7 @@ export function PostSidebar({ title, shareUrl, slug }: PostSidebarProps) {
     const baseUpvotes = 1178;
 
     const handleUpvote = () => {
+        window.umami?.track('blog-upvote');
         setUpvoted(!upvoted);
     };
 
@@ -63,7 +64,10 @@ export function PostSidebar({ title, shareUrl, slug }: PostSidebarProps) {
                     <div className="flex items-center justify-between gap-3">
                         <span className="text-sm font-semibold text-foreground">Like this post?</span>
                         <button
-                            onClick={() => setShowEmailForm(true)}
+                            onClick={() => {
+                                window.umami?.track('blog-subscribe');
+                                setShowEmailForm(true);
+                            }}
                             className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold transition-colors"
                         >
                             Subscribe by Email
@@ -103,6 +107,8 @@ export function PostSidebar({ title, shareUrl, slug }: PostSidebarProps) {
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 px-3 py-2 bg-black hover:bg-black/90 text-white text-xs font-semibold transition-colors"
                     aria-label="Post on X"
+                    data-umami-event="blog-share"
+                    data-umami-event-platform="twitter"
                 >
                     <TwitterIcon className="w-4 h-4" />
                     Post
@@ -113,6 +119,8 @@ export function PostSidebar({ title, shareUrl, slug }: PostSidebarProps) {
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold transition-colors"
                     aria-label="Share on Facebook"
+                    data-umami-event="blog-share"
+                    data-umami-event-platform="facebook"
                 >
                     <FacebookIcon className="w-4 h-4" />
                     Share
@@ -123,6 +131,8 @@ export function PostSidebar({ title, shareUrl, slug }: PostSidebarProps) {
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 px-3 py-2 bg-[#0077b5] hover:bg-[#0077b5]/90 text-white text-xs font-semibold transition-colors"
                     aria-label="Share on LinkedIn"
+                    data-umami-event="blog-share"
+                    data-umami-event-platform="linkedin"
                 >
                     <LinkedInIcon className="w-4 h-4" />
                     Share
@@ -135,6 +145,7 @@ export function PostSidebar({ title, shareUrl, slug }: PostSidebarProps) {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 px-3 py-2 text-xs text-muted-foreground hover:text-foreground border border-border hover:bg-muted transition-colors"
+                    data-umami-event="blog-view-markdown"
                 >
                     <MarkdownIcon className="w-4 h-4" />
                     View as markdown

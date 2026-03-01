@@ -31,7 +31,10 @@ export function MobileMenu({
                                             ? 'text-foreground bg-accent/10 font-medium'
                                             : 'text-muted-foreground hover:bg-muted hover:text-foreground'
                                     }`}
-                                    onClick={onClose}
+                                    onClick={() => {
+                                    window.umami?.track('nav-click', { target: link.href });
+                                    onClose();
+                                }}
                                 >
                                     {link.label}
                                 </Link>
@@ -48,6 +51,7 @@ export function MobileMenu({
                                     href="/hakki_erdem_cv.pdf"
                                     target="_blank"
                                     rel="noopener noreferrer"
+                                    data-umami-event="resume-download"
                                 >
                                     Resume
                                 </Link>
@@ -66,6 +70,7 @@ export function MobileMenu({
                                     <button
                                         type="button"
                                         onClick={() => {
+                                            window.umami?.track('section-scroll', { section: id });
                                             onScrollToSection(id);
                                             onClose();
                                         }}

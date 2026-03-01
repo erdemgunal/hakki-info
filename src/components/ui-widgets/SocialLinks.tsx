@@ -27,8 +27,10 @@ export function SocialLinks({ socialLinks, className = "", iconClassName = "w-5 
                     href={social.url}
                     className={`inline-flex items-center justify-center text-secondary hover:text-foreground transition-all duration-200 p-2 rounded-full hover:bg-primary/10 min-w-[24px] min-h-[24px] ${className}`}
                     aria-label={social.name}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    target={social.url.startsWith('mailto:') ? undefined : '_blank'}
+                    rel={social.url.startsWith('mailto:') ? undefined : 'noopener noreferrer'}
+                    data-umami-event={social.url.startsWith('mailto:') ? 'contact-email' : 'social-click'}
+                    data-umami-event-platform={social.url.startsWith('mailto:') ? undefined : social.name}
                 >
                     <Icon className={iconClassName} />
                 </Link>

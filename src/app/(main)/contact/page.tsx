@@ -20,6 +20,7 @@ export default async function ContactPage() {
                             <Link
                                 href={`mailto:${hero.email}`}
                                 className="text-accent hover:text-foreground break-all"
+                                data-umami-event="contact-email"
                             >
                                 {hero.email}
                             </Link>
@@ -37,8 +38,10 @@ export default async function ContactPage() {
                                         <Link
                                             href={item.url}
                                             className="text-accent hover:text-foreground"
-                                            target="_blank"
-                                            rel="noopener noreferrer"
+                                            target={item.url.startsWith('mailto:') ? undefined : '_blank'}
+                                            rel={item.url.startsWith('mailto:') ? undefined : 'noopener noreferrer'}
+                                            data-umami-event={item.url.startsWith('mailto:') ? 'contact-email' : 'social-click'}
+                                            data-umami-event-platform={item.url.startsWith('mailto:') ? undefined : item.name}
                                         >
                                             {item.name}
                                         </Link>

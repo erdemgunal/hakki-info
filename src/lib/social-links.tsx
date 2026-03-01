@@ -21,8 +21,10 @@ export function renderSocialLinks(
                         href={social.url}
                         className={`${DEFAULT_LINK_CLASS} ${className}`}
                         aria-label={social.name}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                        target={social.url.startsWith('mailto:') ? undefined : '_blank'}
+                        rel={social.url.startsWith('mailto:') ? undefined : 'noopener noreferrer'}
+                        data-umami-event={social.url.startsWith('mailto:') ? 'contact-email' : 'social-click'}
+                        data-umami-event-platform={social.url.startsWith('mailto:') ? undefined : social.name}
                     >
                         <Icon className={iconClassName} title={social.name} aria-hidden />
                     </Link>

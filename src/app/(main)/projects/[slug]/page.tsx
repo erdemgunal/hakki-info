@@ -176,6 +176,8 @@ export default async function ProjectPage({ params }: ProjectPageParams) {
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="inline-flex items-center gap-2"
+                                data-umami-event="project-view-live"
+                                data-umami-event-slug={slug}
                             >
                                 View live site
                                 <ExternalLinkIcon className="w-4 h-4" />
@@ -188,6 +190,8 @@ export default async function ProjectPage({ params }: ProjectPageParams) {
                             target="_blank"
                             rel="noopener noreferrer"
                             className="inline-flex items-center gap-2"
+                            data-umami-event="project-view-github"
+                            data-umami-event-slug={slug}
                         >
                             View on GitHub
                             <ExternalLinkIcon className="w-4 h-4" />
@@ -200,6 +204,7 @@ export default async function ProjectPage({ params }: ProjectPageParams) {
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="inline-flex items-center gap-2"
+                                data-umami-event="projects-github"
                             >
                                 View more on GitHub
                                 <ExternalLinkIcon className="w-4 h-4" />
@@ -212,6 +217,8 @@ export default async function ProjectPage({ params }: ProjectPageParams) {
                     <Link
                         href="/projects"
                         className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors"
+                        data-umami-event="nav-click"
+                        data-umami-event-target="/projects"
                     >
                         <ArrowLeftIcon className="w-3 h-3" />
                         All projects

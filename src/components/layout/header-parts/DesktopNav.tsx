@@ -21,6 +21,8 @@ export function DesktopNav({ pathname }: DesktopNavProps) {
                                     ? 'text-foreground font-medium'
                                     : 'text-muted-foreground hover:text-foreground'
                             }`}
+                            data-umami-event="nav-click"
+                            data-umami-event-target={link.href}
                         >
                             {link.label}
                         </Link>
@@ -35,6 +37,7 @@ export function DesktopNav({ pathname }: DesktopNavProps) {
                     href="/hakki_erdem_cv.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
+                    data-umami-event="resume-download"
                 >
                     <Button
                         size="sm"

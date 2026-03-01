@@ -49,7 +49,10 @@ export default function ThemeToggle() {
                     return (
                         <button
                             key={themeOption.id}
-                            onClick={() => setTheme(themeOption.id)}
+                            onClick={() => {
+                                window.umami?.track('theme-change', { theme: themeOption.id });
+                                setTheme(themeOption.id);
+                            }}
                             className={`relative min-w-[24px] min-h-[24px] w-6 h-6 rounded-md flex items-center justify-center transition-all duration-200 ${isActive
                                 ? 'bg-foreground text-background'
                                 : 'text-secondary hover:text-foreground hover:bg-background'

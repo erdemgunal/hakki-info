@@ -32,7 +32,12 @@ export default async function ProjectsPage() {
 
                     <div className="grid gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-3">
                         {projects.map((project, index) => (
-                            <Link key={index} href={`/projects/${project.slug}`}>
+                            <Link
+                                key={index}
+                                href={`/projects/${project.slug}`}
+                                data-umami-event="project-click"
+                                data-umami-event-slug={project.slug}
+                            >
                                 <div className="bg-surface rounded-lg border border-border overflow-hidden hover:border-foreground/30 cursor-pointer hover:shadow-lg group flex flex-col h-full transition-all duration-200">
                                     <div className="h-48 sm:h-56 bg-background relative overflow-hidden">
                                         <Image
@@ -91,6 +96,7 @@ export default async function ProjectsPage() {
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="flex items-center gap-2 mx-auto text-accent"
+                                data-umami-event="projects-github"
                             >
                                 View more on GitHub
                                 <ExternalLinkIcon className="w-4 h-4" />
