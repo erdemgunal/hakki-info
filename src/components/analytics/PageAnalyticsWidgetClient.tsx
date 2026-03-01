@@ -93,50 +93,6 @@ export function PageAnalyticsWidgetClient({ data }: PageAnalyticsWidgetClientPro
                 </div>
             </div>
 
-            {/* ── Device ── */}
-            {data.deviceSummary && (
-                <div className="px-6">
-                    <Divider />
-                    <SectionTitle>Device · last 30 days</SectionTitle>
-                    <div className="grid grid-cols-3 gap-2 mb-3">
-                        {[
-                            { label: 'Desktop', val: data.deviceSummary.desktop },
-                            { label: 'Mobile', val: data.deviceSummary.mobile },
-                            { label: 'Other', val: data.deviceSummary.other },
-                        ].map(({ label, val }) => (
-                            <div key={label} className="rounded-lg p-3 text-center"
-                                style={{ border: '1px solid #e5e7eb', background: '#f9fafb' }}>
-                                <div className="text-base font-semibold tabular-nums" style={{ color: '#111827' }}>
-                                    {Math.round(val.share * 100)}%
-                                </div>
-                                <div className="text-xs mt-0.5" style={{ color: '#9ca3af' }}>{label}</div>
-                                <div className="text-xs tabular-nums" style={{ color: '#d1d5db' }}>
-                                    {val.visits.toLocaleString()}
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                    <div className="space-y-0.5 mb-2">
-                        {data.deviceSummary.breakdown.map((row) => (
-                            <BarRow key={row.device} label={row.device} value={row.visits} share={row.share} color="#3b82f6" />
-                        ))}
-                    </div>
-                </div>
-            )}
-
-            {/* ── Referrers ── */}
-            {data.referrersSummary.length > 0 && (
-                <div className="px-6">
-                    <Divider />
-                    <SectionTitle>Referrers · last 30 days</SectionTitle>
-                    <div className="space-y-0.5 mb-2">
-                        {data.referrersSummary.map((row) => (
-                            <BarRow key={row.source} label={row.source} value={row.visits} share={row.share} color="#6366f1" />
-                        ))}
-                    </div>
-                </div>
-            )}
-
             {/* ── Countries ── */}
             {data.countriesSummary.length > 0 && (
                 <div className="px-6">

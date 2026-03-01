@@ -54,41 +54,7 @@ export async function PageAnalyticsWidget({
         {} as Record<UmamiTimeRangeKey, { pageviews: number; visitors: number } | null>
     );
 
-    const [deviceMetrics, referrerMetrics, countryMetrics] = await Promise.all([
-        fetchUmamiMetrics(path, 'device', { revalidate, limit: 10 }),
-        fetchUmamiMetrics(path, 'referrer', { revalidate, limit: 10 }),
-        fetchUmamiMetrics(path, 'country', { revalidate, limit: 20 }),
-    ]);
-
-    const totalDeviceVisits = deviceMetrics.reduce((sum: number, row: UmamiMetricRow) => sum + row.y, 0);
-    let mobileVisits = 0, desktopVisits = 0, otherVisits = 0;
-    deviceMetrics.forEach((row) => {
-        const label = row.x.toLowerCase();
-        if (label.includes('mobile')) mobileVisits += row.y;
-        else if (label.includes('desktop')) desktopVisits += row.y;
-        else otherVisits += row.y;
-    });
-
-    const deviceSummary =
-        totalDeviceVisits > 0
-            ? {
-                total: totalDeviceVisits,
-                mobile: { visits: mobileVisits, share: mobileVisits / totalDeviceVisits },
-                desktop: { visits: desktopVisits, share: desktopVisits / totalDeviceVisits },
-                other: { visits: otherVisits, share: otherVisits / totalDeviceVisits },
-                breakdown: deviceMetrics.map((row) => ({
-                    device: row.x,
-                    visits: row.y,
-                    share: row.y / totalDeviceVisits,
-                })),
-            }
-            : null;
-
-    const totalReferrerVisits = referrerMetrics.reduce((sum: number, row: UmamiMetricRow) => sum + row.y, 0);
-    const referrersSummary =
-        totalReferrerVisits > 0
-            ? referrerMetrics.map((row) => ({ source: row.x, visits: row.y, share: row.y / totalReferrerVisits }))
-            : [];
+    const countryMetrics = await fetchUmamiMetrics(path, 'country', { revalidate, limit: 20 });
 
     const totalCountryVisits = countryMetrics.reduce((sum: number, row: UmamiMetricRow) => sum + row.y, 0);
     const countriesSummary =
@@ -102,8 +68,6 @@ export async function PageAnalyticsWidget({
                 title,
                 path,
                 ranges,
-                deviceSummary,
-                referrersSummary,
                 countriesSummary,
             }}
         />
