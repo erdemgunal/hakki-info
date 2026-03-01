@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { getProjectSlugs, fetchProjectBySlug } from '@/lib/fetch-resume-data';
+import { getProjectSlugs, fetchProjectBySlug, fetchResumeData } from '@/lib/fetch-resume-data';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -7,6 +7,7 @@ import seo from '@/config/seo.json';
 import { Button } from '@/components/ui/button';
 import { PageAnalyticsSection } from '@/components/analytics/PageAnalyticsSection';
 import ExternalLinkIcon from '@/components/icon/ExternalLinkIcon';
+import ArrowLeftIcon from '@/components/icon/ArrowLeftIcon';
 import { renderBadges, renderTechStackBadges } from '@/lib/badge-utils';
 
 export async function generateStaticParams() {
@@ -64,8 +65,12 @@ export async function generateMetadata(
 export default async function ProjectPage({ params }: ProjectPageParams) {
     const { slug } = await params;
     const path = `/projects/${slug}`;
-    const project = await fetchProjectBySlug(slug);
+    const [project, resumeData] = await Promise.all([
+        fetchProjectBySlug(slug),
+        fetchResumeData(),
+    ]);
     if (!project) notFound();
+    const githubUrl = resumeData.social?.find(s => s.iconKey === 'github' || s.name === 'GitHub')?.url;
 
     return (
         <main className="min-h-screen bg-background">
@@ -188,7 +193,31 @@ export default async function ProjectPage({ params }: ProjectPageParams) {
                             <ExternalLinkIcon className="w-4 h-4" />
                         </Link>
                     </Button>
+                    {githubUrl && (
+                        <Button variant="ghost" size="lg" asChild>
+                            <Link
+                                href={githubUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-2"
+                            >
+                                View more on GitHub
+                                <ExternalLinkIcon className="w-4 h-4" />
+                            </Link>
+                        </Button>
+                    )}
                 </section>
+
+                <div className="pt-6 sm:pt-8">
+                    <Link
+                        href="/projects"
+                        className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors"
+                    >
+                        <ArrowLeftIcon className="w-3 h-3" />
+                        All projects
+                    </Link>
+                </div>
+
                 <PageAnalyticsSection path={path} />
             </div>
         </main>
