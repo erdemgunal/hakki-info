@@ -1,6 +1,6 @@
 /**
  * Single source of truth for main navigation: section ids/labels and page links.
- * Used by Header, ActiveSectionIndicator, and any feature that needs section or page list.
+ * Used by Header, ActiveSectionIndicator any feature that needs section or page list.
  */
 
 export const SECTIONS = [

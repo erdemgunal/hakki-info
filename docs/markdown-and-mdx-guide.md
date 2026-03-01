@@ -8,7 +8,7 @@ This site does **not** use Next.js’s built-in `@next/mdx` (file-based MDX page
 
 - **next-mdx-remote** (RSC) to compile MDX from string content at request time
 - **gray-matter** to parse YAML frontmatter from `.mdx` files
-- Content files live under `content/blog/` (and similar); the app reads them with `fs`, strips frontmatter, and passes the body to `MDXRemote`
+- Content files live under `content/blog/` (and similar); the app reads them with `fs`, strips frontmatter passes the body to `MDXRemote`
 
 So you get “remote”/dynamic MDX: same Markdown + JSX features, with full control over frontmatter and where content lives. The [Next.js MDX guide](https://nextjs.org/docs/app/guides/mdx) calls out both local file-based MDX and this kind of server-fetched MDX.
 
@@ -71,7 +71,7 @@ Standard Markdown and **GitHub Flavored Markdown** (GFM) are supported:
 
 ## Code Blocks
 
-Code blocks use **rehype-pretty-code** (Shiki) with the **github-dark-dimmed** theme. They are wrapped in a custom `CodeBlock` component that provides copy, collapse, and line-wrap controls.
+Code blocks use **rehype-pretty-code** (Shiki) with the **github-dark-dimmed** theme. They are wrapped in a custom `CodeBlock` component that provides copy, collapse line-wrap controls.
 
 ### Basic usage
 
@@ -137,7 +137,7 @@ You can use these components directly in `.mdx` content; they are provided via t
 
 ### Callout
 
-Callouts for tips, warnings, and errors:
+Callouts for tips, warnings errors:
 
 ```mdx
 <Callout type="info">
@@ -199,4 +199,4 @@ Only `.mdx` files under the blog directory are listed as posts; each file’s `s
 | **Callouts**    | `<Callout type="info|warning|error">...</Callout>`. |
 | **Images**     | Markdown `![alt](url)` or `<BlogImage src="..." alt="..." />`. |
 
-The stack (next-mdx-remote, gray-matter, remark/rehype plugins, and custom components) is aligned with Next.js’s guidance for dynamic/remote MDX and gives you full control over frontmatter and rendering without using `@next/mdx` or file-based MDX routes.
+The stack (next-mdx-remote, gray-matter, remark/rehype plugins custom components) is aligned with Next.js’s guidance for dynamic/remote MDX and gives you full control over frontmatter and rendering without using `@next/mdx` or file-based MDX routes.

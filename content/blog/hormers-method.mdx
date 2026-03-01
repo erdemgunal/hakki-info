@@ -7,7 +7,7 @@ status: "published"
 tags: ["mathematics", "algorithms", "numerical-analysis", "computer-science"]
 ---
 
-In the world of numerical analysis and computer science, efficiency is king. When we look at a polynomial like $P(x) = a_n x^n + a_{n-1} x^{n-1} + \cdots + a_1 x + a_0$, our instinct is to calculate each power of $x$, multiply by the coefficients, and sum them up. However, there is a much faster way.
+In the world of numerical analysis and computer science, efficiency is king. When we look at a polynomial like $P(x) = a_n x^n + a_{n-1} x^{n-1} + \cdots + a_1 x + a_0$, our instinct is to calculate each power of $x$, multiply by the coefficients sum them up. However, there is a much faster way.
 
 **Horner's Method** (or Horner's Scheme) is an algorithm that simplifies the evaluation of polynomials. Named after William George Horner (though known much earlier to Chinese and Persian mathematicians), it minimizes the number of multiplications required, making it the gold standard for both manual calculation and software implementation.
 
@@ -81,7 +81,7 @@ Let's evaluate $P(x) = x^3 - 6x^2 + 11x - 6$ at $x = 2$.
 | $x=2$ |  | 2 | -8 | 6 |
 | **Result** | **1** | **-4** | **3** | **0** |
 
-The last value is **0**, which means $x = 2$ is a root, and the remaining coefficients $(1, -4, 3)$ represent the quotient polynomial $x^2 - 4x + 3$.
+The last value is **0**, which means $x = 2$ is a root the remaining coefficients $(1, -4, 3)$ represent the quotient polynomial $x^2 - 4x + 3$.
 
 ---
 
