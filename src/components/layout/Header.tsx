@@ -3,25 +3,8 @@
 import Link from 'next/link';
 import { useState, useCallback, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
-import { Button } from '@/components/ui/button';
 import Image from 'next/image';
-
-const SECTIONS = [
-    { id: 'hero', label: 'Home' },
-    { id: 'about', label: 'About' },
-    { id: 'education', label: 'Education' },
-    { id: 'languages', label: 'Languages' },
-    { id: 'community', label: 'Community' },
-    { id: 'skills', label: 'Skills' },
-    { id: 'projects', label: 'Projects' },
-] as const;
-
-const PAGE_LINKS = [
-    { href: '/', label: 'Home' },
-    { href: '/projects', label: 'Projects' },
-    { href: '/blog', label: 'Blog' },
-    { href: '/contact', label: 'Contact' },
-] as const;
+import { DesktopNav, MobileMenu } from '@/components/layout/header-parts';
 
 export default function Header() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -46,7 +29,9 @@ export default function Header() {
 
     useEffect(() => {
         if (!mobileMenuOpen) return;
-        const onKeyDown = (e: KeyboardEvent) => { if (e.key === 'Escape') setMobileMenuOpen(false); };
+        const onKeyDown = (e: KeyboardEvent) => {
+            if (e.key === 'Escape') setMobileMenuOpen(false);
+        };
         document.body.style.overflow = 'hidden';
         window.addEventListener('keydown', onKeyDown);
         return () => {
@@ -77,40 +62,7 @@ export default function Header() {
                             />
                         </Link>
 
-                        <div className="hidden lg:flex absolute left-1/2 -translate-x-1/2 items-center gap-2 text-sm">
-                            {PAGE_LINKS.map((link, index) => (
-                                <div key={link.href} className="flex items-center gap-2">
-                                    <Link
-                                        href={link.href}
-                                        className={`min-h-[24px] min-w-[24px] px-3 py-2 inline-flex items-center rounded transition-colors ${pathname === link.href
-                                            ? 'text-foreground font-medium'
-                                            : 'text-muted-foreground hover:text-foreground'
-                                            }`}
-                                    >
-                                        {link.label}
-                                    </Link>
-                                    {index < PAGE_LINKS.length - 1 && (
-                                        <span className="text-border select-none">|</span>
-                                    )}
-                                </div>
-                            ))}
-                        </div>
-
-                        {/* Desktop Resume button */}
-                        <div className="hidden lg:flex items-center gap-2">
-                            <Link
-                                href="/hakki_erdem_cv.pdf"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
-                                <Button
-                                    size="sm"
-                                    className="rounded-lg bg-destructive text-white hover:bg-destructive/90"
-                                >
-                                    Resume
-                                </Button>
-                            </Link>
-                        </div>
+                        <DesktopNav pathname={pathname} />
 
                         <button
                             type="button"
@@ -132,66 +84,13 @@ export default function Header() {
                     </nav>
 
                     {mobileMenuOpen && (
-                        <div className="lg:hidden mt-3 pt-3 border-t border-border">
-                            <div className="mb-3">
-                                <ul className="flex flex-col gap-0.5">
-                                    {PAGE_LINKS.map((link) => (
-                                        <li key={link.href}>
-                                            <Link
-                                                href={link.href}
-                                                className={`block w-full min-h-[24px] rounded-lg px-3 py-2.5 text-left text-sm transition-colors ${pathname === link.href
-                                                    ? 'text-foreground bg-accent/10 font-medium'
-                                                    : 'text-muted-foreground hover:bg-muted hover:text-foreground'
-                                                    }`}
-                                            >
-                                                {link.label}
-                                            </Link>
-                                        </li>
-                                    ))}
-
-                                    {/* Mobile Resume button inside menu */}
-                                    <li className="mt-1">
-                                        <Button
-                                            asChild
-                                            variant="destructive"
-                                            size="sm"
-                                            className="w-full rounded-lg px-3 py-2.5 text-center text-sm font-medium"
-                                        >
-                                            <Link
-                                                href="/hakki_erdem_cv.pdf"
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                            >
-                                                Resume
-                                            </Link>
-                                        </Button>
-                                    </li>
-                                </ul>
-                            </div>
-
-                            {isHomePage && (
-                                <>
-                                    <div className="border-t border-border pt-3">
-                                        <p className="px-3 mb-1.5 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                                            Sections
-                                        </p>
-                                        <ul className="flex flex-col gap-0.5">
-                                            {SECTIONS.map(({ id, label }) => (
-                                                <li key={id}>
-                                                    <button
-                                                        type="button"
-                                                        onClick={() => scrollToSection(id)}
-                                                        className="w-full min-h-[24px] rounded-lg px-3 py-2.5 text-left text-sm text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
-                                                    >
-                                                        {label}
-                                                    </button>
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                </>
-                            )}
-                        </div>
+                        <MobileMenu
+                            isOpen={mobileMenuOpen}
+                            onClose={() => setMobileMenuOpen(false)}
+                            pathname={pathname}
+                            isHomePage={isHomePage}
+                            onScrollToSection={scrollToSection}
+                        />
                     )}
                 </div>
             </header>

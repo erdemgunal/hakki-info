@@ -1,14 +1,25 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { fetchUmamiPageviewsForPeriod, isUmamiApiConfigured } from '@/lib/umami-api';
-import { UmamiTimeRangeKey } from '@/lib/umami-api';
+import {
+    fetchUmamiPageviewsForPeriod,
+    isUmamiApiConfigured,
+    UMAMI_TIME_RANGE_KEYS,
+    type UmamiTimeRangeKey,
+} from '@/lib/umami-api';
 
 export async function GET(request: NextRequest) {
     const { searchParams } = new URL(request.url);
     const path = searchParams.get('path') || '/';
-    const period = searchParams.get('period') as UmamiTimeRangeKey | null;
+    const rawPeriod = searchParams.get('period');
+    const period: UmamiTimeRangeKey | null =
+        rawPeriod && UMAMI_TIME_RANGE_KEYS.includes(rawPeriod as UmamiTimeRangeKey)
+            ? (rawPeriod as UmamiTimeRangeKey)
+            : null;
 
     if (!period) {
-        return NextResponse.json({ error: 'Missing period' }, { status: 400 });
+        return NextResponse.json(
+            { error: 'Missing or invalid period' },
+            { status: 400 }
+        );
     }
 
     if (!isUmamiApiConfigured()) {

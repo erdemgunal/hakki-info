@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
 import "../globals.css";
-import { ThemeProvider } from "@/lib/ThemeProvider";
+import { ThemeProvider } from "@/contexts/ThemeProvider";
 import Script from "next/script";
 import { consoleArtScript } from "@/lib/console-art";
-import UmamiAnalytics from "@/components/UmamiAnalytics";
+import UmamiAnalytics from "@/components/analytics/UmamiAnalytics";
 import { Header, Footer } from "@/components/layout";
 import { fetchResumeData } from '@/lib/fetch-resume-data';
 import { ResumeDataProvider } from '@/contexts/ResumeDataContext';
