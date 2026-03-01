@@ -1,23 +1,143 @@
 ---
 title: "aslında neden yazıyorum?"
 date: "2026-02-17"
-lastUpdated: "2026-02-18"
+lastUpdated: "2026-03-01"
 excerpt: "Anlatamadığın şeyi aslında tam öğrenememişsindir."
 status: "published"
 tags: ["learning", "physics", "dev"]
 ---
 
-### basitçe anlatmak
+## giriş: yazmadan öğrenememek
 
-Einstein'ın o meşhur lafı aslında buranın temel direği *"Bir şeyi basitçe açıklayamıyorsan onu yeterince iyi anlamamışsın demektir."*
+Einstein'ın meşhur sözü var ya, *"Bir şeyi basitçe açıklayamıyorsan onu yeterince iyi anlamamışsın demektir."* — bu blog tam olarak o cümlenin sonucu.
 
-Kodların dünyasına çıkıp fizik bölümündeki teorilere daldığımda fark ettim ki bir konuyu sadece "çalışmak" yetmiyor. Onu buraya en yalın haliyle raporlamadığım sürece zihnimde tam oturmuyor. Bu yüzden hakki.info benim için türkçe ingilizce not defteri niteliğinde olacak öğrendiklerimi yazdığım paylaştığım bir **dijital laboratuvar.**
+Fizik derslerinde soyut kavramların, yazılımda ise binlerce satır kodun arasında kaybolurken fark ettim ki sadece "çalışmak" ya da "izlemek" yetmiyor. Bir fikri gerçekten sahiplenebilmek için, onu kendi kelimelerinle yeniden kurman gerekiyor. Benim için o yer hakki.info: hem Türkçe hem İngilizce notlarımın, denemelerimin ve küçük araştırmalarımın toplandığı bir **dijital laboratuvar**.
 
-**Burada ne olacak?**
-* Fizik derslerinde "bu ne işe yarar?" dediğimiz ama aslında dünyayı değiştiren o mantıklar
-* Yazılımda karşıma çıkan bazen saatlerce ama çözünce "bu kadar mıymış?" dedirten o anlar
-* Projelerimdeki süreçler hatalarım ve o hatalardan çıkardığım dersler
+Bu yazı, bu laboratuvarın "araştırma problemi" gibi düşünebileceğin sorusuna cevap arıyor: **"Aslında neden yazıyorum?"**
 
-Kısacası sadece kendim için not alıyor alırken de öğreniyorum. Eğer bu notlar bir gün senin de yolunu aydınlatırsa bu da işin en güzel yan etkisi olur.
+---
 
-Hadi, başlayalım
+## bu blogun küçük araştırma soruları
+
+Oxford’un araştırma odaklı blog rehberlerinde önerildiği gibi, her yazıyı mini bir hikâye ve araştırma sorusu gibi düşünmeye çalışıyorum: *Kim? Ne? Ne zaman? Nerede? Neden? Nasıl? Peki sonra ne oldu?*
+Buradaki yazıların çoğu şu sorular etrafında dolaşacak:
+
+- **Kim?**  
+  Fizik öğrencisi / geliştirici / meraklı biri olarak ben ve bazen benim gibi yolda olanlar.
+- **Ne?**  
+  Bir fizik kavramı, bir algoritma, bir hata mesajı, bir proje süreci ya da kafamı kurcalayan daha soyut bir soru.
+- **Ne zaman ve nerede?**  
+  Genelde derste, projede, bir araştırma makalesini okurken ya da "bu neden böyle çalışıyor?" diye terminale bakarken.
+- **Neden?**  
+  Çünkü bir şeyleri anlamadığımda huzursuz oluyorum ve yazmak o huzursuzluğu somut bir ilerlemeye dönüştürüyor.
+- **Nasıl?**  
+  Önce günlük hayattan veya popüler kültürden bir analoji, sonra basitleştirilmiş anlatım, en sonda gerekiyorsa teknik detaylar.
+- **Peki sonra ne oldu? (So what?)**  
+  Buradan çıkan içgörüleri sonraki yazılara, projelere ve belki senin sorularına taşıyabilmek.
+
+Kısacası her yazı, "sınav notu" değil; **bir soru sorup cevabını yüksek sesle düşünmeye** çalıştığım bir kayıt.
+
+---
+
+## burada neyi, nasıl bulacaksın?
+
+Bu blogda göreceğin içerikleri birkaç başlıkta toparlayabilirim:
+
+- **Fizik: "bu ne işe yarıyor?" anları**  
+  Lisede ya da üniversitede "bunu niye öğreniyoruz ki?" dediğin konuları, gerçek dünyadaki karşılıklarıyla eşleştirmeye çalışacağım.  
+  Örneğin:
+  - Kuantum mekaniği kavramlarının teknolojiye nasıl sızdığı,
+  - Basit görünen bir formülün neden devrim niteliğinde olduğu,
+  - "Soyut" diye kenara ittiklerimizin aslında gündelik hayatı nasıl yönettiği.
+
+- **Yazılım: 'bu kadar mıymış?' dedirten çözümler**  
+  Saatlerce debug edip en sonunda çok basit çıkan hatalar, "şu kütüphane ne işe yarıyor?" diye daldığım dokümanlar, mimari tercihleri…  
+  Burada amacım gemini cevabı direkt kopyalamak değil; **neden o çözümün mantıklı olduğunu** göstermek.
+
+- **Projeler ve süreçler: deney defteri**  
+  İnşa ettiğim projelerde neleri yanlış yaptığımı, neleri tesadüfen doğru yaptığımı ve hangi kararların nelere mal olduğunu açıkça yazmak istiyorum. Yanlış kararlar da veri sonuçta.
+
+---
+
+## okuru gözümde nasıl canlandırıyorum?
+
+Oxford’un blog rehberlerinden bir tavsiye: *"Okurunu hayal et ve onunla sohbet ediyormuş gibi yaz."* Benim aklımdaki okur:
+
+- Fizik ya da yazılıma meraklı bir lise / üniversite öğrencisi,
+- Veya junior bir geliştirici,
+- Veya bu alanlarla uzaktan ilgili ama "bana insan gibi anlatsana" diyen biri.
+
+Bu yüzden burada:
+
+- Terimleri tamamen yok saymayacağım ama mümkün olduğunca **her kavramı gündelik bir örnekle bağlamaya** çalışacağım.
+- Gerektiğinde formüller de olacak ama önce *hikâye*, sonra *sezgi*, en sonda *detay* gelecek.
+- Bazen Türkçe, bazen İngilizce kaynaklara ve kavramlara atıf yapacağım; ama bağlamı kaybetmemeye dikkat edeceğim.
+
+<Callout type="info">
+  Eğer bir yazıda bir noktada "burayı hiç anlamadım" dersen, bu aslında benim için önemli bir geri bildirim. Çünkü hedefim, teknik doğruluk kadar, gündelik bir sohbet netliğinde aktarabilmek.
+</Callout>
+
+---
+
+## karmaşık konuları "aptallaştırmadan" sadeleştirmek
+
+Karmaşık bir konuyu anlatırken iki tuhaf uç var:
+
+- Her şeyi formüller ve semboller denizine boğmak,
+- Ya da konuyu o kadar basitleştirmek ki, gerçeği yanlış anlatmak.
+
+Benim denemek istediğim şey, bu ikisinin ortasında bir yer:
+
+- **Önce sezgi**: Günlük hayattan bir analogi, bir hikâye, bazen popüler kültürden bir sahne.
+- **Sonra yapı**: "Bu fikir aslında şu üç soruyu cevaplıyor" diye ana iskeleti kurmak.
+- **En sonda detay**: İlgilenenler için formül, kod parçası, referans.
+
+Yani hedef, "dumb down" etmek değil; **mantığı görünür kılmak**.
+
+---
+
+## bu yazıların sınırları ve yanılma payı
+
+Buradaki hiçbir yazı, akademik bir dergide hakem değerlendirmesinden geçmiş içerikler değil. Daha çok bir öğrencinin / geliştiricinin **ara yolda tuttuğu notlar** gibi düşünebilirsin.
+
+- Bazen eksik anlatacağım,
+- Bazen yanlış anlamış olacağım,
+- Bazen de birkaç ay sonra dönüp "bunu da böyle yazmışım ama pek katılmıyorum" diyeceğim.
+
+Bu yanılma payını saklamadan yazmak istiyorum; çünkü öğrenme süreci zaten böyle. Eğer bir yazıda önemli bir hata görürsen, bunu düzeltmek benim için "ayıp" değil, aksine sürecin doğal bir parçası.
+
+---
+
+## senden ne bekliyorum?
+
+Okurdan beklentim; "mükemmel açıklama" aramaktan çok, birlikte düşünmeye açık olması:
+
+- Bir yazıyı okurken kendi sorularını da kenara not almanı,
+- "Ben bunu böyle anlamıştım" diye alternatif sezgiler geliştirmeni,
+- Fark ettiğin eksikleri veya farklı bakış açılarını benimle paylaşmanı.
+
+Belki zamanla, bu blog tek sesli bir günlükten çıkıp **çok sesli bir öğrenme alanına** dönüşür.
+
+---
+
+## sonuç: kendim için yazarken başkasına da ışık tutmak
+
+Özetle:
+
+- Burada yazmamın birinci sebebi **kendim için öğrenmek**.
+- İkinci sebebi ise bu süreci olabildiğince **şeffaf ve paylaşılabilir** kılmak.
+
+Eğer bir gün herhangi bir yazı:
+
+- Bir fizik konusunu gözünde canlandırmana,
+- Bir yazılım hatasını çözmene,
+- Ya da sadece “yalnız değilsin, herkes böyle takılıyor” dememe vesile olursa,
+bu blog amacına ulaşmış olacak.
+
+Hadi, birlikte öğrenmeye başlayalım.
+
+---
+
+## further reading
+
+- [How to guide: blogging about research (University of Oxford)](https://communications.admin.ox.ac.uk/resources/how-to-guide-blogging-about-research#collapse1908256)
