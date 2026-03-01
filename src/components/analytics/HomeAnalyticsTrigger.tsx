@@ -9,8 +9,6 @@ interface HomeAnalyticsTriggerProps {
     children: React.ReactNode;
 }
 
-// Z_MODAL (40) > Z_HEADER (20) > Z_FOOTER (10) — defined in globals.css @theme
-// Using inline value here since this component is portaled to <body>
 const Z_MODAL = 40;
 
 export function HomeAnalyticsTrigger({ pagePath, views, children }: HomeAnalyticsTriggerProps) {

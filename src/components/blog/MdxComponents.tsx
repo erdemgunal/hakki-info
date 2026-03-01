@@ -24,7 +24,7 @@ export function BlogImage({
     height?: number;
 }) {
     return (
-        <figure className="not-prose my-6">
+        <figure className="not-prose my-4">
             <Image
                 src={src}
                 alt={alt}
@@ -33,7 +33,7 @@ export function BlogImage({
                 className="w-full rounded-lg"
             />
             {caption && (
-                <figcaption className="mt-2 text-center text-xs text-muted-foreground">
+                <figcaption className="mt-1 text-center text-xs text-muted-foreground">
                     {caption}
                 </figcaption>
             )}
@@ -58,7 +58,7 @@ export function Callout({
     const IconComponent = { info: InfoIcon, warning: WarningIcon, error: ErrorIcon }[type];
 
     return (
-        <div className={`not-prose my-5 flex gap-3 rounded-lg px-4 py-3 text-sm leading-relaxed ${styles[type]}`}>
+        <div className={`not-prose my-4 flex gap-3 rounded-lg px-4 py-2.5 text-sm leading-relaxed ${styles[type]}`}>
             <IconComponent className="h-5 w-5 shrink-0 mt-0.5" aria-hidden />
             <div>{children}</div>
         </div>
@@ -70,22 +70,22 @@ export function Callout({
 export const mdxComponents: MDXComponents = {
     // ── Headings ──────────────────────────────────────────────────────────────
     h1: ({ children, ...props }) => (
-        <h1 className="mt-10 mb-3 text-3xl font-bold tracking-tight text-foreground scroll-mt-28" {...props}>
+        <h1 className="mt-8 mb-2 text-3xl font-bold tracking-tight text-foreground scroll-mt-28" {...props}>
             {children}
         </h1>
     ),
     h2: ({ children, ...props }) => (
-        <h2 className="mt-10 mb-3 text-2xl font-bold tracking-tight text-foreground scroll-mt-28" {...props}>
+        <h2 className="mt-8 mb-2 text-2xl font-bold tracking-tight text-foreground scroll-mt-28" {...props}>
             {children}
         </h2>
     ),
     h3: ({ children, ...props }) => (
-        <h3 className="mt-8 mb-2 text-xl font-semibold text-foreground scroll-mt-28" {...props}>
+        <h3 className="mt-6 mb-1 text-xl font-semibold text-foreground scroll-mt-28" {...props}>
             {children}
         </h3>
     ),
     h4: ({ children, ...props }) => (
-        <h4 className="mt-6 mb-1 text-base font-semibold text-foreground scroll-mt-28" {...props}>
+        <h4 className="mt-4 mb-1 text-base font-semibold text-foreground scroll-mt-28" {...props}>
             {children}
         </h4>
     ),
@@ -141,7 +141,7 @@ export const mdxComponents: MDXComponents = {
     // ── Blockquote ────────────────────────────────────────────────────────────
     blockquote: ({ children, ...props }) => (
         <blockquote
-            className="my-5 border-l-2 border-border pl-4 text-muted-foreground [&>p]:my-0"
+            className="my-4 border-l-2 border-border pl-4 text-muted-foreground [&>p]:my-0"
             {...props}
         >
             {children}
@@ -150,7 +150,7 @@ export const mdxComponents: MDXComponents = {
 
     // ── Tables ────────────────────────────────────────────────────────────────
     table: ({ children, ...props }) => (
-        <div className="my-5 overflow-x-auto rounded-lg">
+        <div className="my-6 overflow-x-auto rounded-lg">
             <table className="w-full text-sm text-left" {...props}>{children}</table>
         </div>
     ),
@@ -183,12 +183,12 @@ export const mdxComponents: MDXComponents = {
                 height={height}
                 decoding="async"
                 loading="lazy"
-                className="w-full max-w-full h-auto rounded-lg my-6"
+                className="w-full max-w-full h-auto rounded-lg my-4"
                 style={typeof width === 'number' && typeof height === 'number' ? { aspectRatio: `${width} / ${height}` } : undefined}
                 {...props}
             />
             {alt && (
-                <span className="mt-2 block text-center text-xs text-muted-foreground">
+                <span className="mt-1 block text-center text-xs text-muted-foreground">
                     {alt}
                 </span>
             )}
@@ -196,7 +196,7 @@ export const mdxComponents: MDXComponents = {
     ),
 
     // ── HR ────────────────────────────────────────────────────────────────────
-    hr: () => <hr className="my-8 border-border/30" />,
+    hr: () => <hr className="my-6 border-border/30" />,
 
     // ── Custom MDX-only components ────────────────────────────────────────────
     BlogImage,

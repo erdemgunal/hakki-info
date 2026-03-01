@@ -1,3 +1,4 @@
+/* src/app/globals.css */
 @import "tailwindcss";
 
 @layer base {
@@ -8,7 +9,6 @@
         --accent: #4f46e5;
         --surface: #ffffff;
         --border: #e2e8f0;
-
         --card: var(--surface);
         --card-foreground: var(--foreground);
         --popover: var(--surface);
@@ -24,7 +24,6 @@
         --input: #f1f5f9;
         --ring: var(--accent);
     }
-
     .dark {
         --background: #0a0a0a;
         --foreground: #f8fafc;
@@ -32,7 +31,6 @@
         --accent: #818cf8;
         --surface: #161616;
         --border: #262626;
-
         --card: var(--surface);
         --card-foreground: var(--foreground);
         --popover: var(--surface);
@@ -48,14 +46,12 @@
         --input: #1e293b;
         --ring: var(--accent);
     }
-
     html,
     body {
         font-family: var(--font-body);
         background-color: var(--background);
         color: var(--foreground);
     }
-
     h1,
     h2,
     h3,
@@ -67,7 +63,6 @@
         font-weight: 700;
         letter-spacing: -0.02em;
     }
-
     .katex-display {
         overflow-x: auto;
         overflow-y: hidden;
@@ -95,7 +90,6 @@
     --color-destructive-foreground: var(--destructive-foreground);
     --color-input: var(--input);
     --color-ring: var(--ring);
-
     --z-index-footer: 10;
     --z-index-header: 20;
     --z-index-dropdown: 30;
@@ -106,19 +100,15 @@
     [data-rehype-pretty-code-title] {
         @apply rounded-t-xl bg-muted px-4 py-1.5 font-mono text-xs text-muted-foreground;
     }
-    
     [data-rehype-pretty-code-title]+pre {
         @apply rounded-t-none;
     }
-    
     [data-highlighted-chars] {
         @apply rounded bg-accent/20 px-1;
     }
-    
     .katex-display {
         @apply my-6 overflow-x-auto overflow-y-hidden py-1;
     }
-
     .katex {
         color: var(--foreground);
     }
@@ -146,9 +136,14 @@
     font-size: 11px;
     font-family: inherit;
     line-height: inherit;
-    color: rgba(255, 255, 255, 0.2);
     user-select: none;
     pointer-events: none;
+    color: color-mix(in srgb, var(--muted-foreground) 20%, transparent);
+}
+
+/* Light theme: line numbers need higher contrast to be visible */
+:root:not(.dark) .not-prose pre [data-line]::before {
+    color: color-mix(in srgb, var(--muted-foreground) 65%, transparent);
 }
 
 .not-prose pre [data-highlighted-line] {
