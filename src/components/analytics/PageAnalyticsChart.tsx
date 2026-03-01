@@ -33,6 +33,7 @@ export function LineChart({ points, range, loading }: LineChartProps) {
             svg.attr('width', width).attr('height', height);
 
             if (points.length === 0) {
+                if (loading) return; // Loading overlay handles it; don't draw "No data" yet
                 svg.append('text')
                     .attr('x', width / 2).attr('y', height / 2)
                     .attr('text-anchor', 'middle')
@@ -179,7 +180,7 @@ export function LineChart({ points, range, loading }: LineChartProps) {
                     tip.style.opacity = '0';
                 });
         },
-        [points, range]
+        [points, range, loading]
     );
 
     useEffect(() => {
