@@ -19,20 +19,10 @@ export interface RangeStat {
     visitors: number;
 }
 
-export interface DeviceSummary {
-    total: number;
-    mobile: { visits: number; share: number };
-    desktop: { visits: number; share: number };
-    other: { visits: number; share: number };
-    breakdown: { device: string; visits: number; share: number }[];
-}
-
 export interface AnalyticsData {
     title: string;
     path: string;
     ranges: Record<UmamiTimeRangeKey, RangeStat | null>;
-    deviceSummary: DeviceSummary | null;
-    referrersSummary: { source: string; visits: number; share: number }[];
     countriesSummary: { country: string; visits: number; share: number }[];
 }
 
