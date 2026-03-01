@@ -25,6 +25,38 @@ export interface BlogPost extends BlogPostMeta {
 
 const BLOG_DIR = path.join(process.cwd(), 'content', 'blog');
 
+export interface PublishedBlogSitemapEntry {
+    slug: string;
+    lastUpdated?: string;
+    /** Absolute or relative image URLs from frontmatter (for image sitemap). */
+    images?: string[];
+}
+
+/** Lightweight list of published blog slugs + lastUpdated + images for sitemap (no Umami). */
+export async function getPublishedBlogSlugsForSitemap(): Promise<PublishedBlogSitemapEntry[]> {
+    const entries = await fs.readdir(BLOG_DIR);
+    const files = entries.filter((file) => file.endsWith('.mdx'));
+    const results = await Promise.all(
+        files.map(async (file): Promise<PublishedBlogSitemapEntry | null> => {
+            const slug = file.replace(/\.mdx$/, '');
+            const fullPath = path.join(BLOG_DIR, file);
+            const source = await fs.readFile(fullPath, 'utf8');
+            const { data } = matter(source);
+            const status = (data.status as string) || 'draft';
+            if (status !== 'published') return null;
+            const lastUpdated = (data.lastUpdated as string) || undefined;
+            let images: string[] | undefined;
+            if (Array.isArray(data.images) && data.images.length > 0) {
+                images = (data.images as string[]).filter((u) => typeof u === 'string' && u.trim());
+            } else if (typeof data.image === 'string' && data.image.trim().length > 0) {
+                images = [data.image.trim()];
+            }
+            return { slug, ...(lastUpdated && { lastUpdated }), ...(images?.length && { images }) };
+        })
+    );
+    return results.filter((p): p is PublishedBlogSitemapEntry => p != null);
+}
+
 export type BlogSortBy = 'date' | 'views' | 'score';
 
 export interface GetBlogPostsOptions {
