@@ -47,6 +47,20 @@ export type UmamiTimeRangeKey =
     | 'lastYear'
     | 'allTime';
 
+export const UMAMI_TIME_RANGE_KEYS: UmamiTimeRangeKey[] = [
+    'today',
+    'yesterday',
+    'last48Hours',
+    'thisWeek',
+    'last7Days',
+    'last30Days',
+    'thisMonth',
+    'lastMonth',
+    'thisYear',
+    'lastYear',
+    'allTime',
+];
+
 function getAuthHeaders(): HeadersInit {
     if (!UMAMI_API_TOKEN) return {};
     return {

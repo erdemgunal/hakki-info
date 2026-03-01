@@ -1,5 +1,6 @@
 /* src/app/globals.css */
 @import "tailwindcss";
+@import "tw-animate-css";
 
 @layer base {
     :root {
@@ -94,6 +95,20 @@
     --z-index-header: 20;
     --z-index-dropdown: 30;
     --z-index-modal: 40;
+}
+
+/* Custom z-index utilities (Tailwind v4 CSS-first: map theme vars to classes) */
+@utility z-footer {
+    z-index: var(--z-index-footer);
+}
+@utility z-header {
+    z-index: var(--z-index-header);
+}
+@utility z-dropdown {
+    z-index: var(--z-index-dropdown);
+}
+@utility z-modal {
+    z-index: var(--z-index-modal);
 }
 
 @layer base {
