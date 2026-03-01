@@ -1,29 +1,43 @@
 ---
 title: "Deriving the Schrödinger Equation from First Principles"
 date: "2025-02-10"
-lastUpdated: "2025-02-10"
+lastUpdated: "2026-03-01"
 excerpt: "A walkthrough of how the time-dependent Schrödinger equation emerges naturally from de Broglie's wave hypothesis and classical wave mechanics."
 status: "published"
 tags: ["physics", "quantum-mechanics", "derivation"]
 ---
 
-## Motivation
+## why bother deriving Schrödinger’s equation?
 
-In classical mechanics every observable—position, momentum, energy—is a definite number.
-Quantum mechanics replaces that picture: a particle is described by a **wave function** $\psi(\mathbf{r}, t)$
-whose squared modulus gives a probability density.
-
-The central equation governing how $\psi$ evolves is the **time-dependent Schrödinger equation**:
+If you’ve taken any quantum course, you’ve almost certainly seen this written on the board with very little ceremony:
 
 $$
 i\hbar \frac{\partial \psi}{\partial t} = \hat{H}\,\psi
 $$
 
-Let's see where it comes from.
+It’s presented as **the** equation of motion in quantum mechanics — but where does it actually come from?  
+Is it just “postulated”, or can we at least motivate it from ideas we already know: waves, energy, momentum?
+
+Classically, every observable—position, momentum, energy—is a definite number.  
+Quantum mechanics replaces that picture: a particle is described by a **wave function** $\psi(\mathbf{r}, t)$
+whose squared modulus gives a probability density. This post is about connecting those two worlds: starting from de Broglie’s wave hypothesis and simple plane waves, and seeing how the time-dependent Schrödinger equation almost forces itself on us.
 
 ---
 
-## de Broglie waves
+## who is this for?
+
+This walkthrough is aimed at readers who:
+
+- Know basic classical mechanics and the energy–momentum relation for a non-relativistic particle,
+- Are comfortable with complex exponentials and derivatives of $e^{i(kx - \omega t)}$,
+- Have seen the Schrödinger equation written down, but never felt satisfied with “we just promote $p$ to an operator”.
+
+We’re not doing a fully rigorous axiomatic derivation here.  
+Instead, the goal is to build **physical and mathematical intuition** for why the familiar form of the equation is so natural.
+
+---
+
+## de Broglie waves: starting from a plane wave
 
 de Broglie postulated that a free particle with momentum $p$ behaves like a plane wave:
 
@@ -45,7 +59,11 @@ $$
 p^2\,\psi = -\hbar^2\,\frac{\partial^2\psi}{\partial x^2}
 $$
 
-## Promoting classical energy to an operator
+These relations tell us how energy and momentum *act* on a plane wave: as time and space derivatives.
+
+---
+
+## promoting classical energy to an operator
 
 For a particle in a potential $V(x)$, the classical energy is:
 
@@ -61,7 +79,7 @@ We **promote** $E$ and $p^2$ to operators acting on $\psi$:
 | $p$ | $-i\hbar\,\partial_x$ |
 | $p^2$ | $-\hbar^2\,\partial_x^2$ |
 
-Substituting:
+Substituting these into the classical expression $E = p^2/(2m) + V(x)$ gives:
 
 $$
 i\hbar\,\frac{\partial\psi}{\partial t} = \left(-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2} + V(x)\right)\psi
@@ -69,9 +87,15 @@ $$
 
 The bracket on the right is the **Hamiltonian operator** $\hat{H}$, giving us exactly the Schrödinger equation.
 
+<Callout type="warning">
+  This argument is deliberately heuristic: we motivated the operator replacements using plane waves and then **assumed** they extend to more general wave packets and potentials. A more complete treatment comes from the axioms of quantum mechanics and symmetry arguments, but this route is often the most illuminating the first time you meet the equation.
+</Callout>
+
 ---
 
-## A quick numerical check in Python
+---
+
+## a quick numerical check in Python
 
 Let's verify the ground-state energy of the infinite square well, $E_n = \frac{n^2\pi^2\hbar^2}{2mL^2}$,
 by finite-differencing the Hamiltonian:
@@ -105,11 +129,11 @@ for n, (num, ana) in enumerate(zip(numerical, analytical), start=1):
     print(f"n={n}: numerical={num:.4f}, analytical={ana:.4f}")
 ```
 
-Running that gives sub-0.1 % error even at only 500 grid points.
+Running that gives sub-0.1 % error even at only 500 grid points, and you can see how the familiar $n^2$ spectrum of the infinite well emerges from a simple matrix eigenvalue problem.
 
 ---
 
-## Normalisation and the Born rule
+## normalisation and the Born rule
 
 The wave function must be normalised:
 

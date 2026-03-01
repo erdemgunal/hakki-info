@@ -1,12 +1,55 @@
 ---
 title: "Küresel Koordinatlarda Laplace Operatörünün (∇²) Detaylı Türetimi"
 date: "2026-02-17"
-lastUpdated: "2026-02-23"
+lastUpdated: "2026-03-01"
 image: "https://cdn.jsdelivr.net/gh/erdemgunal/hakki-info-assets@latest/blog/kuresel-koordinatlarda-laplasyen/4580d3e4-d761-4c08-be3c-a8af8728b5cd.jpg"
 excerpt: "Kartezyen ∇ operatöründen başlayarak küresel koordinatlarda Laplace operatörünü türetiyoruz. Operatörlerin katsayılar üzerindeki türev etkilerini (çarpım kuralı) içeren tüm ara işlemlerle birlikte."
 status: "published"
 tags: ["physics", "mathematics", "electromagnetism", "derivation"]
 ---
+
+## neden küresel koordinatlarda laplasyenle uğraşıyoruz?
+
+Elektrostatikten kuantum mekaniğine kadar pek çok problemde karşımıza hep aynı soru çıkıyor:  
+**"Bu sistem küresel simetri gösteriyorsa neden hâlâ Kartezyen koordinatlarla uğraşıyoruz?"**
+
+Örneğin:
+
+- Noktasal bir yükün etrafındaki elektrik alanı,
+- Merkezdeki bir kütle etrafındaki kütleçekim alanı,
+- Hidrojen atomundaki elektronun dalga fonksiyonu…
+
+Bu problemlerde küresel koordinatlara geçmek çözümü hem fiziksel olarak daha anlamlı kılıyor hem de denklemleri sadeleştiriyor. Ama derslerde çoğu zaman küresel Laplace operatörü **hazır sonuç** olarak veriliyor; "bu nereden geldi?" sorusu havada kalıyor.
+
+Bu yazı tam olarak o boşluğu doldurmak için var:  
+**Kartezyen $\nabla$ operatöründen başlayıp, adım adım küresel koordinatlarda $\nabla^2$'ye ulaşacağız.**
+
+<BlogImage
+  src="https://cdn.jsdelivr.net/gh/erdemgunal/hakki-info-assets@latest/blog/kuresel-koordinatlarda-laplasyen/4580d3e4-d761-4c08-be3c-a8af8728b5cd.jpg"
+  alt="Küresel koordinatlarda bir alanın değişimini simgeleyen soyut bir görsel"
+  caption="Küresel simetrili problemlerde Laplace operatörünü doğru koordinat sisteminde yazmak çözümü dramatik şekilde sadeleştirir."
+  width={900}
+  height={500}
+/>
+
+---
+
+## bu yazıyı kim okuyabilir?
+
+Hedeflediğim okur profili:
+
+- Lisans düzeyinde klasik mekanik / elektromanyetizma görmüş,
+- Temel vektör analizine (gradyan, diverjans, curl) aşina,
+- Ama "bu formüllerin türetimini hiç görmedim" diyen biri.
+
+Bu yüzden:
+
+- Bazı sonuçları **hatırlatılmış kabul edeceğim** (örneğin küresel koordinatlar ile Kartezyen koordinatlar arasındaki dönüşümler),
+- Ama **operatörlerin katsayılar üzerindeki etkisini** (çarpım kuralı kısmını) özellikle yavaş ve görünür şekilde yazacağım.
+
+---
+
+## 1. Giriş ve Tanımlar
 
 Bu çalışmanın amacı, Kartezyen birim vektörler cinsinden verilen $\nabla$ (del) operatörünü kullanarak, küresel koordinatlarda Laplace operatörünü ($\nabla^2$) türetmektir. Türetim sırasında operatörlerin katsayılar üzerindeki türev etkileri (çarpım kuralı) açıkça gösterilecektir.
 
@@ -40,6 +83,8 @@ $$ \nabla^2 = \nabla \cdot \nabla = A^2 + B^2 + C^2 $$
 ---
 
 ## 3. Bileşenlerin Detaylı Hesaplanması
+
+Bu bölümde işi biraz "kirleteceğiz": her bileşenin (özellikle $C \cdot C$ kısmının) nasıl açıldığını adım adım göreceğiz. Amaç, son formülü ezberlemekten çok **operatörlerin katsayılarla nasıl etkileştiğini** görmek.
 
 ### 3.1. $I_3$ Teriminin Analizi ($C \cdot C$)
 
@@ -105,3 +150,15 @@ $$ \boxed{ \nabla^2 = \frac{1}{r^2}\frac{\partial}{\partial r}\left(r^2 \frac{\p
 <Callout type="info">
   Gördüğünüz gibi, Kartezyen'den Küresel'e geçişte ortaya çıkan "fazla" birinci türev terimleri tamamen koordinat eksenlerinin eğriliğinden ve operatörlerin katsayıları türevlemesinden kaynaklanmaktadır.
 </Callout>
+
+---
+
+## 6. büyük resim: bu formülü nerede görürüz?
+
+Bu sonuç, sadece matematiksel bir egzersiz değil; pek çok fizik dersinin kalbinde duruyor:
+
+- **Elektrostatik:** Poisson ya da Laplace denklemlerini küresel simetrili yük dağılımlarında çözerken tam olarak bu operatörü kullanıyoruz.
+- **Kuantum mekaniği:** Schrödinger denklemini hidrojen benzeri atomlar için yazarken uzaysal kısımda yine küresel Laplace operatörü karşımıza çıkıyor.
+- **Dalgalar ve titreşimler:** Küresel yayılım gösteren dalga denklemlerinde aynı yapı tekrar ortaya çıkıyor.
+
+Artık bu formül sana bir "kara kutu" gibi gelmek zorunda değil. İhtiyaç duyduğunda, adım adım nasıl türetildiğini bu yazıya dönüp hatırlayabilirsin — ve belki bir gün, kendi koordinat sistemini değiştirdiğin başka bir problemi de aynı sabırla açarsın.

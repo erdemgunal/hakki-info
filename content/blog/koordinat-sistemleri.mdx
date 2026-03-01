@@ -1,35 +1,57 @@
 ---
 title: "Koordinat Sistemleri Rehberi: Kartezyen, Polar, Silindirik ve Küresel"
 date: "2026-02-20"
-lastUpdated: "2026-02-28"
+lastUpdated: "2026-03-01"
 excerpt: "Matematik ve mühendisliğin temel taşı olan koordinat sistemlerini keşfedin. Hangi senaryoda hangi sistemi seçmeniz gerektiğini örneklerle öğrenin."
 status: "published"
 tags: ["mathematics", "engineering", "geometry", "guide"]
 ---
 
-# Koordinat Sistemleri Rehberi: Kartezyen'den Küresel'e
+## neden bu kadar çok koordinat sistemi var?
 
-Karmaşık bir dünyada bir noktanın yerini belirlemek, kullandığınız "dil" yani **koordinat sistemi** ile ilgilidir. Robotik projelerinden oyun geliştirmeye, veri görselleştirmeden fizik simülasyonlarına kadar doğru sistemi seçmek işinizi inanılmaz kolaylaştırabilir.
+Karmaşık bir dünyada bir noktanın yerini belirlemek, kullandığınız "dil" yani **koordinat sistemi** ile ilgilidir. Robotik projelerinden oyun geliştirmeye, veri görselleştirmeden fizik simülasyonlarına kadar doğru sistemi seçmek, kimi zaman sayfalarca denklemi tek satıra indirebilir.
+
+Bu yazıda:
+
+- En çok kullanılan dört sistemi (Kartezyen, Polar, Silindirik, Küresel) hızlıca tanıyacağız,
+- Hangi problemde hangisini seçmenin işleri nasıl kolaylaştırdığını göreceğiz,
+- Ve en sonda hepsini tek bir tabloyla yan yana karşılaştıracağız.
 
 <Callout type="info">
   Koordinat sistemleri temelde bir "referans noktası" (orijin) ve bu noktaya göre yön belirleyen "eksenler" bütünüdür.
 </Callout>
 
-## 1. Kartezyen Koordinat Sistemi (Cartesian)
+---
+
+## bu rehber kimler için?
+
+Bu yazı özellikle şu profilleri hedefliyor:
+
+- Lise/üniversite seviyesinde analitik geometri görmüş,
+- Mühendislik, fizik, oyun geliştirme veya veri görselleştirme ile ilgilenen,
+- Ama "polar mı kullansam, küresel mi, yoksa kartesyende mi kalsam?" sorusuna pratik cevap arayan herkes.
+
+Formüller minimumda tutulacak; asıl odak, **hangi senaryoda hangi sistemin doğal hissettirdiği** olacak.
+
+---
+
+## 1. Kartezyen koordinat sistemi (Cartesian)
 
 Hepimizin aşina olduğu, dik açılı eksenlerden oluşan sistemdir. $x$, $y$ ve (3D ise) $z$ değerleri ile tanımlanır.
 
-* **Kullanım Alanı:** Genel amaçlı grafikler, UI tasarımı, haritacılık.
-* **Avantajı:** Mesafe hesaplamaları ($d = \sqrt{\Delta x^2 + \Delta y^2}$) çok doğrusaldır.
+- **Kullanım Alanı:** Genel amaçlı grafikler, UI tasarımı, grid tabanlı oyunlar, haritacılık.
+- **Avantajı:** Mesafe hesaplamaları ($d = \sqrt{\Delta x^2 + \Delta y^2}$) çok doğrusaldır; eksenler birbirine diktir.
+- **Dezavantajı:** Dairesel/dönel hareketlerde denklemler gereksiz karmaşıklaşabilir.
 
 
 
-## 2. Polar Koordinat Sistemi (Polar)
+## 2. polar koordinat sistemi (Polar)
 
 2D düzlemde bir noktayı merkeze olan uzaklık ($r$) ve bir referans ekseniyle yaptığı açı ($\theta$) ile tanımlarız.
 
-* **Formül:** $x = r \cos(\theta)$, $y = r \sin(\theta)$
-* **Kullanım Alanı:** Dairesel hareketler, radar sistemleri, anten sinyalleri.
+- **Formül:** $x = r \cos(\theta)$, $y = r \sin(\theta)$
+- **Kullanım Alanı:** Dairesel hareketler, radar sistemleri, anten sinyalleri, dönen UI elemanları (ör. progress ring).
+- **Avantajı:** Merkez etrafında dönen veya sabit hızla uzaklaşan nesneleri, sadece $r$ ve $\theta$ cinsinden çok daha basit ifade edersiniz.
 
 <Callout type="warning">
   Eğer projenizde bir nesne bir merkezin etrafında dönüyorsa, Kartezyen kullanmak yerine Polar koordinatlara geçmek matematiksel yükünüzü %80 azaltacaktır.
@@ -37,7 +59,7 @@ Hepimizin aşina olduğu, dik açılı eksenlerden oluşan sistemdir. $x$, $y$ v
 
 
 
-## 3. Silindirik Koordinat Sistemi (Cylindrical)
+## 3. silindirik koordinat sistemi (Cylindrical)
 
 Polar sistemin 3. boyuta ($z$ ekseni) dikey olarak genişletilmiş halidir. Bir noktayı $(r, \theta, z)$ olarak tanımlarız.
 
@@ -49,14 +71,18 @@ Polar sistemin 3. boyuta ($z$ ekseni) dikey olarak genişletilmiş halidir. Bir 
 | **$\theta$** | X-Y düzlemindeki açı (azimut) |
 | **z** | Standart yükseklik |
 
-**Kullanım Alanı:** Su boruları tasarımı, manyetik alan hesaplamaları veya dönen silindirik nesneler.
+- **Kullanım Alanı:** Su boruları tasarımı, manyetik alan hesaplamaları, dönen silindirik nesneler, silindirik tank modelleri.
+- **Avantajı:** Hem dönme simetrisine (r, $\theta$) hem de yükseklik farkına (z) sahip problemler için "doğal" seçimdir.
 
-## 4. Küresel Koordinat Sistemi (Spherical)
+---
+
+## 4. küresel koordinat sistemi (Spherical)
 
 3D dünyada bir noktayı merkeze olan uzaklık ($\rho$) ve iki farklı açı ($\theta, \phi$) ile tanımlarız.
 
-* **Bileşenler:** $(\rho, \theta, \phi)$
-* **Kullanım Alanı:** Astronomi (yıldızların konumu), oyun motorlarında kamera sistemleri ve 3D tarama.
+- **Bileşenler:** $(\rho, \theta, \phi)$
+- **Kullanım Alanı:** Astronomi (yıldızların konumu), oyun motorlarında kamera sistemleri ve 3D tarama.
+- **Avantajı:** Tam küresel simetri içeren sistemlerde (ör. noktasal kütle/yük etrafındaki alanlar) denklemleri dramatik şekilde sadeleştirir.
 
 
 
@@ -66,7 +92,18 @@ Polar sistemin 3. boyuta ($z$ ekseni) dikey olarak genişletilmiş halidir. Bir 
 
 ---
 
-## Özet Karşılaştırma
+## hangi problemi hangi sistemle çözmeli?
+
+Kafanızda şöyle bir akış olabilir:
+
+- Eğer sahneniz *düz bir ızgara* gibi hissediyorsa → **Kartezyen**.
+- Eğer her şey *tek bir merkezin etrafında dönüyor* veya *merkezden uzaklaşıyorsa* → **Polar** (2D) veya **Küresel** (3D).
+- Eğer sisteminiz *sonsuz bir silindir* veya boru hattı gibi düşünülebiliyorsa → **Silindirik**.
+- Eğer hangi sistemi seçerseniz seçin formüller karmaşıksa, önce problemi sadeleştirmek (simetri aramak) daha büyük kazanç sağlar.
+
+---
+
+## özet karşılaştırma
 
 | Sistem | Boyut | Parametreler | En İyi Senaryo |
 | :--- | :--- | :--- | :--- |
@@ -74,3 +111,11 @@ Polar sistemin 3. boyuta ($z$ ekseni) dikey olarak genişletilmiş halidir. Bir 
 | **Polar** | 2D | $r, \theta$ | Dairesel animasyonlar |
 | **Silindirik** | 3D | $r, \theta, z$ | Boru hatları, silindirik nesneler |
 | **Küresel** | 3D | $\rho, \theta, \phi$ | Gezegen yüzeyleri, 3D kameralar |
+
+---
+
+## further reading
+
+- Herhangi bir kalkülüs kitabında "coordinate systems" veya "change of variables" bölümü (örneğin: Stewart Calculus).
+- [Khan Academy – Changing coordinate systems](https://www.khanacademy.org/math/multivariable-calculus)
+- MIT OpenCourseWare derslerinde çok değişkenli analiz / vektör analiz bölümleri.
