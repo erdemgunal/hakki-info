@@ -1,6 +1,7 @@
 import fs from 'fs/promises';
 import path from 'path';
 import matter from 'gray-matter';
+import { fetchUmamiPathsPageviews } from '@/lib/umami-api';
 
 export interface ResumeData {
     hero: {
@@ -76,9 +77,6 @@ export interface ResumeData {
         }>;
     };
     projects: {
-        title: string;
-        viewMoreButtonText: string;
-        viewProjectText: string;
         items: Array<{
             slug: string;
             title: string;
@@ -137,37 +135,90 @@ export async function fetchProjectBySlug(slug: string): Promise<ProjectData | nu
     }
 }
 
-const RESUME_PATH = path.join(process.cwd(), 'content', 'resume.mdx');
-
-type ResumeProjectItemRaw = {
+/** Project list item shape used by Projects section and /projects page */
+export type ProjectListItem = {
     slug: string;
     title: string;
     description: string;
     label: string;
     year: string;
     techStack: string[];
+    images: string[];
+    links: { live: string | null; github: string };
 };
+
+function projectDataToListItem(project: ProjectData | null): ProjectListItem | null {
+    if (!project) return null;
+    return {
+        slug: project.slug,
+        title: project.title,
+        description: project.description,
+        label: project.label,
+        year: project.year,
+        techStack: project.techStack ?? [],
+        images: project.images ?? [],
+        links: project.links ?? { live: null, github: '' },
+    };
+}
+
+/**
+ * Returns the top N projects by Umami pageviews (path /projects/:slug).
+ * Used for the homepage Projects section. Falls back to all projects if Umami is not configured.
+ */
+export async function getTopProjectsByViews(limit: number = 4): Promise<ProjectListItem[]> {
+    const slugs = await getProjectSlugs();
+    const pathRows = await fetchUmamiPathsPageviews('allTime', { limit: 500, revalidate: 300 });
+
+    const projectPathPrefix = '/projects/';
+    const viewCountBySlug = new Map<string, number>();
+    for (const row of pathRows) {
+        const p = row.x;
+        if (p.startsWith(projectPathPrefix) && p.length > projectPathPrefix.length) {
+            const slug = p.slice(projectPathPrefix.length).replace(/\/$/, '');
+            if (slug && slugs.includes(slug)) {
+                const current = viewCountBySlug.get(slug) ?? 0;
+                viewCountBySlug.set(slug, current + row.y);
+            }
+        }
+    }
+
+    const sortedSlugs = [...viewCountBySlug.entries()]
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, limit)
+        .map(([s]) => s);
+
+    if (sortedSlugs.length === 0) {
+        const fallback = await getAllProjects();
+        return fallback.slice(0, limit);
+    }
+
+    const items = await Promise.all(sortedSlugs.map((slug) => fetchProjectBySlug(slug)));
+    return items
+        .map(projectDataToListItem)
+        .filter((item): item is ProjectListItem => item !== null);
+}
+
+/**
+ * Returns all projects from content/projects (MDX), in slug order.
+ * Used for the /projects listing page.
+ */
+export async function getAllProjects(): Promise<ProjectListItem[]> {
+    const slugs = await getProjectSlugs();
+    const items = await Promise.all(slugs.map((slug) => fetchProjectBySlug(slug)));
+    return items
+        .map(projectDataToListItem)
+        .filter((item): item is ProjectListItem => item !== null);
+}
+
+const RESUME_PATH = path.join(process.cwd(), 'content', 'resume.mdx');
 
 export async function fetchResumeData(): Promise<ResumeData> {
     const fileContent = await fs.readFile(RESUME_PATH, 'utf-8');
     const { data } = matter(fileContent);
-    const raw = data as Omit<ResumeData, 'projects'> & {
-        projects: Omit<ResumeData['projects'], 'items'> & {
-            items: ResumeProjectItemRaw[];
-        };
-    };
-    const items = await Promise.all(
-        raw.projects.items.map(async (item) => {
-            const project = await fetchProjectBySlug(item.slug);
-            return {
-                ...item,
-                images: project?.images ?? [],
-                links: project?.links ?? { live: null, github: '' },
-            };
-        })
-    );
+    const raw = data as Omit<ResumeData, 'projects'>;
+    const items = await getTopProjectsByViews(4);
     return {
         ...raw,
-        projects: { ...raw.projects, items },
+        projects: { items },
     } as ResumeData;
 }

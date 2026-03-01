@@ -1,4 +1,4 @@
-import { fetchResumeData } from '@/lib/fetch-resume-data';
+import { fetchResumeData, getAllProjects } from '@/lib/fetch-resume-data';
 import { ResumeDataProvider } from '@/contexts/ResumeDataContext';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -9,8 +9,8 @@ import ExternalLinkIcon from '@/components/icon/ExternalLinkIcon';
 
 export default async function ProjectsPage() {
     const path = '/projects';
-    const resumeData = await fetchResumeData();
-    const { projects, social } = resumeData;
+    const [resumeData, projects] = await Promise.all([fetchResumeData(), getAllProjects()]);
+    const { social } = resumeData;
 
     const getPlaceholderImage = () => {
         return "/placeholder-light.svg";
@@ -31,7 +31,7 @@ export default async function ProjectsPage() {
                     </div>
 
                     <div className="grid gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-3">
-                        {projects.items.map((project, index) => (
+                        {projects.map((project, index) => (
                             <Link key={index} href={`/projects/${project.slug}`}>
                                 <div className="bg-surface rounded-lg border border-border overflow-hidden hover:border-foreground/30 cursor-pointer hover:shadow-lg group flex flex-col h-full transition-all duration-200">
                                     <div className="h-48 sm:h-56 bg-background relative overflow-hidden">

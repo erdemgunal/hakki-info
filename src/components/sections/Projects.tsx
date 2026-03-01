@@ -4,15 +4,13 @@ import { Button } from '@/components/ui/button';
 import { renderTechStackBadges, renderBadges } from '@/lib/badge-utils';
 import Image from 'next/image';
 import Link from 'next/link';
-import ExternalLinkIcon from '@/components/icon/ExternalLinkIcon';
 import { useTheme } from 'next-themes';
 import Section from './Section';
 import { useResumeData } from '@/contexts/ResumeDataContext';
 import { useIsMounted } from '@/hooks/useIsMounted';
 
 export default function Projects() {
-    const resumeData = useResumeData();
-    const { projects, social } = resumeData;
+    const { projects } = useResumeData();
     const { resolvedTheme } = useTheme();
     const mounted = useIsMounted();
 
@@ -87,13 +85,10 @@ export default function Projects() {
                 <div className="text-center mt-8 sm:mt-12">
                     <Button variant="outline" size="lg" asChild>
                         <Link
-                            href={social?.find(s => s.iconKey === "github" || s.name === "GitHub")?.url || "#"}
-                            target="_blank"
-                            rel="noopener noreferrer"
+                            href="/projects"
                             className="flex items-center gap-2 mx-auto text-accent"
                         >
-                            View more on GitHub
-                            <ExternalLinkIcon className="w-4 h-4" />
+                            View all projects
                         </Link>
                     </Button>
                 </div>
