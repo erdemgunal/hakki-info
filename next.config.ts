@@ -20,7 +20,8 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'cdn.jsdelivr.net',
         port: '',
-        pathname: '/**',
+        // Limit to your public asset repo used by blog images
+        pathname: '/gh/erdemgunal/hakki-info-assets@latest/**',
       },
     ],
   },
