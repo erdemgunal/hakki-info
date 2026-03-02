@@ -95,6 +95,8 @@ export default async function BlogPostPage({ params }: BlogPostPageParams) {
                                     height={1000}
                                     className="w-full rounded-lg mb-4 mt-0 object-cover"
                                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 720px"
+                                    loading="eager"
+                                    fetchPriority="high"
                                 />
                             )}
                             <h1 className="text-2xl sm:text-3xl md:text-3xl font-bold tracking-tight text-foreground mb-3 mt-0">
