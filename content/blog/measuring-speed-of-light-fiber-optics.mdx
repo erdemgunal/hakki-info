@@ -1,90 +1,106 @@
 ---
-title: "Measuring the Speed of Light with a 20-Meter Fiber: A Lab Story"
+title: "Measuring the Speed of Light: A Deep Dive into Fiber Optics and Time-of-Flight"
 date: "2026-03-16"
 lastUpdated: "2026-03-16"
 image: "https://cdn.jsdelivr.net/gh/erdemgunal/hakki-info-assets@latest/blog/measuring-speed-of-light-fiber-optics/8bab68c4-c493-41a1-8c7a-f12d13af733d.png"
-excerpt: "How fast does light travel in glass? We used the Time-of-Flight method and an oscilloscope to calculate 'c' in our Modern Physics lab at Marmara University."
+excerpt: "An in-depth analysis of light propagation in multi-mode fibers, covering refractive indices, group velocity, and the impact of modal dispersion."
 status: "published"
-tags: ["physics", "optics", "experiment", "learning"]
+tags: ["physics", "optics", "engineering", "marmara-university"]
 ---
 
-# Measuring the Speed of Light with a 20-Meter Fiber
+# Measuring the Speed of Light: A Deep Dive into Fiber Optics
 
-Most people know the speed of light in a vacuum is a staggering $299,792,458$ m/s. But what happens when you force that light through a tiny strand of glass? 
+In my Modern Physics Lab at Marmara University we recently tackled one of the most fundamental constants in physics: the speed of light ($c$). While $c \approx 3 \times 10^8$ m/s in a vacuum the reality inside a dense medium like an optical fiber is far more complex and interesting.
 
-In our latest **Modern Physics Laboratory** session at Marmara University we set out to measure this speed not across the vastness of space but across a 18.9-meter optical fiber sitting right on our workbench.
+## The Theory: Phase vs. Group Velocity
 
-## The Challenge: Catching the Fastest Thing in the Universe
+In a medium light interacts with the atomic structure slowing it down. This is typically described by the refractive index ($n = c/v_{\phi}$). However since we are measuring a *pulse* of light (an envelope of many frequencies) we aren't measuring the phase velocity but the **group velocity** ($v_g$):
 
-Measuring something that travels at nearly 300,000 kilometers per second requires more than a stopwatch. If you tried to time light over 20 meters with a manual timer you’d be trying to measure a delay of about 0.0000001 seconds—far faster than a human eye can blink.
+$$ v_g = \frac{c}{n_g} $$
 
-To solve this we used the **Time-of-Flight (ToF)** method. Instead of a human observer we used a High-Speed Oscilloscope to "see" the pulse of light.
-
-
-
----
-
-## How It Works: Total Internal Reflection
-
-Optical fibers work like a hall of mirrors. Because the core has a higher refractive index than the cladding light undergoes **Total Internal Reflection (TIR)**.
-
-$$ \sin\theta_c = \frac{n_{\text{cladding}}}{n_{\text{core}}} $$
-
-In our experiment we used a **multi-mode fiber**. Unlike the thin fibers used in global internet backbones multi-mode fibers have a wider core allowing light to take multiple "paths" or modes. 
-
-<Callout type="info">
-  **Fun Fact:** Because light bounces at different angles in multi-mode fibers some "rays" actually travel a longer distance than the cable itself! This causes the pulse to spread out a phenomenon known as *Modal Dispersion*.
-</Callout>
-
-
+For pure fused silica the group index $n_g$ is usually between $1.47$ and $1.48$. In our experiment we aimed to determine this value experimentally using a **Time-of-Flight (ToF)** spectroscopy technique.
 
 ---
 
-## The Setup: A Tale of Two Fibers
+## Experimental Methodology: Eliminating Latency
 
-To get an accurate result we had to eliminate "system lag"—the time it takes for the electronics to wake up. We used a clever **Differential Measurement** technique:
+Measuring nanosecond delays requires extreme precision. The main challenge is that our equipment (LEDs photodetectors and BNC cables) introduces its own internal latency ($\tau_{\text{system}}$).
 
-1.  **The Reference:** We first sent a pulse through a 30 cm fiber. This gave us our "zero" time.
-2.  **The Test:** We replaced it with an 18.9-meter fiber.
-3.  **The Shift:** The difference in arrival time ($\Delta t$) is purely the time spent traveling the extra 18.6 meters of glass.
+To isolate the signal transit time we employed a **Differential Measurement Technique**. We compared two different fiber lengths:
+* **Reference Length ($L_{\text{short}}$):** 30 cm
+* **Primary Length ($L_{\text{long}}$):** 18.9 meters
+
+By subtracting the two results the system latency cancels out perfectly leaving us with the net additional distance:
+$\Delta L = 18.9\,\text{m} - 0.3\,\text{m} = 18.6\,\text{m}$.
 
 <BlogImage 
   src="https://cdn.jsdelivr.net/gh/erdemgunal/hakki-info-assets@latest/blog/measuring-speed-of-light-fiber-optics/fiber-setup.png" 
-  alt="Diagram showing the experimental setup with LED source fiber and detector"
-  caption="Our experimental setup: Pulsed LED source to Photodetector."
-  width={800}
-  height={450}
+  alt="Schematic of the Time-of-Flight setup"
+  caption="The differential setup used to isolate the 18.6m propagation delay."
+  width={900}
+  height={500}
 />
 
 ---
 
-## The Results: Doing the Math
+## Analysis of Results
 
-On the oscilloscope we observed a time shift of exactly **100 ns** ($100 \times 10^{-9}$ seconds). 
+Using a Digital Storage Oscilloscope (DSO) we observed a temporal shift of **$\Delta t \approx 100$~ns**. 
 
-Using the basic formula $v = \frac{\Delta L}{\Delta t}$ we calculated:
 
+
+### 1. Velocity and Refractive Index
+Plugging our measured values into the velocity equation:
 $$ v_{\exp} = \frac{18.6\,\text{m}}{100 \times 10^{-9}\,\text{s}} = 1.86 \times 10^8\,\text{m/s} $$
 
-To find the **Refractive Index ($n$)** we compared this to the speed of light in a vacuum ($c$):
+This yields an experimental refractive index of **$n_{\exp} \approx 1.61$**.
 
-$$ n_{\exp} = \frac{c}{v_{\exp}} \approx 1.61 $$
-
-### So why the 10% difference?
-The standard refractive index for silica is usually around $1.46$. Our result of $1.61$ was slightly higher. Why?
-* **The Path Factor:** In multi-mode fibers light doesn't travel in a straight line; it zig-zags. The actual path is longer than the cable.
-* **Human Error:** At a scale of 50ns per division on the oscilloscope a tiny 1mm shift in our cursor placement could change the result significantly.
+### 2. The Velocity Factor (VF)
+A key metric in telecommunications is the **Velocity Factor** defined as $v_g/c$. In our case:
+$$ \text{VF} = \frac{1.86 \times 10^8}{2.99 \times 10^8} \approx 0.62 $$
+This means light was traveling at 62% of its vacuum speed through our fiber.
 
 ---
 
-## Why This Matters
+## Discussion: Why the 10.3% Deviation?
 
-Every time you load a webpage billions of pulses are doing exactly what we measured in the lab—bouncing through fibers at 186,000 kilometers per second. Understanding the limits of **pulse broadening** and **attenuation** is what allows engineers to build faster and more reliable internet for everyone.
+The accepted value for silica is $n \approx 1.46$. Our value of $1.61$ represents a **10.3% error**. In physics the "why" is often more important than the result itself. We identified three major systematic factors:
 
-Physics isn't just about abstract equations; it's about seeing those equations happen in real-time on a green screen in a dark lab in Istanbul.
+### A. Modal Dispersion and Effective Path Length
+Our cable was a **multi-mode plastic-clad silica fiber**. In multi-mode fibers light follows "zigzag" trajectories. While the physical cable is 18.6m the actual path taken by the light modes is longer. Since we triggered our measurement at the half-maximum point of the pulse we were likely detecting modes that had traveled a significantly longer distance thus inflating our $n_{\exp}$.
+
+### B. Pulse Broadening and Attenuation
+As we switched from the 30cm to the 18.9m fiber we observed two things:
+1. The signal amplitude decreased (Attenuation).
+2. The pulse width increased (Broadening).
+
+This is due to **Rayleigh Scattering** and **Material Absorption**. The broader pulse makes the "half-maximum" point harder to pin down precisely introducing trigger ambiguity.
+
+<Callout type="warning">
+  **Oscilloscope Resolution:** Our DSO was set to 50 ns/div. A human error of just 8 ns in cursor placement—hardly a few millimeters on the screen—is enough to account for the entire 10% discrepancy.
+</Callout>
 
 ---
 
-**References:**
-* Agrawal, G. P. *Fiber-Optic Communication Systems*.
-* University of Iowa Physics Lab Manual (Experiment S1).
+## Conclusion
+
+This experiment was a practical demonstration of the limitations of high-speed data transmission. While the theoretical speed of light is a constant the *effective* speed is a slave to waveguide geometry and material properties. For a physics student and developer it’s a reminder that between the code (data) and the hardware (fiber) there's a lot of beautiful messy physics happening.
+
+---
+
+**Technical Specs of the Lab:**
+- **Source:** Pulsed LED/Laser
+- **Fiber Type:** Multi-mode Plastic-Clad Silica (PCS)
+- **Equipment:** Digital Storage Oscilloscope (DSO), BNC Interconnects.
+
+---
+
+## References
+
+1. **Goree, J. A.** (2002). *Experiment S1: Speed of Light – Time of Flight Method*. University of Iowa Physics Laboratory Manual.
+2. **Agrawal, G. P.** (2002). *Fiber-Optic Communication Systems* (3rd ed.). Wiley-Interscience.
+3. **Mohr, P. J., Newell, D. B., & Taylor, B. N.** (2018). *CODATA Recommended Values of the Fundamental Physical Constants*. NIST.
+4. **Hecht, E.** (2017). *Optics* (5th ed.). Pearson.
+5. **Born, M., & Wolf, E.** (1999). *Principles of Optics* (7th ed.). Cambridge University Press.
+6. **Senior, J. M., & Jamro, M. Y.** (2009). *Optical Fiber Communications: Principles and Practice*. Pearson.
+7. **Einstein, A.** (1905). *Zur Elektrodynamik bewegter Körper*. Annalen der Physik.
