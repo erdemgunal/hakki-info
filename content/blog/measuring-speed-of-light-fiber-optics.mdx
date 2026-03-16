@@ -1,0 +1,90 @@
+---
+title: "Measuring the Speed of Light with a 20-Meter Fiber: A Lab Story"
+date: "2026-03-16"
+lastUpdated: "2026-03-16"
+image: "https://cdn.jsdelivr.net/gh/erdemgunal/hakki-info-assets@latest/blog/measuring-speed-of-light-fiber-optics/8bab68c4-c493-41a1-8c7a-f12d13af733d.png"
+excerpt: "How fast does light travel in glass? We used the Time-of-Flight method and an oscilloscope to calculate 'c' in our Modern Physics lab at Marmara University."
+status: "published"
+tags: ["physics", "optics", "experiment", "learning"]
+---
+
+# Measuring the Speed of Light with a 20-Meter Fiber
+
+Most people know the speed of light in a vacuum is a staggering $299,792,458$ m/s. But what happens when you force that light through a tiny strand of glass? 
+
+In our latest **Modern Physics Laboratory** session at Marmara University we set out to measure this speed not across the vastness of space but across a 18.9-meter optical fiber sitting right on our workbench.
+
+## The Challenge: Catching the Fastest Thing in the Universe
+
+Measuring something that travels at nearly 300,000 kilometers per second requires more than a stopwatch. If you tried to time light over 20 meters with a manual timer you’d be trying to measure a delay of about 0.0000001 seconds—far faster than a human eye can blink.
+
+To solve this we used the **Time-of-Flight (ToF)** method. Instead of a human observer we used a High-Speed Oscilloscope to "see" the pulse of light.
+
+
+
+---
+
+## How It Works: Total Internal Reflection
+
+Optical fibers work like a hall of mirrors. Because the core has a higher refractive index than the cladding light undergoes **Total Internal Reflection (TIR)**.
+
+$$ \sin\theta_c = \frac{n_{\text{cladding}}}{n_{\text{core}}} $$
+
+In our experiment we used a **multi-mode fiber**. Unlike the thin fibers used in global internet backbones multi-mode fibers have a wider core allowing light to take multiple "paths" or modes. 
+
+<Callout type="info">
+  **Fun Fact:** Because light bounces at different angles in multi-mode fibers some "rays" actually travel a longer distance than the cable itself! This causes the pulse to spread out a phenomenon known as *Modal Dispersion*.
+</Callout>
+
+
+
+---
+
+## The Setup: A Tale of Two Fibers
+
+To get an accurate result we had to eliminate "system lag"—the time it takes for the electronics to wake up. We used a clever **Differential Measurement** technique:
+
+1.  **The Reference:** We first sent a pulse through a 30 cm fiber. This gave us our "zero" time.
+2.  **The Test:** We replaced it with an 18.9-meter fiber.
+3.  **The Shift:** The difference in arrival time ($\Delta t$) is purely the time spent traveling the extra 18.6 meters of glass.
+
+<BlogImage 
+  src="https://cdn.jsdelivr.net/gh/erdemgunal/hakki-info-assets@latest/blog/measuring-speed-of-light-fiber-optics/fiber-setup.png" 
+  alt="Diagram showing the experimental setup with LED source fiber and detector"
+  caption="Our experimental setup: Pulsed LED source to Photodetector."
+  width={800}
+  height={450}
+/>
+
+---
+
+## The Results: Doing the Math
+
+On the oscilloscope we observed a time shift of exactly **100 ns** ($100 \times 10^{-9}$ seconds). 
+
+Using the basic formula $v = \frac{\Delta L}{\Delta t}$ we calculated:
+
+$$ v_{\exp} = \frac{18.6\,\text{m}}{100 \times 10^{-9}\,\text{s}} = 1.86 \times 10^8\,\text{m/s} $$
+
+To find the **Refractive Index ($n$)** we compared this to the speed of light in a vacuum ($c$):
+
+$$ n_{\exp} = \frac{c}{v_{\exp}} \approx 1.61 $$
+
+### So why the 10% difference?
+The standard refractive index for silica is usually around $1.46$. Our result of $1.61$ was slightly higher. Why?
+* **The Path Factor:** In multi-mode fibers light doesn't travel in a straight line; it zig-zags. The actual path is longer than the cable.
+* **Human Error:** At a scale of 50ns per division on the oscilloscope a tiny 1mm shift in our cursor placement could change the result significantly.
+
+---
+
+## Why This Matters
+
+Every time you load a webpage billions of pulses are doing exactly what we measured in the lab—bouncing through fibers at 186,000 kilometers per second. Understanding the limits of **pulse broadening** and **attenuation** is what allows engineers to build faster and more reliable internet for everyone.
+
+Physics isn't just about abstract equations; it's about seeing those equations happen in real-time on a green screen in a dark lab in Istanbul.
+
+---
+
+**References:**
+* Agrawal, G. P. *Fiber-Optic Communication Systems*.
+* University of Iowa Physics Lab Manual (Experiment S1).
