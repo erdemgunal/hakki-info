@@ -4,7 +4,6 @@ import { getBlogPostBySlug, getBlogPosts } from '@/lib/blog';
 import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import remarkGfm from 'remark-gfm';
-import remarkBreaks from 'remark-breaks';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import rehypePrettyCode from 'rehype-pretty-code';
@@ -19,7 +18,10 @@ import 'katex/dist/katex.min.css';
 import Image from 'next/image';
 
 const prettyCodeOptions = {
-    theme: 'github-dark-dimmed',
+    theme: {
+        dark: 'github-dark-dimmed',
+        light: 'github-light',
+    },
     keepBackground: false,
     onVisitLine(node: { children: { type: string; value?: string }[] }) {
         if (node.children.length === 0) {
@@ -125,10 +127,10 @@ export default async function BlogPostPage({ params }: BlogPostPageParams) {
                         {/* MDX body */}
                         <div className="
                             prose prose-neutral dark:prose-invert max-w-none
-                            prose-p:leading-[1.7] prose-p:text-foreground/85 prose-p:my-3
+                            prose-p:leading-[1.85] prose-p:text-foreground/85 prose-p:my-6
                             prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-foreground
-                            prose-h2:text-xl prose-h2:mt-8 prose-h2:mb-2
-                            prose-h3:text-lg prose-h3:mt-6 prose-h3:mb-1
+                            prose-h2:text-xl prose-h2:mt-12 prose-h2:mb-3
+                            prose-h3:text-lg prose-h3:mt-8 prose-h3:mb-2
                             prose-h4:text-base prose-h4:mt-4 prose-h4:mb-1
                             prose-a:text-accent prose-a:no-underline hover:prose-a:underline prose-a:font-normal
                             prose-code:rounded prose-code:bg-muted prose-code:px-1.5 prose-code:py-0.5
@@ -140,8 +142,9 @@ export default async function BlogPostPage({ params }: BlogPostPageParams) {
                             prose-blockquote:[&>p]:my-0
                             prose-hr:border-border/30 prose-hr:my-6
                             prose-ul:my-3 prose-ul:marker:text-muted-foreground
+                            prose-ul:my-5 prose-ol:my-5
                             prose-ol:my-3 prose-ol:marker:text-muted-foreground
-                            prose-li:my-1
+                            prose-li:my-2
                             prose-img:rounded-lg prose-img:my-4
                             prose-table:text-sm
                             [&_.katex]:text-foreground
@@ -151,7 +154,7 @@ export default async function BlogPostPage({ params }: BlogPostPageParams) {
                                 source={post.content}
                                 options={{
                                     mdxOptions: {
-                                        remarkPlugins: [remarkGfm, remarkBreaks, remarkMath],
+                                        remarkPlugins: [remarkGfm, remarkMath],
                                         rehypePlugins: [
                                             rehypeKatex,
                                             [rehypePrettyCode, prettyCodeOptions],

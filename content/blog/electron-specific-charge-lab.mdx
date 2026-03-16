@@ -1,0 +1,366 @@
+---
+title: "1897'den Bugüne: Elektronun Özgül Yükünü Biz de Ölçtük"
+date: "2026-03-13"
+image: "https://cdn.jsdelivr.net/gh/erdemgunal/hakki-info-assets@latest/blog/em/dc4d56da-4f15-4428-a179-352d70b8dcd6.png"
+excerpt: "J.J. Thomson'ın Nobel ödüllü deneyinin modern versiyonunu Marmara Üniversitesi Modern Fizik Laboratuvarı'nda tekrarladık. Helmholtz bobini dairesel yörüngeler ve Python ile e/m nasıl hesaplanır ? hem fizik hem kod tarafından anlattım."
+status: "published"
+tags: ["fizik", "modern-fizik-lab", "marmara-universitesi", "python", "deney-raporu", "elektron"]
+
+---
+
+Şunu bir düşün: 1897 yılında J.J. Thomson, içinde ne olduğu tam bilinmeyen bir cam tüpün içine elektron demeti gönderdi. Manyetik alan uyguladı, demet büküldü ve bu bükülmenin şeklinden atomun temel bir sabitini ölçtü. O günden bu yana **yüz yılı aşkın süre geçti** ve biz bu deneyi hala yapıyoruz. Neden? Çünkü çalışıyor.
+
+Modern Fizik Laboratuvarı'nın ikinci deneyi bu elektronun **özgül yükü** $e/m_0$'ın ölçülmesi. Kabul edilen değer $1.759 \times 10^{11}$ C/kg. Ben ölçtüm: $1.859 \times 10^{11}$ C/kg — yani %5,68 hata. İlk bakışta küçük bir sayı gibi görünebilir ama arkasındaki fizik oldukça güzel.
+
+Bu yazıda deneyin fiziğini yaptığım ölçümleri ve sonuçları analiz etmek için yazdığım Python kodunu adım adım anlatıyorum. Aynı dersi alanlar için mümkün olduğunca pratik ve şeffaf tutmaya çalıştım.
+
+---
+
+## Neden Bu Sabit Bu Kadar Önemli?
+
+$e/m_0$ bir elektronun ne kadar "çevik" olduğunu söyler. Yük ne kadar büyükse elektrik/manyetik alanlara o kadar güçlü tepki verir kütle ne kadar küçükse ivme o kadar kolay olur. Bu oranı bilmek şu uygulamalarda doğrudan kullanılır:
+
+- **Katot ışın tüpleri** (eski CRT ekranlar): elektronun yönü kontrol edilir
+- **Kütle spektrometresi**: iyonlar bu orana göre ayrıştırılır
+- **Siklotron ve füzyon reaktörleri**: parçacık yörüngeleri bu sabitle hesaplanır
+
+Thomson bu oran üzerinden elektronun hidrojen iyonundan ~2000 kat hafif olduğunu gösterdi ve bunun tüm atomlarda ortak bir bileşen olduğunu öne sürdü. 1906 Nobel Fizik ödülü bundandı.
+
+---
+
+## Teorik Temel: İki Denklem, Bir Sonuç
+
+### Elektron Hızlanması
+
+Bir elektron $U$ gerilimle hızlandırıldığında enerji korunumu şunu verir:
+
+$$
+eU = \frac{1}{2} m_0 v^2
+$$
+
+### Manyetik Alandaki Dairesel Hareket
+
+Elektrona dik bir $\vec{B}$ alanı uygulandığında Lorentz kuvveti devreye girer:
+
+$$
+\vec{F} = e\,\vec{v} \times \vec{B}
+$$
+
+Bu kuvvet, hız yönüne daima dik olduğundan iş yapmaz sadece yönü değiştirir. Yani elektron dairesel bir yörüngede hareket eder. Merkezcil kuvvetle eşitlenince:
+
+$$
+evB = \frac{m_0 v^2}{r} \implies v = \frac{e}{m_0} B r
+$$
+
+### Çalışma Denklemi
+
+Üstteki iki denklemi birleştirip $v$'yi elersek:
+
+$$
+\boxed{\frac{e}{m_0} = \frac{2U}{(Br)^2}}
+$$
+
+Yani bize lazım olan üç şey gerilim $U$ yörünge yarıçapı $r$ ve manyetik alan $B$.
+
+### Helmholtz Bobininin Alanı
+
+Manyetik alan biri birbirine $R$ mesafede iki eş bobinden oluşan Helmholtz düzeneğiyle üretilir. Merkezdeki alan:
+
+$$
+B = \left(\frac{4}{5}\right)^{3/2} \mu_0 \, n \, \frac{I}{R}
+$$
+
+Deneyimizde $R = 0.2$ m ve $n = 154$ sarım için sabit $k \equiv B/I = 6.925 \times 10^{-4}$ T/A olarak hesaplanır; yani $B = kI$.
+
+<Callout type="info">
+**Marmara Lab Notu:** Düzeneğin $k$ sabitini doğrudan cihaz üzerindeki değerlerden kendiniz hesaplayın — deney föyündeki değerle örtüşüyor mu kontrol edin. Bizim sonucumuz tam örtüştü.
+</Callout>
+
+---
+
+## Doğrusal Regresyon Yöntemi
+
+Nokta nokta $e/m_0$ hesaplamak yerine daha güçlü bir yaklaşım var. $B = kI$ yazıp çalışma denklemini yeniden düzenleyelim:
+
+$$
+U = \underbrace{\left(\frac{e}{m_0} \cdot \frac{r^2 k^2}{2}\right)}_{c} \cdot I^2
+$$
+
+Sabit bir $r$ için $U$ $I^2$'nin **doğrusal** bir fonksiyonu — eğim $c$. Bu eğimi ölçersek:
+
+$$
+\frac{e}{m_0} = \frac{2c}{r^2 k^2}
+$$
+
+Bu yöntemin güzelliği şu tüm veri noktalarını aynı anda kullanıyor ve sistematik hataları görünür kılıyor.
+
+---
+
+## Deney Düzeneği
+
+<BlogImage
+  src="https://cdn.jsdelivr.net/gh/erdemgunal/hakki-info-assets@latest/blog/em/fig_setup.png"
+  alt="Helmholtz bobini ve dar demet tüpünden oluşan deney düzeneği. Ayrı DC güç kaynakları hızlandırma gerilimi ve bobin akımını sağlar."
+  caption="Şekil 1 — Deney düzeneği. Dar demet tüpü iki Helmholtz bobini arasına merkezi olarak yerleştirilmiştir."
+  width={900}
+  height={500}
+/>
+
+Düzenek dört ana bileşenden oluşuyor:
+
+**Dar Demet Tüpü:** Düşük basınçlı hidrojen gazıyla dolu cam bir küre. Elektronlar oksit katot ve konik anot aracılığıyla dışarı odaklanır. Elektronlar hidrojen molekülleriyle çarpışarak hafif bir ışıldama izi bırakır — bu iz sayesinde yörüngeyi doğrudan görebiliyoruz.
+
+**Helmholtz Bobini:** $R = 0.2$ m ve $n = 154$ sarımlı iki eş bobin. Seri bağlandıklarında her ikisinden aynı akım geçer bu da simetrik ve düzgün alan için şart.
+
+**DC Güç Kaynakları:** 300 V'a kadar yüksek gerilim kaynağı (hızlandırma için) ve bobin akımı için ayrı kaynak.
+
+**Dijital Multimetreler:** $\sigma_U = 1$ V hassasiyetli voltmetre ve $\Delta I = 0.01$ A hassasiyetli ampermetre.
+
+<BlogImage
+  src="https://cdn.jsdelivr.net/gh/erdemgunal/hakki-info-assets@latest/blog/em/fig_lorentz_vector.png"
+  alt="Elektrona etki eden Lorentz kuvvetinin vektörel gösterimi. F_Lorentz kuvveti hız v_0 ve manyetik alan B'ye her zaman diktir."
+  caption="Şekil 2 — Lorentz kuvvetinin vektörel gösterimi. Kuvvet hıza ve alana dik olduğundan sürekli yön değiştirir ama kinetik enerjiyi korur."
+  width={700}
+  height={400}
+/>
+
+---
+
+## Ham Veriler ve Doğrudan Hesaplama
+
+16 ölçüm koşulunda ($r = 2, 3, 4, 5$ cm; $U = 180, 200, 220, 240$ V) bobin akımı ölçüldü:
+
+| $r$ (m) | $U$ (V) | $I$ (A) | $B$ (mT) | $e/m_0$ ($\times 10^{11}$ C/kg) |
+|---------|---------|---------|----------|----------------------------------|
+| 0.02    | 180     | 3.32    | 2.30     | 1.701                            |
+| 0.02    | 200     | 3.50    | 2.42     | 1.707                            |
+| 0.02    | 220     | 3.62    | 2.51     | 1.746                            |
+| 0.02    | 240     | 3.80    | 2.63     | 1.734                            |
+| 0.03    | 180     | 2.10    | 1.45     | 1.902                            |
+| 0.03    | 200     | 2.21    | 1.53     | 1.898                            |
+| 0.03    | 220     | 2.35    | 1.63     | 1.840                            |
+| 0.03    | 240     | 2.47    | 1.71     | 1.823                            |
+| 0.04    | 180     | 1.59    | 1.10     | 1.859                            |
+| 0.04    | 200     | 1.66    | 1.15     | 1.890                            |
+| 0.04    | 220     | 1.73    | 1.20     | 1.909                            |
+| 0.04    | 240     | 1.82    | 1.26     | 1.889                            |
+| 0.05    | 180     | 1.26    | 0.85     | 1.891                            |
+| 0.05    | 200     | 1.32    | 0.89     | 1.914                            |
+| 0.05    | 220     | 1.39    | 0.96     | 1.909                            |
+| 0.05    | 240     | 1.45    | 1.00     | 1.920                            |
+
+Yarıçap gruplarına göre ortalamalar ve kabul edilen değere göre hata:
+
+| $r$ (m) | $\overline{e/m_0}$ ($\times 10^{11}$ C/kg) | % Hata |
+|---------|---------------------------------------------|--------|
+| 0.02    | 1.722                                       | 2.10   |
+| 0.03    | 1.866                                       | 6.08   |
+| 0.04    | 1.887                                       | 7.28   |
+| 0.05    | 1.960                                       | 11.42  |
+| **Genel** | **1.859**                               | **5.68** |
+
+Açık bir trend var yarıçap büyüdükçe hata artıyor. Bunun neden olduğuna tartışmada döneceğim.
+
+---
+
+## Python ile Grafik ve Regresyon
+
+Verileri `common.py` dosyasında merkezi olarak tutup hem grafik hem regresyon kodlarında içe aktardım. Eğer aynı yapıyı kullanmak istersen:
+
+```python title="common.py"
+import numpy as np
+
+RAW_DATA = [
+    (0.02, 180, 3.32, 2.30, 1.701),
+    (0.02, 200, 3.50, 2.42, 1.707),
+    # ... (tüm 16 satır)
+]
+
+r_vals  = np.array([d[0] for d in RAW_DATA])
+U_vals  = np.array([d[1] for d in RAW_DATA])
+I_vals  = np.array([d[2] for d in RAW_DATA])
+
+LIT     = 1.759   # kabul edilen değer (×10¹¹ C/kg)
+k       = 6.925e-4  # T/A — bobin sabiti
+```
+
+### U vs I² Grafiği
+
+$U \propto I^2$ doğrusallığını görmek için:
+
+```python title="graph-i-v2.py"
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.stats import linregress
+from common import r_vals, U_vals, I_vals, radii, COLORS, MARKERS
+
+fig, ax = plt.subplots(figsize=(3.375, 2.6))
+I2_vals = I_vals**2
+
+for i, r in enumerate(radii):
+    mask = r_vals == r
+    x, y = I2_vals[mask], U_vals[mask]
+
+    slope, intercept, r_value, _, _ = linregress(x, y)
+    x_fit = np.linspace(min(x) * 0.9, max(x) * 1.1, 100)
+
+    ax.scatter(x, y, color=COLORS[i], marker=MARKERS[i],
+               s=25, label=f'$r = {int(r*100)}$ cm', zorder=5)
+    ax.plot(x_fit, slope * x_fit + intercept,
+            color=COLORS[i], lw=1.2, alpha=0.8)
+
+    print(f"r={int(r*100)}cm: c={slope:.3f}, R²={r_value**2:.4f}")
+
+ax.set_xlabel(r'$I^2$ (A$^2$)')
+ax.set_ylabel(r'$U$ (V)')
+ax.legend(frameon=True, fontsize=7)
+ax.grid(alpha=0.25, lw=0.5)
+fig.tight_layout(pad=0.4)
+```
+
+<BlogImage
+  src="https://cdn.jsdelivr.net/gh/erdemgunal/hakki-info-assets@latest/blog/em/fig_regression_plot.png"
+  alt="Dört farklı yarıçap için U - I² grafiği ve ağırlıklı doğrusal regresyon çizgileri."
+  caption="Şekil 3 — U I²'nin doğrusal bir fonksiyonu olarak görülüyor (R² > 0.999). Her grubun eğimi e/m₀ hesabında kullanıldı."
+  width={900}
+  height={600}
+/>
+
+<Callout type="warning">
+`linregress` eğimi verir ama **ölçüm belirsizliklerini hesaba katmaz**. Raporda ağırlıklı regresyon zorunlu — bunun için `scipy.optimize.curve_fit` ile `sigma` argümanını kullan.
+</Callout>
+
+### Ağırlıklı Regresyon ve Hata Yayılımı
+
+$I$'daki belirsizlik $\Delta I$ fit'in bağımsız değişkeni $I^2$ olduğundan dikey eşdeğerine dönüştürülmeli:
+
+$$
+\Delta U_{\text{eff}} = U \cdot \frac{2\,\Delta I}{I}
+$$
+
+Toplam efektif dikey belirsizlik:
+
+$$
+\sigma'_y = \sqrt{\sigma_U^2 + \Delta U_{\text{eff}}^2}
+$$
+
+Her noktanın ağırlığı $w_i = 1/(\sigma'_{y,i})^2$ olarak atanır. Kodda:
+
+```python title="error_propagation.py"
+from scipy.optimize import curve_fit
+from common import r_vals, U_vals, I_vals, radii
+
+sigma_U = 1.0   # V
+delta_I = 0.01  # A
+
+def linear_model(I2, c, b):
+    return c * I2 + b
+
+for r in radii:
+    mask = r_vals == r
+    U, I = U_vals[mask], I_vals[mask]
+    I2 = I**2
+
+    # 1) İlk fit ile c tahmini
+    popt, _ = curve_fit(linear_model, I2, U)
+    c_initial = popt[0]
+
+    # 2) Her nokta için efektif belirsizlik
+    delta_U_eff   = U * (2 * delta_I / I)
+    sigma_y_prime = np.sqrt(sigma_U**2 + delta_U_eff**2)
+
+    # 3) Ağırlıklı fit
+    popt_final, pcov = curve_fit(
+        linear_model, I2, U,
+        sigma=sigma_y_prime, absolute_sigma=True
+    )
+    c_final = popt_final[0]
+    delta_c = np.sqrt(pcov[0, 0])
+
+    print(f"r={int(r*100)}cm: c = {c_final:.3f} ± {delta_c:.3f}")
+```
+
+<Callout type="info">
+`absolute_sigma=True` argümanını unutma. Bu olmadan `curve_fit` belirsizlikleri normalize eder ve hatalı $\Delta c$ verir — bu da hata yayılımını bozar.
+</Callout>
+
+---
+
+## Regresyon Sonuçları
+
+$$
+\Delta\!\left(\frac{e}{m_0}\right) = \frac{e}{m_0} \sqrt{\left(\frac{\Delta c}{c}\right)^2 + \left(\frac{2\,\Delta r}{r}\right)^2}
+$$
+
+| $r$ (m) | $c \pm \Delta c$ | $e/m_0$ ($\times 10^{11}$ C/kg) | Sonuç |
+|---------|-----------------|----------------------------------|-------|
+| 0.02    | $17.910 \pm 0.620$  | 1.867 ± 0.114 | $1.87 \pm 0.11$ |
+| 0.03    | $34.993 \pm 1.634$  | 1.621 ± 0.094 | $1.62 \pm 0.09$ |
+| 0.04    | $77.140 \pm 4.582$  | 2.011 ± 0.131 | $2.01 \pm 0.13$ |
+| 0.05    | $115.353 \pm 8.363$ | 1.924 ± 0.145 | $1.92 \pm 0.15$ |
+
+$r = 0.02$ m için örnek hesap:
+
+$$
+\frac{e}{m_0} = \frac{2 \times 17.910}{(0.02)^2 \times (6.925 \times 10^{-4})^2} = 1.867 \times 10^{11}\ \text{C/kg}
+$$
+
+---
+
+## Neden Büyük Yarıçaplarda Hata Artıyor?
+
+Bu deneyin en ilginç sorusu bu. Birkaç etken var:
+
+**1. Sondaki manyetik alan homojenliği.** Helmholtz düzeneği orta bölgede neredeyse düzgün alan verir. Ama $r = 5$ cm yarıçaplı yörünge bu homojen bölgenin sınırlarına yaklaşıyor — elektron tur boyunca farklı alan şiddetleriyle karşılaşıyor.
+
+**2. Paralaks hatası.** Yörünge yarıçapı tüp içindeki referans işaretlere hizalanarak ölçülüyor. 5 cm'lik daire 2 cm'liğe kıyasla çok daha büyük bir açısal hataya açık — bakış açısına bağlı sapmalar ciddi ölçüm hatasına yol açıyor.
+
+**3. Gaz saçılması.** Elektronlar hidrojen molekülleriyle çarpışarak enerji kaybediyor. Bu yörüngenin kapanmamasına ve demetin genişlemesine neden oluyor. Büyük yarıçaplarda bu etki daha belirgin.
+
+**4. Yeryüzü manyetik alanı.** Bobin alanının küçük kaldığı büyük yarıçap koşullarında (~0.85 mT) dünya'nın manyetik alanı (~50 µT) giderek daha belirgin bir bozucu etki yaratıyor.
+
+<BlogImage
+  src="https://cdn.jsdelivr.net/gh/erdemgunal/hakki-info-assets@latest/blog/em/fig_orbit_measurement.png"
+  alt="Dar demet tüpü içindeki elektron yörüngesi gözlemi. Yeşil ışıltılı daire elektron izini gösteriyor."
+  caption="Şekil 4 — Gerçekte hiçbir zaman mükemmel bir daire göremezsin saçılma ve enerji kaybı nedeniyle yörünge giderek içe doğru sarmal çizer."
+  width={800}
+  height={500}
+/>
+
+<Callout type="error">
+**Sistematik hata tuzağı:** Eğer ışıltılı demet geniş ve bulanıksa yörünge kenarını yanlış okursun. Bu özellikle büyük yarıçaplarda birikerek raporunu ciddi biçimde etkiler. Demet mümkün olduğunca ince ve parlak olmalı — bunun için Wehnelt gerilimini dikkatli ayarla.
+</Callout>
+
+---
+
+## Sonuç
+ 
+Bu deney birbiriyle çelişen iki şeyi aynı anda öğretiyor ölçümün gücü ve sınırlarını.
+ 
+Doğrudan hesaplama yöntemiyle genel ortalamam $1.859 \times 10^{11}$ C/kg (%5.68 hata) ağırlıklı regresyon yöntemi ise dört farklı değer veriyor — en iyisi $r = 0.02$ cm grubu için $1.87 \pm 0.11 \times 10^{11}$ C/kg (%6.25 hata). Her iki yöntemde de $r = 0.02$ m grubu kabul edilen değere en yakın.
+ 
+Ağırlıklı regresyon yöntemi açıkça daha sağlam hem $U$ hem $I$ belirsizliklerini hesaba katıyor tüm veriyi aynı anda kullanıyor ve sıkı bir hata analizi sunuyor. Nokta nokta hesaplama ise hızlı doğrulama için kullanışlı.
+ 
+Son olarak Thomson bu deneyi 1897'de kaba cam tüplerle ve gözle yaptı. Ben hem Helmholtz bobini hem Python hem de ağırlıklı regresyon kullandım ve %5.68 hata elde ettim. Bu bana hem fizik hem de ölçümün ne kadar kırılgan bir şey olduğunu hatırlattı.
+ 
+---
+
+## Kaynaklar
+ 
+1. P. J. Mohr, D. B. Newell ve B. N. Taylor, *CODATA Recommended Values of the Fundamental Physical Constants*, National Institute of Standards and Technology (2018). [physics.nist.gov](https://physics.nist.gov/cgi-bin/cuu/Value?esme)
+ 
+2. D. Smith, *e/m Charge to Mass Ratio Lab*, Physics Department, Embry-Riddle Aeronautical University (7 Şubat 2021). [physicsx.erau.edu](https://physicsx.erau.edu/Courses/CoursesS2021/PS315/charge%20to%20mass/charge_to_mass.pdf)
+ 
+3. CERN HST Programme, *Determination of the Specific Charge of the Electron*, HST2007 Teachers Laboratory Documentation (2007). [hst-archive.web.cern.ch](https://hst-archive.web.cern.ch/archiv/HST2007/teachers_lab/Documentation/specific%20charge.doc)
+ 
+4. University of Duisburg-Essen, *Experiment B08: Specific Charge of the Electron*, Physics Laboratory Manual (2020). [uni-due.de](https://www.uni-due.de/imperia/md/content/physik/studium/praktika/gp/online/b08_em_manual_en_v1.0.pdf)
+ 
+5. Virtuelle Experimente, *e/m — Specific Charge of the Electron (Simulation)*. [virtuelle-experimente.de](https://virtuelle-experimente.de/en/b-feld/b-feld/experiment.php)
+ 
+6. C. R. Nave, *HyperPhysics — Mass Spectrometer, Cyclotron, Magnetic Confinement*, Georgia State University (2017). [hyperphysics.phy-astr.gsu.edu](http://hyperphysics.phy-astr.gsu.edu/hbase/hframe.html)
+ 
+7. Marmara Üniversitesi Fizik Bölümü, *Hata Analizi — Deney Föyü E103*, Fizik Laboratuvarı I (2025). [fzkfen.marmara.edu.tr](https://fzk-fen.marmara.edu.tr/dosya/fen/fzk/labs/physlabI/E103.pdf)
+ 
+---
+
+*Deney 11 Mart 2026'da gerçekleştirildi. Kod ve veri: Marmara Üniversitesi Modern Fizik Laboratuvarı — Deney 2.*
