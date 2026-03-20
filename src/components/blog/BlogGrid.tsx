@@ -43,7 +43,7 @@ function Thumbnail({
                     fill
                     priority={priority}
                     className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 50vw"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
                 <div className="absolute inset-0 bg-linear-to-t from-black/20 to-transparent" />
             </div>
@@ -69,12 +69,12 @@ function FeaturedCard({ post }: { post: BlogPostMeta }) {
     const newPost = isNewPost(post.date);
     return (
         <Link href={`/blog/${post.slug}`} className="group block">
-            <article className="rounded-2xl border border-border/30 bg-card overflow-hidden hover:border-border hover:shadow-lg transition-all duration-200">
+            <article className="rounded-3xl border border-border/30 bg-card overflow-hidden hover:shadow-2xl transition-all duration-200">
                 {/* Image */}
                 <Thumbnail
                     images={post.images}
                     title={post.title}
-                    className="aspect-5/2 w-full"
+                    className="aspect-3/2 sm:aspect-5/2 w-full"
                     priority
                 />
 
@@ -132,19 +132,19 @@ function PostCard({ post }: { post: BlogPostMeta }) {
 
     return (
         <Link href={`/blog/${post.slug}`} className="group block h-full">
-            <article className="rounded-md border border-border/50 bg-card overflow-hidden hover:border-border hover:shadow-md transition-all duration-300 h-full flex flex-col">
-                {/* Thumbnail */}
-                <div className="relative">
+            <article className="rounded-md border border-border/30 bg-card overflow-hidden hover:shadow-2xl transition-all duration-300 h-full flex flex-row sm:flex-col min-h-[148px] sm:min-h-0">
+                {/* Mobile: image side (left) — Desktop: thumbnail (top) */}
+                <div className="relative w-2/5 shrink-0 sm:w-full">
                     <Thumbnail
                         images={post.images}
                         title={post.title}
-                        className="aspect-video w-full"
+                        className="h-full sm:h-auto sm:aspect-video w-full"
                     />
                     {/* Badges overlay */}
                     {(newPost || post.isPromoted) && (
-                        <div className="absolute top-3 left-3 flex gap-1.5">
+                        <div className="absolute top-2 left-2 flex gap-1">
                             {newPost && (
-                                <span className="rounded-full bg-accent/90 px-2.5 py-0.5 text-[10px] font-bold text-white tracking-wide uppercase shadow">
+                                <span className="rounded-full bg-accent/90 px-2 py-0.5 text-[10px] font-bold text-white tracking-wide uppercase shadow">
                                     New
                                 </span>
                             )}
@@ -157,21 +157,21 @@ function PostCard({ post }: { post: BlogPostMeta }) {
                     )}
                 </div>
 
-                {/* Body */}
-                <div className="p-4 sm:p-5 flex flex-col gap-3 flex-1">
+                {/* Mobile: content side (right) — Desktop: body (bottom) */}
+                <div className="p-3 sm:p-4 flex flex-col gap-2 flex-1 min-w-0">
                     {primaryTag && <TagChip tag={primaryTag} small />}
 
-                    <h3 className="font-bold text-base sm:text-lg leading-snug tracking-tight text-foreground group-hover:text-accent transition-colors duration-300 line-clamp-2">
+                    <h3 className="font-bold text-sm sm:text-base leading-snug tracking-tight text-foreground group-hover:text-accent transition-colors duration-300 line-clamp-3 sm:line-clamp-2">
                         {post.title}
                     </h3>
 
                     {post.excerpt && (
-                        <p className="text-sm text-muted-foreground/70 leading-relaxed line-clamp-2 flex-1">
+                        <p className="text-xs text-muted-foreground/70 leading-relaxed line-clamp-2 flex-1">
                             {post.excerpt}
                         </p>
                     )}
 
-                    <div className="flex items-center gap-2 text-[11px] text-muted-foreground/50 mt-auto pt-1 font-mono">
+                    <div className="flex items-center gap-1.5 text-[10px] text-muted-foreground/50 mt-auto font-mono">
                         <time dateTime={post.date}>{formatDateShort(post.date)}</time>
                         <span className="opacity-40">·</span>
                         <span>{post.readTimeMinutes} min read</span>
