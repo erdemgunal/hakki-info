@@ -2,6 +2,7 @@
 import type { Metadata } from 'next';
 import { getBlogPostBySlug, getBlogPosts } from '@/lib/blog';
 import { notFound } from 'next/navigation';
+import Link from 'next/link';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
@@ -169,11 +170,17 @@ export default async function BlogPostPage({ params }: BlogPostPageParams) {
                     {/* ── Tags: mobilde article ile sidebar arasında ── */}
                     {post.tags.length > 0 && (
                         <div
-                            className="flex flex-wrap gap-2 text-sm text-muted-foreground order-2 lg:hidden pt-4"
+                            className="flex flex-wrap gap-2 order-2 lg:hidden pt-4"
                             aria-label="Tags"
                         >
                             {post.tags.map((tag) => (
-                                <span key={tag} className="font-mono">#{tag}</span>
+                                <Link
+                                    key={tag}
+                                    href={`/blog?tag=${encodeURIComponent(tag)}`}
+                                    className="inline-flex items-center rounded-full border border-border bg-muted px-2.5 py-0.5 text-xs font-mono font-medium text-muted-foreground hover:border-foreground/40 hover:text-foreground transition-colors duration-200"
+                                >
+                                    #{tag}
+                                </Link>
                             ))}
                         </div>
                     )}
@@ -188,11 +195,17 @@ export default async function BlogPostPage({ params }: BlogPostPageParams) {
                 {/* ── Tags: masaüstünde grid ile analytics arasında, tam genişlik ── */}
                 {post.tags.length > 0 && (
                     <div
-                        className="hidden lg:flex flex-wrap gap-2 text-sm text-muted-foreground pt-4 mt-4"
+                        className="hidden lg:flex flex-wrap gap-2 pt-4 mt-4"
                         aria-label="Tags"
                     >
                         {post.tags.map((tag) => (
-                            <span key={tag} className="font-mono">#{tag}</span>
+                            <Link
+                                key={tag}
+                                href={`/blog?tag=${encodeURIComponent(tag)}`}
+                                className="inline-flex items-center rounded-full border border-border bg-muted px-2.5 py-0.5 text-xs font-mono font-medium text-muted-foreground hover:border-foreground/40 hover:text-foreground transition-colors duration-200"
+                            >
+                                #{tag}
+                            </Link>
                         ))}
                     </div>
                 )}

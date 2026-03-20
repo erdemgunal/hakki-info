@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState, useMemo } from 'react';
+import { useRouter } from 'next/navigation';
 import type { BlogPostMeta } from '@/lib/blog';
 
 // ─── Helpers ────────────────────────────────────────────────────────────────
@@ -99,7 +99,7 @@ function Thumbnail({
                     alt={title}
                     fill
                     priority={priority}
-                    className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                    className="object-cover"
                     sizes="(max-width: 768px) 100vw, 50vw"
                 />
                 <div className="absolute inset-0 bg-linear-to-t from-black/20 to-transparent" />
@@ -126,7 +126,7 @@ function FeaturedCard({ post }: { post: BlogPostMeta }) {
     const newPost = isNewPost(post.date);
     return (
         <Link href={`/blog/${post.slug}`} className="group block">
-            <article className="rounded-2xl border border-border/50 bg-card overflow-hidden hover:border-border hover:shadow-lg transition-all duration-300">
+            <article className="rounded-2xl border border-border/30 bg-card overflow-hidden hover:border-border hover:shadow-lg transition-all duration-200">
                 {/* Image */}
                 <Thumbnail
                     images={post.images}
@@ -173,7 +173,7 @@ function FeaturedCard({ post }: { post: BlogPostMeta }) {
                             <span className="opacity-40">·</span>
                             <span>{post.readTimeMinutes} min read</span>
                         </div>
-                        <span className="text-sm font-medium text-accent group-hover:translate-x-0.5 transition-transform duration-200 inline-flex items-center gap-1.5">
+                        <span className="text-sm font-medium text-accent inline-flex items-center gap-1.5">
                             Read <ArrowRightIcon />
                         </span>
                     </div>
@@ -243,63 +243,58 @@ function PostCard({ post }: { post: BlogPostMeta }) {
 
 interface BlogGridProps {
     posts: BlogPostMeta[];
+    allTags: string[];
+    selectedTag: string | null;
 }
 
-export function BlogGrid({ posts }: BlogGridProps) {
-    const [selectedTag, setSelectedTag] = useState<string | null>(null);
+export function BlogGrid({ posts, allTags, selectedTag }: BlogGridProps) {
+    const router = useRouter();
 
-    const allTags = useMemo(() => {
-        const tagSet = new Set<string>();
-        for (const post of posts) {
-            for (const tag of post.tags) {
-                tagSet.add(tag);
-            }
-        }
-        return Array.from(tagSet).sort();
-    }, [posts]);
+    const featuredPost = posts[0] ?? null;
+    const gridPosts = posts.slice(1);
 
-    const filteredPosts = useMemo(() => {
-        if (!selectedTag) return posts;
-        return posts.filter((p) => p.tags.includes(selectedTag));
-    }, [posts, selectedTag]);
+    function navigate(tag: string | null) {
+        router.push(tag ? `/blog?tag=${encodeURIComponent(tag)}` : '/blog');
+    }
 
-    const featuredPost = filteredPosts[0] ?? null;
-    const gridPosts = filteredPosts.slice(1);
+    const filterRow = allTags.length > 0 && (
+        <div className="space-y-3">
+            <p className="text-xs font-mono text-muted-foreground/50 uppercase tracking-widest">
+                Filter by topic
+            </p>
+            <div className="flex flex-wrap gap-2">
+                <button
+                    onClick={() => navigate(null)}
+                    className={`rounded-full border px-3.5 py-1 text-xs font-medium transition-all duration-200 cursor-pointer ${
+                        selectedTag === null
+                            ? 'bg-foreground text-background border-foreground'
+                            : 'border-border text-muted-foreground hover:border-foreground/40 hover:text-foreground'
+                    }`}
+                >
+                    All
+                </button>
+                {allTags.map((tag) => {
+                    const active = selectedTag === tag;
+                    return (
+                        <button
+                            key={tag}
+                            onClick={() => navigate(active ? null : tag)}
+                            className={`rounded-full border px-3.5 py-1 text-xs font-medium transition-all duration-200 cursor-pointer ${
+                                active
+                                    ? 'bg-foreground text-background border-foreground'
+                                    : 'border-border text-muted-foreground hover:border-foreground/40 hover:text-foreground'
+                            }`}
+                        >
+                            {tag}
+                        </button>
+                    );
+                })}
+            </div>
+        </div>
+    );
 
     return (
         <div className="space-y-8">
-            {/* Filter row */}
-            {allTags.length > 0 && (
-                <div className="flex flex-wrap gap-2">
-                    <button
-                        onClick={() => setSelectedTag(null)}
-                        className={`rounded-full border px-3.5 py-1 text-xs font-medium transition-all duration-200 cursor-pointer ${
-                            selectedTag === null
-                                ? 'bg-foreground text-background border-foreground'
-                                : 'border-border text-muted-foreground hover:border-foreground/40 hover:text-foreground'
-                        }`}
-                    >
-                        All
-                    </button>
-                    {allTags.map((tag) => {
-                        const active = selectedTag === tag;
-                        return (
-                            <button
-                                key={tag}
-                                onClick={() => setSelectedTag(active ? null : tag)}
-                                className={`rounded-full border px-3.5 py-1 text-xs font-medium transition-all duration-200 cursor-pointer ${
-                                    active
-                                        ? 'bg-foreground text-background border-foreground'
-                                        : 'border-border text-muted-foreground hover:border-foreground/40 hover:text-foreground'
-                                }`}
-                            >
-                                {tag}
-                            </button>
-                        );
-                    })}
-                </div>
-            )}
-
             {/* Empty state */}
             {!featuredPost && (
                 <p className="text-sm text-muted-foreground py-12 text-center">
@@ -316,6 +311,13 @@ export function BlogGrid({ posts }: BlogGridProps) {
                     {gridPosts.map((post) => (
                         <PostCard key={post.slug} post={post} />
                     ))}
+                </div>
+            )}
+
+            {/* Filter row — bottom */}
+            {filterRow && (
+                <div className="pt-4 border-t border-border/30">
+                    {filterRow}
                 </div>
             )}
         </div>
