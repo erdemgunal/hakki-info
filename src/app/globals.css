@@ -188,3 +188,38 @@
     background-color: color-mix(in srgb, var(--accent) 6%, transparent);
     border-left: 2px solid color-mix(in srgb, var(--accent) 50%, transparent);
 }
+
+/* Easter egg animations */
+@keyframes confetti-fall {
+    0% {
+        transform: translateY(-24px) rotate(0deg) scale(1);
+        opacity: 1;
+    }
+    75% {
+        opacity: 0.9;
+    }
+    100% {
+        transform: translateY(108vh) rotate(600deg) scale(0.5);
+        opacity: 0;
+    }
+}
+
+@keyframes scale-in {
+    from {
+        transform: scale(0.7);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes spin-once {
+    from {
+        transform: rotate(-20deg) scale(0.8);
+    }
+    to {
+        transform: rotate(0deg) scale(1);
+    }
+}

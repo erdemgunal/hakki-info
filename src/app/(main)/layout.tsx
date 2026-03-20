@@ -9,6 +9,7 @@ import { Header, Footer } from "@/components/layout";
 import { fetchResumeData } from '@/lib/fetch-resume-data';
 import { ResumeDataProvider } from '@/contexts/ResumeDataContext';
 import seo from '@/config/seo.json';
+import KonamiCode from '@/components/easter-eggs/KonamiCode';
 
 const headingFont = Plus_Jakarta_Sans({
     variable: "--font-heading",
@@ -99,6 +100,7 @@ export default async function RootLayout({
                         <Header />
                         {children}
                         <Footer />
+                        <KonamiCode />
                     </ResumeDataProvider>
                 </ThemeProvider>
             </body>
