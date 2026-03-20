@@ -6,7 +6,7 @@ const UMAMI_WEBSITE_ID = process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID || "5f7b8fe7-0
 const UMAMI_SCRIPT_SRC = process.env.NEXT_PUBLIC_UMAMI_SCRIPT_SRC || "https://analytics.hakki.info/script.js";
 
 export default function UmamiAnalytics() {
-    if (typeof window === "undefined") {
+    if (typeof window === "undefined" || process.env.NODE_ENV === "development") {
         return null;
     }
 
