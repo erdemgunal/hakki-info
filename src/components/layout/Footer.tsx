@@ -1,22 +1,18 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { useTheme } from 'next-themes';
 import Link from 'next/link';
 import { ThemeToggle } from '@/components/ui-widgets';
 import { renderSocialLinks } from '@/lib/social-links';
 import { getCurrentYear } from '@/lib/date-utils';
 import { transformSocialLinks } from '@/lib/icon-mapper';
 import { useResumeData } from '@/contexts/ResumeDataContext';
-import { useIsMounted } from '@/hooks/useIsMounted';
 
 export default function Footer() {
     const resumeData = useResumeData();
     const { social } = resumeData;
     const socialLinks = transformSocialLinks(social || []);
     const currentYear = getCurrentYear();
-    const { resolvedTheme } = useTheme();
-    const mounted = useIsMounted();
     const [istanbulTime, setIstanbulTime] = useState('');
 
     useEffect(() => {
