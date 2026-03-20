@@ -9,3 +9,12 @@ export function formatBlogDate(dateString: string, locale = 'en-US'): string {
 export function getCurrentYear(): number {
     return new Date().getFullYear();
 }
+
+export function formatDateShort(date: string, locale = 'en-US'): string {
+    if (!date) return '';
+    return new Date(date).toLocaleDateString(locale, {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+    });
+}

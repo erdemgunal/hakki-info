@@ -4,67 +4,10 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import type { BlogPostMeta } from '@/lib/blog';
-
-// ─── Helpers ────────────────────────────────────────────────────────────────
-
-const DAYS_CONSIDERED_NEW = 14;
-
-function isNewPost(date: string): boolean {
-    if (!date) return false;
-    const diffMs = Date.now() - new Date(date).getTime();
-    return diffMs / (24 * 60 * 60 * 1000) <= DAYS_CONSIDERED_NEW;
-}
-
-function formatDate(date: string): string {
-    if (!date) return '';
-    return new Date(date).toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'short',
-        day: 'numeric',
-    });
-}
-
-// ─── Icons ───────────────────────────────────────────────────────────────────
-
-function ArrowRightIcon({ className = '' }: { className?: string }) {
-    return (
-        <svg
-            width="16"
-            height="16"
-            viewBox="0 0 16 16"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            aria-hidden
-            className={className}
-        >
-            <path d="M3 8h10" />
-            <path d="M9 4l4 4-4 4" />
-        </svg>
-    );
-}
-
-function ArrowUpIcon({ className = '' }: { className?: string }) {
-    return (
-        <svg
-            width="12"
-            height="12"
-            viewBox="0 0 16 16"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            aria-hidden
-            className={className}
-        >
-            <path d="M8 13V3" />
-            <path d="M4 7l4-4 4 4" />
-        </svg>
-    );
-}
+import { isNewPost } from '@/lib/blog-utils';
+import { formatDateShort } from '@/lib/date-utils';
+import ArrowRightIcon from '@/components/icon/ArrowRightIcon';
+import ArrowUpIcon from '@/components/icon/ArrowUpIcon';
 
 // ─── Sub-components ──────────────────────────────────────────────────────────
 
@@ -169,7 +112,7 @@ function FeaturedCard({ post }: { post: BlogPostMeta }) {
                     {/* Footer */}
                     <div className="flex items-center justify-between pt-1">
                         <div className="flex items-center gap-3 text-sm text-muted-foreground/60">
-                            <time dateTime={post.date}>{formatDate(post.date)}</time>
+                            <time dateTime={post.date}>{formatDateShort(post.date)}</time>
                             <span className="opacity-40">·</span>
                             <span>{post.readTimeMinutes} min read</span>
                         </div>
@@ -229,7 +172,7 @@ function PostCard({ post }: { post: BlogPostMeta }) {
                     )}
 
                     <div className="flex items-center gap-2 text-[11px] text-muted-foreground/50 mt-auto pt-1 font-mono">
-                        <time dateTime={post.date}>{formatDate(post.date)}</time>
+                        <time dateTime={post.date}>{formatDateShort(post.date)}</time>
                         <span className="opacity-40">·</span>
                         <span>{post.readTimeMinutes} min read</span>
                     </div>
