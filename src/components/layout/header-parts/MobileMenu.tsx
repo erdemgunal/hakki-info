@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { SECTIONS, PAGE_LINKS } from '@/config/navigation';
+import { SECTIONS, PAGE_LINKS } from '@/features/navigation';
 
 export interface MobileMenuProps {
     isOpen: boolean; // Kept for API clarity; parent gates rendering

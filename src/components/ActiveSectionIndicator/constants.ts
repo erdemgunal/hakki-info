@@ -1,1 +1,1 @@
-export { SECTIONS, FOOTER_ID } from '@/config/navigation';
+export { FOOTER_ID, SECTIONS } from '@/features/navigation';

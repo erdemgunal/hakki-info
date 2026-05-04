@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { PAGE_LINKS } from '@/config/navigation';
+import { PAGE_LINKS } from '@/features/navigation';
 
 export interface DesktopNavProps {
     pathname: string;

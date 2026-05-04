@@ -6,7 +6,7 @@ import {
     Community,
     Skills,
     Projects
-} from '@/components/sections';
+} from '@/features/home';
 import ActiveSectionIndicator from '@/components/ActiveSectionIndicator';
 import { PageAnalyticsSection } from '@/components/analytics/PageAnalyticsSection';
 

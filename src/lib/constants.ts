@@ -1,4 +1,4 @@
-export { SECTIONS } from '@/config/navigation';
+export { SECTIONS } from '@/features/navigation';
 
 export const THEMES = [
     { id: 'light', name: 'Açık', icon: 'Sun' },
