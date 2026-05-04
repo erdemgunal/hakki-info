@@ -1,36 +1,71 @@
 'use client';
 
 import Link from 'next/link';
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 import { DesktopNav, MobileMenu } from '@/components/layout/header-parts';
 
+const MENU_TRANSITION_MS = 300;
+
 export default function Header() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const [menuVisible, setMenuVisible] = useState(false);
     const pathname = usePathname();
+    const prevPathnameRef = useRef(pathname);
+    const closeMenuTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
     const isHomePage = pathname === '/';
 
-    const scrollToSection = useCallback((id: string) => {
-        const element = document.getElementById(id);
-        if (!element) return;
-
-        const headerOffset = 100;
-        const elementPosition = element.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-        window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+    const closeMenu = useCallback(() => {
         setMobileMenuOpen(false);
+        if (closeMenuTimeoutRef.current) clearTimeout(closeMenuTimeoutRef.current);
+        closeMenuTimeoutRef.current = setTimeout(() => {
+            closeMenuTimeoutRef.current = null;
+            setMenuVisible(false);
+        }, MENU_TRANSITION_MS);
     }, []);
 
-    useEffect(() => {
-        queueMicrotask(() => setMobileMenuOpen(false));
-    }, [pathname]);
+    const openMenu = useCallback(() => {
+        if (closeMenuTimeoutRef.current) {
+            clearTimeout(closeMenuTimeoutRef.current);
+            closeMenuTimeoutRef.current = null;
+        }
+        setMenuVisible(true);
+        requestAnimationFrame(() => setMobileMenuOpen(true));
+    }, []);
+
+    const scrollToSection = useCallback(
+        (id: string) => {
+            const element = document.getElementById(id);
+            if (!element) return;
+
+            const headerOffset = 100;
+            const elementPosition = element.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+            window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+            closeMenu();
+        },
+        [closeMenu],
+    );
 
     useEffect(() => {
-        if (!mobileMenuOpen) return;
+        if (prevPathnameRef.current === pathname) return;
+        prevPathnameRef.current = pathname;
+        closeMenu();
+    }, [pathname, closeMenu]);
+
+    useEffect(
+        () => () => {
+            if (closeMenuTimeoutRef.current) clearTimeout(closeMenuTimeoutRef.current);
+        },
+        [],
+    );
+
+    useEffect(() => {
+        if (!menuVisible) return;
         const onKeyDown = (e: KeyboardEvent) => {
-            if (e.key === 'Escape') setMobileMenuOpen(false);
+            if (e.key === 'Escape') closeMenu();
         };
         document.body.style.overflow = 'hidden';
         window.addEventListener('keydown', onKeyDown);
@@ -38,17 +73,17 @@ export default function Header() {
             window.removeEventListener('keydown', onKeyDown);
             document.body.style.overflow = '';
         };
-    }, [mobileMenuOpen]);
+    }, [menuVisible, closeMenu]);
 
     return (
         <>
-            {mobileMenuOpen && (
-                <div
-                    className="fixed inset-0 z-15 bg-black/20 backdrop-blur-[2px] lg:hidden"
-                    aria-hidden
-                    onClick={() => setMobileMenuOpen(false)}
-                />
-            )}
+            <div
+                className={`fixed inset-0 z-15 bg-black/20 backdrop-blur-[2px] lg:hidden transition-opacity duration-300 ease-out motion-reduce:transition-none ${
+                    mobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+                }`}
+                aria-hidden
+                onClick={closeMenu}
+            />
             <header className="fixed top-4 left-1/2 -translate-x-1/2 z-header w-full max-w-6xl px-2 sm:px-4 md:px-6 lg:px-8">
                 <div className="bg-surface/80 backdrop-blur-md border-[0.5px] border-border rounded-2xl shadow-lg shadow-black/10 dark:shadow-white/5 px-4 sm:px-6 py-3 sm:py-3.5">
                     <nav className="relative flex items-center justify-between">
@@ -66,7 +101,7 @@ export default function Header() {
 
                         <button
                             type="button"
-                            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                            onClick={() => (mobileMenuOpen ? closeMenu() : openMenu())}
                             className="lg:hidden min-w-[24px] min-h-[24px] p-2 -mr-1 text-foreground hover:text-accent transition-colors rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
                             aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
                             aria-expanded={mobileMenuOpen}
@@ -83,10 +118,10 @@ export default function Header() {
                         </button>
                     </nav>
 
-                    {mobileMenuOpen && (
+                    {menuVisible && (
                         <MobileMenu
                             isOpen={mobileMenuOpen}
-                            onClose={() => setMobileMenuOpen(false)}
+                            onClose={closeMenu}
                             pathname={pathname}
                             isHomePage={isHomePage}
                             onScrollToSection={scrollToSection}

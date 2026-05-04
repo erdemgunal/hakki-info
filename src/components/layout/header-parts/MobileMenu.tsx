@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { SECTIONS, PAGE_LINKS } from '@/features/navigation';
 
 export interface MobileMenuProps {
-    isOpen: boolean; // Kept for API clarity; parent gates rendering
+    isOpen: boolean;
     onClose: () => void;
     pathname: string;
     isHomePage: boolean;
@@ -13,13 +13,22 @@ export interface MobileMenuProps {
 }
 
 export function MobileMenu({
+    isOpen,
     onClose,
     pathname,
     isHomePage,
     onScrollToSection,
 }: MobileMenuProps) {
     return (
-        <div className="lg:hidden mt-3 pt-3 border-t border-border">
+        <div
+            className="lg:hidden overflow-hidden transition-all duration-300 ease-in-out motion-reduce:transition-none"
+            style={{
+                maxHeight: isOpen ? 'min(90vh, 720px)' : '0px',
+                opacity: isOpen ? 1 : 0,
+                pointerEvents: isOpen ? 'auto' : 'none',
+            }}
+        >
+            <div className="mt-3 pt-3 border-t border-border">
                 <div className="mb-3">
                     <ul className="flex flex-col gap-0.5">
                         {PAGE_LINKS.map((link) => (
@@ -32,9 +41,9 @@ export function MobileMenu({
                                             : 'text-muted-foreground hover:bg-muted hover:text-foreground'
                                     }`}
                                     onClick={() => {
-                                    window.umami?.track('nav-click', { target: link.href });
-                                    onClose();
-                                }}
+                                        window.umami?.track('nav-click', { target: link.href });
+                                        onClose();
+                                    }}
                                 >
                                     {link.label}
                                 </Link>
@@ -83,6 +92,7 @@ export function MobileMenu({
                         </ul>
                     </div>
                 )}
+            </div>
         </div>
     );
 }
