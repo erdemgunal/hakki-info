@@ -2,13 +2,12 @@
 
 import Script from "next/script";
 
-const UMAMI_WEBSITE_ID = process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID || "5f7b8fe7-0c96-463c-9e9e-9ab30fcc360d";
-const UMAMI_SCRIPT_SRC = process.env.NEXT_PUBLIC_UMAMI_SCRIPT_SRC || "https://analytics.hakki.info/script.js";
+const UMAMI_WEBSITE_ID = process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID
+const UMAMI_SCRIPT_SRC = process.env.NEXT_PUBLIC_UMAMI_SCRIPT_SRC
 
 export default function UmamiAnalytics() {
-    if (typeof window === "undefined" || process.env.NODE_ENV === "development") {
-        return null;
-    }
+    console.log("UMAMI_WEBSITE_ID:", UMAMI_WEBSITE_ID);
+    console.log("UMAMI_SCRIPT_SRC:", UMAMI_SCRIPT_SRC);
 
     return (
         <Script

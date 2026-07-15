@@ -8,7 +8,7 @@ Personal website showcasing projects, blog and resume. Built with Next.js, MDX-b
 - **Projects:** Project list and detail pages (case study format)
 - **Blog:** Technical and personal posts in MDX (KaTeX, code blocks, GFM)
 - **Contact:** Contact page and social links
-- **Analytics:** Umami and Microsoft Clarity integration, page view charts
+- **Analytics:** Umami integration, page view charts
 - **SEO:** Dynamic Open Graph, Twitter Card, sitemap, robots.txt
 
 ## Tech Stack
