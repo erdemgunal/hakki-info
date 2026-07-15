@@ -19,10 +19,7 @@ import 'katex/dist/katex.min.css';
 import Image from 'next/image';
 
 const prettyCodeOptions = {
-    theme: {
-        dark: 'github-dark-dimmed',
-        light: 'github-light',
-    },
+    theme: 'github-light',
     keepBackground: false,
     onVisitLine(node: { children: { type: string; value?: string }[] }) {
         if (node.children.length === 0) {
@@ -127,7 +124,7 @@ export default async function BlogPostPage({ params }: BlogPostPageParams) {
 
                         {/* MDX body */}
                         <div className="
-                            prose prose-neutral dark:prose-invert max-w-none
+                            prose prose-neutral max-w-none
                             prose-p:leading-[1.85] prose-p:text-foreground/85 prose-p:my-6
                             prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-foreground
                             prose-h2:text-xl prose-h2:mt-12 prose-h2:mb-3

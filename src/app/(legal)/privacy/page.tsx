@@ -8,7 +8,7 @@ export default async function PrivacyPage() {
         <div className="min-h-screen bg-background">
             <div className="max-w-4xl mx-auto px-4 sm:px-8 lg:px-16 py-12">
                 <div className="space-y-8">
-                    <article className="prose prose-neutral dark:prose-invert max-w-none prose-headings:text-foreground prose-headings:border-b prose-headings:border-border prose-headings:pb-2 prose-p:text-secondary prose-li:text-secondary prose-a:text-accent hover:prose-a:text-accent/80">
+                    <article className="prose prose-neutral max-w-none prose-headings:text-foreground prose-headings:border-b prose-headings:border-border prose-headings:pb-2 prose-p:text-secondary prose-li:text-secondary prose-a:text-accent hover:prose-a:text-accent/80">
                         <ReactMarkdown>{content}</ReactMarkdown>
                     </article>
                 </div>

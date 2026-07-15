@@ -1,6 +1,6 @@
-# Hakkı Info — Personal Portfolio Site
+# Hakkı Info - Personal Portfolio Site
 
-Personal website showcasing projects, blog and resume. Built with Next.js, MDX-based content, dark/light theme and responsive layout.
+Personal website showcasing projects, blog and resume. Built with Next.js and MDX-based content with a clean light theme.
 
 ## Features
 
@@ -17,7 +17,6 @@ Personal website showcasing projects, blog and resume. Built with Next.js, MDX-b
 - **UI:** React 19, Tailwind CSS 4, Radix UI (Dialog, Slot), shadcn-style components
 - **Content:** MDX (gray-matter frontmatter, react-markdown, rehype-pretty-code, remark-gfm, KaTeX)
 - **Fonts:** Plus Jakarta Sans (headings + body), JetBrains Mono (code)
-- **Theme:** next-themes (dark/light)
 
 ## Prerequisites
 
@@ -27,34 +26,3 @@ Personal website showcasing projects, blog and resume. Built with Next.js, MDX-b
 ## Getting Started
 
 ### Install dependencies
-
-```bash
-npm install
-```
-
-### Run development server
-
-```bash
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) in your browser.
-
-### Production build
-
-```bash
-npm run build
-npm start
-```
-
-## Scripts
-
-| Command | Description |
-|---------|-------------|
-| `npm run dev` | Start development server |
-| `npm run build` | Production build |
-| `npm start` | Start production server |
-| `npm run lint` | Run ESLint |
-| `npm run lint:fix` | Run ESLint with auto-fix |
-| `npm run check-updates` | List outdated packages |
-| `npm run update-deps` | Update and reinstall dependencies |

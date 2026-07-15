@@ -25,28 +25,6 @@
         --input: #f1f5f9;
         --ring: var(--accent);
     }
-    .dark {
-        --background: #0a0a0a;
-        --foreground: #f8fafc;
-        --secondary: #94a3b8;
-        --accent: #818cf8;
-        --surface: #161616;
-        --border: #262626;
-        --card: var(--surface);
-        --card-foreground: var(--foreground);
-        --popover: var(--surface);
-        --popover-foreground: var(--foreground);
-        --primary: var(--accent);
-        --primary-foreground: #0f172a;
-        --secondary-foreground: var(--foreground);
-        --muted: #1e293b;
-        --muted-foreground: #94a3b8;
-        --accent-foreground: #ffffff;
-        --destructive: #f43f5e;
-        --destructive-foreground: #ffffff;
-        --input: #1e293b;
-        --ring: var(--accent);
-    }
     html,
     body {
         font-family: var(--font-body);
@@ -180,7 +158,7 @@
 }
 
 /* Light theme: line numbers need higher contrast to be visible */
-:root:not(.dark) .not-prose pre [data-line]::before {
+.not-prose pre [data-line]::before {
     color: color-mix(in srgb, var(--muted-foreground) 65%, transparent);
 }
 

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google";
 import "../globals.css";
-import { ThemeProvider } from "@/contexts/ThemeProvider";
 import Script from "next/script";
 import { consoleArtScript } from "@/lib/console-art";
 import UmamiAnalytics from "@/components/analytics/UmamiAnalytics";
@@ -69,7 +68,7 @@ export default async function RootLayout({
     const resumeData = await fetchResumeData();
 
     return (
-        <html lang="en" suppressHydrationWarning>
+        <html lang="en">
             <head>
                 <UmamiAnalytics />
                 <Script
@@ -81,13 +80,11 @@ export default async function RootLayout({
                 />
             </head>
             <body className={`${headingFont.variable} ${bodyFont.variable} ${monoFont.variable} antialiased`}>
-                <ThemeProvider>
-                    <ResumeDataProvider resumeData={resumeData}>
-                        <Header />
-                        {children}
-                        <Footer />
-                    </ResumeDataProvider>
-                </ThemeProvider>
+                <ResumeDataProvider resumeData={resumeData}>
+                    <Header />
+                    {children}
+                    <Footer />
+                </ResumeDataProvider>
             </body>
         </html>
     );

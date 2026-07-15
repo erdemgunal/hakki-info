@@ -10,7 +10,7 @@ export interface CalloutProps {
 
 const STYLES = {
     info: 'bg-muted text-foreground/80',
-    warning: 'bg-amber-500/10 text-amber-700 dark:text-amber-400',
+    warning: 'bg-amber-500/10 text-amber-700',
     error: 'bg-destructive/10 text-destructive',
 } as const;
 

@@ -96,7 +96,7 @@ function DialogContent({
             <DialogOverlay />
             <DialogPrimitive.Content
                 className={cn(
-                    "bg-background data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 fixed top-[50%] left-[50%] z-50 grid w-full max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] gap-4 rounded-2xl border border-border/40 p-6 ring-1 ring-border/40 shadow-[0_12px_40px_rgba(0,0,0,0.12)] dark:shadow-[0_20px_60px_rgba(0,0,0,0.55)] duration-200 sm:max-w-lg",
+                    "bg-background data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 fixed top-[50%] left-[50%] z-50 grid w-full max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] gap-4 rounded-2xl border border-border/40 p-6 ring-1 ring-border/40 shadow-[0_12px_40px_rgba(0,0,0,0.12)] duration-200 sm:max-w-lg",
                     className
                 )}
                 {...props}>

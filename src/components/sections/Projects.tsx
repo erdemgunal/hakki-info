@@ -4,23 +4,13 @@ import { Button } from '@/components/ui/button';
 import { renderTechStackBadges, renderBadges } from '@/lib/badge-utils';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useTheme } from 'next-themes';
 import Section from './Section';
 import { useResumeData } from '@/contexts/ResumeDataContext';
-import { useIsMounted } from '@/hooks/useIsMounted';
 
 export default function Projects() {
     const { projects } = useResumeData();
-    const { resolvedTheme } = useTheme();
-    const mounted = useIsMounted();
 
     const getPlaceholderImage = () => {
-        if (!mounted) {
-            return "/placeholder-light.svg";
-        }
-        if (resolvedTheme === 'dark') {
-            return "/placeholder-dark.svg";
-        }
         return "/placeholder-light.svg";
     };
 
