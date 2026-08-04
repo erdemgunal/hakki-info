@@ -1,58 +1,86 @@
 import Link from 'next/link';
 import { fetchResumeData } from '@/lib/fetch-resume-data';
 import { PageAnalyticsSection } from '@/components/analytics/PageAnalyticsSection';
+import { PageShell, PageHeader } from '@/components/layout';
+import GlobeIcon from '@/components/icon/GlobeIcon';
+import MailIcon from '@/components/icon/MailIcon';
+import ExternalLinkIcon from '@/components/icon/ExternalLinkIcon';
 
 export default async function ContactPage() {
     const resumeData = await fetchResumeData();
     const { hero, social } = resumeData;
     const path = '/contact';
 
+    const socialLinks = (social || []).filter(
+        (item) => !item.url.startsWith('mailto:') && item.iconKey?.toLowerCase() !== 'mail',
+    );
+
     return (
-        <main className="min-h-screen bg-background">
-            <div className="mx-auto max-w-5xl px-4 sm:px-6 md:px-8 lg:px-16 pt-24 sm:pt-24 md:pt-28 pb-8 sm:pb-12 md:pb-16">
-                <div className="py-4 sm:py-6 md:py-8">
-                    <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-6">
-                        Contact
-                    </h1>
+        <main id="main-content" className="min-h-screen bg-background">
+            <PageShell>
+                <PageHeader
+                    title="Contact"
+                    description="Reach out for collaborations, questions, or just to say hello."
+                />
 
-                    <div className="space-y-4 text-sm sm:text-base">
-                        <div className="flex flex-col">
-                            <Link
-                                href={`mailto:${hero.email}`}
-                                className="text-accent hover:text-foreground break-all"
-                                data-umami-event="contact-email"
-                            >
-                                {hero.email}
-                            </Link>
+                <div className="max-w-xl p-6 space-y-8">
+                    <div className="space-y-3">
+                        <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                            Email
+                        </p>
+
+                        <a
+                            href={`mailto:${hero.email}`}
+                            data-umami-event="contact-email"
+                            className="flex items-center justify-center gap-3 rounded-md bg-accent px-5 py-3 text-base font-semibold text-white shadow-md hover:bg-accent-dark transition-all duration-200"
+                        >
+                                <MailIcon className="h-5 w-5" aria-hidden />
+                            Send me an email
+                        </a>
+                    </div>
+
+                    <div className="border-t border-border pt-8 space-y-3">
+                        <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                            Location
+                        </p>
+                        <div className="flex items-center gap-2 text-secondary">
+                            <GlobeIcon className="h-4 w-4 shrink-0" aria-hidden />
+                            <span className="text-sm sm:text-base">{hero.location}</span>
                         </div>
+                    </div>
 
-                        <div className="flex flex-col">
-                            <span className="text-secondary">{hero.location}</span>
-                        </div>
-
-                        <div className="pt-4">
-                            <p className="text-secondary mb-3">Social</p>
-                            <ul className="flex flex-col gap-2">
-                                {(social || []).map((item) => (
+                    {socialLinks.length > 0 && (
+                        <div className="border-t border-border pt-8 space-y-4">
+                            <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                                Elsewhere
+                            </p>
+                            <ul className="divide-y divide-border border-y border-border">
+                                {socialLinks.map((item) => (
                                     <li key={item.name}>
                                         <Link
                                             href={item.url}
-                                            className="text-accent hover:text-foreground"
-                                            target={item.url.startsWith('mailto:') ? undefined : '_blank'}
-                                            rel={item.url.startsWith('mailto:') ? undefined : 'noopener noreferrer'}
-                                            data-umami-event={item.url.startsWith('mailto:') ? 'contact-email' : 'social-click'}
-                                            data-umami-event-platform={item.url.startsWith('mailto:') ? undefined : item.name}
+                                            className="flex items-center justify-between gap-4 p-3 text-base text-foreground transition-colors hover:text-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            data-umami-event="social-click"
+                                            data-umami-event-platform={item.name}
                                         >
-                                            {item.name}
+                                            <span>{item.name}</span>
+                                            <ExternalLinkIcon
+                                                className="h-4 w-4 shrink-0 text-muted-foreground transition-colors group-hover:text-accent"
+                                                aria-hidden
+                                            />
                                         </Link>
                                     </li>
                                 ))}
                             </ul>
                         </div>
-                    </div>
+                    )}
                 </div>
+
                 <PageAnalyticsSection path={path} />
-            </div>
+            </PageShell>
         </main>
-    )
+    );
 }
+

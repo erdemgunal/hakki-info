@@ -1,7 +1,9 @@
 'use client';
 
+import Link from 'next/link';
 import GlobeIcon from '@/components/icon/GlobeIcon';
 import { SocialLinks } from '@/components/ui-widgets';
+import { Button } from '@/components/ui/button';
 import { transformSocialLinks } from '@/lib/icon-mapper';
 import { useResumeData } from '@/contexts/ResumeDataContext';
 
@@ -16,25 +18,46 @@ export default function Hero() {
     return (
         <section
             id="hero"
-            className="relative flex items-center justify-center text-center py-16 sm:py-20 md:py-24 lg:py-28"
+            aria-labelledby="hero-heading"
+            className="relative scroll-mt-24 py-12 sm:py-16 md:py-20 lg:py-24"
         >
-            <div className="w-full max-w-3xl mx-auto flex flex-col items-center justify-center space-y-6 sm:space-y-7 md:space-y-8">
-                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-foreground leading-tight">
+            <div className="flex max-w-3xl flex-col items-start text-left space-y-5 sm:space-y-6">
+                <h1
+                    id="hero-heading"
+                    className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground leading-[1.1] tracking-tight"
+                >
                     {hero.name}
                 </h1>
 
-                <div className="w-full max-w-2xl">
-                    <p className="text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed text-secondary">
-                        {hero.summary}
-                    </p>
+                <p className="max-w-prose text-base sm:text-lg md:text-xl leading-relaxed text-secondary">
+                    {hero.summary}
+                </p>
+
+                <div className="flex items-center gap-2 text-secondary">
+                    <GlobeIcon className="h-4 w-4 sm:h-5 sm:w-5 shrink-0" aria-hidden />
+                    <span className="text-sm sm:text-base">{hero.location}</span>
                 </div>
 
-                <div className="flex items-center justify-center gap-2 text-secondary">
-                    <GlobeIcon className="w-4 h-4 sm:w-5 sm:h-5" />
-                    <span className="text-xs sm:text-sm md:text-base">{hero.location}</span>
+                <div className="flex flex-wrap items-center gap-3 pt-1">
+                    <Button asChild size="lg" className="rounded-lg min-h-11">
+                        <Link
+                            href="/projects"
+                            data-umami-event="hero-cta-projects"
+                        >
+                            View projects
+                        </Link>
+                    </Button>
+                    <Button asChild variant="outline" size="lg" className="rounded-lg min-h-11">
+                        <Link
+                            href="/contact"
+                            data-umami-event="hero-cta-contact"
+                        >
+                            Contact
+                        </Link>
+                    </Button>
                 </div>
 
-                <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
+                <div className="flex flex-wrap items-center gap-4 pt-2">
                     <SocialLinks socialLinks={socialLinks} />
                 </div>
             </div>

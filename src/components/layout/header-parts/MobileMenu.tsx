@@ -35,7 +35,7 @@ export function MobileMenu({
                             <li key={link.href}>
                                 <Link
                                     href={link.href}
-                                    className={`block w-full min-h-[24px] rounded-lg px-3 py-2.5 text-left text-sm transition-colors ${
+                                    className={`block w-full min-h-11 rounded-lg px-3 py-2.5 text-left text-sm transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent ${
                                         pathname === link.href
                                             ? 'text-foreground bg-accent/10 font-medium'
                                             : 'text-muted-foreground hover:bg-muted hover:text-foreground'
@@ -83,7 +83,7 @@ export function MobileMenu({
                                             onScrollToSection(id);
                                             onClose();
                                         }}
-                                        className="w-full min-h-[24px] rounded-lg px-3 py-2.5 text-left text-sm text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
+                                        className="w-full min-h-11 rounded-lg px-3 py-2.5 text-left text-sm text-muted-foreground hover:bg-muted hover:text-foreground transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
                                     >
                                         {label}
                                     </button>

@@ -1,5 +1,3 @@
-'use client';
-
 import { ReactNode } from 'react';
 
 interface SectionProps {
@@ -7,17 +5,20 @@ interface SectionProps {
     children: ReactNode;
     className?: string;
     containerClassName?: string;
+    'aria-labelledby'?: string;
 }
 
 export default function Section({
     id,
     children,
     className = '',
-    containerClassName = ''
+    containerClassName = '',
+    'aria-labelledby': ariaLabelledby,
 }: SectionProps) {
     return (
         <section
             id={id}
+            aria-labelledby={ariaLabelledby}
             className={`scroll-mt-24 ${className}`}
         >
             <div className={containerClassName || 'w-full'}>

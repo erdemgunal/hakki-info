@@ -25,7 +25,7 @@ export function SocialLinks({ socialLinks, className = "", iconClassName = "w-5 
             <div key={social.name}>
                 <Link
                     href={social.url}
-                    className={`inline-flex items-center justify-center text-secondary hover:text-foreground transition-all duration-200 p-2 rounded-full hover:bg-primary/10 min-w-[24px] min-h-[24px] ${className}`}
+                    className={`inline-flex min-h-11 min-w-11 items-center justify-center rounded-full p-2 text-secondary transition-all duration-200 motion-reduce:transition-none hover:bg-primary/10 hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-accent ${className}`}
                     aria-label={social.name}
                     target={social.url.startsWith('mailto:') ? undefined : '_blank'}
                     rel={social.url.startsWith('mailto:') ? undefined : 'noopener noreferrer'}
