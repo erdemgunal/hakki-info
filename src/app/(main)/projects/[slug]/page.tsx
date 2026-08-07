@@ -6,6 +6,7 @@ import Image from 'next/image';
 import seo from '@/config/seo.json';
 import { Button } from '@/components/ui/button';
 import { PageAnalyticsSection } from '@/components/analytics/PageAnalyticsSection';
+import { PageShell } from '@/components/layout';
 import ExternalLinkIcon from '@/components/icon/ExternalLinkIcon';
 import ArrowLeftIcon from '@/components/icon/ArrowLeftIcon';
 import { renderBadges, renderTechStackBadges } from '@/lib/badge-utils';
@@ -73,8 +74,8 @@ export default async function ProjectPage({ params }: ProjectPageParams) {
     const githubUrl = resumeData.social?.find(s => s.iconKey === 'github' || s.name === 'GitHub')?.url;
 
     return (
-        <main className="min-h-screen bg-background">
-            <div className="mx-auto max-w-5xl px-4 sm:px-6 md:px-8 lg:px-16 pt-24 sm:pt-24 md:pt-28 pb-12 sm:pb-16 md:pb-20">
+        <main id="main-content" className="min-h-screen bg-background">
+            <PageShell className="pb-12 sm:pb-16 md:pb-20">
 
                 <header className="mb-8 sm:mb-12">
                     <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-3">
@@ -227,7 +228,7 @@ export default async function ProjectPage({ params }: ProjectPageParams) {
                 </div>
 
                 <PageAnalyticsSection path={path} />
-            </div>
+            </PageShell>
         </main>
     );
 }

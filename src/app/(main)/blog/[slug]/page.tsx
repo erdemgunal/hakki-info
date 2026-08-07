@@ -12,6 +12,7 @@ import { mdxComponents } from '@/components/blog/MdxComponents';
 import { PostSidebar } from '@/components/blog/PostSidebar';
 import { ScrollProgressIndicator } from '@/components/blog/ScrollProgressIndicator';
 import { PageAnalyticsSection } from '@/components/analytics/PageAnalyticsSection';
+import { PageShell } from '@/components/layout';
 import seo from '@/config/seo.json';
 import { formatBlogDate } from '@/lib/date-utils';
 import DotIcon from '@/components/icon/DotIcon';
@@ -82,9 +83,9 @@ export default async function BlogPostPage({ params }: BlogPostPageParams) {
     const shareUrl = new URL(`/blog/${slug}`, seo.url).toString();
 
     return (
-        <main className="min-h-screen bg-background">
+        <main id="main-content" className="min-h-screen bg-background">
             <ScrollProgressIndicator />
-            <div className="mx-auto max-w-5xl px-4 sm:px-6 md:px-8 lg:px-16 pt-24 sm:pt-24 md:pt-28 pb-4 sm:pb-6 md:pb-8 lg:pb-12">
+            <PageShell className="pb-4 sm:pb-6 md:pb-8 lg:pb-12">
                 <div className="grid grid-cols-1 lg:grid-cols-[1fr_200px] gap-6 sm:gap-8 lg:gap-12">
                     {/* ── Article ─────────────────────────────────────────── */}
                     <article className="min-w-0 lg:col-start-1">
@@ -210,7 +211,7 @@ export default async function BlogPostPage({ params }: BlogPostPageParams) {
                     </div>
                 )}
                 <PageAnalyticsSection path={path} />
-            </div>
+            </PageShell>
         </main>
     );
 }

@@ -1,9 +1,7 @@
 export {
     About,
-    Community,
-    Education,
+    Background,
     Hero,
-    Languages,
     Projects,
     Skills,
 } from '@/components/sections';
